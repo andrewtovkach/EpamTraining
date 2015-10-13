@@ -1,0 +1,13 @@
+c:\users\andrew\documents\visual studio 2012\Projects\Mediateka\Mediateka\bin\Debug\Mediateka.exe.config
+D:\Programming\C#\EpamTraining\Mediateka\Mediateka\bin\Debug\Mediateka.exe.config
+D:\Programming\C#\EpamTraining\Mediateka\Mediateka\bin\Debug\Mediateka.exe
+D:\Programming\C#\EpamTraining\Mediateka\Mediateka\bin\Debug\Mediateka.pdb
+D:\Programming\C#\EpamTraining\Mediateka\Mediateka\obj\Debug\Mediateka.csprojResolveAssemblyReference.cache
+D:\Programming\C#\EpamTraining\Mediateka\Mediateka\obj\Debug\Mediateka.exe
+D:\Programming\C#\EpamTraining\Mediateka\Mediateka\obj\Debug\Mediateka.pdb
+D:\Programming\C#\Mediateka\Mediateka\bin\Debug\Mediateka.exe.config
+D:\Programming\C#\Mediateka\Mediateka\obj\Debug\Mediateka.exe
+D:\Programming\C#\Mediateka\Mediateka\obj\Debug\Mediateka.pdb
+D:\Programming\C#\Mediateka\Mediateka\bin\Debug\Mediateka.exe
+D:\Programming\C#\Mediateka\Mediateka\bin\Debug\Mediateka.pdb
+D:\Programming\C#\Mediateka\Mediateka\obj\Debug\Mediateka.csprojResolveAssemblyReference.cache

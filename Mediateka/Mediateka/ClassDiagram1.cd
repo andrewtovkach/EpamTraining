@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Mediateka.Program">
+    <Position X="19.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mediateka.Collections.Album">
+    <Position X="7" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAACDABA2KAAAFAQAAIAAAAAACAABAgBUIQA=</HashCode>
+      <FileName>Collections\Album.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Mediateka.Collections.Folder">
+    <Position X="11.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAACBABA2KAAAFAQAAAAAAAAACAAAAgAEIAA=</HashCode>
+      <FileName>Collections\Folder.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Mediateka.Collections.Serial">
+    <Position X="16" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAACCABA2KAAAFAQAAAIAAAACCQABAgBUYQA=</HashCode>
+      <FileName>Collections\Serial.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Mediateka.Comparers.ComparerByCreationDate" BaseTypeListCollapsed="true">
+    <Position X="19.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>Comparers\ComparerByCreationDate.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mediateka.Comparers.ComparerByPopularity" BaseTypeListCollapsed="true">
+    <Position X="19.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>Comparers\ComparerByPopularity.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mediateka.Model.AudioItem">
+    <Position X="4.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAACAAAEIAAABAAAAAAAAAAAAAAAAgAEAgA=</HashCode>
+      <FileName>Model\AudioItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mediateka.Model.ImageItem">
+    <Position X="9.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAEIAAABAAAAAAAAAAACAAAAgAEAAA=</HashCode>
+      <FileName>Model\ImageItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mediateka.Model.MediaItem">
+    <Position X="11" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAJAAAAEAAAAAAQEIAAABAQAAAAAAAAAAAAAAgAEAAA=</HashCode>
+      <FileName>Model\MediaItem.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Mediateka.Model.MediatekaClass" BaseTypeListCollapsed="true">
+    <Position X="17.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAABAmKAAgBAQAAAAAAAAACAAAAAAEAAA=</HashCode>
+      <FileName>Model\Mediateka.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mediateka.Model.VideoItem">
+    <Position X="13.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAACAAAEIAAABAAAAAAAAAAACAAAAgAEAAA=</HashCode>
+      <FileName>Model\VideoItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="Mediateka.Model.ScreenResolution">
+    <Position X="15.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\ScreenResolution.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Interface Name="Mediateka.Interfaces.IDurationCollection">
+    <Position X="8.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAA=</HashCode>
+      <FileName>Interfaces\IDurationCollection.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mediateka.Interfaces.IMediaCollection">
+    <Position X="5.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IMediaCollection.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Mediateka.Model.Popularity">
+    <Position X="13.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAAAAAAAEAAAAAAgAAAgAAIA=</HashCode>
+      <FileName>Model\Popularity.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

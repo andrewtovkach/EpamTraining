@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Transport.Program">
+    <Position X="16.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Transport.Comparers.ComparerByComfort" BaseTypeListCollapsed="true">
+    <Position X="18.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>Comparers\ComparerByComfort.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Transport.Comparers.ComparerByOccupiedVolume" BaseTypeListCollapsed="true">
+    <Position X="20.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>Comparers\ComparerByOccupiedVolume.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Transport.Model.Baggage">
+    <Position X="16.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAEAEAAAAQAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Baggage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Transport.Model.Carriages.BaggageCarriage">
+    <Position X="9" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAYAAAAgAAAAAhIUCAQADAQAAAAGAAAEEAAAAAJUIAA=</HashCode>
+      <FileName>Model\Carriages\BaggageCarriage.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Transport.Model.Carriages.Carriage">
+    <Position X="9.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Carriages\Carriage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Transport.Model.Carriages.FreightCarriage">
+    <Position X="13.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAEAAAIAAAAAAAACAAAAAIAAAAMAAU=</HashCode>
+      <FileName>Model\Carriages\FreightCarriage.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Transport.Model.Carriages.PassengerCarriage">
+    <Position X="6.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEIAAAAAAAAAAhAUCAAABAQAAAEAQEAEAAAEgABUIAA=</HashCode>
+      <FileName>Model\Carriages\PassengerCarriage.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Transport.Model.Place">
+    <Position X="16.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAEAEAAAARAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Place.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Transport.Model.Carriages.RestaurantCarriage">
+    <Position X="11.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAEAAAAAAAAAAAAAAAAAAAEAAAEAAA=</HashCode>
+      <FileName>Model\Carriages\RestaurantCarriage.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Transport.Model.Locomotive">
+    <Position X="14.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAEAAAAAAACAAABAAAAAAAEAAA=</HashCode>
+      <FileName>Model\Locomotive.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Transport.Model.Vehicle">
+    <Position X="8" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAQEAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Vehicle.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Transport.Model.Trains.FreightTrain">
+    <Position X="2" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AkIAAAgAAAAAABAQCAAQBAQAAAQQAAAEAAAAAgBUIAA=</HashCode>
+      <FileName>Model\Trains\FreightTrain.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Transport.Model.Trains.PassengerTrain">
+    <Position X="4.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EgIAQACAAAoAAhAQCAAQBAQAAAUAAAAEAAAgAABUIAE=</HashCode>
+      <FileName>Model\Trains\PassengerTrain.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Transport.Model.Trains.Train">
+    <Position X="3.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAgAAAA=</HashCode>
+      <FileName>Model\Trains\Train.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Transport.Interfaces.ISortable">
+    <Position X="20.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAACAAQAAAAAAQAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\ISortable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Transport.Interfaces.IPrintable">
+    <Position X="18.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Interfaces\IPrintable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Transport.Enums.TypeEnergy">
+    <Position X="18.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAYAgACAAAAAAQAAAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Enums\TypeEnergy.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Transport.Enums.TypeFreightCarriage">
+    <Position X="22.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAAAAAAAAAABAAAAAAACEEAAAAAAAA=</HashCode>
+      <FileName>Enums\TypeFreightCarriage.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Transport.Enums.TypePassengerCarriage">
+    <Position X="20.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAABAAAAAAAAAAAACAAAAAAAABAAACAA=</HashCode>
+      <FileName>Enums\TypePassengerCarriage.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
