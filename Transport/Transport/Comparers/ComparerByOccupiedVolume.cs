@@ -3,11 +3,18 @@ using Transport.Model.Carriages;
 
 namespace Transport.Comparers
 {
-    class ComparerByOccupiedVolume : IComparer<FreightCarriage>
+    class ComparerByOccupiedVolume : IComparer<Carriage>
     {
-        public int Compare(FreightCarriage x, FreightCarriage y)
+        public int Compare(Carriage x, Carriage y)
         {
-            return x.OccupiedVolume.CompareTo(y.OccupiedVolume);
+            var carriageFirst = x as FreightCarriage;
+            if (carriageFirst != null)
+            {
+                var carriageSecond = y as FreightCarriage;
+                if (carriageSecond != null)
+                    return carriageFirst.OccupiedVolume.CompareTo(carriageSecond.OccupiedVolume);
+            }
+            return 1;
         }
     }
 }

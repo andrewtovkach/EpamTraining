@@ -7,19 +7,14 @@ using Transport.Interfaces;
 
 namespace Transport.Model.Carriages
 {
-    class BaggageCarriage : Carriage, IPrintable, ICollection<Baggage>
+    class BaggageCarriage : Carriage, ICollection<Baggage>, IBaggage
     {
-        public int CellsCount { get; set; }
-        public int CellCapacity { get; set; }
+        public uint CellsCount { get; set; }
+        public uint CellCapacity { get; set; }
 
         private Dictionary<int, Baggage> dictionaryBaggages;
 
-        public BaggageCarriage()
-        {
-            this.dictionaryBaggages = new Dictionary<int, Baggage>();
-        }
-
-        public BaggageCarriage(int number, DateTime startUpDate, uint axisNumber, int cellsCount, int cellCapacity)
+        public BaggageCarriage(int number, DateTime startUpDate, uint axisNumber, uint cellsCount, uint cellCapacity)
             : base(number, startUpDate, axisNumber)
         {
             this.dictionaryBaggages = new Dictionary<int, Baggage>();
@@ -37,21 +32,10 @@ namespace Transport.Model.Carriages
             get { return dictionaryBaggages.FirstOrDefault(x => x.Value.Name == name).Value; }
         }
 
-        public int FirstFreeCell
-        {
-            get
-            {
-                for (int i = 1; i <= CellsCount; i++)
-                    if (!dictionaryBaggages.ContainsKey(i))
-                        return i;
-                return -1;
-            }
-        }
-
         public void Add(Baggage item)
         {
-            if (FirstFreeCell != -1 && item.Weight <= CellCapacity)
-                dictionaryBaggages.Add(FirstFreeCell, item);
+            if (FirstFreeCell() != -1 && item.Weight <= CellCapacity)
+                dictionaryBaggages.Add(FirstFreeCell(), item);
             else throw new InvalidOperationException("Невозможно добавить багаж! Нет свободного места!");
         }
 
@@ -67,7 +51,7 @@ namespace Transport.Model.Carriages
 
         public int Count
         {
-            get { return CellsCount; }
+            get { return (int)CellsCount; }
         }
 
         public bool IsReadOnly
@@ -77,7 +61,12 @@ namespace Transport.Model.Carriages
 
         public bool Remove(Baggage item)
         {
-             return dictionaryBaggages.Remove(GetCellNumber(item.Number));
+            return dictionaryBaggages.Remove(GetCellNumber(item.Number));
+        }
+
+        public void Clear()
+        {
+            dictionaryBaggages.Clear();
         }
 
         public IEnumerator<Baggage> GetEnumerator()
@@ -92,8 +81,21 @@ namespace Transport.Model.Carriages
 
         public override string ToString()
         {
-            return String.Format("Багажное отделение {0}, Кол-во ячеек: {1}, Вместимость ячейки: {2}", base.ToString(), 
+            return String.Format("Багажное отделение {0}, Кол-во ячеек: {1}, Вместимость ячейки: {2}", base.ToString(),
                 CellsCount, CellCapacity);
+        }
+
+        private int FirstFreeCell()
+        {
+            for (int i = 1; i <= CellsCount; i++)
+                if (!dictionaryBaggages.ContainsKey(i))
+                    return i;
+            return -1;
+        }
+
+        public long TotalCellsCount
+        {
+            get { return CellsCount; }
         }
 
         public IEnumerable<int> GetBusyCells()
@@ -113,14 +115,9 @@ namespace Transport.Model.Carriages
                     yield return i;
         }
 
-        public int FreeCellsCount
+        public long FreeCellsCount
         {
             get { return CellsCount - BusyCellsCount; }
-        }
-
-        public void Clear()
-        {
-            dictionaryBaggages.Clear();
         }
 
         public Baggage GetBaggage(int cellNumber)
@@ -147,12 +144,12 @@ namespace Transport.Model.Carriages
             get { return dictionaryBaggages.Sum(item => item.Value.Weight); }
         }
 
-        public int TotalCapacity
+        public long TotalCapacity
         {
             get { return CellCapacity * CellsCount; }
         }
 
-        public string Print()
+        public override string Print()
         {
             StringBuilder result = new StringBuilder();
             result.AppendLine(this.ToString());

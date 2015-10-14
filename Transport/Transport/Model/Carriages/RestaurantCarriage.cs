@@ -1,9 +1,8 @@
 ﻿using System;
-using Transport.Interfaces;
 
 namespace Transport.Model.Carriages
 {
-    class RestaurantCarriage : Carriage, IPrintable
+    class RestaurantCarriage : Carriage
     {
         public uint PlacesCount { get; set; }
         public string Description { get; set; }
@@ -22,7 +21,7 @@ namespace Transport.Model.Carriages
                 PlacesCount, Description);
         }
 
-        public string Print()
+        public override string Print()
         {
             return this.ToString();
         }

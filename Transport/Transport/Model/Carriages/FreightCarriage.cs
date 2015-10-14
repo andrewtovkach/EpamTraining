@@ -4,13 +4,13 @@ using Transport.Interfaces;
 
 namespace Transport.Model.Carriages
 {
-    class FreightCarriage : Carriage, IPrintable
+    class FreightCarriage : Carriage, IFreight
     {
         public string ProductName { get; set; }
         public TypeFreightCarriage TypeFreightCarriage { get; set; }
 
-        private int _occupiedVolume;
-        public int OccupiedVolume
+        private uint _occupiedVolume;
+        public uint OccupiedVolume
         {
             get { return _occupiedVolume; }
             set
@@ -24,13 +24,23 @@ namespace Transport.Model.Carriages
         public uint Volume { get; set; }
 
         public FreightCarriage(int number, DateTime startUpDate, uint axisNumber, string productName, 
-            TypeFreightCarriage typeFreightCarriage, uint volume, int occupiedVolume)
+            TypeFreightCarriage typeFreightCarriage, uint volume, uint occupiedVolume)
             : base(number, startUpDate, axisNumber)
         {
             this.ProductName = productName;
             this.TypeFreightCarriage = typeFreightCarriage;
             this.Volume = volume;
             this.OccupiedVolume = occupiedVolume;
+        }
+
+        public long TotalVolume
+        {
+            get { return Volume; }
+        }
+        
+        public long TotalOccupiedVolume
+        {
+            get { return OccupiedVolume; }
         }
 
         public long FreeVolume
@@ -49,7 +59,7 @@ namespace Transport.Model.Carriages
                 " Занято: {4}", base.ToString(), ProductName, TypeFreightCarriage, Volume, OccupiedVolume);
         }
 
-        public string Print()
+        public override string Print()
         {
             return this.ToString();
         }

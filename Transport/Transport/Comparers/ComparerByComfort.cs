@@ -3,11 +3,18 @@ using Transport.Model.Carriages;
 
 namespace Transport.Comparers
 {
-    class ComparerByComfort : IComparer<PassengerCarriage>
+    class ComparerByComfort : IComparer<Carriage>
     {
-        public int Compare(PassengerCarriage x, PassengerCarriage y)
+        public int Compare(Carriage x, Carriage y)
         {
-            return ((int)x.TypePassengerCarriage).CompareTo((int)y.TypePassengerCarriage);
+            var carriageFirst = x as PassengerCarriage;
+            if (carriageFirst != null)
+            {
+                var carriageSecond = y as PassengerCarriage;
+                if (carriageSecond != null)
+                    return ((int)carriageFirst.TypePassengerCarriage).CompareTo((int)carriageSecond.TypePassengerCarriage);
+            }
+            return 1;
         }
     }
 }

@@ -8,22 +8,12 @@ using Transport.Interfaces;
 
 namespace Transport.Model.Carriages
 {
-    class PassengerCarriage : Carriage, IPrintable, ICollection<Place>
+    class PassengerCarriage : Carriage, ICollection<Place>, IPassenger
     {
         public TypePassengerCarriage TypePassengerCarriage { get; set; }
         public uint PlacesCount { get; set; }
 
         private List<Place> listPlaces;
-
-        public PassengerCarriage()
-        {
-            this.PlacesCount = 50;
-            listPlaces = new List<Place>();
-            for (int i = 1; i <= PlacesCount; i++)
-            {
-                listPlaces.Add(new Place { Number = i, CarriageNumber = this.Number });
-            }
-        }
 
         public PassengerCarriage(int number, DateTime startUpDate, uint axisNumber, uint placesCount, 
             TypePassengerCarriage typePassengerCarriage)
@@ -34,7 +24,7 @@ namespace Transport.Model.Carriages
             listPlaces = new List<Place>();
             for (int i = 1; i <= PlacesCount; i++)
             {
-                listPlaces.Add(new Place { Number = i, CarriageNumber = Number });
+                listPlaces.Add(new Place { Number = i });
             }
         }
 
@@ -101,12 +91,17 @@ namespace Transport.Model.Carriages
             return this.GetEnumerator();
         }
 
+        public long TotalPlacesCount
+        {
+            get { return PlacesCount; }
+        }
+
         public IEnumerable<int> GetFreePlaces()
         {
             return listPlaces.Where(place => !place.IsBusy).Select(x => x.Number).AsEnumerable();
         }
 
-        public int FreePlacesCount
+        public long FreePlacesCount
         {
             get { return listPlaces.Count(x => !x.IsBusy); }
         }
@@ -116,12 +111,12 @@ namespace Transport.Model.Carriages
             return listPlaces.Where(place => place.IsBusy).Select(x => x.Number).AsEnumerable();
         }
 
-        public int BusyPlacesCount
+        public long BusyPlacesCount
         {
             get { return listPlaces.Count(x => x.IsBusy); }
         }
 
-        public string Print()
+        public override string Print()
         {
             StringBuilder result = new StringBuilder();
             result.AppendLine(this.ToString());

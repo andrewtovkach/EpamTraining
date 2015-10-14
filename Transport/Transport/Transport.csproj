@@ -42,7 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums\TypeEnergy.cs" />
-    <Compile Include="Interfaces\IPrintable.cs" />
+    <Compile Include="Interfaces\IBaggage.cs" />
+    <Compile Include="Interfaces\IFreight.cs" />
+    <Compile Include="Interfaces\IPassenger.cs" />
     <Compile Include="Interfaces\ISortable.cs" />
     <Compile Include="Model\Carriages\Carriage.cs" />
     <Compile Include="Model\Trains\FreightTrain.cs" />

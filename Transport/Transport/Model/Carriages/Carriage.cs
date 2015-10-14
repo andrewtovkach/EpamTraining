@@ -14,6 +14,8 @@ namespace Transport.Model.Carriages
             this.AxisNumber = axisNumber;
         }
 
+        public abstract string Print();
+
         public override string ToString()
         {
             return String.Format("{0} Кол-во осей: {1}", base.ToString(), AxisNumber);

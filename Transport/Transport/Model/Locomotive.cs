@@ -1,10 +1,9 @@
 ﻿using System;
 using Transport.Enums;
-using Transport.Interfaces;
 
 namespace Transport.Model
 {
-    class Locomotive : Vehicle, IPrintable
+    class Locomotive : Vehicle
     {
         public TypeEnergy TypeEnergy { get; set; }
         public uint Power { get; set; }
@@ -22,11 +21,6 @@ namespace Transport.Model
         {
             return String.Format("Локомотив {0} Тип энергии: {1}, Мощность: {2}, Макс. скорость: {3}", base.ToString(), 
                 TypeEnergy, Power, MaxSpeed);
-        }
-
-        public string Print()
-        {
-            return this.ToString();
         }
     }
 }
