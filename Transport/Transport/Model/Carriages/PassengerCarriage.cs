@@ -91,11 +91,6 @@ namespace Transport.Model.Carriages
             return this.GetEnumerator();
         }
 
-        public long TotalPlacesCount
-        {
-            get { return PlacesCount; }
-        }
-
         public IEnumerable<int> GetFreePlaces()
         {
             return _listPlaces.Where(place => !place.IsBusy).Select(x => x.Number).AsEnumerable();

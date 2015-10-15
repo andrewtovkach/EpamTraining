@@ -33,16 +33,6 @@ namespace Transport.Model.Carriages
             this.OccupiedVolume = occupiedVolume;
         }
 
-        public long TotalVolume
-        {
-            get { return Volume; }
-        }
-        
-        public long TotalOccupiedVolume
-        {
-            get { return OccupiedVolume; }
-        }
-
         public long FreeVolume
         {
             get { return Volume - OccupiedVolume; }

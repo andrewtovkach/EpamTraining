@@ -93,11 +93,6 @@ namespace Transport.Model.Carriages
             return -1;
         }
 
-        public long TotalCellsCount
-        {
-            get { return CellsCount; }
-        }
-
         public IEnumerable<int> GetBusyCells()
         {
             return _dictionaryBaggages.Keys.AsEnumerable();
@@ -139,12 +134,12 @@ namespace Transport.Model.Carriages
             }
         }
 
-        public double TotalWeight
+        public double Weight
         {
             get { return _dictionaryBaggages.Sum(item => item.Value.Weight); }
         }
 
-        public long TotalCapacity
+        public long Capacity
         {
             get { return CellCapacity * CellsCount; }
         }

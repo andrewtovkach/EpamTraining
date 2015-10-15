@@ -31,7 +31,7 @@ namespace Transport
             train1.GiveBaggage(4, new Baggage { Name = "Собака", Number = 1254, Weight = 12.3 });
             train1.GiveBaggage(4, new Baggage { Name = "Сумка", Number = 1245, Weight = 5.6 });
             train1.GiveBaggage(5, new Baggage { Name = "Холодильник", Number = 1578, Weight = 38.6 });
-            train1.GetBaggage(5, 1578);
+            train1.GetBaggage(4, 1254);
             train1.Sort(new ComparerByComfort());
             Console.WriteLine(train1.Print());
             Console.WriteLine("Общ. кол-во мест: " + train1.TotalPlacesCount);

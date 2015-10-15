@@ -4,9 +4,9 @@ namespace Transport.Interfaces
 {
     interface IBaggageElement
     {
-        long TotalCellsCount { get; }
-        double TotalWeight { get; }
-        long TotalCapacity { get; }
+        uint CellsCount { get; }
+        double Weight { get; }
+        long Capacity { get; }
         IEnumerable<int> GetBusyCells();
         int BusyCellsCount { get; }
         IEnumerable<int> GetFreeCells();

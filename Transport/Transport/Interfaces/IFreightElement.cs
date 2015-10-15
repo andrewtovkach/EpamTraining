@@ -2,8 +2,8 @@
 {
     interface IFreightElement
     {
-        long TotalVolume { get; }
-        long TotalOccupiedVolume { get; }
+        uint Volume { get; }
+        uint OccupiedVolume { get; }
         long FreeVolume { get; }
         double PercentageFreeVolume { get; }
     }

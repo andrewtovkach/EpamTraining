@@ -51,76 +51,44 @@ namespace Transport.Model.Trains
             }
         }
 
+        private IEnumerable<IBaggageElement> GetAllBaggageElements()
+        {
+            return listCarriages.OfType<IBaggageElement>();
+        }
+
+        private IEnumerable<IPassengerElement> GetAllPassangerElements()
+        {
+            return listCarriages.OfType<IPassengerElement>();
+        }
+
         public long TotalPlacesCount
         {
-            get
-            {
-                return listCarriages.Sum(x =>
-                    {
-                        var passenger = x as IPassengerElement;
-                        return passenger != null ? passenger.TotalPlacesCount : 0;
-                    });
-            }
+            get { return GetAllPassangerElements().Sum(x => x.PlacesCount); }
         }
 
         public long TotalBusyPlacesCount
         {
-            get
-            {
-                return listCarriages.Sum(x =>
-                    {
-                        var passenger = x as IPassengerElement;
-                        return passenger != null ? passenger.BusyPlacesCount : 0;
-                    });
-            }
+            get { return GetAllPassangerElements().Sum(x => x.BusyPlacesCount); }
         }
 
         public long TotalCellsCount
         {
-            get
-            {
-                return listCarriages.Sum(x =>
-                    {
-                        var baggage = x as IBaggageElement;
-                        return baggage != null ? baggage.TotalCellsCount : 0;
-                    });
-            }
+            get { return GetAllBaggageElements().Sum(x => x.CellsCount); }
         }
 
         public long TotalFreePlacesCount
         {
-            get
-            {
-                return listCarriages.Sum(x =>
-                    {
-                        var passenger = x as IPassengerElement;
-                        return passenger != null ? passenger.FreePlacesCount : 0;
-                    });
-            }
+            get { return GetAllPassangerElements().Sum(x => x.FreePlacesCount); }
         }
 
         public int TotalBusyCellsCount
         {
-            get
-            {
-                return listCarriages.Sum(x =>
-                    {
-                        var baggage = x as IBaggageElement;
-                        return baggage != null ? baggage.BusyCellsCount : 0;
-                    });
-            }
+            get { return GetAllBaggageElements().Sum(x => x.BusyCellsCount); }
         }
 
-        public long FreeCellsCount
+        public long TotalFreeCellsCount
         {
-            get
-            {
-                return listCarriages.Sum(x =>
-                    {
-                        var baggage = x as IBaggageElement;
-                        return baggage != null ? baggage.FreeCellsCount : 0;
-                    });
-            }
+            get { return GetAllBaggageElements().Sum(x => x.FreeCellsCount); }
         }
 
         public Baggage GetBaggage(int numberCarriage, int baggageNumber)
@@ -165,26 +133,12 @@ namespace Transport.Model.Trains
 
         public double TotalWeight
         {
-            get
-            {
-                return listCarriages.Sum(x =>
-                    {
-                        var baggage = x as IBaggageElement;
-                        return baggage != null ? baggage.TotalWeight : 0;
-                    });
-            }
+            get { return GetAllBaggageElements().Sum(x => x.Weight); }
         }
 
         public long TotalCapacity
         {
-            get
-            {
-                return listCarriages.Sum(x =>
-                    {
-                        var baggage = x as IBaggageElement;
-                        return baggage != null ? baggage.TotalCapacity : 0;
-                    });
-            }
+            get { return GetAllBaggageElements().Sum(x => x.Capacity); }
         }
 
         public void Sort()

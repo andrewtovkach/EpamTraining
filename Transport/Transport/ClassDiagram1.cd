@@ -41,7 +41,7 @@
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>QAIAAAAgAAAAAhIUCAQADAQAAAAGAAAEEAQAgAJUIAA=</HashCode>
+      <HashCode>AAIAAAAgAAAAAhIUCAQADAQCACAGAAAEAAAAgAJUIAA=</HashCode>
       <FileName>Model\Carriages\BaggageCarriage.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -64,7 +64,7 @@
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAoAAAAAAAAEAAAIAAAAAAAACAAAAAIAAgAMAAU=</HashCode>
+      <HashCode>AAAAAAIAAAAAAAAEAAAIAAAAAAAACAAAAAIAAAAMAAU=</HashCode>
       <FileName>Model\Carriages\FreightCarriage.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -80,7 +80,7 @@
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>AEIAAAAAAAIAAhAUCAAABAQAAAEAQAAEAAgEgABUIAA=</HashCode>
+      <HashCode>AEIAAAAAAAAAAhAUCAAABAQAAAEAQAAEAAgEgABUIAA=</HashCode>
       <FileName>Model\Carriages\PassengerCarriage.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -125,7 +125,7 @@
   <Class Name="Transport.Model.Trains.FreightTrain">
     <Position X="2" Y="7.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AEAAAAgAAAAAAAAECAAQAAAAAAAQAAAAAAAAAgAAAAA=</HashCode>
+      <HashCode>AEAAAAgAAAAAAAAECAAQAAAAAAAQAAAAACAAAgAAAAA=</HashCode>
       <FileName>Model\Trains\FreightTrain.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -133,7 +133,7 @@
   <Class Name="Transport.Model.Trains.PassengerTrain">
     <Position X="4.75" Y="7.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>QAAAQACAAAoAAAAECAQQAAAAAAAEAACAEAQAAAIAACE=</HashCode>
+      <HashCode>QAAAQACAAAsAAAAECAAQAAAAAAAEAACAEAQAAAIEACU=</HashCode>
       <FileName>Model\Trains\PassengerTrain.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -149,21 +149,21 @@
   <Interface Name="Transport.Interfaces.IBaggageElement">
     <Position X="18.25" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>QAAAAAAgAAAAAgAAAAQAAAAAAAAEAAAAEAQAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAgAAAAAgIAAAQAAAACACAEAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Interfaces\IBaggageElement.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="Transport.Interfaces.IFreightElement">
     <Position X="20.25" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAgAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAgAAAAQ=</HashCode>
+      <HashCode>AAAAAAIAAAAAAAAAAAAIAAAAAAAAAAAAAAIAAAAAAAQ=</HashCode>
       <FileName>Interfaces\IFreightElement.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="Transport.Interfaces.IPassengerElement">
     <Position X="22.25" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AEAAAAAAAAIAAgAAAAAAAAAAAAEAAAAAAAAAgAAAAAA=</HashCode>
+      <HashCode>AEAAAAAAAAAAAgAAAAAAAAAAAAEAAAAAAAAEgAAAAAA=</HashCode>
       <FileName>Interfaces\IPassengerElement.cs</FileName>
     </TypeIdentifier>
   </Interface>

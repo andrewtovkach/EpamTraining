@@ -23,28 +23,19 @@ namespace Transport.Model.Trains
             return "Грузовой поезд " + base.ToString();
         }
 
+        private IEnumerable<IFreightElement> GetAllElements()
+        {
+            return listCarriages.OfType<IFreightElement>();
+        }
+
         public long TotalOccupiedVolume
         {
-            get
-            {
-                return listCarriages.Sum(x =>
-                    {
-                        var freightCarriage = x as FreightCarriage;
-                        return freightCarriage != null ? freightCarriage.TotalOccupiedVolume : 0;
-                    });
-            }
+            get { return GetAllElements().Sum(x => x.OccupiedVolume); }
         }
 
         public long TotalVolume
         {
-            get
-            {
-                return listCarriages.Sum(x =>
-                    {
-                        var freightCarriage = x as FreightCarriage;
-                        return freightCarriage != null ? freightCarriage.TotalVolume : 0;
-                    });
-            }
+            get { return GetAllElements().Sum(x => x.Volume); }
         }
 
         public long TotalFreeVolue
