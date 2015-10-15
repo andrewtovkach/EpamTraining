@@ -1,4 +1,5 @@
 ﻿using System;
+using Transport.Comparers;
 using Transport.Enums;
 using Transport.Model;
 using Transport.Model.Carriages;
@@ -31,7 +32,7 @@ namespace Transport
             train1.GiveBaggage(4, new Baggage { Name = "Сумка", Number = 1245, Weight = 5.6 });
             train1.GiveBaggage(5, new Baggage { Name = "Холодильник", Number = 1578, Weight = 38.6 });
             train1.GetBaggage(5, 1578);
-            train1.SortByUserCondition();
+            train1.Sort(new ComparerByComfort());
             Console.WriteLine(train1.Print());
             Console.WriteLine("Общ. кол-во мест: " + train1.TotalPlacesCount);
             Console.WriteLine("Общ. кол-во свободных мест: " + train1.TotalFreePlacesCount);
@@ -46,7 +47,7 @@ namespace Transport
                 new FreightCarriage(2, new DateTime(2012, 6, 7), 12, "Торф", TypeFreightCarriage.HalfCarriage, 75, 50),
                 new FreightCarriage(3, new DateTime(2001, 6, 18), 4, "Мел", TypeFreightCarriage.СoveredCarriage, 100, 98)
             };
-            train2.SortByUserCondition();
+            train2.Sort(new ComparerByOccupiedVolume());
             Console.WriteLine(train2.Print());
             Console.WriteLine("Общ. вместимость: " + train2.TotalVolume);
             Console.WriteLine("Общ. занятое место: " + train2.TotalOccupiedVolume);

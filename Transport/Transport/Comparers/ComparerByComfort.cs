@@ -8,12 +8,9 @@ namespace Transport.Comparers
         public int Compare(Carriage x, Carriage y)
         {
             var carriageFirst = x as PassengerCarriage;
-            if (carriageFirst != null)
-            {
-                var carriageSecond = y as PassengerCarriage;
-                if (carriageSecond != null)
-                    return ((int)carriageFirst.TypePassengerCarriage).CompareTo((int)carriageSecond.TypePassengerCarriage);
-            }
+            var carriageSecond = y as PassengerCarriage;
+            if (carriageFirst != null && carriageSecond != null)
+                return ((int)carriageFirst.TypePassengerCarriage).CompareTo((int)carriageSecond.TypePassengerCarriage);
             return 1;
         }
     }

@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using Transport.Comparers;
 using Transport.Interfaces;
 using Transport.Model.Carriages;
 
@@ -62,10 +62,9 @@ namespace Transport.Model.Trains
             listCarriages.Sort();
         }
 
-
-        public void SortByUserCondition()
+        public void Sort(IComparer<Carriage> comparer)
         {
-            listCarriages.Sort(new ComparerByOccupiedVolume());
+            listCarriages.Sort(comparer);
         }
     }
 }

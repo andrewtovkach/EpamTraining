@@ -30,15 +30,15 @@ namespace Transport.Model.Trains
             StringBuilder result = new StringBuilder();
             result.AppendLine(this.ToString());
             foreach (var item in listCarriages)
-            {
                 result.AppendLine(" * " + item.Print());
-            }
             return result.ToString();
         }
 
         public void Add(Carriage item)
         {
-            listCarriages.Add(item);
+            if((!(item is FreightCarriage) && this is PassengerTrain) || (item is FreightCarriage && this is FreightTrain))
+                  listCarriages.Add(item);
+            else throw new ArgumentException("Невозможно добавить данный тип вагона!");
         }
 
         public void Clear()

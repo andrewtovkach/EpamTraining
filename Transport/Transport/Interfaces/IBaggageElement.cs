@@ -2,7 +2,7 @@
 
 namespace Transport.Interfaces
 {
-    interface IBaggage
+    interface IBaggageElement
     {
         long TotalCellsCount { get; }
         double TotalWeight { get; }

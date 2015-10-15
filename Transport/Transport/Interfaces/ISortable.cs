@@ -1,11 +1,11 @@
-﻿using Transport.Model.Carriages;
+﻿using System.Collections.Generic;
+using Transport.Model.Carriages;
 
 namespace Transport.Interfaces
 {
     interface ISortable
     {
-        Carriage this[int number] { get; }
         void Sort();
-        void SortByUserCondition();
+        void Sort(IComparer<Carriage> comparer);
     }
 }

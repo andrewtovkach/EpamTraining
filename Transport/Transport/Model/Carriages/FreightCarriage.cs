@@ -4,7 +4,7 @@ using Transport.Interfaces;
 
 namespace Transport.Model.Carriages
 {
-    class FreightCarriage : Carriage, IFreight
+    class FreightCarriage : Carriage, IFreightElement
     {
         public string ProductName { get; set; }
         public TypeFreightCarriage TypeFreightCarriage { get; set; }

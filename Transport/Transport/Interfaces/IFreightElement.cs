@@ -1,6 +1,6 @@
 ﻿namespace Transport.Interfaces
 {
-    interface IFreight
+    interface IFreightElement
     {
         long TotalVolume { get; }
         long TotalOccupiedVolume { get; }

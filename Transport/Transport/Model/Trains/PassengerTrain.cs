@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using Transport.Comparers;
 using Transport.Interfaces;
 using Transport.Model.Carriages;
 
@@ -27,7 +27,9 @@ namespace Transport.Model.Trains
         {
             try
             {
-                ((PassengerCarriage)this[numberCarriage]).Remove(new Place { Number = numberPlace });
+                var passengerCarriage = this[numberCarriage] as PassengerCarriage;
+                if (passengerCarriage != null)
+                    passengerCarriage.Remove(new Place { Number = numberPlace });
             }
             catch (Exception)
             {
@@ -39,7 +41,9 @@ namespace Transport.Model.Trains
         {
             try
             {
-                ((PassengerCarriage)this[numberCarriage]).Add(new Place { Number = numberPlace });
+                var passengerCarriage = this[numberCarriage] as PassengerCarriage;
+                if (passengerCarriage != null)
+                    passengerCarriage.Add(new Place { Number = numberPlace });
             }
             catch (Exception)
             {
@@ -53,7 +57,7 @@ namespace Transport.Model.Trains
             {
                 return listCarriages.Sum(x =>
                     {
-                        var passenger = x as IPassenger;
+                        var passenger = x as IPassengerElement;
                         return passenger != null ? passenger.TotalPlacesCount : 0;
                     });
             }
@@ -65,7 +69,7 @@ namespace Transport.Model.Trains
             {
                 return listCarriages.Sum(x =>
                     {
-                        var passenger = x as IPassenger;
+                        var passenger = x as IPassengerElement;
                         return passenger != null ? passenger.BusyPlacesCount : 0;
                     });
             }
@@ -77,7 +81,7 @@ namespace Transport.Model.Trains
             {
                 return listCarriages.Sum(x =>
                     {
-                        var baggage = x as IBaggage;
+                        var baggage = x as IBaggageElement;
                         return baggage != null ? baggage.TotalCellsCount : 0;
                     });
             }
@@ -89,7 +93,7 @@ namespace Transport.Model.Trains
             {
                 return listCarriages.Sum(x =>
                     {
-                        var passenger = x as IPassenger;
+                        var passenger = x as IPassengerElement;
                         return passenger != null ? passenger.FreePlacesCount : 0;
                     });
             }
@@ -101,7 +105,7 @@ namespace Transport.Model.Trains
             {
                 return listCarriages.Sum(x =>
                     {
-                        var baggage = x as IBaggage;
+                        var baggage = x as IBaggageElement;
                         return baggage != null ? baggage.BusyCellsCount : 0;
                     });
             }
@@ -113,7 +117,7 @@ namespace Transport.Model.Trains
             {
                 return listCarriages.Sum(x =>
                     {
-                        var baggage = x as IBaggage;
+                        var baggage = x as IBaggageElement;
                         return baggage != null ? baggage.FreeCellsCount : 0;
                     });
             }
@@ -137,7 +141,9 @@ namespace Transport.Model.Trains
         {
             try
             {
-                ((BaggageCarriage)this[numberCarriage]).Add(baggage);
+                var baggageCarriage = this[numberCarriage] as BaggageCarriage;
+                if (baggageCarriage != null)
+                    baggageCarriage.Add(baggage);
             }
             catch (Exception)
             {
@@ -163,7 +169,7 @@ namespace Transport.Model.Trains
             {
                 return listCarriages.Sum(x =>
                     {
-                        var baggage = x as IBaggage;
+                        var baggage = x as IBaggageElement;
                         return baggage != null ? baggage.TotalWeight : 0;
                     });
             }
@@ -175,7 +181,7 @@ namespace Transport.Model.Trains
             {
                 return listCarriages.Sum(x =>
                     {
-                        var baggage = x as IBaggage;
+                        var baggage = x as IBaggageElement;
                         return baggage != null ? baggage.TotalCapacity : 0;
                     });
             }
@@ -186,10 +192,9 @@ namespace Transport.Model.Trains
             listCarriages.Sort();
         }
 
-
-        public void SortByUserCondition()
+        public void Sort(IComparer<Carriage> comparer)
         {
-            listCarriages.Sort(new ComparerByComfort());
+            listCarriages.Sort(comparer);
         }
     }
 }

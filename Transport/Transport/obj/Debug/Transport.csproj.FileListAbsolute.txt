@@ -10,3 +10,9 @@ D:\Programming\C#\Transport\Transport\obj\Debug\Transport.pdb
 D:\Programming\C#\Transport\Transport\bin\Debug\Transport.exe
 D:\Programming\C#\Transport\Transport\bin\Debug\Transport.pdb
 D:\Programming\C#\Transport\Transport\obj\Debug\Transport.csprojResolveAssemblyReference.cache
+D:\Programming\C#\EpamTraining\Transport\Transport\bin\Debug\Transport.exe.config
+D:\Programming\C#\EpamTraining\Transport\Transport\obj\Debug\Transport.exe
+D:\Programming\C#\EpamTraining\Transport\Transport\obj\Debug\Transport.pdb
+D:\Programming\C#\EpamTraining\Transport\Transport\obj\Debug\Transport.csprojResolveAssemblyReference.cache
+D:\Programming\C#\EpamTraining\Transport\Transport\bin\Debug\Transport.exe
+D:\Programming\C#\EpamTraining\Transport\Transport\bin\Debug\Transport.pdb
