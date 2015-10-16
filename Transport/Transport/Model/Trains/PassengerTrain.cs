@@ -25,7 +25,7 @@ namespace Transport.Model.Trains
 
         public new void Add(Carriage item)
         {
-            if (!(item is FreightCarriage))
+            if (!(item is IFreightElement))
                 listCarriages.Add(item);
             else throw new ArgumentException("Невозможно добавить данный тип вагона!");
         }
@@ -103,15 +103,18 @@ namespace Transport.Model.Trains
             try
             {
                 BaggageCarriage baggageCarriage = this[numberCarriage] as BaggageCarriage;
-                Baggage baggage = baggageCarriage[baggageNumber];
-                baggageCarriage.Remove(baggage);
-                return baggage;
+                if (baggageCarriage != null)
+                {
+                    Baggage baggage = baggageCarriage[baggageNumber];
+                    baggageCarriage.Remove(baggage);
+                    return baggage;
+                }
             }
             catch (Exception exception)
             {
                 Console.WriteLine(exception.Message);
-                return new Baggage();
             }
+            return new Baggage();
         }
 
         public void GiveBaggage(int numberCarriage, Baggage baggage)
@@ -133,12 +136,14 @@ namespace Transport.Model.Trains
             try
             {
                 BaggageCarriage baggageCarriage = this[numberCarriage] as BaggageCarriage;
-                return baggageCarriage.GetCellNumber(baggageNumber);
+                if (baggageCarriage != null) 
+                    return baggageCarriage.GetCellNumber(baggageNumber);
             }
-            catch (Exception)
+            catch (Exception exception)
             {
-                throw new ArgumentException("Номер вагона имеет недопустимое значение!");
+                Console.WriteLine(exception.Message);
             }
+            return -1;
         }
 
         public double TotalWeight

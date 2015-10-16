@@ -39,7 +39,7 @@ namespace Transport.Model.Carriages
 
         public void Add(Place item)
         {
-            if (item.Number <= PlacesCount && item.Number > 0)
+            if (item.Number <= PlacesCount)
                 listPlaces[item.Number - 1].IsBusy = true;
             else throw new InvalidOperationException("Номер места имеет недопустимое значение!");
         }

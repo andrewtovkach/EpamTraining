@@ -25,7 +25,7 @@ namespace Transport.Model.Trains
 
         public new void Add(Carriage item)
         {
-            if (item is FreightCarriage)
+            if (item is IFreightElement)
                 listCarriages.Add(item);
             else throw new ArgumentException("Невозможно добавить данный тип вагона!");
         }

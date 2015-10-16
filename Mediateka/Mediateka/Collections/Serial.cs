@@ -6,35 +6,29 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Mediateka.Collections
 {
     class Serial : MediaItem, ICollection, IDurationCollection
     {
-        public string TVChannel { get; set; }
+        public string TvChannel { get; set; }
         public string Country { get; set; }
         private TimeSpan Duration { get; set; }
 
-        private SortedDictionary<int, List<MediaItem>> dictionaryItems;
+        private readonly SortedDictionary<int, List<MediaItem>> dictionaryItems;
 
-        public Serial()
-        {
-            dictionaryItems = new SortedDictionary<int, List<MediaItem>>();
-        }
-
-        public Serial(string name, DateTime creationDate, string TVChannel, string country)
+        public Serial(string name, DateTime creationDate, string tvChannel, string country)
         {
             dictionaryItems = new SortedDictionary<int, List<MediaItem>>();
             this.Name = name;
-            this.TVChannel = TVChannel;
+            this.TvChannel = tvChannel;
             this.Country = country;
             this.CreationDate = creationDate;
             this.SizeFile = 0;
             this.Popularity = Popularity.One;
         }
 
-        readonly object syncRoot = new object();
+        readonly object _syncRoot = new object();
 
         public IEnumerable<MediaItem> this[int key]
         {
@@ -66,25 +60,17 @@ namespace Mediateka.Collections
 
         public bool Contains(MediaItem item)
         {
-            foreach (var i in dictionaryItems)
-            {
-                if (i.Value.Contains(item))
-                    return true;
-            }
-            return false;
+            return dictionaryItems.Any(i => i.Value.Contains(item));
         }
 
         public override bool Remove(MediaItem item)
         {
-            foreach (var i in dictionaryItems)
+            if (dictionaryItems.Any(i => i.Value.Remove(item)))
             {
-                if (i.Value.Remove(item))
-                {
-                    this.SizeFile = this.TotalSize;
-                    this.Popularity = this.GetAvgPopularity;
-                    this.Duration = TotalDuration;
-                    return true;
-                }
+                this.SizeFile = this.TotalSize;
+                this.Popularity = this.GetAvgPopularity;
+                this.Duration = TotalDuration;
+                return true;
             }
             return false;
         }
@@ -93,16 +79,16 @@ namespace Mediateka.Collections
         {
             var listItems = GetListVideo();
             int j = index;
-            for (int i = 0; i < listItems.Count; i++)
+            foreach (MediaItem t in listItems)
             {
-                array.SetValue(listItems[i], j);
+                array.SetValue(t, j);
                 j++;
             }
         }
 
         public object SyncRoot
         {
-            get { return syncRoot; }
+            get { return _syncRoot; }
         }
 
         public int Count
@@ -117,17 +103,13 @@ namespace Mediateka.Collections
 
         public IEnumerator GetEnumerator()
         {
-            foreach (var item in dictionaryItems.Values)
-            {
-                foreach (var i in item)
-                    yield return i;
-            }
+            return dictionaryItems.Values.SelectMany(item => item).GetEnumerator();
         }
 
         public override string ToString()
         {
             return String.Format(new string((char)16, 3) + " \"{0}\" - {1} ({2}) Дата выхода: {3} " +
-            "Общ. размер: {4} MB Общ. продолж.: {5}, {6}", Name, TVChannel, Country, CreationDate.ToShortDateString(),
+            "Общ. размер: {4} MB Общ. продолж.: {5}, {6}", Name, TvChannel, Country, CreationDate.ToShortDateString(),
             TotalSize, TotalDuration, new string((char)3, (int)Popularity + 1));
         }
 
@@ -202,13 +184,7 @@ namespace Mediateka.Collections
         {
             TimeSpan result = new TimeSpan();
             var listItems = GetListVideo();
-            foreach (var item in listItems)
-            {
-                var element = item as VideoItem;
-                if(element != null)
-                    result = result.Add(element.Duration);
-            }
-            return result;
+            return listItems.OfType<VideoItem>().Aggregate(result, (current, element) => current.Add(element.Duration));
         }
 
         public TimeSpan TotalDuration

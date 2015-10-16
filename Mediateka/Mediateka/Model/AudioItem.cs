@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Mediateka.Model
 {
@@ -10,8 +6,6 @@ namespace Mediateka.Model
     {
         public TimeSpan Duration { get; set; }
         public int Bitrate { get; set; }
-
-        public AudioItem() { }
 
         public AudioItem(string name, double sizeFile, DateTime creationDate,  
             Popularity popularity, TimeSpan duration, int bitrate)

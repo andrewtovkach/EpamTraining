@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Mediateka.Model
 {
@@ -26,7 +22,7 @@ namespace Mediateka.Model
 
         public int CompareTo(MediaItem obj)
         {
-            return this.Name.CompareTo(obj.Name);
+            return String.Compare(this.Name, obj.Name, StringComparison.Ordinal);
         }
 
         public abstract string Print(int indent);

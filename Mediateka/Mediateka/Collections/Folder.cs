@@ -6,7 +6,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Mediateka.Collections
 {
@@ -15,11 +14,6 @@ namespace Mediateka.Collections
         public bool IsReadOnly { get; set; }
 
         private List<MediaItem> listItems;
-
-        public Folder()
-        {
-            listItems = new List<MediaItem>();
-        }
 
         public Folder(string name, DateTime creationDate, bool isReadOnly)
         {
@@ -31,7 +25,7 @@ namespace Mediateka.Collections
             this.Popularity = Popularity.One;
         }
 
-        readonly object syncRoot = new object();
+        readonly object _syncRoot = new object();
 
         public MediaItem this[int index]
         {
@@ -61,9 +55,9 @@ namespace Mediateka.Collections
         public void CopyTo(Array array, int index)
         {
             int j = index;
-            for (int i = 0; i < listItems.Count; i++)
+            foreach (MediaItem t in listItems)
             {
-                array.SetValue(listItems[i], j);
+                array.SetValue(t, j);
                 j++;
             }
         }
@@ -80,7 +74,7 @@ namespace Mediateka.Collections
 
         public object SyncRoot
         {
-            get { return syncRoot; }
+            get { return _syncRoot; }
         }
 
         public IEnumerator GetEnumerator()

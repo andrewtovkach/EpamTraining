@@ -1,16 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Mediateka.Model
 {
     class ImageItem : MediaItem
     {
         public ScreenResolution ScreenResolution { get; set; }
-
-        public ImageItem() { }
 
         public ImageItem(string name, double sizeFile, DateTime creationDate,
             Popularity popularity, ScreenResolution screenResolution)

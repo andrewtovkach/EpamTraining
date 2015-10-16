@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Mediateka.Comparers;
 using Mediateka.Model;
 using System.Collections;
@@ -15,14 +14,9 @@ namespace Mediateka.Collections
         public string Artist { get; set; }
         private TimeSpan Duration { get; set; }
 
-        private List<MediaItem> listItems;
+        private readonly List<MediaItem> listItems;
 
-        public Album()
-        {
-            listItems = new List<MediaItem>();
-        }
-
-        public Album(string name, DateTime creationDate, string artist)
+        public Album(string name, DateTime creationDate, string artist) 
         {
             listItems = new List<MediaItem>();
             this.Name = name;
@@ -32,7 +26,7 @@ namespace Mediateka.Collections
             this.Popularity = Popularity.One;
         }
 
-        readonly object syncRoot = new object();
+        readonly object _syncRoot = new object();
 
         public MediaItem this[int index]
         {
@@ -41,7 +35,7 @@ namespace Mediateka.Collections
 
         public MediaItem this[string name]
         {
-            get { return listItems.FirstOrDefault(x => x.Name.IndexOf(name) != -1); }
+            get { return listItems.FirstOrDefault(x => x.Name.Contains(name)); }
         }
 
         public override void Add(MediaItem item)
@@ -74,16 +68,16 @@ namespace Mediateka.Collections
         public void CopyTo(Array array, int index)
         {
             int j = index;
-            for (int i = 0; i < listItems.Count; i++)
+            foreach (MediaItem t in listItems)
             {
-                array.SetValue(listItems[i], j);
+                array.SetValue(t, j);
                 j++;
             }
         }
 
         public object SyncRoot
         {
-            get { return syncRoot; }
+            get { return _syncRoot; }
         }
 
         public int Count
@@ -158,13 +152,7 @@ namespace Mediateka.Collections
         private TimeSpan GetTotalDuration()
         {
             TimeSpan result = new TimeSpan();
-            foreach (var item in listItems)
-            {
-                var element = item as AudioItem;
-                if (element != null)
-                    result = result.Add(element.Duration);
-            }
-            return result;
+            return listItems.OfType<AudioItem>().Aggregate(result, (current, element) => current.Add(element.Duration));
         }
 
         public TimeSpan TotalDuration

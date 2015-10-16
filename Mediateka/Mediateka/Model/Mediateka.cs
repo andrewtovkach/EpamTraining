@@ -3,87 +3,79 @@ using Mediateka.Interfaces;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Mediateka.Model
 {
     class MediatekaClass : IEnumerable, IMediaCollection
     {
-        private Folder root;
-
-        public MediatekaClass()
-        {
-            root = new Folder();
-        }
+        private Folder _root;
 
         public MediatekaClass(string name, DateTime creationDate, bool isReadOnly)
         {
-            root = new Folder(name, creationDate, isReadOnly);
+            _root = new Folder(name, creationDate, isReadOnly);
         }
 
         public MediaItem this[int index]
         {
-            get { return root[index]; }
+            get { return _root[index]; }
         }
 
         public MediaItem this[string name]
         {
-            get { return root[name]; }
+            get { return _root[name]; }
         }
 
         public void Add(MediaItem item)
         {
-            root.Add(item);
+            _root.Add(item);
         }
 
         public bool Remove(MediaItem item)
         {
-            return root.Remove(item);
+            return _root.Remove(item);
         }
 
         public int Count
         {
-            get { return root.Count; }
+            get { return _root.Count; }
         }
 
         public override string ToString()
         {
-            return root.ToString();
+            return _root.ToString();
         }
 
         public string Print()
         {
             string str = new string('-', 100) + "\n";
-            str += root.Print(-3);
+            str += _root.Print(-3);
             str += new string('-', 100) + "\n";
             return str;
         }
 
         public IEnumerator GetEnumerator()
         {
- 	        return root.GetEnumerator();
+ 	        return _root.GetEnumerator();
         }
 
         public IEnumerable<MediaItem> GetNewMediaItems(int countItems)
         {
-            return root.GetNewMediaItems(countItems);
+            return _root.GetNewMediaItems(countItems);
         }
 
         public IEnumerable<MediaItem> GetMostPopularMediaItems(int countItems)
         {
-            return root.GetMostPopularMediaItems(countItems);
+            return _root.GetMostPopularMediaItems(countItems);
         }
 
         public double TotalSize
         {
-            get { return root.TotalSize; }
+            get { return _root.TotalSize; }
         }
 
         public Popularity GetAvgPopularity
         {
-            get { return root.GetAvgPopularity; }
+            get { return _root.GetAvgPopularity; }
         }
     }
 }
