@@ -23,6 +23,13 @@ namespace Transport.Model.Trains
             return "Пассажирский поезд " + base.ToString();
         }
 
+        public new void Add(Carriage item)
+        {
+            if (!(item is FreightCarriage))
+                listCarriages.Add(item);
+            else throw new ArgumentException("Невозможно добавить данный тип вагона!");
+        }
+
         public void FreePlace(int numberCarriage, int numberPlace)
         {
             try
@@ -31,9 +38,9 @@ namespace Transport.Model.Trains
                 if (passengerCarriage != null)
                     passengerCarriage.Remove(new Place { Number = numberPlace });
             }
-            catch (Exception)
+            catch (Exception exception)
             {
-                throw new ArgumentException("Номер вагона имеет недопустимое значение!");
+                Console.WriteLine(exception.Message);
             }
         }
 
@@ -45,63 +52,65 @@ namespace Transport.Model.Trains
                 if (passengerCarriage != null)
                     passengerCarriage.Add(new Place { Number = numberPlace });
             }
-            catch (Exception)
+            catch (Exception exception)
             {
-                throw new ArgumentException("Номер вагона имеет недопустимое значение!");
+                Console.WriteLine(exception.Message);
             }
         }
 
-        private IEnumerable<IBaggageElement> GetAllBaggageElements()
+        private IEnumerable<IBaggageElement> AllBaggageElements
         {
-            return listCarriages.OfType<IBaggageElement>();
+            get { return listCarriages.OfType<IBaggageElement>(); }
         }
 
-        private IEnumerable<IPassengerElement> GetAllPassangerElements()
+        private IEnumerable<IPassengerElement> AllPassangerElements
         {
-            return listCarriages.OfType<IPassengerElement>();
+            get { return listCarriages.OfType<IPassengerElement>(); }
         }
 
         public long TotalPlacesCount
         {
-            get { return GetAllPassangerElements().Sum(x => x.PlacesCount); }
+            get { return AllPassangerElements.Sum(x => x.PlacesCount); }
         }
 
         public long TotalBusyPlacesCount
         {
-            get { return GetAllPassangerElements().Sum(x => x.BusyPlacesCount); }
+            get { return AllPassangerElements.Sum(x => x.BusyPlacesCount); }
         }
 
         public long TotalCellsCount
         {
-            get { return GetAllBaggageElements().Sum(x => x.CellsCount); }
+            get { return AllBaggageElements.Sum(x => x.CellsCount); }
         }
 
         public long TotalFreePlacesCount
         {
-            get { return GetAllPassangerElements().Sum(x => x.FreePlacesCount); }
+            get { return AllPassangerElements.Sum(x => x.FreePlacesCount); }
         }
 
         public int TotalBusyCellsCount
         {
-            get { return GetAllBaggageElements().Sum(x => x.BusyCellsCount); }
+            get { return AllBaggageElements.Sum(x => x.BusyCellsCount); }
         }
 
         public long TotalFreeCellsCount
         {
-            get { return GetAllBaggageElements().Sum(x => x.FreeCellsCount); }
+            get { return AllBaggageElements.Sum(x => x.FreeCellsCount); }
         }
 
         public Baggage GetBaggage(int numberCarriage, int baggageNumber)
         {
             try
             {
-                Baggage baggage = ((BaggageCarriage)this[numberCarriage])[baggageNumber];
-                ((BaggageCarriage)this[numberCarriage]).Remove(baggage);
+                BaggageCarriage baggageCarriage = this[numberCarriage] as BaggageCarriage;
+                Baggage baggage = baggageCarriage[baggageNumber];
+                baggageCarriage.Remove(baggage);
                 return baggage;
             }
-            catch (Exception)
+            catch (Exception exception)
             {
-                throw new ArgumentException("Номер вагона имеет недопустимое значение!");
+                Console.WriteLine(exception.Message);
+                return new Baggage();
             }
         }
 
@@ -109,13 +118,13 @@ namespace Transport.Model.Trains
         {
             try
             {
-                var baggageCarriage = this[numberCarriage] as BaggageCarriage;
+                BaggageCarriage baggageCarriage = this[numberCarriage] as BaggageCarriage;
                 if (baggageCarriage != null)
                     baggageCarriage.Add(baggage);
             }
-            catch (Exception)
+            catch (Exception exception)
             {
-                throw new ArgumentException("Номер вагона имеет недопустимое значение!");
+                Console.WriteLine(exception.Message);
             }
         }
 
@@ -123,7 +132,8 @@ namespace Transport.Model.Trains
         {
             try
             {
-                return ((BaggageCarriage)this[numberCarriage]).GetCellNumber(baggageNumber);
+                BaggageCarriage baggageCarriage = this[numberCarriage] as BaggageCarriage;
+                return baggageCarriage.GetCellNumber(baggageNumber);
             }
             catch (Exception)
             {
@@ -133,12 +143,12 @@ namespace Transport.Model.Trains
 
         public double TotalWeight
         {
-            get { return GetAllBaggageElements().Sum(x => x.Weight); }
+            get { return AllBaggageElements.Sum(x => x.Weight); }
         }
 
         public long TotalCapacity
         {
-            get { return GetAllBaggageElements().Sum(x => x.Capacity); }
+            get { return AllBaggageElements.Sum(x => x.Capacity); }
         }
 
         public void Sort()

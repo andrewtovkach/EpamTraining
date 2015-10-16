@@ -2,7 +2,7 @@
 
 namespace Transport.Model
 {
-    class Baggage
+    struct Baggage
     {
         public int Number { get; set; }
         public string Name { get; set; }

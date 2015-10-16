@@ -6,8 +6,6 @@ namespace Transport.Model.Carriages
     {
         public uint AxisNumber { get; set; }
 
-        protected Carriage() { }
-
         protected Carriage(int number, DateTime startUpDate, uint axisNumber)
             : base(number, startUpDate)
         {

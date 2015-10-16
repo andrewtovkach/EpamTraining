@@ -10,12 +10,7 @@ namespace Transport.Model.Trains
     {
         public Locomotive Locomotive { get; set; }
 
-        protected List<Carriage> listCarriages;
-
-        protected Train()
-        {
-            listCarriages = new List<Carriage>();
-        }
+        protected readonly List<Carriage> listCarriages;
 
         protected Train(int number, DateTime startUpDate, Locomotive locomotive)
             : base(number, startUpDate)
@@ -23,7 +18,6 @@ namespace Transport.Model.Trains
             this.Locomotive = locomotive;
             listCarriages = new List<Carriage>();
         }
-
 
         public string Print()
         {
@@ -36,9 +30,7 @@ namespace Transport.Model.Trains
 
         public void Add(Carriage item)
         {
-            if((!(item is FreightCarriage) && this is PassengerTrain) || (item is FreightCarriage && this is FreightTrain))
-                  listCarriages.Add(item);
-            else throw new ArgumentException("Невозможно добавить данный тип вагона!");
+            throw new InvalidOperationException();
         }
 
         public void Clear()

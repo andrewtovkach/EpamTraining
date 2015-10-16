@@ -23,19 +23,26 @@ namespace Transport.Model.Trains
             return "Грузовой поезд " + base.ToString();
         }
 
-        private IEnumerable<IFreightElement> GetAllElements()
+        public new void Add(Carriage item)
         {
-            return listCarriages.OfType<IFreightElement>();
+            if (item is FreightCarriage)
+                listCarriages.Add(item);
+            else throw new ArgumentException("Невозможно добавить данный тип вагона!");
+        }
+
+        private IEnumerable<IFreightElement> AllElements
+        {
+            get { return listCarriages.OfType<IFreightElement>(); }
         }
 
         public long TotalOccupiedVolume
         {
-            get { return GetAllElements().Sum(x => x.OccupiedVolume); }
+            get { return AllElements.Sum(x => x.OccupiedVolume); }
         }
 
         public long TotalVolume
         {
-            get { return GetAllElements().Sum(x => x.Volume); }
+            get { return AllElements.Sum(x => x.Volume); }
         }
 
         public long TotalFreeVolue
