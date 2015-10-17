@@ -17,13 +17,13 @@ namespace Transport.Model.Carriages
 
         public override string ToString()
         {
-            return String.Format("Вагон-ресторан {0} Кол-во мест: {1} Описание: {2}", base.ToString(), 
+            return string.Format("Вагон-ресторан {0} Кол-во мест: {1} Описание: {2}", base.ToString(), 
                 PlacesCount, Description);
         }
 
         public override string Print()
         {
-            return this.ToString();
+            return ToString();
         }
     }
 }

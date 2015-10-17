@@ -45,13 +45,13 @@ namespace Transport.Model.Carriages
 
         public override string ToString()
         {
-            return String.Format("Грузовой вагон {0}, Название продукта: {1}, Вид вагона: {2}, Общ. вместимость: {3}," + 
+            return string.Format("Грузовой вагон {0}, Название продукта: {1}, Вид вагона: {2}, Общ. вместимость: {3}," + 
                 " Занято: {4}", base.ToString(), ProductName, TypeFreightCarriage, Volume, OccupiedVolume);
         }
 
         public override string Print()
         {
-            return this.ToString();
+            return ToString();
         }
     }
 }

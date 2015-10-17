@@ -10,20 +10,20 @@ namespace Transport.Model.Trains
     {
         public Locomotive Locomotive { get; set; }
 
-        protected readonly List<Carriage> listCarriages;
+        protected readonly List<Carriage> ListCarriages;
 
         protected Train(int number, DateTime startUpDate, Locomotive locomotive)
             : base(number, startUpDate)
         {
             this.Locomotive = locomotive;
-            listCarriages = new List<Carriage>();
+            ListCarriages = new List<Carriage>();
         }
 
         public string Print()
         {
             StringBuilder result = new StringBuilder();
-            result.AppendLine(this.ToString());
-            foreach (var item in listCarriages)
+            result.AppendLine(ToString());
+            foreach (var item in ListCarriages)
                 result.AppendLine(" * " + item.Print());
             return result.ToString();
         }
@@ -35,22 +35,22 @@ namespace Transport.Model.Trains
 
         public void Clear()
         {
-            listCarriages.Clear();
+            ListCarriages.Clear();
         }
 
         public bool Contains(Carriage item)
         {
-            return listCarriages.Contains(item);
+            return ListCarriages.Contains(item);
         }
 
         public void CopyTo(Carriage[] array, int arrayIndex)
         {
-            listCarriages.CopyTo(array, arrayIndex);
+            ListCarriages.CopyTo(array, arrayIndex);
         }
 
         public int Count
         {
-            get { return listCarriages.Count; }
+            get { return ListCarriages.Count; }
         }
 
         public bool IsReadOnly
@@ -60,12 +60,12 @@ namespace Transport.Model.Trains
 
         public bool Remove(Carriage item)
         {
-            return listCarriages.Remove(item);
+            return ListCarriages.Remove(item);
         }
 
         public IEnumerator<Carriage> GetEnumerator()
         {
-            return listCarriages.GetEnumerator();
+            return ListCarriages.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()

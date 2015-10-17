@@ -34,7 +34,7 @@
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>AAYAAAAgAAAAAhIUCAQADAQCACAGAAAEAAAAAAJUIAA=</HashCode>
+      <HashCode>AAIAAAAgAAAAAhIUCAQADAQCACAGAAAEAAAAgAJUIAA=</HashCode>
       <FileName>Model\Carriages\BaggageCarriage.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -73,7 +73,7 @@
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>AEIAAAAAAAAAAhAUCAAABAQAAAEAQEAEAAAEgABUIAA=</HashCode>
+      <HashCode>AEIAAAAAAAAAAhAUCAAABAQAAAEAQAAEAAgEgABUIAA=</HashCode>
       <FileName>Model\Carriages\PassengerCarriage.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -127,7 +127,7 @@
   <Class Name="Transport.Model.Trains.Train">
     <Position X="3.25" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AgIAAAAAAAAAABAQAAAABAQAAAAAAAAEAAAAAAhUIAA=</HashCode>
+      <HashCode>AAIAAAAAAAAAABAQAAAABAQAAAAAAAAEAAAAAApUIAA=</HashCode>
       <FileName>Model\Trains\Train.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />

@@ -22,7 +22,7 @@ namespace Mediateka.Model
         public override string Print(int indent)
         {
             indent += 3;
-            return new string(' ', indent) + this.ToString();
+            return new string(' ', indent) + this;
         }
 
         public override double TotalSize
@@ -32,7 +32,7 @@ namespace Mediateka.Model
 
         public override int AvgPopularity
         {
-            get { return (int) this.Popularity; }
+            get { return (int)Popularity; }
         }
 
         public override void Add(MediaItem component)

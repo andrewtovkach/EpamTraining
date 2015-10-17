@@ -13,7 +13,7 @@ namespace Transport.Model.Carriages
         public TypePassengerCarriage TypePassengerCarriage { get; set; }
         public uint PlacesCount { get; set; }
 
-        private readonly List<Place> listPlaces;
+        private readonly List<Place> _listPlaces;
 
         public PassengerCarriage(int number, DateTime startUpDate, uint axisNumber, uint placesCount, 
             TypePassengerCarriage typePassengerCarriage)
@@ -21,42 +21,42 @@ namespace Transport.Model.Carriages
         {
             this.PlacesCount = placesCount;
             this.TypePassengerCarriage = typePassengerCarriage;
-            listPlaces = new List<Place>();
+            _listPlaces = new List<Place>();
             for (int i = 1; i <= PlacesCount; i++)
-                listPlaces.Add(new Place { Number =  i });
+                _listPlaces.Add(new Place { Number =  i });
         }
 
         public override string ToString()
         {
-            return String.Format("Пассажирский вагон {0}, Кол-во мест: {1}, Тип вагона: {2}", base.ToString(), 
+            return string.Format("Пассажирский вагон {0}, Кол-во мест: {1}, Тип вагона: {2}", base.ToString(), 
                 PlacesCount, TypePassengerCarriage);
         }
 
         public Place this[int number]
         {
-            get { return listPlaces.FirstOrDefault(x => x.Number == number); }
+            get { return _listPlaces.FirstOrDefault(x => x.Number == number); }
         }
 
         public void Add(Place item)
         {
             if (item.Number <= PlacesCount)
-                listPlaces[item.Number - 1].IsBusy = true;
+                _listPlaces[item.Number - 1].IsBusy = true;
             else throw new InvalidOperationException("Номер места имеет недопустимое значение!");
         }
 
         public void Clear()
         {
-            listPlaces.ForEach(x => x.IsBusy = false);
+            _listPlaces.ForEach(x => x.IsBusy = false);
         }
 
         public bool Contains(Place item)
         {
-            return listPlaces.Contains(item);
+            return _listPlaces.Contains(item);
         }
 
         public void CopyTo(Place[] array, int arrayIndex)
         {
-            listPlaces.CopyTo(array, arrayIndex);
+            _listPlaces.CopyTo(array, arrayIndex);
         }
 
         public int Count
@@ -73,13 +73,13 @@ namespace Transport.Model.Carriages
         {
             if (item.Number > PlacesCount || item.Number <= 0) 
                 return false;
-            listPlaces[item.Number - 1].IsBusy = false;
+            _listPlaces[item.Number - 1].IsBusy = false;
             return true;
         }
 
         public IEnumerator<Place> GetEnumerator()
         {
-            return listPlaces.GetEnumerator();
+            return _listPlaces.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
@@ -89,29 +89,29 @@ namespace Transport.Model.Carriages
 
         public IEnumerable<int> GetFreePlaces()
         {
-            return listPlaces.Where(place => !place.IsBusy).Select(x => x.Number).AsEnumerable();
+            return _listPlaces.Where(place => !place.IsBusy).Select(x => x.Number).AsEnumerable();
         }
 
         public long FreePlacesCount
         {
-            get { return listPlaces.Count(x => !x.IsBusy); }
+            get { return _listPlaces.Count(x => !x.IsBusy); }
         }
 
         public IEnumerable<int> GetBusyPlaces()
         {
-            return listPlaces.Where(place => place.IsBusy).Select(x => x.Number).AsEnumerable();
+            return _listPlaces.Where(place => place.IsBusy).Select(x => x.Number).AsEnumerable();
         }
 
         public long BusyPlacesCount
         {
-            get { return listPlaces.Count(x => x.IsBusy); }
+            get { return _listPlaces.Count(x => x.IsBusy); }
         }
 
         public override string Print()
         {
             StringBuilder result = new StringBuilder();
             result.AppendLine(this.ToString());
-            foreach (var item in listPlaces)
+            foreach (var item in _listPlaces)
                 result.AppendLine("   - " + item.ToString());
             return result.ToString();
         }

@@ -18,13 +18,13 @@ namespace Mediateka.Model
         public override string ToString()
         {
             return String.Format((char)14 + " {0} Продолж.: {1}, {2} бит/с", base.ToString(),
-                Duration.ToString(), Bitrate);
+                Duration, Bitrate);
         }
 
         public override string Print(int indent)
         {
             indent += 3;
-            return new string(' ', indent) + this.ToString();
+            return new string(' ', indent) + this;
         }
 
         public override double TotalSize
@@ -34,7 +34,7 @@ namespace Mediateka.Model
 
         public override int AvgPopularity
         {
-            get { return (int) this.Popularity; }
+            get { return (int)Popularity; }
         }
 
         public override void Add(MediaItem component)

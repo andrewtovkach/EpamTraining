@@ -16,7 +16,7 @@ namespace Transport.Model.Carriages
 
         public override string ToString()
         {
-            return String.Format("{0} Кол-во осей: {1}", base.ToString(), AxisNumber);
+            return string.Format("{0} Кол-во осей: {1}", base.ToString(), AxisNumber);
         }
     }
 }

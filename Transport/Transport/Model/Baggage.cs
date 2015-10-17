@@ -6,18 +6,7 @@ namespace Transport.Model
     {
         public int Number { get; set; }
         public string Name { get; set; }
-
-        private double _weight;
-        public double Weight
-        {
-            get { return _weight; }
-            set
-            {
-                if (value <= 0)
-                    throw new ArgumentException("Некорректное значение!");
-                _weight = value;
-            }
-        }
+        public double Weight { get; set; }
 
         public override string ToString()
         {

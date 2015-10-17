@@ -41,9 +41,9 @@ namespace Mediateka.Collections
         public override void Add(MediaItem item)
         {
             listItems.Add(item);
-            this.SizeFile = this.TotalSize;
-            this.Popularity = this.GetAvgPopularity;
-            this.Duration = TotalDuration;
+            SizeFile = TotalSize;
+            Popularity = GetAvgPopularity;
+            Duration = TotalDuration;
         }
 
         public void Clear()
@@ -59,9 +59,9 @@ namespace Mediateka.Collections
         public override bool Remove(MediaItem item)
         {
             bool ok = listItems.Remove(item);
-            this.SizeFile = this.TotalSize;
-            this.Popularity = this.GetAvgPopularity;
-            this.Duration = TotalDuration;
+            SizeFile = TotalSize;
+            Popularity = GetAvgPopularity;
+            Duration = TotalDuration;
             return ok;
         }
 
@@ -124,7 +124,7 @@ namespace Mediateka.Collections
             indent += 3;
             StringBuilder sb = new StringBuilder();
             sb.Append(new string(' ', indent));
-            sb.Append(this.ToString() + "\n");
+            sb.Append(this + "\n");
             listItems.Sort();
             foreach (var item in listItems)
             {

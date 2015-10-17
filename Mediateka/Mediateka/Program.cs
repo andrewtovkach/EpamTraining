@@ -8,9 +8,11 @@ namespace Mediateka
     {
         static void Main(string[] args)
         {
-            MediatekaClass mediateka = new MediatekaClass("MyMediateka", DateTime.Now, false);
-            mediateka.Add(new Folder("Music", new DateTime(2015, 3, 5), false));
-            mediateka.Add(new Folder("Video and pictures", new DateTime(2015, 3, 6), false));
+            MediatekaClass mediateka = new MediatekaClass("MyMediateka", DateTime.Now, false)
+            {
+                new Folder("Music", new DateTime(2015, 3, 5), false),
+                new Folder("Video and pictures", new DateTime(2015, 3, 6), false)
+            };
             mediateka[0].Add(new AudioItem("WT - Fire and Ice", 12.5, 
                new DateTime(2014, 10, 15), Popularity.Five, new TimeSpan(0, 5, 3), 320));
             Album album = new Album("Bundle", new DateTime(2011, 3, 2), "System of a down")

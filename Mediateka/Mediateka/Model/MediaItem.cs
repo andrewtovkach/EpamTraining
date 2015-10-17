@@ -22,7 +22,7 @@ namespace Mediateka.Model
 
         public int CompareTo(MediaItem obj)
         {
-            return String.Compare(this.Name, obj.Name, StringComparison.Ordinal);
+            return String.Compare(Name, obj.Name, StringComparison.Ordinal);
         }
 
         public abstract string Print(int indent);

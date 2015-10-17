@@ -15,7 +15,7 @@ namespace Transport.Model.Trains
 
         public Carriage this[int number]
         {
-            get { return listCarriages.FirstOrDefault(x => x.Number == number); }
+            get { return ListCarriages.FirstOrDefault(x => x.Number == number); }
         }
 
         public override string ToString()
@@ -26,13 +26,13 @@ namespace Transport.Model.Trains
         public new void Add(Carriage item)
         {
             if (item is IFreightElement)
-                listCarriages.Add(item);
+                ListCarriages.Add(item);
             else throw new ArgumentException("Невозможно добавить данный тип вагона!");
         }
 
         private IEnumerable<IFreightElement> AllElements
         {
-            get { return listCarriages.OfType<IFreightElement>(); }
+            get { return ListCarriages.OfType<IFreightElement>(); }
         }
 
         public long TotalOccupiedVolume
@@ -57,12 +57,12 @@ namespace Transport.Model.Trains
 
         public void Sort()
         {
-            listCarriages.Sort();
+            ListCarriages.Sort();
         }
 
         public void Sort(IComparer<Carriage> comparer)
         {
-            listCarriages.Sort(comparer);
+            ListCarriages.Sort(comparer);
         }
     }
 }

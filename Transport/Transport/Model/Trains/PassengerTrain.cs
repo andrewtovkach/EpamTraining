@@ -15,7 +15,7 @@ namespace Transport.Model.Trains
 
         public Carriage this[int number]
         {
-            get { return listCarriages.FirstOrDefault(x => x.Number == number); }
+            get { return ListCarriages.FirstOrDefault(x => x.Number == number); }
         }
 
         public override string ToString()
@@ -26,7 +26,7 @@ namespace Transport.Model.Trains
         public new void Add(Carriage item)
         {
             if (!(item is IFreightElement))
-                listCarriages.Add(item);
+                ListCarriages.Add(item);
             else throw new ArgumentException("Невозможно добавить данный тип вагона!");
         }
 
@@ -60,12 +60,12 @@ namespace Transport.Model.Trains
 
         private IEnumerable<IBaggageElement> AllBaggageElements
         {
-            get { return listCarriages.OfType<IBaggageElement>(); }
+            get { return ListCarriages.OfType<IBaggageElement>(); }
         }
 
         private IEnumerable<IPassengerElement> AllPassangerElements
         {
-            get { return listCarriages.OfType<IPassengerElement>(); }
+            get { return ListCarriages.OfType<IPassengerElement>(); }
         }
 
         public long TotalPlacesCount
@@ -158,12 +158,12 @@ namespace Transport.Model.Trains
 
         public void Sort()
         {
-            listCarriages.Sort();
+            ListCarriages.Sort();
         }
 
         public void Sort(IComparer<Carriage> comparer)
         {
-            listCarriages.Sort(comparer);
+            ListCarriages.Sort(comparer);
         }
     }
 }

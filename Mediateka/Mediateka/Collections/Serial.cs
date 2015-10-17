@@ -43,14 +43,14 @@ namespace Mediateka.Collections
                 dictionaryItems[season].Add(item);
             }
             else dictionaryItems[season].Add(item);
-            this.SizeFile = this.TotalSize;
-            this.Popularity = this.GetAvgPopularity;
-            this.Duration = TotalDuration;
+            SizeFile = TotalSize;
+            Popularity = GetAvgPopularity;
+            Duration = TotalDuration;
         }
 
         public override void Add(MediaItem item)
         {
-            this.Add(1, item);
+            Add(1, item);
         }
 
         public void Clear()
@@ -67,9 +67,9 @@ namespace Mediateka.Collections
         {
             if (dictionaryItems.Any(i => i.Value.Remove(item)))
             {
-                this.SizeFile = this.TotalSize;
-                this.Popularity = this.GetAvgPopularity;
-                this.Duration = TotalDuration;
+                SizeFile = TotalSize;
+                Popularity = GetAvgPopularity;
+                Duration = TotalDuration;
                 return true;
             }
             return false;
@@ -149,7 +149,7 @@ namespace Mediateka.Collections
             indent += 3;
             StringBuilder sb = new StringBuilder();
             sb.Append(new string(' ', indent));
-            sb.Append(this.ToString() + "\n");
+            sb.Append(this + "\n");
             foreach (var item in dictionaryItems)
             {
                 sb.Append(new string(' ', indent + 6));
