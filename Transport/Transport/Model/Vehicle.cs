@@ -17,12 +17,12 @@ namespace Transport.Model
 
         public override string ToString()
         {
-            return String.Format("№{0} Дата ввода: {1}", Number, StartUpDate.ToShortDateString());
+            return string.Format("№{0} Дата ввода: {1}", Number, StartUpDate.ToShortDateString());
         }
 
         public int CompareTo(Vehicle other)
         {
-            return this.Number.CompareTo(other.Number);
+            return Number.CompareTo(other.Number);
         }
     }
 }

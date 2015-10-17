@@ -109,25 +109,23 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Transport.Model.Trains.FreightTrain">
-    <Position X="2" Y="7.75" Width="1.5" />
+    <Position X="2" Y="8.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AEIAAAgAAAAAAAAECAAQAAAAAAAQAAAAAAAAAgAAAAA=</HashCode>
+      <HashCode>AEIAAAgAAAAAAAAECAAAAAAAAAAQAAAAAAAAAgAAAAA=</HashCode>
       <FileName>Model\Trains\FreightTrain.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" />
   </Class>
   <Class Name="Transport.Model.Trains.PassengerTrain">
-    <Position X="4.75" Y="7.75" Width="1.5" />
+    <Position X="4.75" Y="8.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>QAIAQACAAAoABAAECAAQAAAAAAEEAACAEAQAAAIEACE=</HashCode>
+      <HashCode>QAIAQACAAAoABAAECAAAAAAAAAEEAACAEAQAAAIEACE=</HashCode>
       <FileName>Model\Trains\PassengerTrain.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" />
   </Class>
   <Class Name="Transport.Model.Trains.Train">
     <Position X="3.25" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAIAAAAAAAAAABAQAAAABAQAAAAAAAAEAAAAAApUIAA=</HashCode>
+      <HashCode>AAIAAAAAAAAAABAQAAAQBAQAAAAAAAAEAAAAAApUIAA=</HashCode>
       <FileName>Model\Trains\Train.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -139,6 +137,13 @@
       <FileName>Model\Place.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Struct Name="Transport.Model.Baggage">
+    <Position X="16.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAEAAAAQAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Baggage.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
   <Interface Name="Transport.Interfaces.IBaggageElement">
     <Position X="18.25" Y="4.5" Width="1.5" />
     <TypeIdentifier>

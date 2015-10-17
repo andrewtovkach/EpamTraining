@@ -6,12 +6,10 @@ using Transport.Model.Carriages;
 
 namespace Transport.Model.Trains
 {
-    class PassengerTrain : Train, ISortable
+    class PassengerTrain : Train
     {
         public PassengerTrain(int number, DateTime startUpDate, Locomotive locomotive)
-            : base(number, startUpDate, locomotive)
-        {
-        }
+            : base(number, startUpDate, locomotive) { }
 
         public Carriage this[int number]
         {
@@ -28,6 +26,26 @@ namespace Transport.Model.Trains
             if (!(item is IFreightElement))
                 ListCarriages.Add(item);
             else throw new ArgumentException("Невозможно добавить данный тип вагона!");
+        }
+
+        private IEnumerable<IBaggageElement> BaggageElements
+        {
+            get { return ListCarriages.OfType<IBaggageElement>(); }
+        }
+
+        private IEnumerable<IPassengerElement> PassangerElements
+        {
+            get { return ListCarriages.OfType<IPassengerElement>(); }
+        }
+
+        public IEnumerable<IPassengerElement> GetPassangerCarriages(Func<IPassengerElement, bool> predicate)
+        {
+            return PassangerElements.Where(predicate);
+        }
+
+        public IEnumerable<IBaggageElement> GetBaggageCarriages(Func<IBaggageElement, bool> predicate)
+        {
+            return BaggageElements.Where(predicate);
         }
 
         public void FreePlace(int numberCarriage, int numberPlace)
@@ -58,44 +76,34 @@ namespace Transport.Model.Trains
             }
         }
 
-        private IEnumerable<IBaggageElement> AllBaggageElements
-        {
-            get { return ListCarriages.OfType<IBaggageElement>(); }
-        }
-
-        private IEnumerable<IPassengerElement> AllPassangerElements
-        {
-            get { return ListCarriages.OfType<IPassengerElement>(); }
-        }
-
         public long TotalPlacesCount
         {
-            get { return AllPassangerElements.Sum(x => x.PlacesCount); }
+            get { return PassangerElements.Sum(x => x.PlacesCount); }
         }
 
         public long TotalBusyPlacesCount
         {
-            get { return AllPassangerElements.Sum(x => x.BusyPlacesCount); }
+            get { return PassangerElements.Sum(x => x.BusyPlacesCount); }
         }
 
         public long TotalCellsCount
         {
-            get { return AllBaggageElements.Sum(x => x.CellsCount); }
+            get { return BaggageElements.Sum(x => x.CellsCount); }
         }
 
         public long TotalFreePlacesCount
         {
-            get { return AllPassangerElements.Sum(x => x.FreePlacesCount); }
+            get { return PassangerElements.Sum(x => x.FreePlacesCount); }
         }
 
         public int TotalBusyCellsCount
         {
-            get { return AllBaggageElements.Sum(x => x.BusyCellsCount); }
+            get { return BaggageElements.Sum(x => x.BusyCellsCount); }
         }
 
         public long TotalFreeCellsCount
         {
-            get { return AllBaggageElements.Sum(x => x.FreeCellsCount); }
+            get { return BaggageElements.Sum(x => x.FreeCellsCount); }
         }
 
         public Baggage GetBaggage(int numberCarriage, int baggageNumber)
@@ -109,12 +117,13 @@ namespace Transport.Model.Trains
                     baggageCarriage.Remove(baggage);
                     return baggage;
                 }
+                return new Baggage();
             }
             catch (Exception exception)
             {
                 Console.WriteLine(exception.Message);
+                return new Baggage();
             }
-            return new Baggage();
         }
 
         public void GiveBaggage(int numberCarriage, Baggage baggage)
@@ -138,32 +147,23 @@ namespace Transport.Model.Trains
                 BaggageCarriage baggageCarriage = this[numberCarriage] as BaggageCarriage;
                 if (baggageCarriage != null) 
                     return baggageCarriage.GetCellNumber(baggageNumber);
+                return -1;
             }
             catch (Exception exception)
             {
                 Console.WriteLine(exception.Message);
+                return -1;
             }
-            return -1;
         }
 
         public double TotalWeight
         {
-            get { return AllBaggageElements.Sum(x => x.Weight); }
+            get { return BaggageElements.Sum(x => x.Weight); }
         }
 
         public long TotalCapacity
         {
-            get { return AllBaggageElements.Sum(x => x.Capacity); }
-        }
-
-        public void Sort()
-        {
-            ListCarriages.Sort();
-        }
-
-        public void Sort(IComparer<Carriage> comparer)
-        {
-            ListCarriages.Sort(comparer);
+            get { return BaggageElements.Sum(x => x.Capacity); }
         }
     }
 }

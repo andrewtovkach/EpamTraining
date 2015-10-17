@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Transport.Model
+﻿namespace Transport.Model
 {
     class Place
     {
@@ -9,7 +7,7 @@ namespace Transport.Model
 
         public override string ToString()
         {
-            return String.Format("Место №{0} {1}", Number, IsBusy ? "занято" : "свободно");
+            return string.Format("Место №{0} {1}", Number, IsBusy ? "занято" : "свободно");
         }
     }
 }

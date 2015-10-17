@@ -15,7 +15,7 @@ namespace Transport
             PassengerTrain train1 = new PassengerTrain(1245, new DateTime(2010, 6, 22),
                 new Locomotive(1296, new DateTime(2012, 4, 8), 12500, TypeEnergy.Electric, 90))
             {
-                new PassengerCarriage(1, new DateTime(2008, 6, 7), 12, 10, TypePassengerCarriage.PremiumClass),
+                new PassengerCarriage(1, new DateTime(2008, 6, 7), 12, 20, TypePassengerCarriage.PremiumClass),
                 new PassengerCarriage(2, new DateTime(2006, 10, 28), 4, 12, TypePassengerCarriage.Sedentary),
                 new PassengerCarriage(3, new DateTime(2002, 11, 30), 8, 15, TypePassengerCarriage.Sleeping),
                 new BaggageCarriage(4, new DateTime(2012, 6, 1), 4, 5, 50),
@@ -34,12 +34,18 @@ namespace Transport
             train1.GetBaggage(4, 1254);
             train1.Sort(new ComparerByComfort());
             Console.WriteLine(train1.Print());
-            Console.WriteLine("Общ. кол-во мест: " + train1.TotalPlacesCount);
-            Console.WriteLine("Общ. кол-во свободных мест: " + train1.TotalFreePlacesCount);
-            Console.WriteLine("Общ. кол-во занятых мест: " + train1.TotalBusyPlacesCount);
-            Console.WriteLine("Общ. кол-во ячеек: " + train1.TotalCellsCount);
-            Console.WriteLine("Общ. вес багажа: " + train1.TotalWeight);
-            Console.WriteLine("Общ. вместимость: " + train1.TotalCapacity + "\n");
+            Console.WriteLine("->Пассажирские вагоны с кол-вом свободных мест больше 12<-");
+            foreach (var item in train1.GetPassangerCarriages(x => x.PlacesCount > 12))
+                Console.WriteLine(item);
+            Console.WriteLine("->Багажные вагоны с вместимостью больше 200<-");
+            foreach (var item in train1.GetBaggageCarriages(x => x.Capacity > 200))
+                Console.WriteLine(item);
+            Console.WriteLine("->Общ. кол-во мест: " + train1.TotalPlacesCount);
+            Console.WriteLine("->Общ. кол-во свободных мест: " + train1.TotalFreePlacesCount);
+            Console.WriteLine("->Общ. кол-во занятых мест: " + train1.TotalBusyPlacesCount);
+            Console.WriteLine("->Общ. кол-во ячеек: " + train1.TotalCellsCount);
+            Console.WriteLine("->Общ. вес багажа: " + train1.TotalWeight);
+            Console.WriteLine("->Общ. вместимость: " + train1.TotalCapacity + "\n");
             FreightTrain train2 = new FreightTrain(1287, new DateTime(2012, 6, 22),
                 new Locomotive(1295, new DateTime(2012, 9, 21), 12800, TypeEnergy.GasTurbine, 70))
             {
@@ -49,10 +55,13 @@ namespace Transport
             };
             train2.Sort(new ComparerByOccupiedVolume());
             Console.WriteLine(train2.Print());
-            Console.WriteLine("Общ. вместимость: " + train2.TotalVolume);
-            Console.WriteLine("Общ. занятое место: " + train2.TotalOccupiedVolume);
-            Console.WriteLine("Общ. кол-во занятых мест: " + train2.TotalFreeVolue);
-            Console.WriteLine("Процент свободного места: " + train2.PercentageTotalFreeVolue + "%");
+            Console.WriteLine("->Грузовые вагоны с процентом свободного места больше 20%<-");
+            foreach (var item in train2.GetFreightCarriages(x => x.PercentageFreeVolume > 20))
+                Console.WriteLine(item);
+            Console.WriteLine("->Общ. вместимость: " + train2.TotalVolume);
+            Console.WriteLine("->Общ. занятое место: " + train2.TotalOccupiedVolume);
+            Console.WriteLine("->Общ. свободное место: " + train2.TotalFreeVolue);
+            Console.WriteLine("->Процент свободного места: " + train2.TotalPercentageFreeVolue + "%");
         }
     }
 }

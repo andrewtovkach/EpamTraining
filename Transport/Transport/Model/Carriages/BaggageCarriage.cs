@@ -76,7 +76,7 @@ namespace Transport.Model.Carriages
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return this.GetEnumerator();
+            return GetEnumerator();
         }
 
         public override string ToString()
@@ -143,7 +143,7 @@ namespace Transport.Model.Carriages
         public override string Print()
         {
             StringBuilder result = new StringBuilder();
-            result.AppendLine(this.ToString());
+            result.AppendLine(ToString());
             for (int i = 1; i <= CellsCount; i++)
             {
                 if (_dictionaryBaggages.ContainsKey(i))

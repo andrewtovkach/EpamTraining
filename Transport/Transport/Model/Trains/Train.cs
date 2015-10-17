@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using Transport.Interfaces;
 using Transport.Model.Carriages;
 
 namespace Transport.Model.Trains
 {
-    abstract class Train : Vehicle, ICollection<Carriage>
+    abstract class Train : Vehicle, ICollection<Carriage>, ISortable
     {
         public Locomotive Locomotive { get; set; }
 
@@ -70,7 +72,22 @@ namespace Transport.Model.Trains
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return this.GetEnumerator();
+            return GetEnumerator();
+        }
+
+        public IEnumerable<Carriage> GetCarriages(Func<Carriage, bool> predicate)
+        {
+            return ListCarriages.Where(predicate);
+        }
+
+        public void Sort()
+        {
+            ListCarriages.Sort();
+        }
+
+        public void Sort(IComparer<Carriage> comparer)
+        {
+            ListCarriages.Sort(comparer);
         }
     }
 }

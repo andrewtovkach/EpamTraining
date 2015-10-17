@@ -84,7 +84,7 @@ namespace Transport.Model.Carriages
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return this.GetEnumerator();
+            return GetEnumerator();
         }
 
         public IEnumerable<int> GetFreePlaces()
@@ -110,9 +110,9 @@ namespace Transport.Model.Carriages
         public override string Print()
         {
             StringBuilder result = new StringBuilder();
-            result.AppendLine(this.ToString());
+            result.AppendLine(ToString());
             foreach (var item in _listPlaces)
-                result.AppendLine("   - " + item.ToString());
+                result.AppendLine("   - " + item);
             return result.ToString();
         }
     }

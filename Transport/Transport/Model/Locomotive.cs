@@ -19,7 +19,7 @@ namespace Transport.Model
 
         public override string ToString()
         {
-            return String.Format("Локомотив {0} Тип энергии: {1}, Мощность: {2}, Макс. скорость: {3}", base.ToString(), 
+            return string.Format("Локомотив {0} Тип энергии: {1}, Мощность: {2}, Макс. скорость: {3}", base.ToString(), 
                 TypeEnergy, Power, MaxSpeed);
         }
     }

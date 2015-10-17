@@ -6,12 +6,10 @@ using Transport.Model.Carriages;
 
 namespace Transport.Model.Trains
 {
-    class FreightTrain : Train, ISortable
+    class FreightTrain : Train
     {
         public FreightTrain(int number, DateTime startUpDate, Locomotive locomotive)
-            : base(number, startUpDate, locomotive)
-        {
-        }
+            : base(number, startUpDate, locomotive) { }
 
         public Carriage this[int number]
         {
@@ -30,19 +28,24 @@ namespace Transport.Model.Trains
             else throw new ArgumentException("Невозможно добавить данный тип вагона!");
         }
 
-        private IEnumerable<IFreightElement> AllElements
+        private IEnumerable<IFreightElement> FreightElements
         {
             get { return ListCarriages.OfType<IFreightElement>(); }
         }
 
+        public IEnumerable<IFreightElement> GetFreightCarriages(Func<IFreightElement, bool> predicate)
+        {
+            return FreightElements.Where(predicate);
+        }
+
         public long TotalOccupiedVolume
         {
-            get { return AllElements.Sum(x => x.OccupiedVolume); }
+            get { return FreightElements.Sum(x => x.OccupiedVolume); }
         }
 
         public long TotalVolume
         {
-            get { return AllElements.Sum(x => x.Volume); }
+            get { return FreightElements.Sum(x => x.Volume); }
         }
 
         public long TotalFreeVolue
@@ -50,19 +53,9 @@ namespace Transport.Model.Trains
             get { return TotalVolume - TotalOccupiedVolume; }
         }
 
-        public double PercentageTotalFreeVolue
+        public double TotalPercentageFreeVolue
         {
             get { return Math.Round((double)TotalFreeVolue / TotalVolume * 100.0, 2); }
-        }
-
-        public void Sort()
-        {
-            ListCarriages.Sort();
-        }
-
-        public void Sort(IComparer<Carriage> comparer)
-        {
-            ListCarriages.Sort(comparer);
         }
     }
 }
