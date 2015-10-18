@@ -7,8 +7,6 @@ namespace Transport.Model
         public int Number { get; set; }
         public DateTime StartUpDate { get; set; }
 
-        protected Vehicle() { }
-
         protected Vehicle(int number, DateTime startUpDate)
         {
             this.Number = number;

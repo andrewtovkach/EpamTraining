@@ -34,19 +34,19 @@ namespace Transport.Model.Carriages
 
         public Place this[int number]
         {
-            get { return _listPlaces.FirstOrDefault(x => x.Number == number); }
+            get { return _listPlaces.FirstOrDefault(item => item.Number == number); }
         }
 
         public void Add(Place item)
         {
-            if (item.Number <= PlacesCount)
-                _listPlaces[item.Number - 1].IsBusy = true;
+            if (item.Number <= PlacesCount && item.Number > 0)
+                _listPlaces[item.Number - 1] = new Place { IsBusy = true, Number = item.Number};
             else throw new InvalidOperationException("Номер места имеет недопустимое значение!");
         }
 
         public void Clear()
         {
-            _listPlaces.ForEach(x => x.IsBusy = false);
+            _listPlaces.ForEach(item => item.IsBusy = false);
         }
 
         public bool Contains(Place item)
@@ -73,7 +73,7 @@ namespace Transport.Model.Carriages
         {
             if (item.Number > PlacesCount || item.Number <= 0) 
                 return false;
-            _listPlaces[item.Number - 1].IsBusy = false;
+            _listPlaces[item.Number - 1] = new Place { Number = item.Number };
             return true;
         }
 
@@ -89,22 +89,22 @@ namespace Transport.Model.Carriages
 
         public IEnumerable<int> GetFreePlaces()
         {
-            return _listPlaces.Where(place => !place.IsBusy).Select(x => x.Number).AsEnumerable();
+            return _listPlaces.Where(place => !place.IsBusy).Select(item => item.Number).AsEnumerable();
         }
 
         public long FreePlacesCount
         {
-            get { return _listPlaces.Count(x => !x.IsBusy); }
+            get { return PlacesCount - BusyPlacesCount; }
         }
 
         public IEnumerable<int> GetBusyPlaces()
         {
-            return _listPlaces.Where(place => place.IsBusy).Select(x => x.Number).AsEnumerable();
+            return _listPlaces.Where(place => place.IsBusy).Select(item => item.Number).AsEnumerable();
         }
 
         public long BusyPlacesCount
         {
-            get { return _listPlaces.Count(x => x.IsBusy); }
+            get { return _listPlaces.Count(item => item.IsBusy); }
         }
 
         public override string Print()

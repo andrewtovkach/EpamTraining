@@ -24,12 +24,12 @@ namespace Transport.Model.Carriages
 
         public Baggage this[int number]
         {
-            get { return _dictionaryBaggages.FirstOrDefault(x => x.Value.Number == number).Value; }
+            get { return _dictionaryBaggages.FirstOrDefault(item => item.Value.Number == number).Value; }
         }
 
         public Baggage this[string name]
         {
-            get { return _dictionaryBaggages.FirstOrDefault(x => x.Value.Name == name).Value; }
+            get { return _dictionaryBaggages.FirstOrDefault(item => item.Value.Name == name).Value; }
         }
 
         public void Add(Baggage item)
@@ -124,9 +124,8 @@ namespace Transport.Model.Carriages
 
         public int GetCellNumber(int baggageNumber)
         {
-            int cellNumber = _dictionaryBaggages.First(item => item.Value.Number == baggageNumber).Key;
-            if (cellNumber != 0)
-                return cellNumber;
+            if(_dictionaryBaggages.Any(item => item.Value.Number == baggageNumber))
+                return _dictionaryBaggages.First(item => item.Value.Number == baggageNumber).Key;
             throw new ArgumentException("Данный багаж отсутсвует!"); 
         }
 

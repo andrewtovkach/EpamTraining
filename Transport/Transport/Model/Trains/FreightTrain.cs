@@ -11,11 +11,6 @@ namespace Transport.Model.Trains
         public FreightTrain(int number, DateTime startUpDate, Locomotive locomotive)
             : base(number, startUpDate, locomotive) { }
 
-        public Carriage this[int number]
-        {
-            get { return ListCarriages.FirstOrDefault(x => x.Number == number); }
-        }
-
         public override string ToString()
         {
             return "Грузовой поезд " + base.ToString();
@@ -40,12 +35,12 @@ namespace Transport.Model.Trains
 
         public long TotalOccupiedVolume
         {
-            get { return FreightElements.Sum(x => x.OccupiedVolume); }
+            get { return FreightElements.Sum(item => item.OccupiedVolume); }
         }
 
         public long TotalVolume
         {
-            get { return FreightElements.Sum(x => x.Volume); }
+            get { return FreightElements.Sum(item => item.Volume); }
         }
 
         public long TotalFreeVolue

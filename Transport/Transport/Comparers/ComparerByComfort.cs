@@ -11,7 +11,7 @@ namespace Transport.Comparers
             var carriageSecond = y as PassengerCarriage;
             if (carriageFirst != null && carriageSecond != null)
                 return ((int)carriageFirst.TypePassengerCarriage).CompareTo((int)carriageSecond.TypePassengerCarriage);
-            return 1;
+            return x.CompareTo(y);
         }
     }
 }

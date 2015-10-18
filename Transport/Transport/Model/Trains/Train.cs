@@ -21,6 +21,11 @@ namespace Transport.Model.Trains
             ListCarriages = new List<Carriage>();
         }
 
+        public Carriage this[int number]
+        {
+            get { return ListCarriages.FirstOrDefault(x => x.Number == number); }
+        }
+
         public string Print()
         {
             StringBuilder result = new StringBuilder();

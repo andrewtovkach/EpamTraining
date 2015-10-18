@@ -34,16 +34,19 @@ namespace Transport
             train1.GetBaggage(4, 1254);
             train1.Sort(new ComparerByComfort());
             Console.WriteLine(train1.Print());
-            Console.WriteLine("->Пассажирские вагоны с кол-вом свободных мест больше 12<-");
+            Console.WriteLine("->Пассажирские вагоны с кол-вом свободных мест больше 12:");
             foreach (var item in train1.GetPassangerCarriages(x => x.PlacesCount > 12))
                 Console.WriteLine(item);
-            Console.WriteLine("->Багажные вагоны с вместимостью больше 200<-");
+            Console.WriteLine("->Багажные вагоны с вместимостью больше 200:");
             foreach (var item in train1.GetBaggageCarriages(x => x.Capacity > 200))
                 Console.WriteLine(item);
+            Console.WriteLine("->Багаж №1254 хранится в " + train1.GetCellNumber(4, 1245) + " ячейке");
             Console.WriteLine("->Общ. кол-во мест: " + train1.TotalPlacesCount);
             Console.WriteLine("->Общ. кол-во свободных мест: " + train1.TotalFreePlacesCount);
             Console.WriteLine("->Общ. кол-во занятых мест: " + train1.TotalBusyPlacesCount);
             Console.WriteLine("->Общ. кол-во ячеек: " + train1.TotalCellsCount);
+            Console.WriteLine("->Общ. кол-во свободных ячеек: " + train1.TotalFreeCellsCount);
+            Console.WriteLine("->Общ. кол-во занятых ячеек: " + train1.TotalBusyCellsCount);
             Console.WriteLine("->Общ. вес багажа: " + train1.TotalWeight);
             Console.WriteLine("->Общ. вместимость: " + train1.TotalCapacity + "\n");
             FreightTrain train2 = new FreightTrain(1287, new DateTime(2012, 6, 22),
@@ -55,7 +58,7 @@ namespace Transport
             };
             train2.Sort(new ComparerByOccupiedVolume());
             Console.WriteLine(train2.Print());
-            Console.WriteLine("->Грузовые вагоны с процентом свободного места больше 20%<-");
+            Console.WriteLine("->Грузовые вагоны с процентом свободного места больше 20%:");
             foreach (var item in train2.GetFreightCarriages(x => x.PercentageFreeVolume > 20))
                 Console.WriteLine(item);
             Console.WriteLine("->Общ. вместимость: " + train2.TotalVolume);

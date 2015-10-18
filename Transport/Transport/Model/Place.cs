@@ -1,6 +1,6 @@
 ﻿namespace Transport.Model
 {
-    class Place
+    struct Place
     {
         public int Number { get; set; }
         public bool IsBusy { get; set; }

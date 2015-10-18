@@ -40,7 +40,7 @@ namespace Transport.Model.Carriages
 
         public double PercentageFreeVolume
         {
-            get { return Math.Round((double)(Volume - OccupiedVolume) / Volume * 100.0, 2); }
+            get { return Math.Round((double)FreeVolume / Volume * 100.0, 2); }
         }
 
         public override string ToString()

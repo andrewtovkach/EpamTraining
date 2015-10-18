@@ -11,7 +11,7 @@ namespace Transport.Comparers
             var carriageSecond = y as FreightCarriage;
             if (carriageFirst != null && carriageSecond != null)
                 return carriageFirst.OccupiedVolume.CompareTo(carriageSecond.OccupiedVolume);
-            return 1;
+            return x.CompareTo(y);
         }
     }
 }
