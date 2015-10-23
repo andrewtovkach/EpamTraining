@@ -3,7 +3,7 @@ using Transport.Model.Carriages;
 
 namespace Transport.Interfaces
 {
-    interface ISortable
+    public interface ISortable
     {
         Carriage this[int number] { get; }
         void Sort();

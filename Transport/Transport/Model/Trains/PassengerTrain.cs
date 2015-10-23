@@ -6,7 +6,7 @@ using Transport.Model.Carriages;
 
 namespace Transport.Model.Trains
 {
-    class PassengerTrain : Train
+    public class PassengerTrain : Train
     {
         public PassengerTrain(int number, DateTime startUpDate, Locomotive locomotive)
             : base(number, startUpDate, locomotive) { }

@@ -2,7 +2,7 @@
 
 namespace Transport.Model.Carriages
 {
-    class RestaurantCarriage : Carriage
+    public class RestaurantCarriage : Carriage
     {
         public uint PlacesCount { get; set; }
         public string Description { get; set; }

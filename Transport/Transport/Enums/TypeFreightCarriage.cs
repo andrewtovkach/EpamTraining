@@ -1,6 +1,6 @@
 ﻿namespace Transport.Enums
 {
-    enum TypeFreightCarriage
+    public enum TypeFreightCarriage
     {
         СoveredCarriage,        //крытый вагон
         HalfCarriage,           //полувагон

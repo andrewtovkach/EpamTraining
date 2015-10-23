@@ -1,6 +1,6 @@
 ﻿namespace Transport.Enums
 {
-    enum TypePassengerCarriage
+    public enum TypePassengerCarriage
     {
         Sedentary,             //сидячий
         ReservedSeat,          //плацкартный 

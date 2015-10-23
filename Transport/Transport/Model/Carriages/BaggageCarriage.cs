@@ -7,7 +7,7 @@ using Transport.Interfaces;
 
 namespace Transport.Model.Carriages
 {
-    class BaggageCarriage : Carriage, ICollection<Baggage>, IBaggageElement
+    public class BaggageCarriage : Carriage, ICollection<Baggage>, IBaggageElement
     {
         public uint CellsCount { get; set; }
         public uint CellCapacity { get; set; }

@@ -1,6 +1,6 @@
 ﻿namespace Transport.Enums
 {
-    enum TypeEnergy
+    public enum TypeEnergy
     {
         Steam,              //паровой
         Electric,           //электродвигатель

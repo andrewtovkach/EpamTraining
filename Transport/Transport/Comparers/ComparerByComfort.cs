@@ -3,7 +3,7 @@ using Transport.Model.Carriages;
 
 namespace Transport.Comparers
 {
-    class ComparerByComfort : IComparer<Carriage>
+    public class ComparerByComfort : IComparer<Carriage>
     {
         public int Compare(Carriage x, Carriage y)
         {

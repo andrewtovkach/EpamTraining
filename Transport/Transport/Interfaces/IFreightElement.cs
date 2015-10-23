@@ -1,6 +1,6 @@
 ﻿namespace Transport.Interfaces
 {
-    interface IFreightElement
+    public interface IFreightElement
     {
         uint Volume { get; }
         uint OccupiedVolume { get; }

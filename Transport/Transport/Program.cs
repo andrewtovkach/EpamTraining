@@ -7,7 +7,7 @@ using Transport.Model.Trains;
 
 namespace Transport
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {

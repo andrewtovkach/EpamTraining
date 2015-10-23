@@ -8,7 +8,7 @@ using Transport.Interfaces;
 
 namespace Transport.Model.Carriages
 {
-    class PassengerCarriage : Carriage, ICollection<Place>, IPassengerElement
+    public class PassengerCarriage : Carriage, ICollection<Place>, IPassengerElement
     {
         public TypePassengerCarriage TypePassengerCarriage { get; set; }
         public uint PlacesCount { get; set; }

@@ -1,0 +1,13 @@
+c:\users\andrew\documents\visual studio 2012\Projects\ConcordanceProject\ConcordanceProject\bin\Debug\ConcordanceProject.exe.config
+c:\users\andrew\documents\visual studio 2012\Projects\ConcordanceProject\ConcordanceProject\bin\Debug\ConcordanceProject.exe
+c:\users\andrew\documents\visual studio 2012\Projects\ConcordanceProject\ConcordanceProject\bin\Debug\ConcordanceProject.pdb
+c:\users\andrew\documents\visual studio 2012\Projects\ConcordanceProject\ConcordanceProject\obj\Debug\ConcordanceProject.csprojResolveAssemblyReference.cache
+c:\users\andrew\documents\visual studio 2012\Projects\ConcordanceProject\ConcordanceProject\obj\Debug\ConcordanceProject.exe
+c:\users\andrew\documents\visual studio 2012\Projects\ConcordanceProject\ConcordanceProject\obj\Debug\ConcordanceProject.pdb
+D:\Programming\C#\EpamTraining\ConcordanceProject\ConcordanceProject\bin\Debug\ConcordanceProject.exe.config
+D:\Programming\C#\EpamTraining\ConcordanceProject\ConcordanceProject\obj\Debug\ConcordanceProject.exe
+D:\Programming\C#\EpamTraining\ConcordanceProject\ConcordanceProject\obj\Debug\ConcordanceProject.pdb
+D:\Programming\C#\EpamTraining\ConcordanceProject\ConcordanceProject\bin\Debug\ConcordanceProject.exe
+D:\Programming\C#\EpamTraining\ConcordanceProject\ConcordanceProject\bin\Debug\ConcordanceProject.pdb
+D:\Programming\C#\EpamTraining\ConcordanceProject\ConcordanceProject\obj\Debug\ConcordanceProject.csprojResolveAssemblyReference.cache
+D:\Programming\C#\EpamTraining\ConcordanceProject\ConcordanceProject\bin\Debug\Files\Input.txt

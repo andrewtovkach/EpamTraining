@@ -3,7 +3,7 @@ using Transport.Enums;
 
 namespace Transport.Model
 {
-    class Locomotive : Vehicle
+    public class Locomotive : Vehicle
     {
         public TypeEnergy TypeEnergy { get; set; }
         public uint Power { get; set; }

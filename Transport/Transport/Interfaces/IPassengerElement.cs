@@ -2,7 +2,7 @@
 
 namespace Transport.Interfaces
 {
-    interface IPassengerElement
+    public interface IPassengerElement
     {
         uint PlacesCount { get; }
         IEnumerable<int> GetFreePlaces();

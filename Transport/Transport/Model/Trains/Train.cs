@@ -8,7 +8,8 @@ using Transport.Model.Carriages;
 
 namespace Transport.Model.Trains
 {
-    abstract class Train : Vehicle, ICollection<Carriage>, ISortable
+
+    public abstract class Train : Vehicle, ICollection<Carriage>, ISortable
     {
         public Locomotive Locomotive { get; set; }
 

@@ -2,7 +2,7 @@
 
 namespace Transport.Model.Carriages
 {
-    abstract class Carriage : Vehicle
+    public abstract class Carriage : Vehicle
     {
         public uint AxisNumber { get; set; }
 

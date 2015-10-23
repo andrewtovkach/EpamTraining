@@ -1,6 +1,6 @@
 ﻿namespace Transport.Model
 {
-    struct Baggage
+    public struct Baggage
     {
         public int Number { get; set; }
         public string Name { get; set; }

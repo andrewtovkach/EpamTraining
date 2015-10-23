@@ -2,7 +2,7 @@
 
 namespace Transport.Model
 {
-    abstract class Vehicle : IComparable<Vehicle>
+    public abstract class Vehicle : IComparable<Vehicle>
     {
         public int Number { get; set; }
         public DateTime StartUpDate { get; set; }
