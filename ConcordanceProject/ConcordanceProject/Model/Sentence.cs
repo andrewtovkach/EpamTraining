@@ -14,7 +14,7 @@ namespace ConcordanceProject.Model
 
         public override string ToString()
         {
-            return Number.ToString();
+            return "Sentence №" + Number;
         }
     }
 }

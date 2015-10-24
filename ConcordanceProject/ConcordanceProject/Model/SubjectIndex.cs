@@ -1,12 +1,13 @@
-﻿using System;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
+using ConcordanceProject.Model.Interfaces;
+using ConcordanceProject.Model.IO;
 
 namespace ConcordanceProject.Model
 {
-    public class SubjectIndex
+    public class SubjectIndex : IEnumerable<IGrouping<char, WordStatistics>>, IResult
     {
         public Concordance Concordance { get; set; }
 
@@ -15,18 +16,18 @@ namespace ConcordanceProject.Model
             Concordance = concordance;
         }
 
-        public IEnumerable<IGrouping<char, WordStatistics>> Result()
+        private IEnumerable<IGrouping<char, WordStatistics>> GetResult()
         {
-            return from item in Concordance.Result()
-                   group item by item.Value[0];
+            return from item in Concordance
+                   group item by item.Value.ToString()[0];
         }
 
         public string Print()
         {
             StringBuilder stringBuilder = new StringBuilder();
-            foreach (var group in Result())
+            foreach (var group in this)
             {
-                stringBuilder.AppendLine(Char.ToUpper(group.Key).ToString());
+                stringBuilder.AppendLine(char.ToUpper(group.Key).ToString());
                 foreach (var item in group)
                     stringBuilder.AppendLine(item.ToString());
                 stringBuilder.AppendLine();
@@ -36,28 +37,23 @@ namespace ConcordanceProject.Model
 
         public bool Write(string fileName)
         {
-            StreamWriter writer = null;
-            try
-            {
-                var file = new FileInfo(fileName);
-                writer = file.CreateText();
-                writer.Write(Print());
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-            finally
-            {
-                if (writer != null)
-                    writer.Close();
-            }
+            Writer writer = new Writer(fileName);
+            return writer.Write(Print);
         }
 
         public override string ToString()
         {
             return Print();
+        }
+
+        public IEnumerator<IGrouping<char, WordStatistics>> GetEnumerator()
+        {
+            return GetResult().GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
     }
 }

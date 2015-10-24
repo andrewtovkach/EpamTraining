@@ -1,45 +1,49 @@
-﻿using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using ConcordanceProject.Model.Interfaces;
+using ConcordanceProject.Model.IO;
 
 namespace ConcordanceProject.Model
 {
-    public class Concordance
+    public class Concordance : IEnumerable<WordStatistics>, IResult
     {
         public Text Text { get; set; }
 
-        private readonly SortedDictionary<string, WordStatistics> _dictionary;
+        private readonly SortedDictionary<Word, WordStatistics> _dictionary;
 
         public Concordance(Text text)
         {
             Text = text;
-            _dictionary = new SortedDictionary<string, WordStatistics>();
+            _dictionary = new SortedDictionary<Word, WordStatistics>();
+            CountingStatistics();
         }
 
-        public void CountingStatistics()
+        private void CountingStatistics()
         {
             foreach (var item in Text.GetSentencies())
             {
                 foreach (var it in item)
                 {
-                    if (_dictionary.ContainsKey(it))
+                    Word word = new Word(it);
+                    if (_dictionary.ContainsKey(word))
                     {
-                        _dictionary[it].Add(item.Number);
-                        _dictionary[it].TotalCount++;
+                        _dictionary[word].Add(item.Number);
+                        _dictionary[word].TotalCount++;
                     }
                     else
                     {
-                        _dictionary.Add(it, new WordStatistics());
-                        _dictionary[it].Value = it;
-                        _dictionary[it].Add(item.Number);
-                        _dictionary[it].TotalCount++;
+                        _dictionary.Add(word, new WordStatistics());
+                        _dictionary[word].Value = new Word(it);
+                        _dictionary[word].Add(item.Number);
+                        _dictionary[word].TotalCount++;
                     }
                 }
             }
         }
 
-        public IEnumerable<WordStatistics> Result()
+        private IEnumerable<WordStatistics> GetResult()
         {
             return from x in _dictionary
                    select x.Value;
@@ -47,36 +51,31 @@ namespace ConcordanceProject.Model
 
         public string Print()
         {
-            var stringBuilder = new StringBuilder();
-            foreach (var item in Result())
+            StringBuilder stringBuilder = new StringBuilder();
+            foreach (var item in this)
                 stringBuilder.AppendLine(item.ToString());
             return stringBuilder.ToString();
         }
 
         public bool Write(string fileName)
         {
-            StreamWriter writer = null;
-            try
-            {
-                var file = new FileInfo(fileName);
-                writer = file.CreateText();
-                writer.Write(Print());
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-            finally
-            {
-                if (writer != null) 
-                    writer.Close();
-            }
+            Writer writer = new Writer(fileName);
+            return writer.Write(Print);
         }
 
         public override string ToString()
         {
             return Print();
+        }
+
+        public IEnumerator<WordStatistics> GetEnumerator()
+        {
+            return GetResult().GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
     }
 }

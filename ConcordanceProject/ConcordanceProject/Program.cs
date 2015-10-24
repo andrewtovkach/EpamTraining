@@ -1,5 +1,6 @@
 ﻿using System;
 using ConcordanceProject.Model;
+using ConcordanceProject.Model.IO;
 
 namespace ConcordanceProject
 {
@@ -7,10 +8,9 @@ namespace ConcordanceProject
     {
         static void Main(string[] args)
         {
-            Text text = new Text(new Separators());
-            text.Read(@"Files\Input.txt", 3);
+            Reader reader = new Reader(@"Files\Input.txt", new Separators(' ', ',', ';', '.', '!', '?', ':', '-'));
+            Text text = reader.Read(3);
             Concordance concordance = new Concordance(text);
-            concordance.CountingStatistics();
             Console.WriteLine(concordance.Print());
             concordance.Write(@"Files\OutputConcordance.txt");
             SubjectIndex subjectIndex = new SubjectIndex(concordance);

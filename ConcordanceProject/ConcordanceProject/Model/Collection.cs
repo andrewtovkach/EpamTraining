@@ -5,7 +5,7 @@ namespace ConcordanceProject.Model
 {
     public abstract class Collection<T> : ICollection<T>
     {
-        protected readonly ICollection<T> List;
+        protected ICollection<T> List;
 
         protected Collection()
         {

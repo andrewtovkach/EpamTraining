@@ -2,12 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using ConcordanceProject.Model.Interfaces;
 
 namespace ConcordanceProject.Model
 {
-    public class WordStatistics : ICollection<int>, IComparable<WordStatistics>
+    public class WordStatistics : ICollection<int>, IComparable<WordStatistics>, IPrintable
     {
-        public string Value { get; set; }
+        public Word Value { get; set; }
         public int TotalCount { get; set; }
 
         private readonly SortedSet<int> _set;
@@ -17,7 +18,7 @@ namespace ConcordanceProject.Model
             _set = new SortedSet<int>();
         }
 
-        public WordStatistics(string value, int totalCount)
+        public WordStatistics(Word value, int totalCount)
             : this()
         {
             Value = value;
@@ -69,19 +70,24 @@ namespace ConcordanceProject.Model
             return GetEnumerator();
         }
 
-        public override string ToString()
+        public string Print()
         {
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.AppendFormat("{0} {1}: ", Value.PadRight(25 - TotalCount.ToString().Length, '.'),
+            stringBuilder.AppendFormat("{0} {1}: ", Value.ToString().PadRight(25 - TotalCount.ToString().Length, '.'),
                 TotalCount);
             foreach (var it in this)
                 stringBuilder.AppendFormat("{0} ", it);
             return stringBuilder.ToString();
         }
 
+        public override string ToString()
+        {
+            return Print();
+        }
+
         public int CompareTo(WordStatistics other)
         {
-            return string.Compare(Value, other.Value, StringComparison.Ordinal);
+            return Value.CompareTo(other.Value);
         }
     }
 }
