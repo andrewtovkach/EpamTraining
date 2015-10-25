@@ -1,10 +1,8 @@
-﻿using System;
-using System.IO;
-using ConcordanceProject.Model.Interfaces;
+﻿using System.IO;
 
 namespace ConcordanceProject.Model.IO
 {
-    public class Writer : IWriter
+    public class Writer
     {
         public string FileName { get; set; }
 
@@ -13,14 +11,14 @@ namespace ConcordanceProject.Model.IO
             FileName = fileName;
         }
 
-        public bool Write(Func<string> function)
+        public bool Write(string result)
         {
             StreamWriter writer = null;
             try
             {
                 FileInfo file = new FileInfo(FileName);
                 writer = file.CreateText();
-                writer.Write(function());
+                writer.Write(result);
                 return true;
             }
             catch

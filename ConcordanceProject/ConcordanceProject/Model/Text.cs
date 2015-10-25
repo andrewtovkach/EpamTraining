@@ -1,19 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using ConcordanceProject.Model.Interfaces;
 
 namespace ConcordanceProject.Model
 {
-    public class Text : Collection<Page>, IPrintable
+    public class Text : Collection<Page>
     {
-        public Text()
-        {
-        }
+        public string FileName { get; set; }
 
-        public Text(ICollection<Page> collection)
+        public Text(ICollection<Page> collection, string fileName)
             :base(collection)
         {
+            FileName = fileName;
         }
 
         public IEnumerable<Sentence> GetSentencies()
@@ -21,21 +18,9 @@ namespace ConcordanceProject.Model
             return List.SelectMany(item => item);
         }
 
-        public string Print()
-        {
-            StringBuilder stringBuilder = new StringBuilder();
-            foreach (var item in this)
-            {
-                stringBuilder.AppendLine(item.ToString());
-                foreach (var it in item)
-                    stringBuilder.AppendLine(it.ToString());
-            }
-            return stringBuilder.ToString();
-        }
-
         public override string ToString()
         {
-            return Print();
+            return "Text " + FileName;
         }
     }
 }

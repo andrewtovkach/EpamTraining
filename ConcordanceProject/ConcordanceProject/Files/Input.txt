@@ -1,12 +1,29 @@
-﻿Peter Piper picked a peck of pickled peppers. A peck of pickled
-peppers Peter Piper picked. If Peter Piper picked a peck of
-pickled peppers, where is the peck that Peter Piper picked?
-Peter Piper picked a peck of pickled peppers. A peck of pickled
-peppers Peter Piper picked. If Peter Piper picked a peck of
-pickled peppers, where is the peck that Peter Piper picked?
-Peter Piper picked a peck of pickled peppers. A peck of pickled
-peppers Peter Piper picked. If Peter Piper picked a peck of
-pickled peppers, where is the peck that Peter Piper picked?
-Peter Piper picked a peck of pickled peppers. A peck of pickled
-peppers Peter Piper picked. If Peter Piper picked a peck of
-pickled peppers, where is the peck that Peter Piper picked?
+﻿Over the past few years, one of the most important shifts in the digital world has been the move from the wide-open Web to semiclosed platforms
+that use the Internet for transport but not the browser for display. It's driven primarily by the rise of the iPhone model of mobile computing,
+and it's a world Google can't crawl, one where HTML doesn't rule. And it's the world that consumers are increasingly choosing, not because 
+they're rejecting the idea of the Web but because these dedicated platforms often just work better or fit better into their lives. The fact 
+that it's easier for companies to make money on these platforms only cements the trend. Producers and consumers agree: The Web is not the 
+culmination of the digital revolution.
+A decade ago, the ascent of the Web browser as the center of the computing world appeared inevitable. It seemed just a matter of time before the 
+Web replaced PC application software and reduced operating systems to a "poorly debugged set of device drivers," as Netscape cofounder Marc 
+Andreessen famously said. First Java, then Flash, then Ajax, then HTML5 — increasingly interactive online code — promised to put all apps in the
+cloud and replace the desktop with the WebTop. Open, free, and out of control.
+But there has always been an alternative path, one that saw the Web as a worthy tool but not the whole toolkit. The argument then was that "push"
+technologies such as PointCast and Microsoft's Active Desktop would create a "radical future of media beyond the Web." The point was altogether 
+prescient: a glimpse of the machine-to-machine future that would be less about browsing and more about getting. As it happened, PointCast 
+quickly imploded, taking push with it. But just as Web 2.0 is simply Web 1.0 that works, the idea has come around again. Those push concepts
+have now reappeared as APIs, apps, and the Smartphone. And this time we have Apple and the iPhone/iPad juggernaut leading the way, with tens
+of millions of consumers already voting with their wallets for an app-led experience. This post-Web future now looks a lot more convincing.
+Indeed, it's already here.
+The Web is, after all, just one of many applications that exist on the Internet, which uses the IP and TCP protocols to move packets around. 
+This architecture — not the specific applications built on top of it — is the revolution. Today the content you see in your browser — largely 
+HTML data delivered via the http protocol on port 80 — accounts for less than a quarter of the traffic on the Internet and it's shrinking. 
+The applications that account for more of the Internet's traffic include peer-to-peer file transfers, email, company VPNs, the machine-to-machine
+communications of APIs, Skype calls, and online games, Xbox Live, iTunes, voice-over-IP phones, iChat, and Netflix movie streaming. Many of the
+newer Net applications are closed, often proprietary, networks.
+And the shift is only accelerating. Within five years, Morgan Stanley projects, the number of users accessing the Net from mobile devices will
+surpass the number who access it from PCs. Because the screens are smaller, such mobile traffic tends to be driven by specialty software, 
+mostly apps, designed for a single purpose. For the sake of the optimized experience on mobile devices, users forgo the general-purpose browser.
+They use the Net, but not the Web. Fast beats flexible.
+This was all inevitable. It is the cycle of capitalism. The story of industrial revolutions, after all, is a story of battles over control. A 
+technology is invented, it spreads, a thousand flowers bloom, and then someone finds a way to own it, locking out others. It happens every time.

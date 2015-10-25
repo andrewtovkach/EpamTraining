@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +8,7 @@ using ConcordanceProject.Model.IO;
 
 namespace ConcordanceProject.Model
 {
-    public class Concordance : IEnumerable<WordStatistics>, IResult
+    public class Concordance : IEnumerable<WordStatistics>, IResult<WordStatistics>
     {
         public Text Text { get; set; }
 
@@ -27,32 +28,27 @@ namespace ConcordanceProject.Model
                 foreach (var it in item)
                 {
                     Word word = new Word(it);
-                    if (_dictionary.ContainsKey(word))
-                    {
-                        _dictionary[word].Add(item.Number);
-                        _dictionary[word].TotalCount++;
-                    }
-                    else
+                    if (!_dictionary.ContainsKey(word))
                     {
                         _dictionary.Add(word, new WordStatistics());
                         _dictionary[word].Value = new Word(it);
-                        _dictionary[word].Add(item.Number);
-                        _dictionary[word].TotalCount++;
                     }
+                    _dictionary[word].Add(new Tuple<int, int>(item.Number, item.PageNumber));
+                    _dictionary[word].TotalCount++;
                 }
             }
         }
 
-        private IEnumerable<WordStatistics> GetResult()
+        public IEnumerable<WordStatistics> GetResult()
         {
-            return from x in _dictionary
-                   select x.Value;
+            return from item in _dictionary
+                   select item.Value;
         }
 
         public string Print()
         {
             StringBuilder stringBuilder = new StringBuilder();
-            foreach (var item in this)
+            foreach (var item in GetResult())
                 stringBuilder.AppendLine(item.ToString());
             return stringBuilder.ToString();
         }
@@ -60,7 +56,7 @@ namespace ConcordanceProject.Model
         public bool Write(string fileName)
         {
             Writer writer = new Writer(fileName);
-            return writer.Write(Print);
+            return writer.Write(Print());
         }
 
         public override string ToString()
@@ -70,7 +66,7 @@ namespace ConcordanceProject.Model
 
         public IEnumerator<WordStatistics> GetEnumerator()
         {
-            return GetResult().GetEnumerator();
+            return _dictionary.Values.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()

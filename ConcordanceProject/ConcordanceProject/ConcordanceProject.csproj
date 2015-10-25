@@ -44,7 +44,6 @@
     <Compile Include="Model\Collection.cs" />
     <Compile Include="Model\Concordance.cs" />
     <Compile Include="Model\Interfaces\IPrintable.cs" />
-    <Compile Include="Model\Interfaces\IReader.cs" />
     <Compile Include="Model\Interfaces\IResult.cs" />
     <Compile Include="Model\Interfaces\IWriter.cs" />
     <Compile Include="Model\Page.cs" />

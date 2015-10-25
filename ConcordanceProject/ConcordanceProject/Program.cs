@@ -8,7 +8,7 @@ namespace ConcordanceProject
     {
         static void Main(string[] args)
         {
-            Reader reader = new Reader(@"Files\Input.txt", new Separators(' ', ',', ';', '.', '!', '?', ':', '-'));
+            Reader reader = new Reader(@"Files\Input.txt", new Separators(' ', ',', ';', '.', '!', '?', ':', '-', '—', '"', '\'', '/'));
             Text text = reader.Read(3);
             Concordance concordance = new Concordance(text);
             Console.WriteLine(concordance.Print());

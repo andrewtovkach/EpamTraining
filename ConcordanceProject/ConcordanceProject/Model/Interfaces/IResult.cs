@@ -1,7 +1,9 @@
-﻿namespace ConcordanceProject.Model.Interfaces
+﻿using System.Collections.Generic;
+
+namespace ConcordanceProject.Model.Interfaces
 {
-    public interface IResult : IPrintable
+    public interface IResult<T> : IPrintable, IWriter
     {
-        bool Write(string fileName);
+        IEnumerable<T> GetResult();
     }
 }
