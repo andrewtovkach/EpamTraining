@@ -41,19 +41,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\Collection.cs" />
+    <Compile Include="Model\TextClasses\Collection.cs" />
     <Compile Include="Model\Concordance.cs" />
     <Compile Include="Model\Interfaces\IPrintable.cs" />
     <Compile Include="Model\Interfaces\IResult.cs" />
-    <Compile Include="Model\Interfaces\IWriter.cs" />
-    <Compile Include="Model\Page.cs" />
-    <Compile Include="Model\Sentence.cs" />
-    <Compile Include="Model\IO\Separators.cs" />
-    <Compile Include="Model\Text.cs" />
-    <Compile Include="Model\Word.cs" />
+    <Compile Include="Model\Interfaces\IWriteble.cs" />
+    <Compile Include="Model\TextClasses\Page.cs" />
+    <Compile Include="Model\TextClasses\Sentence.cs" />
+    <Compile Include="Model\TextClasses\Separators.cs" />
+    <Compile Include="Model\TextClasses\Text.cs" />
+    <Compile Include="Model\TextClasses\Word.cs" />
     <Compile Include="Model\WordStatistics.cs" />
-    <Compile Include="Model\IO\Reader.cs" />
-    <Compile Include="Model\IO\Writer.cs" />
+    <Compile Include="Model\IOClasses\Reader.cs" />
+    <Compile Include="Model\IOClasses\Writer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Model\SubjectIndex.cs" />

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 
-namespace ConcordanceProject.Model
+namespace ConcordanceProject.Model.TextClasses
 {
     public abstract class Collection<T> : ICollection<T>
     {

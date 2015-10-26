@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace ConcordanceProject.Model.IO
+namespace ConcordanceProject.Model.IOClasses
 {
     public class Writer
     {
@@ -11,11 +11,11 @@ namespace ConcordanceProject.Model.IO
             FileName = fileName;
         }
 
-        public void Write(string result)
+        public void Write(string value)
         {
             using (StreamWriter writer = new FileInfo(FileName).CreateText())
             {
-                writer.Write(result);
+                writer.Write(value);
                 writer.Close();
             }
         }

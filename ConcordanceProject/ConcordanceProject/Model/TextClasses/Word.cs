@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ConcordanceProject.Model
+namespace ConcordanceProject.Model.TextClasses
 {
     public struct Word : IComparable<Word>
     {

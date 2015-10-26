@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using ConcordanceProject.Model.TextClasses;
 
-namespace ConcordanceProject.Model.IO
+namespace ConcordanceProject.Model.IOClasses
 {
     public class Reader
     {
@@ -19,14 +20,13 @@ namespace ConcordanceProject.Model.IO
         private List<string> GetParsedWords(string input)
         {
             input = input.ToLower();
-            var strings = input.Split(Separators.ToArray(), StringSplitOptions.RemoveEmptyEntries)
-                .ToList();
+            var strings = input.Split(Separators.ToArray(), StringSplitOptions.RemoveEmptyEntries).ToList();
             return strings;
         }
 
         public Text Read(int senteceisCount)
         {
-            if(senteceisCount <= 0)
+            if (senteceisCount <= 0)
                 throw new ArgumentException("Incorrect data!");
             using (StreamReader reader = File.OpenText(FileName))
             {

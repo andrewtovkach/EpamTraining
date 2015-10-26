@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ConcordanceProject.Model
+namespace ConcordanceProject.Model.TextClasses
 {
     public class Sentence : Collection<string>
     {
@@ -16,7 +16,7 @@ namespace ConcordanceProject.Model
 
         public override string ToString()
         {
-            return "Sentence №" + Number;
+            return string.Format("PageNumber №{0}  Sentence №{1}", PageNumber, Number);
         }
     }
 }

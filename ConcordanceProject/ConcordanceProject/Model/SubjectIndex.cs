@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using ConcordanceProject.Model.Interfaces;
-using ConcordanceProject.Model.IO;
+using ConcordanceProject.Model.IOClasses;
 
 namespace ConcordanceProject.Model
 {
@@ -36,7 +36,7 @@ namespace ConcordanceProject.Model
             return stringBuilder.ToString();
         }
 
-        public bool Write(string fileName, int width)
+        public bool Write(string fileName, int width = 35)
         {
             try
             {

@@ -1,4 +1,4 @@
-﻿namespace ConcordanceProject.Model
+﻿namespace ConcordanceProject.Model.TextClasses
 {
     public class Page : Collection<Sentence>
     {
@@ -11,7 +11,7 @@
 
         public override string ToString()
         {
-            return "Page №" + Number;
+            return string.Format("Page №{0}", Number);
         }
     }
 }
