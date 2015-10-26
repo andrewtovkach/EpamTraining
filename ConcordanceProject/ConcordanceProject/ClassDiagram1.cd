@@ -26,7 +26,7 @@
   <Class Name="ConcordanceProject.Model.Sentence">
     <Position X="8.5" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAEAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AACAAAAAAAAAAAAEAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model\Sentence.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -41,15 +41,14 @@
   <Class Name="ConcordanceProject.Model.Text">
     <Position X="2.25" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAEAAAAAAAAAAAEAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAEAAAAAAAAAABAAAA=</HashCode>
       <FileName>Model\Text.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" />
   </Class>
   <Class Name="ConcordanceProject.Model.WordStatistics" BaseTypeListCollapsed="true">
     <Position X="13" Y="2.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAIAAAAAAAAQBBQUAAAABAQAAAAAAAAEAAAgAABUIAA=</HashCode>
+      <HashCode>AAMCAAAAAAAQBBQUAAAABAQAAAAEAAAEAAAAAABUIAA=</HashCode>
       <FileName>Model\WordStatistics.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
@@ -57,10 +56,9 @@
   <Class Name="ConcordanceProject.Model.IO.Reader" BaseTypeListCollapsed="true">
     <Position X="15" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAAAACAAAAAAABAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAAAECAAAAAAABAAAA=</HashCode>
       <FileName>Model\IO\Reader.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="ConcordanceProject.Model.IO.Separators">
     <Position X="4.25" Y="4.5" Width="1.5" />
@@ -70,15 +68,14 @@
     </TypeIdentifier>
   </Class>
   <Class Name="ConcordanceProject.Model.IO.Writer" BaseTypeListCollapsed="true">
-    <Position X="15" Y="2.75" Width="1.5" />
+    <Position X="15" Y="3" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAAA=</HashCode>
       <FileName>Model\IO\Writer.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="ConcordanceProject.Program">
-    <Position X="15" Y="4.75" Width="1.5" />
+    <Position X="15" Y="5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
       <FileName>Program.cs</FileName>
@@ -93,31 +90,24 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Struct>
   <Interface Name="ConcordanceProject.Model.Interfaces.IPrintable">
-    <Position X="17.25" Y="0.75" Width="1.5" />
+    <Position X="17.5" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAA=</HashCode>
       <FileName>Model\Interfaces\IPrintable.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="ConcordanceProject.Model.Interfaces.IReader">
-    <Position X="17.25" Y="5.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Model\Interfaces\IReader.cs</FileName>
-    </TypeIdentifier>
-  </Interface>
-  <Interface Name="ConcordanceProject.Model.Interfaces.IResult">
-    <Position X="17.25" Y="2.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
-      <FileName>Model\Interfaces\IResult.cs</FileName>
-    </TypeIdentifier>
-  </Interface>
   <Interface Name="ConcordanceProject.Model.Interfaces.IWriter">
-    <Position X="17.25" Y="4.25" Width="1.5" />
+    <Position X="20.25" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
       <FileName>Model\Interfaces\IWriter.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ConcordanceProject.Model.Interfaces.IResult&lt;T&gt;">
+    <Position X="19" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>Model\Interfaces\IResult.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Font Name="Segoe UI" Size="9" />

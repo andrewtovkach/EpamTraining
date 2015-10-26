@@ -31,7 +31,7 @@ namespace ConcordanceProject.Model
                     if (!_dictionary.ContainsKey(word))
                     {
                         _dictionary.Add(word, new WordStatistics());
-                        _dictionary[word].Value = new Word(it);
+                        _dictionary[word].Word = new Word(it);
                     }
                     _dictionary[word].Add(new Tuple<int, int>(item.Number, item.PageNumber));
                     _dictionary[word].TotalCount++;
@@ -45,18 +45,26 @@ namespace ConcordanceProject.Model
                    select item.Value;
         }
 
-        public string Print()
+        public string Print(int width = 35)
         {
             StringBuilder stringBuilder = new StringBuilder();
             foreach (var item in GetResult())
-                stringBuilder.AppendLine(item.ToString());
+                stringBuilder.AppendLine(item.Print(item.GetSentencies(), width));
             return stringBuilder.ToString();
         }
 
-        public bool Write(string fileName)
+        public bool Write(string fileName, int width)
         {
-            Writer writer = new Writer(fileName);
-            return writer.Write(Print());
+            try
+            {
+                Writer writer = new Writer(fileName);
+                writer.Write(Print(width));
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         public override string ToString()

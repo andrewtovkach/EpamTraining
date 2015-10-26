@@ -8,8 +8,8 @@ namespace ConcordanceProject.Model
 {
     public class WordStatistics : ICollection<Tuple<int, int>>, IComparable<WordStatistics>
     {
-        public Word Value { get; set; }
-        public int TotalCount { get; set; }
+        public Word Word { get; set; }
+        public uint TotalCount { get; set; }
 
         private readonly SortedSet<Tuple<int, int>> _set;
 
@@ -18,10 +18,10 @@ namespace ConcordanceProject.Model
             _set = new SortedSet<Tuple<int, int>>();
         }
 
-        public WordStatistics(Word value, int totalCount)
+        public WordStatistics(Word word, uint totalCount)
             : this()
         {
-            Value = value;
+            Word = word;
             TotalCount = totalCount;
         }
 
@@ -82,11 +82,17 @@ namespace ConcordanceProject.Model
                     select item.Item2).Distinct();
         }
 
-        public string Print(IEnumerable<int> enumerable, int width)
+        private string GetFormattedString(int width = 35)
         {
+            return Word.ToString().PadRight(width - TotalCount.ToString().Length, '.');
+        }
+
+        public string Print(IEnumerable<int> enumerable, int width = 35)
+        {
+            if (width <= 0)
+                throw new ArgumentException("Incorrect data!");
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.AppendFormat("{0} {1}: ", Value.ToString().PadRight(width - TotalCount.ToString().Length, '.'),
-                TotalCount);
+            stringBuilder.AppendFormat("{0} {1}: ", GetFormattedString(width), TotalCount);
             foreach (var it in enumerable)
                 stringBuilder.AppendFormat("{0} ", it);
             return stringBuilder.ToString();
@@ -94,12 +100,12 @@ namespace ConcordanceProject.Model
 
         public override string ToString()
         {
-            return Print(GetSentencies(), 35);
+            return Print(GetSentencies());
         }
 
         public int CompareTo(WordStatistics other)
         {
-            return Value.CompareTo(other.Value);
+            return Word.CompareTo(other.Word);
         }
     }
 }

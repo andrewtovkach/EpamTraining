@@ -11,24 +11,12 @@ namespace ConcordanceProject.Model.IO
             FileName = fileName;
         }
 
-        public bool Write(string result)
+        public void Write(string result)
         {
-            StreamWriter writer = null;
-            try
+            using (StreamWriter writer = new FileInfo(FileName).CreateText())
             {
-                FileInfo file = new FileInfo(FileName);
-                writer = file.CreateText();
                 writer.Write(result);
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-            finally
-            {
-                if (writer != null)
-                    writer.Close();
+                writer.Close();
             }
         }
     }

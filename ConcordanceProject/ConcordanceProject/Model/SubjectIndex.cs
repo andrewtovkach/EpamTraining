@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,26 +20,34 @@ namespace ConcordanceProject.Model
         public IEnumerable<IGrouping<char, WordStatistics>> GetResult()
         {
             return from item in Concordance
-                   group item by item.Value.ToString()[0];
+                   group item by char.ToUpper(item.Word.ToString()[0]);
         }
 
-        public string Print()
+        public string Print(int width = 35)
         {
             StringBuilder stringBuilder = new StringBuilder();
             foreach (var group in GetResult())
             {
-                stringBuilder.AppendLine(char.ToUpper(group.Key).ToString());
+                stringBuilder.AppendLine(group.Key.ToString());
                 foreach (var item in group)
-                    stringBuilder.AppendLine(item.Print(item.GetPages(), 35));
+                    stringBuilder.AppendLine(item.Print(item.GetPages(), width));
                 stringBuilder.AppendLine();
             }
             return stringBuilder.ToString();
         }
 
-        public bool Write(string fileName)
+        public bool Write(string fileName, int width)
         {
-            Writer writer = new Writer(fileName);
-            return writer.Write(Print());
+            try
+            {
+                Writer writer = new Writer(fileName);
+                writer.Write(Print(width));
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         public override string ToString()

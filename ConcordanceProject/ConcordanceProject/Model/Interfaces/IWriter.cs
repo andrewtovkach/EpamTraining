@@ -2,6 +2,6 @@
 {
     public interface IWriter
     {
-        bool Write(string result);
+        bool Write(string result, int width);
     }
 }
