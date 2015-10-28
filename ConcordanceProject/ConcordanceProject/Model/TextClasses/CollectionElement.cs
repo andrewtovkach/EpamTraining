@@ -3,43 +3,43 @@ using System.Collections.Generic;
 
 namespace ConcordanceProject.Model.TextClasses
 {
-    public abstract class Collection<T> : ICollection<T>
+    public abstract class CollectionElement<T> : ICollection<T>
     {
-        protected ICollection<T> List;
+        protected ICollection<T> Collection;
 
-        protected Collection()
+        protected CollectionElement()
         {
-            List = new List<T>();
+            Collection = new List<T>();
         }
 
-        protected Collection(ICollection<T> list)
+        protected CollectionElement(ICollection<T> collection)
         {
-            List = list;
+            Collection = collection;
         }
 
         public void Add(T item)
         {
-            List.Add(item);   
+            Collection.Add(item);   
         }
 
         public void Clear()
         {
-            List.Clear();
+            Collection.Clear();
         }
 
         public bool Contains(T item)
         {
-            return List.Contains(item);
+            return Collection.Contains(item);
         }
 
         public void CopyTo(T[] array, int arrayIndex)
         {
-            List.CopyTo(array, arrayIndex);
+            Collection.CopyTo(array, arrayIndex);
         }
 
         public int Count
         {
-            get { return List.Count; }
+            get { return Collection.Count; }
         }
 
         public bool IsReadOnly
@@ -49,12 +49,12 @@ namespace ConcordanceProject.Model.TextClasses
 
         public bool Remove(T item)
         {
-            return List.Remove(item);
+            return Collection.Remove(item);
         }
 
         public IEnumerator<T> GetEnumerator()
         {
-            return List.GetEnumerator();
+            return Collection.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()

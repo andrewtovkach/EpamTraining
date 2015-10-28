@@ -2,7 +2,7 @@
 
 namespace ConcordanceProject.Model.TextClasses
 {
-    public class Sentence : Collection<string>
+    public class Sentence : CollectionElement<string>
     {
         public int Number { get; set; }
         public int PageNumber { get; set; }

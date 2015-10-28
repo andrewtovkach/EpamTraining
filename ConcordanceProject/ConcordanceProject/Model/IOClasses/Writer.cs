@@ -4,19 +4,19 @@ namespace ConcordanceProject.Model.IOClasses
 {
     public class Writer
     {
-        public string FileName { get; set; }
+        public TextWriter TextWriter { get; set; }
 
-        public Writer(string fileName)
+        public Writer(TextWriter textWriter)
         {
-            FileName = fileName;
+            TextWriter = textWriter;
         }
 
         public void Write(string value)
         {
-            using (StreamWriter writer = new FileInfo(FileName).CreateText())
+            using (TextWriter)
             {
-                writer.Write(value);
-                writer.Close();
+                TextWriter.Write(value);
+                TextWriter.Close();
             }
         }
     }

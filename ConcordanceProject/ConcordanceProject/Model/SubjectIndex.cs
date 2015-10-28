@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using ConcordanceProject.Model.Interfaces;
@@ -8,40 +9,40 @@ using ConcordanceProject.Model.IOClasses;
 
 namespace ConcordanceProject.Model
 {
-    public class SubjectIndex : IEnumerable<IGrouping<char, WordStatistics>>, IResult<IGrouping<char, WordStatistics>>
+    public class SubjectIndex : IEnumerable<IGrouping<char, WordStatistics>>, IResultElement<IGrouping<char, WordStatistics>>
     {
-        public Concordance Concordance { get; set; }
+        public IConcordanceElement Concordance { get; set; }
 
-        public SubjectIndex(Concordance concordance)
+        public SubjectIndex(IConcordanceElement concordance)
         {
             Concordance = concordance;
         }
 
         public IEnumerable<IGrouping<char, WordStatistics>> GetResult()
         {
-            return from item in Concordance
+            return from item in Concordance.GetResult()
                    group item by char.ToUpper(item.Word.ToString()[0]);
         }
 
-        public string Print(int width = 35)
+        public string GetResultString(int width = 35)
         {
             StringBuilder stringBuilder = new StringBuilder();
             foreach (var group in GetResult())
             {
                 stringBuilder.AppendLine(group.Key.ToString());
                 foreach (var item in group)
-                    stringBuilder.AppendLine(item.Print(item.GetPages(), width));
+                    stringBuilder.AppendLine(item.GetResultString(item.GetResultPages(), width));
                 stringBuilder.AppendLine();
             }
             return stringBuilder.ToString();
         }
 
-        public bool Write(string fileName, int width = 35)
+        public bool Write(TextWriter textWriter, int width = 35)
         {
             try
             {
-                Writer writer = new Writer(fileName);
-                writer.Write(Print(width));
+                Writer writer = new Writer(textWriter);
+                writer.Write(GetResultString(width));
                 return true;
             }
             catch (Exception)
@@ -52,7 +53,7 @@ namespace ConcordanceProject.Model
 
         public override string ToString()
         {
-            return Print();
+            return GetResultString();
         }
 
         public IEnumerator<IGrouping<char, WordStatistics>> GetEnumerator()

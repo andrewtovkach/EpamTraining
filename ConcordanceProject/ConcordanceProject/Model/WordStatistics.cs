@@ -12,7 +12,7 @@ namespace ConcordanceProject.Model
         public Word Word { get; set; }
         public uint TotalCount { get; set; }
 
-        private readonly SortedSet<Tuple<int, int>> _set;
+        private readonly ISet<Tuple<int, int>> _set;
 
         public WordStatistics()
         {
@@ -71,13 +71,13 @@ namespace ConcordanceProject.Model
             return GetEnumerator();
         }
 
-        public IEnumerable<int> GetSentencies()
+        public IEnumerable<int> GetResultSentencies()
         {
-            return (from item in _set
-                    select item.Item1).Distinct();
+            return from item in _set
+                    select item.Item1;
         }
 
-        public IEnumerable<int> GetPages()
+        public IEnumerable<int> GetResultPages()
         {
             return (from item in _set
                     select item.Item2).Distinct();
@@ -88,7 +88,7 @@ namespace ConcordanceProject.Model
             return Word.ToString().PadRight(width - TotalCount.ToString().Length, '.');
         }
 
-        public string Print(IEnumerable<int> enumerable, int width = 35)
+        public string GetResultString(IEnumerable<int> enumerable, int width = 35)
         {
             if (width <= 0)
                 throw new ArgumentException("Incorrect data!");
@@ -101,7 +101,7 @@ namespace ConcordanceProject.Model
 
         public override string ToString()
         {
-            return Print(GetSentencies());
+            return GetResultString(GetResultSentencies());
         }
 
         public int CompareTo(WordStatistics other)

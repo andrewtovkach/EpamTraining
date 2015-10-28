@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using ConcordanceProject.Model.Interfaces;
@@ -9,22 +10,21 @@ using ConcordanceProject.Model.TextClasses;
 
 namespace ConcordanceProject.Model
 {
-    public class Concordance : IEnumerable<WordStatistics>, IResult<WordStatistics>
+    public class Concordance : IEnumerable<WordStatistics>, IConcordanceElement
     {
-        public Text Text { get; set; }
+        public ITextElement Text { get; set; }
 
-        private readonly SortedDictionary<Word, WordStatistics> _dictionary;
+        private readonly IDictionary<Word, WordStatistics> _dictionary;
 
-        public Concordance(Text text)
+        public Concordance(ITextElement text)
         {
             Text = text;
             _dictionary = new SortedDictionary<Word, WordStatistics>();
-            CountingStatistics();
         }
 
         private void CountingStatistics()
         {
-            foreach (var item in Text.GetSentencies())
+            foreach (var item in Text.GetSentences())
             {
                 foreach (var it in item)
                 {
@@ -42,24 +42,25 @@ namespace ConcordanceProject.Model
 
         public IEnumerable<WordStatistics> GetResult()
         {
+            CountingStatistics();
             return from item in _dictionary
                    select item.Value;
         }
 
-        public string Print(int width = 35)
+        public string GetResultString(int width = 35)
         {
             StringBuilder stringBuilder = new StringBuilder();
             foreach (var item in GetResult())
-                stringBuilder.AppendLine(item.Print(item.GetSentencies(), width));
+                stringBuilder.AppendLine(item.GetResultString(item.GetResultSentencies(), width));
             return stringBuilder.ToString();
         }
 
-        public bool Write(string fileName, int width = 35)
+        public bool Write(TextWriter textWriter, int width = 35)
         {
             try
             {
-                Writer writer = new Writer(fileName);
-                writer.Write(Print(width));
+                Writer writer = new Writer(textWriter);
+                writer.Write(GetResultString(width));
                 return true;
             }
             catch (Exception)
@@ -70,7 +71,7 @@ namespace ConcordanceProject.Model
 
         public override string ToString()
         {
-            return Print();
+            return GetResultString();
         }
 
         public IEnumerator<WordStatistics> GetEnumerator()

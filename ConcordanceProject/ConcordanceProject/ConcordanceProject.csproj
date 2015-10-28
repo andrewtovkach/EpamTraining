@@ -41,11 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\TextClasses\Collection.cs" />
+    <Compile Include="Model\Interfaces\IConcordanceElement.cs" />
+    <Compile Include="Model\Interfaces\ITextElement.cs" />
+    <Compile Include="Model\TextClasses\CollectionElement.cs" />
     <Compile Include="Model\Concordance.cs" />
-    <Compile Include="Model\Interfaces\IPrintable.cs" />
-    <Compile Include="Model\Interfaces\IResult.cs" />
-    <Compile Include="Model\Interfaces\IWriteble.cs" />
+    <Compile Include="Model\Interfaces\IResultElement.cs" />
+    <Compile Include="Model\Interfaces\IWriteElement.cs" />
     <Compile Include="Model\TextClasses\Page.cs" />
     <Compile Include="Model\TextClasses\Sentence.cs" />
     <Compile Include="Model\TextClasses\Separators.cs" />

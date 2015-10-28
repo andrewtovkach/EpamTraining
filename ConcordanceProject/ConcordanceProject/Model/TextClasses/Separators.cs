@@ -2,7 +2,7 @@
 
 namespace ConcordanceProject.Model.TextClasses
 {
-    public class Separators: Collection<char>
+    public class Separators: CollectionElement<char>
     {
         public Separators(ICollection<char> collection)
             : base(collection)
@@ -12,7 +12,7 @@ namespace ConcordanceProject.Model.TextClasses
         public Separators(params char [] collection) 
         {
             foreach (var item in collection)
-                List.Add(item);
+                Collection.Add(item);
         }
     }
 }

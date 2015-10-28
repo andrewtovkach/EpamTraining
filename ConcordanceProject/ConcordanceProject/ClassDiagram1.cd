@@ -1,113 +1,121 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="ConcordanceProject.Model.Concordance" BaseTypeListCollapsed="true">
-    <Position X="17.25" Y="0.5" Width="1.5" />
+    <Position X="17.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAABAAAQAABAEAAAAAAAAAAAAAAAEAEAACAEEAAA=</HashCode>
+      <HashCode>AAAAAABAAAQAABAEAAAAQAAAAAAAAAAEAEAACAEAAAA=</HashCode>
       <FileName>Model\Concordance.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="ConcordanceProject.Model.SubjectIndex" BaseTypeListCollapsed="true">
-    <Position X="15.25" Y="0.5" Width="1.5" />
+    <Position X="19.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAABAEAAAAAAAAAAAAAAAEAEAAAgEEAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAABAEAAAAQAAAAAAAAAAEAEAAAgEAAAA=</HashCode>
       <FileName>Model\SubjectIndex.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="ConcordanceProject.Model.WordStatistics" BaseTypeListCollapsed="true">
-    <Position X="19.5" Y="0.5" Width="1.5" />
+    <Position X="11.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAMCAAAAAAAQBBQUAAAAFAQAAAAEAAAEAAAAAABUIAA=</HashCode>
+      <HashCode>AAMAAAACAAAQBBQUAAAEFAQAAAAAAAAEAAAAAABUIAA=</HashCode>
       <FileName>Model\WordStatistics.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="ConcordanceProject.Model.IO.Reader">
-    <Position X="23.5" Y="0.5" Width="1.5" />
+  <Class Name="ConcordanceProject.Model.IOClasses.Reader">
+    <Position X="15.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAAAECAAAAAAABAAAA=</HashCode>
-      <FileName>Model\IO\Reader.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAAAgAAAAAECAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\IOClasses\Reader.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ConcordanceProject.Model.IO.Writer">
-    <Position X="23.5" Y="3" Width="1.5" />
+  <Class Name="ConcordanceProject.Model.IOClasses.Writer">
+    <Position X="15.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAAA=</HashCode>
-      <FileName>Model\IO\Writer.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAEAAAA=</HashCode>
+      <FileName>Model\IOClasses\Writer.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ConcordanceProject.Model.Text.Collection&lt;T&gt;">
-    <Position X="11" Y="0.5" Width="1.5" />
+  <Class Name="ConcordanceProject.Model.TextClasses.CollectionElement&lt;T&gt;">
+    <Position X="4.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAIAAAAAAAAAABAQAAAABAQAAAAAAAAEAAAAAABQIAI=</HashCode>
-      <FileName>Model\Text\Collection.cs</FileName>
+      <HashCode>AAIAAAAAAAAAQBAQAAAABAQAAAAAAAAEAAAAAABQIAA=</HashCode>
+      <FileName>Model\TextClasses\CollectionElement.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="ConcordanceProject.Model.Text.Page">
-    <Position X="10" Y="4.75" Width="1.5" />
+  <Class Name="ConcordanceProject.Model.TextClasses.Page">
+    <Position X="3.5" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAEAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Model\Text\Page.cs</FileName>
+      <FileName>Model\TextClasses\Page.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ConcordanceProject.Model.Text.Sentence">
-    <Position X="14.5" Y="4.75" Width="1.5" />
+  <Class Name="ConcordanceProject.Model.TextClasses.Sentence">
+    <Position X="5.75" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AACAAAAAAAAAAAAEAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Model\Text\Sentence.cs</FileName>
+      <FileName>Model\TextClasses\Sentence.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ConcordanceProject.Model.Text.Text">
-    <Position X="8" Y="4.75" Width="1.5" />
+  <Class Name="ConcordanceProject.Model.TextClasses.Separators">
+    <Position X="8" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAEAAAAAAAAAABAAAA=</HashCode>
-      <FileName>Model\Text\Text.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\TextClasses\Separators.cs</FileName>
     </TypeIdentifier>
+  </Class>
+  <Class Name="ConcordanceProject.Model.TextClasses.Text">
+    <Position X="1.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\TextClasses\Text.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="ConcordanceProject.Program">
-    <Position X="21.5" Y="3" Width="1.5" />
+    <Position X="13.5" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
       <FileName>Program.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ConcordanceProject.Model.Text.Separators">
-    <Position X="12.5" Y="4.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Model\Text\Separators.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Struct Name="ConcordanceProject.Model.Text.Word" BaseTypeListCollapsed="true">
-    <Position X="21.5" Y="0.5" Width="1.5" />
+  <Struct Name="ConcordanceProject.Model.TextClasses.Word" BaseTypeListCollapsed="true">
+    <Position X="13.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAQEAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
-      <FileName>Model\Text\Word.cs</FileName>
+      <FileName>Model\TextClasses\Word.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Struct>
-  <Interface Name="ConcordanceProject.Model.Interfaces.IPrintable">
-    <Position X="6.5" Y="3" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAA=</HashCode>
-      <FileName>Model\Interfaces\IPrintable.cs</FileName>
-    </TypeIdentifier>
-  </Interface>
-  <Interface Name="ConcordanceProject.Model.Interfaces.IResult&lt;T&gt;">
-    <Position X="4.75" Y="0.75" Width="1.5" />
+  <Interface Name="ConcordanceProject.Model.Interfaces.IResultElement&lt;T&gt;">
+    <Position X="7" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAA=</HashCode>
-      <FileName>Model\Interfaces\IResult.cs</FileName>
+      <FileName>Model\Interfaces\IResultElement.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="ConcordanceProject.Model.Interfaces.IWriter">
-    <Position X="3.25" Y="3" Width="1.5" />
+  <Interface Name="ConcordanceProject.Model.Interfaces.IWriteElement">
+    <Position X="9.25" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
-      <FileName>Model\Interfaces\IWriter.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Model\Interfaces\IWriteElement.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ConcordanceProject.Model.Interfaces.ITextElement">
+    <Position X="7" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Interfaces\ITextElement.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ConcordanceProject.Model.Interfaces.IConcordanceElement">
+    <Position X="9.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Interfaces\IConcordanceElement.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Font Name="Segoe UI" Size="9" />

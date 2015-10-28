@@ -2,7 +2,7 @@
 
 namespace ConcordanceProject.Model.Interfaces
 {
-    public interface IResult<out T> : IPrintable, IWriteble
+    public interface IResultElement<out T> : IWriteElement
     {
         IEnumerable<T> GetResult();
     }

@@ -1,37 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using ConcordanceProject.Model.Interfaces;
 
 namespace ConcordanceProject.Model.TextClasses
 {
-    public class Text : Collection<Page>
+    public class Text : CollectionElement<Page>, ITextElement
     {
-        public string FileName { get; set; }
-
-        public Text(ICollection<Page> collection, string fileName)
+        public Text(ICollection<Page> collection)
             : base(collection)
         {
-            FileName = fileName;
         }
 
-        public IEnumerable<Sentence> GetSentencies()
+        public IEnumerable<Sentence> GetSentences()
         {
-            return List.SelectMany(item => item);
+            return Collection.SelectMany(item => item);
         }
 
-        public IEnumerable<Sentence> GetSentencies(Func<Sentence, bool> func)
+        public IEnumerable<Sentence> GetSentences(Func<Sentence, bool> func)
         {
-            return List.SelectMany(item => item).Where(func);
+            return Collection.SelectMany(item => item).Where(func);
         }
 
-        public IOrderedEnumerable<Sentence> GetSortedSentencies(bool desc = false)
+        public IOrderedEnumerable<Sentence> GetSortedSentences(bool desc = false)
         {
-            return desc ? GetSentencies().OrderByDescending(item => item.Number) : GetSentencies().OrderByDescending(item => item.Number);
-        }
-
-        public override string ToString()
-        {
-            return string.Format("Text {0}", FileName);
+            return desc ? GetSentences().OrderByDescending(item => item.Number) : GetSentences().OrderByDescending(item => item.Number);
         }
     }
 }

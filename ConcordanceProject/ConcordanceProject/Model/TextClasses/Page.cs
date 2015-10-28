@@ -1,6 +1,6 @@
 ﻿namespace ConcordanceProject.Model.TextClasses
 {
-    public class Page : Collection<Sentence>
+    public class Page : CollectionElement<Sentence>
     {
         public int Number { get; set; }
 
