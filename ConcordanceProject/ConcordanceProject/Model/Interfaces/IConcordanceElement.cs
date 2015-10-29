@@ -2,6 +2,6 @@
 {
     public interface IConcordanceElement : IResultElement<WordStatistics>
     {
-
+        void CountingStatistics();
     }
 }

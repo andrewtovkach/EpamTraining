@@ -33,6 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -49,7 +50,6 @@
     <Compile Include="Model\Interfaces\IWriteElement.cs" />
     <Compile Include="Model\TextClasses\Page.cs" />
     <Compile Include="Model\TextClasses\Sentence.cs" />
-    <Compile Include="Model\TextClasses\Separators.cs" />
     <Compile Include="Model\TextClasses\Text.cs" />
     <Compile Include="Model\TextClasses\Word.cs" />
     <Compile Include="Model\WordStatistics.cs" />

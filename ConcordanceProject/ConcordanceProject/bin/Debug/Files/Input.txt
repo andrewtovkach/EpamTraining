@@ -5,11 +5,11 @@ they're rejecting the idea of the Web but because these dedicated platforms ofte
 that it's easier for companies to make money on these platforms only cements the trend. Producers and consumers agree: The Web is not the 
 culmination of the digital revolution.
 A decade ago, the ascent of the Web browser as the center of the computing world appeared inevitable. It seemed just a matter of time before the 
-Web replaced PC application software and reduced operating systems to a "poorly debugged set of device drivers," as Netscape cofounder Marc 
+Web replaced PC application software and reduced operating systems to a poorly debugged set of device drivers, as Netscape cofounder Marc 
 Andreessen famously said. First Java, then Flash, then Ajax, then HTML5 — increasingly interactive online code — promised to put all apps in the
 cloud and replace the desktop with the WebTop. Open, free, and out of control.
-But there has always been an alternative path, one that saw the Web as a worthy tool but not the whole toolkit. The argument then was that "push"
-technologies such as PointCast and Microsoft's Active Desktop would create a "radical future of media beyond the Web." The point was altogether 
+But there has always been an alternative path, one that saw the Web as a worthy tool but not the whole toolkit. The argument then was that push
+technologies such as PointCast and Microsoft's Active Desktop would create a radical future of media beyond the Web. The point was altogether 
 prescient: a glimpse of the machine-to-machine future that would be less about browsing and more about getting. As it happened, PointCast 
 quickly imploded, taking push with it. But just as Web 2.0 is simply Web 1.0 that works, the idea has come around again. Those push concepts
 have now reappeared as APIs, apps, and the Smartphone. And this time we have Apple and the iPhone/iPad juggernaut leading the way, with tens

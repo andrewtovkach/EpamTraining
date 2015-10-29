@@ -22,7 +22,7 @@ namespace ConcordanceProject.Model
             _dictionary = new SortedDictionary<Word, WordStatistics>();
         }
 
-        private void CountingStatistics()
+        public void CountingStatistics()
         {
             foreach (var item in Text.GetSentences())
             {

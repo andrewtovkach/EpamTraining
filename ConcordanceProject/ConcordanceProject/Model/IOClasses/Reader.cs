@@ -9,9 +9,9 @@ namespace ConcordanceProject.Model.IOClasses
     public class Reader
     {
         public TextReader TextReader { get; set; } 
-        public Separators Separators { get; set; }
+        public ICollection<char> Separators { get; set; }
 
-        public Reader(TextReader textReader, Separators separators)
+        public Reader(TextReader textReader, ICollection<char> separators)
         {
             TextReader = textReader;
             Separators = separators;
