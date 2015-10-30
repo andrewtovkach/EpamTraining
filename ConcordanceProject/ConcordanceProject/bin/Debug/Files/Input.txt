@@ -1,4 +1,5 @@
-﻿Over the past few years, one of the most important shifts in the digital world has been the move from the wide-open Web to semiclosed platforms
+﻿WWW
+Over the past few years, one of the most important shifts in the digital world has been the move from the wide-open Web to semiclosed platforms
 that use the Internet for transport but not the browser for display. It's driven primarily by the rise of the iPhone model of mobile computing,
 and it's a world Google can't crawl, one where HTML doesn't rule. And it's the world that consumers are increasingly choosing, not because 
 they're rejecting the idea of the Web but because these dedicated platforms often just work better or fit better into their lives. The fact 

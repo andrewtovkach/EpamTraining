@@ -42,8 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\Interfaces\IConcordanceElement.cs" />
-    <Compile Include="Model\Interfaces\ITextElement.cs" />
+    <Compile Include="Model\Interfaces\IConcordance.cs" />
+    <Compile Include="Model\Interfaces\IText.cs" />
     <Compile Include="Model\TextClasses\CollectionElement.cs" />
     <Compile Include="Model\Concordance.cs" />
     <Compile Include="Model\Interfaces\IResultElement.cs" />

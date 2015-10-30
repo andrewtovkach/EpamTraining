@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
+using System.Linq;
 using ConcordanceProject.Model;
+using ConcordanceProject.Model.Interfaces;
 using ConcordanceProject.Model.IOClasses;
-using ConcordanceProject.Model.TextClasses;
 
 namespace ConcordanceProject
 {
@@ -13,13 +13,13 @@ namespace ConcordanceProject
         static void Main(string[] args)
         {
             string fileName = ConfigurationManager.AppSettings["InputFileName"];
-            char[] separators = ConfigurationManager.AppSettings["Separators"].ToCharArray();
-            Reader reader = new Reader(File.OpenText(fileName), new List<char>(separators));
-            Text text = reader.Read(5);
-            Concordance concordance = new Concordance(text);
+            var separators = ConfigurationManager.AppSettings["Separators"].ToList();
+            Reader reader = new Reader(new StreamReader(fileName), separators);
+            IText text = reader.Read(5);
+            IConcordance concordance = new Concordance(text);
             Console.WriteLine(concordance.GetResultString());
             fileName = ConfigurationManager.AppSettings["ConcordanceFileName"];
-            Console.WriteLine(concordance.Write(new FileInfo(fileName).CreateText())
+            Console.WriteLine(concordance.Write(new StreamWriter(fileName))
                 ? "Writing file is successful!" : "Writing file is falid!");
             SubjectIndex subjectIndex = new SubjectIndex(concordance);
             Console.WriteLine(subjectIndex.GetResultString());

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -11,15 +10,16 @@ namespace ConcordanceProject.Model
 {
     public class SubjectIndex : IEnumerable<IGrouping<char, WordStatistics>>, IResultElement<IGrouping<char, WordStatistics>>
     {
-        public IConcordanceElement Concordance { get; set; }
+        public IConcordance Concordance { get; set; }
 
-        public SubjectIndex(IConcordanceElement concordance)
+        public SubjectIndex(IConcordance concordance)
         {
             Concordance = concordance;
         }
 
         public IEnumerable<IGrouping<char, WordStatistics>> GetResult()
         {
+            Concordance.CountingStatistics();
             return from item in Concordance.GetResult()
                    group item by char.ToUpper(item.Word.ToString()[0]);
         }
@@ -45,7 +45,7 @@ namespace ConcordanceProject.Model
                 writer.Write(GetResultString(width));
                 return true;
             }
-            catch (Exception)
+            catch
             {
                 return false;
             }
@@ -53,7 +53,7 @@ namespace ConcordanceProject.Model
 
         public override string ToString()
         {
-            return GetResultString();
+            return Concordance.ToString();
         }
 
         public IEnumerator<IGrouping<char, WordStatistics>> GetEnumerator()

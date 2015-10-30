@@ -49,21 +49,21 @@
   <Class Name="ConcordanceProject.Model.TextClasses.Page">
     <Position X="4.5" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAEAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAQAAAAAAEAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model\TextClasses\Page.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ConcordanceProject.Model.TextClasses.Sentence">
     <Position X="6.75" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AACAAAAAAAAAAAAEAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AACAAAAAAAAAAAAEAEAAQAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model\TextClasses\Sentence.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ConcordanceProject.Model.TextClasses.Text">
     <Position X="2.25" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAgAAAAAAAAEgEAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model\TextClasses\Text.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -98,14 +98,14 @@
     </TypeIdentifier>
   </Interface>
   <Interface Name="ConcordanceProject.Model.Interfaces.ITextElement">
-    <Position X="9.25" Y="0.75" Width="1.5" />
+    <Position X="9.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAgAAAAAAAAAgAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model\Interfaces\ITextElement.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="ConcordanceProject.Model.Interfaces.IConcordanceElement">
-    <Position X="7" Y="0.75" Width="1.5" />
+    <Position X="7" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model\Interfaces\IConcordanceElement.cs</FileName>

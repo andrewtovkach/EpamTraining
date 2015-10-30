@@ -71,7 +71,7 @@ namespace ConcordanceProject.Model
             return GetEnumerator();
         }
 
-        public IEnumerable<int> GetResultSentencies()
+        public IEnumerable<int> GetResultSentences()
         {
             return from item in _set
                     select item.Item1;
@@ -101,7 +101,7 @@ namespace ConcordanceProject.Model
 
         public override string ToString()
         {
-            return GetResultString(GetResultSentencies());
+            return string.Format("{0} - {1}", Word, TotalCount);
         }
 
         public int CompareTo(WordStatistics other)

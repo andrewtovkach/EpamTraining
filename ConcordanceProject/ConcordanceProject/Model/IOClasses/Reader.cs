@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using ConcordanceProject.Model.Interfaces;
 using ConcordanceProject.Model.TextClasses;
 
 namespace ConcordanceProject.Model.IOClasses
@@ -24,7 +25,7 @@ namespace ConcordanceProject.Model.IOClasses
             return strings;
         }
 
-        public Text Read(int sentecesCount)
+        public IText Read(int sentecesCount)
         {
             if (sentecesCount <= 0)
                 throw new ArgumentException("Incorrect data!");
@@ -44,7 +45,7 @@ namespace ConcordanceProject.Model.IOClasses
                     page = new Page(++pageNumber);
                 }
                 TextReader.Close();
-                return new Text(listPages);
+                return new Text(listPages, listPages[0].GetTitle());
             }
         }
     }

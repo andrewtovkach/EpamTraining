@@ -1,6 +1,6 @@
 ﻿namespace ConcordanceProject.Model.Interfaces
 {
-    public interface IConcordanceElement : IResultElement<WordStatistics>
+    public interface IConcordance : IResultElement<WordStatistics>
     {
         void CountingStatistics();
     }

@@ -10,13 +10,13 @@ using ConcordanceProject.Model.TextClasses;
 
 namespace ConcordanceProject.Model
 {
-    public class Concordance : IEnumerable<WordStatistics>, IConcordanceElement
+    public class Concordance : IEnumerable<WordStatistics>, IConcordance
     {
-        public ITextElement Text { get; set; }
+        public IText Text { get; set; }
 
         private readonly IDictionary<Word, WordStatistics> _dictionary;
 
-        public Concordance(ITextElement text)
+        public Concordance(IText text)
         {
             Text = text;
             _dictionary = new SortedDictionary<Word, WordStatistics>();
@@ -42,7 +42,6 @@ namespace ConcordanceProject.Model
 
         public IEnumerable<WordStatistics> GetResult()
         {
-            CountingStatistics();
             return from item in _dictionary
                    select item.Value;
         }
@@ -51,7 +50,7 @@ namespace ConcordanceProject.Model
         {
             StringBuilder stringBuilder = new StringBuilder();
             foreach (var item in GetResult())
-                stringBuilder.AppendLine(item.GetResultString(item.GetResultSentencies(), width));
+                stringBuilder.AppendLine(item.GetResultString(item.GetResultSentences(), width));
             return stringBuilder.ToString();
         }
 
@@ -63,7 +62,7 @@ namespace ConcordanceProject.Model
                 writer.Write(GetResultString(width));
                 return true;
             }
-            catch (Exception)
+            catch
             {
                 return false;
             }
@@ -71,7 +70,7 @@ namespace ConcordanceProject.Model
 
         public override string ToString()
         {
-            return GetResultString();
+            return Text.ToString();
         }
 
         public IEnumerator<WordStatistics> GetEnumerator()

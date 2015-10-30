@@ -5,11 +5,14 @@ using ConcordanceProject.Model.Interfaces;
 
 namespace ConcordanceProject.Model.TextClasses
 {
-    public class Text : CollectionElement<Page>, ITextElement
+    public class Text : CollectionElement<Page>, IText
     {
-        public Text(ICollection<Page> collection)
+        public string Title { get; set; }
+
+        public Text(ICollection<Page> collection, string title)
             : base(collection)
         {
+            Title = title;
         }
 
         public IEnumerable<Sentence> GetSentences()
@@ -22,9 +25,19 @@ namespace ConcordanceProject.Model.TextClasses
             return Collection.SelectMany(item => item).Where(func);
         }
 
+        public int SentencesCount
+        {
+            get { return Collection.Sum(item => item.Count); }
+        }
+
         public IOrderedEnumerable<Sentence> GetSortedSentences(bool desc = false)
         {
             return desc ? GetSentences().OrderByDescending(item => item.Number) : GetSentences().OrderByDescending(item => item.Number);
+        }
+
+        public override string ToString()
+        {
+            return Title;
         }
     }
 }

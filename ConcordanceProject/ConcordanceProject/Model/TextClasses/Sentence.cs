@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Text;
 
 namespace ConcordanceProject.Model.TextClasses
 {
@@ -14,9 +15,17 @@ namespace ConcordanceProject.Model.TextClasses
             PageNumber = pageNumber;
         }
 
+        public string GetResultString()
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (var item in Collection)
+                sb.Append(item.ToUpper() + " ");
+            return sb.ToString();
+        }
+
         public override string ToString()
         {
-            return string.Format("PageNumber №{0}  Sentence №{1}", PageNumber, Number);
+            return string.Format("Page №{0} Sentence №{1}", PageNumber, Number);
         }
     }
 }
