@@ -12,6 +12,11 @@ namespace ConcordanceProject.Model.TextClasses
             Value = value;
         }
 
+        public char[] ToCharArray()
+        {
+            return Value.ToCharArray();
+        }
+
         public override string ToString()
         {
             return Value;

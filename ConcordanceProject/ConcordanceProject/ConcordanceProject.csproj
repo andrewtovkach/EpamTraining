@@ -43,10 +43,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\Interfaces\IConcordance.cs" />
+    <Compile Include="Model\Interfaces\ISubjectIndex.cs" />
     <Compile Include="Model\Interfaces\IText.cs" />
     <Compile Include="Model\TextClasses\CollectionElement.cs" />
     <Compile Include="Model\Concordance.cs" />
-    <Compile Include="Model\Interfaces\IResultElement.cs" />
     <Compile Include="Model\Interfaces\IWriteElement.cs" />
     <Compile Include="Model\TextClasses\Page.cs" />
     <Compile Include="Model\TextClasses\Sentence.cs" />

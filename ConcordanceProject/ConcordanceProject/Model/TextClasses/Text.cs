@@ -7,12 +7,14 @@ namespace ConcordanceProject.Model.TextClasses
 {
     public class Text : CollectionElement<Page>, IText
     {
-        public string Title { get; set; }
-
-        public Text(ICollection<Page> collection, string title)
+        public Text(ICollection<Page> collection)
             : base(collection)
         {
-            Title = title;
+        }
+
+        public string Title
+        {
+            get { return GetSentences().First().GetResultString(); }
         }
 
         public IEnumerable<Sentence> GetSentences()
@@ -20,9 +22,9 @@ namespace ConcordanceProject.Model.TextClasses
             return Collection.SelectMany(item => item);
         }
 
-        public IEnumerable<Sentence> GetSentences(Func<Sentence, bool> func)
+        public IEnumerable<Sentence> GetSentences(Func<Sentence, bool> predicate)
         {
-            return Collection.SelectMany(item => item).Where(func);
+            return Collection.SelectMany(item => item).Where(predicate);
         }
 
         public int SentencesCount
@@ -37,7 +39,7 @@ namespace ConcordanceProject.Model.TextClasses
 
         public override string ToString()
         {
-            return Title;
+            return String.Format("Title - {0}", Title);
         }
     }
 }

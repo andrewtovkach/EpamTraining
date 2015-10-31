@@ -22,8 +22,9 @@ namespace ConcordanceProject.Model
             _dictionary = new SortedDictionary<Word, WordStatistics>();
         }
 
-        public void CountingStatistics()
+        private void CountingStatistics()
         {
+            _dictionary.Clear();
             foreach (var item in Text.GetSentences())
             {
                 foreach (var it in item)
@@ -42,6 +43,7 @@ namespace ConcordanceProject.Model
 
         public IEnumerable<WordStatistics> GetResult()
         {
+            CountingStatistics();
             return from item in _dictionary
                    select item.Value;
         }
@@ -50,7 +52,7 @@ namespace ConcordanceProject.Model
         {
             StringBuilder stringBuilder = new StringBuilder();
             foreach (var item in GetResult())
-                stringBuilder.AppendLine(item.GetResultString(item.GetResultSentences(), width));
+                stringBuilder.AppendLine(item.GetResultStringSentences(width));
             return stringBuilder.ToString();
         }
 
@@ -70,7 +72,7 @@ namespace ConcordanceProject.Model
 
         public override string ToString()
         {
-            return Text.ToString();
+            return String.Format("Text - {0}", Text);
         }
 
         public IEnumerator<WordStatistics> GetEnumerator()

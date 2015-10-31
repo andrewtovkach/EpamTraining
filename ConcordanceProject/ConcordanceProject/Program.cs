@@ -21,7 +21,7 @@ namespace ConcordanceProject
             fileName = ConfigurationManager.AppSettings["ConcordanceFileName"];
             Console.WriteLine(concordance.Write(new StreamWriter(fileName))
                 ? "Writing file is successful!" : "Writing file is falid!");
-            SubjectIndex subjectIndex = new SubjectIndex(concordance);
+            ISubjectIndex subjectIndex = new SubjectIndex(concordance);
             Console.WriteLine(subjectIndex.GetResultString());
             fileName = ConfigurationManager.AppSettings["SubjectIndexFileName"];
             Console.WriteLine(subjectIndex.Write(new FileInfo(fileName).CreateText())

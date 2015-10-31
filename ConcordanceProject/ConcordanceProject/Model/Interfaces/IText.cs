@@ -8,7 +8,7 @@ namespace ConcordanceProject.Model.Interfaces
     public interface IText
     {
         IEnumerable<Sentence> GetSentences();
-        IEnumerable<Sentence> GetSentences(Func<Sentence, bool> func);
+        IEnumerable<Sentence> GetSentences(Func<Sentence, bool> predicate);
         int SentencesCount { get; }
         IOrderedEnumerable<Sentence> GetSortedSentences(bool desc = false);
     }

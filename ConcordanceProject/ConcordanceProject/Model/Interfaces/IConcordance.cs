@@ -1,7 +1,9 @@
-﻿namespace ConcordanceProject.Model.Interfaces
+﻿using System.Collections.Generic;
+
+namespace ConcordanceProject.Model.Interfaces
 {
-    public interface IConcordance : IResultElement<WordStatistics>
+    public interface IConcordance : IWriteElement
     {
-        void CountingStatistics();
+        IEnumerable<WordStatistics> GetResult();
     }
 }

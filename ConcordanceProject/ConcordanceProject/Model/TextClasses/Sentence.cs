@@ -17,10 +17,10 @@ namespace ConcordanceProject.Model.TextClasses
 
         public string GetResultString()
         {
-            StringBuilder sb = new StringBuilder();
+            StringBuilder stringBuilder = new StringBuilder();
             foreach (var item in Collection)
-                sb.Append(item.ToUpper() + " ");
-            return sb.ToString();
+                stringBuilder.Append(item.ToUpper() + " ");
+            return stringBuilder.ToString();
         }
 
         public override string ToString()

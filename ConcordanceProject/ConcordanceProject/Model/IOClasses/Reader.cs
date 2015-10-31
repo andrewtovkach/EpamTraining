@@ -45,7 +45,7 @@ namespace ConcordanceProject.Model.IOClasses
                     page = new Page(++pageNumber);
                 }
                 TextReader.Close();
-                return new Text(listPages, listPages[0].GetTitle());
+                return new Text(listPages);
             }
         }
     }

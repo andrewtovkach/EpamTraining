@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -8,7 +9,7 @@ using ConcordanceProject.Model.IOClasses;
 
 namespace ConcordanceProject.Model
 {
-    public class SubjectIndex : IEnumerable<IGrouping<char, WordStatistics>>, IResultElement<IGrouping<char, WordStatistics>>
+    public class SubjectIndex : IEnumerable<IGrouping<char, WordStatistics>>, ISubjectIndex
     {
         public IConcordance Concordance { get; set; }
 
@@ -19,9 +20,14 @@ namespace ConcordanceProject.Model
 
         public IEnumerable<IGrouping<char, WordStatistics>> GetResult()
         {
-            Concordance.CountingStatistics();
             return from item in Concordance.GetResult()
-                   group item by char.ToUpper(item.Word.ToString()[0]);
+                   group item by item.Word.ToString()[0];
+        }
+
+        public IEnumerable<IGrouping<char, WordStatistics>> GetResult(Func<WordStatistics, bool> predicate)
+        {
+            return from item in Concordance.GetResult().Where(predicate)
+                   group item by item.Word.ToString()[0];
         }
 
         public string GetResultString(int width = 35)
@@ -29,9 +35,9 @@ namespace ConcordanceProject.Model
             StringBuilder stringBuilder = new StringBuilder();
             foreach (var group in GetResult())
             {
-                stringBuilder.AppendLine(group.Key.ToString());
+                stringBuilder.AppendLine(char.ToUpper(group.Key).ToString());
                 foreach (var item in group)
-                    stringBuilder.AppendLine(item.GetResultString(item.GetResultPages(), width));
+                    stringBuilder.AppendLine(item.GetResultStringPages(width));
                 stringBuilder.AppendLine();
             }
             return stringBuilder.ToString();
@@ -53,7 +59,7 @@ namespace ConcordanceProject.Model
 
         public override string ToString()
         {
-            return Concordance.ToString();
+            return string.Format("Concordance - {0}", Concordance);
         }
 
         public IEnumerator<IGrouping<char, WordStatistics>> GetEnumerator()

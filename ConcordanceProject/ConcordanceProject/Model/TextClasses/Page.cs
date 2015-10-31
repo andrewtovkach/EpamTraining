@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq;
-
-namespace ConcordanceProject.Model.TextClasses
+﻿namespace ConcordanceProject.Model.TextClasses
 {
     public class Page : CollectionElement<Sentence>
     {
@@ -10,13 +7,6 @@ namespace ConcordanceProject.Model.TextClasses
         public Page(int number)
         {
             Number = number;
-        }
-
-        public string GetTitle()
-        {
-            if (Number != 1)
-                throw new ArgumentException("Incorrect data!");
-            return this.First().GetResultString();
         }
 
         public override string ToString()

@@ -71,24 +71,13 @@ namespace ConcordanceProject.Model
             return GetEnumerator();
         }
 
-        public IEnumerable<int> GetResultSentences()
-        {
-            return from item in _set
-                    select item.Item1;
-        }
-
-        public IEnumerable<int> GetResultPages()
-        {
-            return (from item in _set
-                    select item.Item2).Distinct();
-        }
 
         private string GetFormattedString(int width = 35)
         {
             return Word.ToString().PadRight(width - TotalCount.ToString().Length, '.');
         }
 
-        public string GetResultString(IEnumerable<int> enumerable, int width = 35)
+        private string GetResultString(IEnumerable<int> enumerable, int width = 35)
         {
             if (width <= 0)
                 throw new ArgumentException("Incorrect data!");
@@ -99,9 +88,23 @@ namespace ConcordanceProject.Model
             return stringBuilder.ToString();
         }
 
+        public string GetResultStringSentences(int width = 35)
+        {
+            var query = from item in _set
+                    select item.Item1;
+            return GetResultString(query, width);
+        }
+
+        public string GetResultStringPages(int width = 35)
+        {
+            var query = (from item in _set
+                    select item.Item2).Distinct();
+            return GetResultString(query);
+        }
+
         public override string ToString()
         {
-            return string.Format("{0} - {1}", Word, TotalCount);
+            return string.Format("{0}, Total Count - {1}", Word, TotalCount);
         }
 
         public int CompareTo(WordStatistics other)
