@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
 using ConcordanceProject.Model.Interfaces;
 using ConcordanceProject.Model.IOClasses;
@@ -44,8 +43,7 @@ namespace ConcordanceProject.Model
         public IEnumerable<WordStatistics> GetResult()
         {
             CountingStatistics();
-            return from item in _dictionary
-                   select item.Value;
+            return _dictionary.Values;
         }
 
         public string GetResultString(int width = 35)
@@ -72,7 +70,7 @@ namespace ConcordanceProject.Model
 
         public override string ToString()
         {
-            return String.Format("Text - {0}", Text);
+            return string.Format("Text - {0}", Text);
         }
 
         public IEnumerator<WordStatistics> GetEnumerator()

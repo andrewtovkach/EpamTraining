@@ -71,7 +71,6 @@ namespace ConcordanceProject.Model
             return GetEnumerator();
         }
 
-
         private string GetFormattedString(int width = 35)
         {
             return Word.ToString().PadRight(width - TotalCount.ToString().Length, '.');
