@@ -98,7 +98,7 @@ namespace ConcordanceProject.Model
         {
             var query = (from item in _set
                     select item.Item2).Distinct();
-            return GetResultString(query);
+            return GetResultString(query, width);
         }
 
         public override string ToString()
