@@ -39,7 +39,7 @@ namespace ConcordanceProject.Model.TextClasses
 
         public override string ToString()
         {
-            return String.Format("Title - {0}", Title);
+            return string.Format("Title - {0}", Title);
         }
     }
 }

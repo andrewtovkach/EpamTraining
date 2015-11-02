@@ -19,12 +19,12 @@ namespace ConcordanceProject
             IConcordance concordance = new Concordance(text);
             Console.WriteLine(concordance.GetResultString());
             fileName = ConfigurationManager.AppSettings["ConcordanceFileName"];
-            Console.WriteLine(concordance.Write(new StreamWriter(fileName))
+            Console.WriteLine(concordance.Write(new StreamWriter(fileName), 50)
                 ? "Writing file is successful!" : "Writing file is falid!");
             ISubjectIndex subjectIndex = new SubjectIndex(concordance);
             Console.WriteLine(subjectIndex.GetResultString());
             fileName = ConfigurationManager.AppSettings["SubjectIndexFileName"];
-            Console.WriteLine(subjectIndex.Write(new FileInfo(fileName).CreateText())
+            Console.WriteLine(subjectIndex.Write(new StreamWriter(fileName), 50)
                 ? "Writing file is successful!" : "Writing file is failed!");
             Console.ReadKey();
         }
