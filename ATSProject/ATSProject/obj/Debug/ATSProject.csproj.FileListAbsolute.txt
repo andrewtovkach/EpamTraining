@@ -1,0 +1,11 @@
+c:\users\andrew\documents\visual studio 2012\Projects\ATSProject\ATSProject\bin\Debug\ATSProject.exe.config
+c:\users\andrew\documents\visual studio 2012\Projects\ATSProject\ATSProject\bin\Debug\ATSProject.exe
+c:\users\andrew\documents\visual studio 2012\Projects\ATSProject\ATSProject\bin\Debug\ATSProject.pdb
+c:\users\andrew\documents\visual studio 2012\Projects\ATSProject\ATSProject\obj\Debug\ATSProject.exe
+c:\users\andrew\documents\visual studio 2012\Projects\ATSProject\ATSProject\obj\Debug\ATSProject.pdb
+D:\Programming\C#\EpamTraining\ATSProject\ATSProject\bin\Debug\ATSProject.exe.config
+D:\Programming\C#\EpamTraining\ATSProject\ATSProject\obj\Debug\ATSProject.exe
+D:\Programming\C#\EpamTraining\ATSProject\ATSProject\obj\Debug\ATSProject.pdb
+D:\Programming\C#\EpamTraining\ATSProject\ATSProject\bin\Debug\ATSProject.exe
+D:\Programming\C#\EpamTraining\ATSProject\ATSProject\bin\Debug\ATSProject.pdb
+D:\Programming\C#\EpamTraining\ATSProject\ATSProject\obj\Debug\ATSProject.csprojResolveAssemblyReference.cache
