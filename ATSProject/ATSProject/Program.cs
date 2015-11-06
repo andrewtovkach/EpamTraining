@@ -7,7 +7,7 @@ namespace ATSProject
     {
         static void Main(string[] args)
         {
-            Station station = new Station(new List<Port>
+            Station station = new Station(new List<IPort>
             {
                 new Port("7898"),
                 new Port("7466"),
@@ -15,7 +15,7 @@ namespace ATSProject
                 new Port("2456"),
                 new Port("8974")
             },
-            new List<Terminal>
+            new List<ITerminal>
             {
                 new Terminal("8794", "+375(17)275-75-25"),
                 new Terminal("4568", "+375(152)24-15-10"),
@@ -29,8 +29,12 @@ namespace ATSProject
                 new Client("Petr", "Semenov", "1963-10-24", "Grodno"),
                 new Client("Anna", "Petrova", "1987-1-14", "Lida")
             });
-            Console.WriteLine(station.RemovePortMapping("7898"));
-            Console.WriteLine(station.RemoveTerminalMapping("8794"));
+            station.PortByNumer("7898").Enabled();
+            station.PortByNumer("7898").Disabled();
+            station.PortByNumer("7898").Enabled();
+            station.PortByNumer("7466").Enabled();
+            station.TerminalByNumer("8794").OutgoingCallAction("+375(152)24-15-10");
+            station.TerminalByNumer("1564").OutgoingCallAction("+375(1512)2-70-15");
             Console.ReadKey();
         }
     }

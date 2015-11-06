@@ -7,15 +7,15 @@ namespace ATSProject
     {
         private const string Pattern = @"^\+\d{3}\(\d{2,4}\)\d{1,3}-\d{2}-\d{2}$";
 
-        private string _number;
-        public string Number
+        private string _value;
+        public string Value
         {
-            get { return _number; }
+            get { return _value; }
             set
             {
                 if (!IsCorrectNumber(value))
                     throw new ArgumentException("Incorrect telephone number!");
-                _number = value;
+                _value = value;
             }
         }
 
@@ -27,7 +27,7 @@ namespace ATSProject
 
         public override string ToString()
         {
-            return Number;
+            return Value;
         }
     }
 }

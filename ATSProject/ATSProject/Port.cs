@@ -2,7 +2,7 @@
 
 namespace ATSProject
 {
-    public class Port
+    public class Port : IPort
     {
         public string Number { get; set; }
 
@@ -12,20 +12,10 @@ namespace ATSProject
             get { return _state; }
             set
             {
-                if (_state == value) 
+                if (_state == value)
                     return;
                 _state = value;
-                OnStateChanged(this, value);
-            }
-        }
-
-        public event EventHandler<PortState> StateChanged;
-
-        public void OnStateChanged(object sender, PortState state)
-        {
-            if (StateChanged != null)
-            {
-                StateChanged(sender, state);
+                OnStateChanged(value);
             }
         }
 
@@ -33,6 +23,19 @@ namespace ATSProject
         {
             Number = number;
             State = PortState.NotConnected;
+        }
+
+        public event EventHandler<PortState> StateChanged;
+
+        protected void OnStateChanged(PortState state)
+        {
+            if (StateChanged != null)
+                StateChanged(this, state);
+        }
+
+        public void ClearEvents()
+        {
+            StateChanged = null;
         }
 
         public void Disabled()
@@ -47,7 +50,7 @@ namespace ATSProject
 
         public bool IsOnline
         {
-            get { return State == PortState.Busy || State == PortState.Free; }
+            get { return State != PortState.NotConnected; }
         }
 
         public bool IsOffline
@@ -55,14 +58,9 @@ namespace ATSProject
             get { return !IsOnline; }
         }
 
-        public void ClearEvents()
-        {
-            StateChanged = null;
-        }
-
         public override string ToString()
         {
-            return Number;
+            return string.Format("Port №{0}  - {1}", Number, State);
         }
     }
 }
