@@ -1,6 +1,8 @@
 ﻿using System;
+using ATSProject.Enums;
+using ATSProject.Interfaces;
 
-namespace ATSProject
+namespace ATSProject.Model
 {
     public class Port : IPort
     {
@@ -12,8 +14,7 @@ namespace ATSProject
             get { return _state; }
             set
             {
-                if (_state == value)
-                    return;
+                if (_state == value) return;
                 _state = value;
                 OnStateChanged(value);
             }
@@ -33,29 +34,14 @@ namespace ATSProject
                 StateChanged(this, state);
         }
 
+        public virtual void RegistrationEvents()
+        {
+            StateChanged += (sender, state) => { Console.WriteLine(ToString()); };
+        }
+
         public void ClearEvents()
         {
             StateChanged = null;
-        }
-
-        public void Disabled()
-        {
-            State = PortState.NotConnected;
-        }
-
-        public void Enabled()
-        {
-            State = PortState.Free;
-        }
-
-        public bool IsOnline
-        {
-            get { return State != PortState.NotConnected; }
-        }
-
-        public bool IsOffline
-        {
-            get { return !IsOnline; }
         }
 
         public override string ToString()

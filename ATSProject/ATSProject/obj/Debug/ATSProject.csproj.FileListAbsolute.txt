@@ -9,3 +9,9 @@ D:\Programming\C#\EpamTraining\ATSProject\ATSProject\obj\Debug\ATSProject.pdb
 D:\Programming\C#\EpamTraining\ATSProject\ATSProject\bin\Debug\ATSProject.exe
 D:\Programming\C#\EpamTraining\ATSProject\ATSProject\bin\Debug\ATSProject.pdb
 D:\Programming\C#\EpamTraining\ATSProject\ATSProject\obj\Debug\ATSProject.csprojResolveAssemblyReference.cache
+D:\Programming\CSharp\EpamTraining\ATSProject\ATSProject\bin\Debug\ATSProject.exe.config
+D:\Programming\CSharp\EpamTraining\ATSProject\ATSProject\obj\Debug\ATSProject.exe
+D:\Programming\CSharp\EpamTraining\ATSProject\ATSProject\obj\Debug\ATSProject.pdb
+D:\Programming\CSharp\EpamTraining\ATSProject\ATSProject\obj\Debug\ATSProject.csprojResolveAssemblyReference.cache
+D:\Programming\CSharp\EpamTraining\ATSProject\ATSProject\bin\Debug\ATSProject.exe
+D:\Programming\CSharp\EpamTraining\ATSProject\ATSProject\bin\Debug\ATSProject.pdb

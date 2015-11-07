@@ -1,13 +1,12 @@
 ﻿using System;
 
-namespace ATSProject
+namespace ATSProject.Interfaces
 {
     public interface IStateElement<T>
     {
         T State { get; set; }
         event EventHandler<T> StateChanged;
+        void RegistrationEvents();
         void ClearEvents();
-        bool IsOnline { get; }
-        bool IsOffline { get; }
     }
 }

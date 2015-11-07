@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-namespace ATSProject
+namespace ATSProject.Model
 {
     public struct PhoneNumber
     {

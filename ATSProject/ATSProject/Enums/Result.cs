@@ -1,4 +1,4 @@
-﻿namespace ATSProject
+﻿namespace ATSProject.Enums
 {
     public enum Result
     {
