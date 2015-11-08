@@ -15,8 +15,7 @@ namespace ATSProject.Model
             get { return _state; }
             set
             {
-                if (_state == value)
-                    return;
+                if (_state == value) return;
                 _state = value;
                 OnStateChanged(value);
             }
@@ -89,12 +88,12 @@ namespace ATSProject.Model
         public void OutgoingCall(string phoneNumber)
         {
             Result result = IsOnline ? Result.Success : Result.Fail;
-            int seconds = new Random().Next(10);
-            OnOutgoingRequest(new CallInfo(PhoneNumber, new PhoneNumber { Value = phoneNumber }, DateTime.Now, new TimeSpan(0, 0, seconds),
-                CallType.OutgoingCall, result));
+            int minutes = new Random().Next(60), seconds = new Random().Next(60);
+            OnOutgoingRequest(new CallInfo(PhoneNumber, new PhoneNumber { Value = phoneNumber }, DateTime.Now,
+                new TimeSpan(0, minutes, seconds), CallType.OutgoingCall, result));
         }
 
-        public void RegistrationEvents()
+        public virtual void RegistrationEvents()
         {
             OutgoingRequest += (sender, info) => { Console.WriteLine(info.ToString()); };
             IncomingRequest += (sender, info) => { Console.WriteLine(info.ToString()); };

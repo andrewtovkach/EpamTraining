@@ -3,12 +3,14 @@
     public class TariffPlan
     {
         public string Name { get; set; }
-        public uint FreeMinutes { get; set; }
-        public uint MinutePrice { get; set; }
+        public double SubscriptionFee { get; set; }
+        public double FreeMinutes { get; set; }
+        public double MinutePrice { get; set; }
 
-        public TariffPlan(string name, uint freeMinutes, uint minutePrice)
+        public TariffPlan(string name, double subscriptionFee, double freeMinutes, double minutePrice)
         {
             Name = name;
+            SubscriptionFee = subscriptionFee;
             FreeMinutes = freeMinutes;
             MinutePrice = minutePrice;
         }

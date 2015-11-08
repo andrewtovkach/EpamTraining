@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums\CallType.cs" />
+    <Compile Include="Interfaces\IBillingSystem.cs" />
     <Compile Include="Interfaces\IStation.cs" />
     <Compile Include="Model\BillingSystem.cs" />
     <Compile Include="Model\Client.cs" />
@@ -50,6 +51,7 @@
     <Compile Include="Interfaces\IPort.cs" />
     <Compile Include="Interfaces\IStateElement.cs" />
     <Compile Include="Interfaces\ITerminal.cs" />
+    <Compile Include="Model\PersonalAccount.cs" />
     <Compile Include="Model\PhoneNumber.cs" />
     <Compile Include="Model\Port.cs" />
     <Compile Include="Enums\PortState.cs" />

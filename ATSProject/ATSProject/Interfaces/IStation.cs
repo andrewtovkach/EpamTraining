@@ -10,5 +10,6 @@ namespace ATSProject.Interfaces
         bool RemovePortMapping(string portNumber);
         void IncomingCall(CallInfo info);
         event EventHandler<CallInfo> CallProcessed;
+        void ClearEvents();
     }
 }

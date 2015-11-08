@@ -1,32 +1,34 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using ATSProject.Interfaces;
 
 namespace ATSProject.Model
 {
-    public class BillingSystem
+    public class BillingSystem : IBillingSystem, IEnumerable<Contract>
     {
         private readonly Station _station;
 
-        public readonly ICollection<Contract> Contracts;
-        public readonly ICollection<Client> Clients; 
-        private readonly IDictionary<ITerminal, Client> _terminalsMapping; 
+        private readonly ICollection<Contract> _contracts;
+        public ICollection<Client> Clients { get; private set; }
+        private readonly IDictionary<ITerminal, Client> _terminalsMapping;
 
         public BillingSystem(ICollection<Contract> contracts, ICollection<Client> clients, Station station)
         {
-            Contracts = contracts;
-            Clients = clients;
             _terminalsMapping = new Dictionary<ITerminal, Client>();
+            _contracts = contracts;
+            Clients = clients;
             _station = station;
-            MappingInit(clients);
+            MappingInit();
         }
 
-        private void MappingInit(ICollection<Client> clients)
+        private void MappingInit()
         {
+            RegistrationEvents();
             foreach (var item in _station.Terminals)
                 _terminalsMapping.Add(item, null);
-            foreach (var item in clients)
+            foreach (var item in Clients)
                 AddTerminalMapping(item);
         }
 
@@ -35,9 +37,9 @@ namespace ATSProject.Model
             get { return _terminalsMapping.FirstOrDefault(item => item.Value == null).Key; }
         }
 
-        public ITerminal TerminalByClient(Client client)
+        private Contract ContactByPhoneNumber(PhoneNumber phoneNumber)
         {
-            return _terminalsMapping.FirstOrDefault(item => item.Value == client).Key;
+            return _contracts.FirstOrDefault(item => item.PhoneNumber == phoneNumber);
         }
 
         public void AddTerminalMapping(Client client)
@@ -57,5 +59,25 @@ namespace ATSProject.Model
             return true;
         }
 
+        private void RegistrationEvents()
+        {
+            _station.CallProcessed += (sender, info) => { CalculateCostOfСall(info); };
+        }
+
+        private void CalculateCostOfСall(CallInfo info)
+        {
+            Contract sourceContract = ContactByPhoneNumber(info.Source);
+            sourceContract.PersonalAccount.Calculate(info);
+        }
+
+        public IEnumerator<Contract> GetEnumerator()
+        {
+            return _contracts.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
     }
 }

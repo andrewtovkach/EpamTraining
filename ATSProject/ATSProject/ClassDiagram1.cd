@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="ATSProject.Program">
-    <Position X="12.25" Y="3.25" Width="1.5" />
+    <Position X="12.25" Y="4" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
       <FileName>Program.cs</FileName>
@@ -15,7 +15,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="ATSProject.Model.Client">
-    <Position X="15.75" Y="3.25" Width="1.5" />
+    <Position X="14" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAEAAAAAAAAAEAAAAAAAAAAAIAAACAAAAAAAAAAg=</HashCode>
       <FileName>Model\Client.cs</FileName>
@@ -32,7 +32,7 @@
   <Class Name="ATSProject.Model.Station">
     <Position X="10.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>QQAAAAAAAMAAJAAAAIAAAAgAAIAAAABBQAAEAGACEAA=</HashCode>
+      <HashCode>QQAAAAAAAMAAJBABBIAAAAAgAIAAAABFQAAEAGACEAA=</HashCode>
       <FileName>Model\Station.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -46,32 +46,42 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="ATSProject.Model.BillingSystem">
-    <Position X="14" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAKAAAQDIAAAAAAAAAAAJAEAAAAA=</HashCode>
-      <FileName>Model\BillingSystem.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="ATSProject.Model.Contract">
     <Position X="15.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAEAAAAAAEAEAAQAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAABAAAKAEAADIAAAAgAAEAAABAGACAAA=</HashCode>
+      <FileName>Model\BillingSystem.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ATSProject.Model.Contract">
+    <Position X="17.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAAAEAEAAQAAAAAAAAAABAAAAAAAAgAA=</HashCode>
       <FileName>Model\Contract.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ATSProject.Model.TariffPlan">
-    <Position X="14" Y="4.25" Width="1.5" />
+    <Position X="17.5" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAIAAAAEAAAAAAQAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAIAAAAEAAABAAQAAAAAAAACAAAAAAAAAAA=</HashCode>
       <FileName>Model\TariffPlan.cs</FileName>
     </TypeIdentifier>
+  </Class>
+  <Class Name="ATSProject.Model.PersonalAccount">
+    <Position X="19.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAEACIABAAAUAAAAAAACQAAAAEAAiAAAAAAAA=</HashCode>
+      <FileName>Model\PersonalAccount.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Struct Name="ATSProject.Model.PhoneNumber">
     <Position X="12.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ABAAIAAAAAAAAAAEAAAAAAAQAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <HashCode>ABAAIAAAAAAAAAAEgAAAAAAQAAAAAIAAAAAgAAAAAiA=</HashCode>
       <FileName>Model\PhoneNumber.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Struct>
   <Interface Name="ATSProject.Interfaces.IPort">
     <Position X="0.5" Y="3.5" Width="1.5" />
@@ -97,8 +107,15 @@
   <Interface Name="ATSProject.Interfaces.IStation">
     <Position X="3.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>QQAAAAAAAEAAIAAAAIAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>QQAAAAAAAEAAIAAAAIAAAAAAAAAAAAAEAAAAAAAAAAA=</HashCode>
       <FileName>Interfaces\IStation.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ATSProject.Interfaces.IBillingSystem">
+    <Position X="14" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAACIAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IBillingSystem.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Enum Name="ATSProject.Enums.CallType">
