@@ -1,11 +1,9 @@
-﻿using ATSProject.Model;
+﻿using ATSProject.Model.BillingSystem;
 
 namespace ATSProject.Interfaces
 {
-    public interface IBillingSystem
+    public interface IBillingSystem : IMappingElement<Client>
     {
         ITerminal FirstFreeTerminal { get; }
-        void AddTerminalMapping(Client client);
-        bool RemovePortMapping(string portNumber);
     }
 }

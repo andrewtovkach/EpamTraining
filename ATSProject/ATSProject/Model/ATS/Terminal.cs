@@ -2,7 +2,7 @@
 using ATSProject.Enums;
 using ATSProject.Interfaces;
 
-namespace ATSProject.Model
+namespace ATSProject.Model.ATS
 {
     public class Terminal : ITerminal
     {
@@ -35,69 +35,67 @@ namespace ATSProject.Model
 
         public event EventHandler<TerminalState> StateChanged;
 
-        protected void OnStateChanged(TerminalState state)
+        private void OnStateChanged(TerminalState state)
         {
-            if (StateChanged != null)
+            if (StateChanged != null) 
                 StateChanged(this, state);
         }
 
         public event EventHandler InsertedIntoPort;
 
-        protected void OnInsertedIntoPort()
+        public void InsertIntoPort()
         {
+            State = TerminalState.Online;
             if (InsertedIntoPort != null)
                 InsertedIntoPort(this, EventArgs.Empty);
         }
 
-        public void InsertIntoPort()
-        {
-            State = TerminalState.Online;
-            OnInsertedIntoPort();
-        }
-
         public event EventHandler RemovedFromPort;
-
-        protected void OnRemovedFromPort()
-        {
-            if (RemovedFromPort != null)
-                RemovedFromPort(this, EventArgs.Empty);
-        }
 
         public void RemoveFromPort()
         {
             State = TerminalState.Offline;
-            OnRemovedFromPort();
+            if (RemovedFromPort != null)
+                RemovedFromPort(this, EventArgs.Empty);
         }
 
         public event EventHandler<CallInfo> OutgoingRequest;
 
-        protected void OnOutgoingRequest(CallInfo info)
+        private void OnOutgoingRequest(CallInfo info)
         {
-            if (OutgoingRequest != null)
-                OutgoingRequest(this, info);
+            if (OutgoingRequest == null) 
+                return;
+            Print(info);
+            OutgoingRequest(this, info);
         }
 
         public event EventHandler<CallInfo> IncomingRequest;
 
         public void OnIncomingRequest(CallInfo info)
         {
-            if (IncomingRequest != null)
-                IncomingRequest(this, info);
+            if (IncomingRequest == null) 
+                return;
+            Print(info);
+            IncomingRequest(this, info);
         }
 
         public void OutgoingCall(string phoneNumber)
         {
             Result result = IsOnline ? Result.Success : Result.Fail;
-            int minutes = new Random().Next(60), seconds = new Random().Next(60);
-            OnOutgoingRequest(new CallInfo(PhoneNumber, new PhoneNumber { Value = phoneNumber }, DateTime.Now,
-                new TimeSpan(0, minutes, seconds), CallType.OutgoingCall, result));
+            CallInfo callInfo = new CallInfo
+            {
+                Source = PhoneNumber,
+                Target = new PhoneNumber { Value = phoneNumber},
+                Type = CallType.OutgoingCall,
+                Date = DateTime.Now,
+                Result = result
+            };
+            OnOutgoingRequest(callInfo);
         }
 
-        public virtual void RegistrationEvents()
+        private static void Print(CallInfo info)
         {
-            OutgoingRequest += (sender, info) => { Console.WriteLine(info.ToString()); };
-            IncomingRequest += (sender, info) => { Console.WriteLine(info.ToString()); };
-            StateChanged += (sender, state) => { Console.WriteLine(ToString()); };
+            Console.WriteLine(info.ToString());
         }
 
         public void ClearEvents()

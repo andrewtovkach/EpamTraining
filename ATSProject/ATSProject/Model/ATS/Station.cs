@@ -5,8 +5,9 @@ using System.Linq;
 using System.Threading;
 using ATSProject.Enums;
 using ATSProject.Interfaces;
+using ATSProject.Model.BillingSystem;
 
-namespace ATSProject.Model
+namespace ATSProject.Model.ATS
 {
     public class Station : IStation, IEnumerable<CallInfo>
     {
@@ -27,12 +28,14 @@ namespace ATSProject.Model
         private void MappingInit()
         {
             foreach (var item in Ports)
+            {
                 _portsMapping.Add(item, null);
+                SubscriptionToPortEvents(item);
+            }
             foreach (var item in Terminals)
             {
-                AddPortMapping(item);
-                item.RegistrationEvents();
-                RegistrationEvents(item);
+                AddMapping(item);
+                SubscriptionToTerminalEvents(item);
             }
         }
 
@@ -61,22 +64,20 @@ namespace ATSProject.Model
             return Terminals.FirstOrDefault(item => item.PhoneNumber.ToString() == phoneNumber);
         }
 
-        public void AddPortMapping(ITerminal terminal)
+        public void AddMapping(ITerminal element)
         {
             var freePort = FirstFreePort;
             if (freePort == null)
                 throw new ArgumentException("All ports are busy!");
-            _portsMapping[freePort] = terminal;
-            freePort.RegistrationEvents();
+            _portsMapping[freePort] = element;
         }
 
-        public bool RemovePortMapping(string portNumber)
+        public bool RemoveMapping(string elementNumber)
         {
-            var port = PortByNumber(portNumber);
+            var port = PortByNumber(elementNumber);
             if (!_portsMapping.ContainsKey(port))
                 return false;
             _portsMapping[port] = null;
-            port.ClearEvents();
             return true;
         }
 
@@ -108,41 +109,42 @@ namespace ATSProject.Model
 
         private void Calling(CallInfo info, ITerminal sourceTerminal, ITerminal targetTerminal)
         {
-            CallInfo callInfo = new CallInfo(info.Source, info.Target, info.Date, info.Duration,
-                CallType.IncomingCall, Result.Success);
-            ((Terminal)targetTerminal).OnIncomingRequest(callInfo);
             PortByTerminal(sourceTerminal).State = PortState.Busy;
             PortByTerminal(targetTerminal).State = PortState.Busy;
-            CallImulation(callInfo);
+            info.Type = CallType.IncomingCall;
+            ((Terminal)targetTerminal).OnIncomingRequest(info);
+            Tuple<CallInfo, CallStatistic> callInfo = new Tuple<CallInfo, CallStatistic>(info, 
+                new CallStatistic { Duration = CallingImulation(info) });
+            Thread.Sleep(callInfo.Item2.Duration.Minutes * 100);
             PortByTerminal(sourceTerminal).State = PortState.Free;
             PortByTerminal(targetTerminal).State = PortState.Free;
+            OnCallIsProcessed(callInfo);
         }
 
-        public virtual void CallImulation(CallInfo callInfo)
+        public TimeSpan CallingImulation(CallInfo info)
         {
-            Thread.Sleep(callInfo.Duration.Minutes * 100);
+            int minutes = new Random().Next(60), seconds = new Random().Next(60);
+            return new TimeSpan(0, minutes, seconds);
         }
 
-        public event EventHandler<CallInfo> CallProcessed;
+        public event EventHandler<Tuple<CallInfo, CallStatistic>> CallIsProcessed;
 
-        public void OnCallProcessed(CallInfo info)
+        public void OnCallIsProcessed(Tuple<CallInfo, CallStatistic> info)
         {
-            if (CallProcessed != null && info.Result == Result.Success)
-                CallProcessed(this, info);
+            if (CallIsProcessed == null || info.Item1.Result != Result.Success) 
+                return;
+            Print(info);
+            CallIsProcessed(this, info);
         }
 
-        private void RegistrationEvents(ITerminal terminal)
+        private void SubscriptionToTerminalEvents(ITerminal terminal)
         {
             terminal.OutgoingRequest += (sender, info) =>
             {
                 _calls.Add(info);
                 IncomingCall(info);
             };
-            terminal.IncomingRequest += (sender, info) =>
-            {
-                _calls.Add(info);
-                OnCallProcessed(info);
-            };
+            terminal.IncomingRequest += (sender, info) => { _calls.Add(info); };
             terminal.InsertedIntoPort += (sender, args) =>
             {
                 IPort port = PortByTerminal(sender as Terminal);
@@ -153,11 +155,22 @@ namespace ATSProject.Model
                 IPort port = PortByTerminal(sender as Terminal);
                 port.State = PortState.NotConnected;
             };
+            terminal.StateChanged += (sender, state) => { Console.WriteLine(sender.ToString()); };
+        }
+
+        private void SubscriptionToPortEvents(IPort port)
+        {
+            port.StateChanged += (sender, state) => { Console.WriteLine(sender.ToString()); };
+        }
+
+        private static void Print(Tuple<CallInfo, CallStatistic> info)
+        {
+            Console.WriteLine("Transmits a request: {0}", info.Item1.Source);
         }
 
         public void ClearEvents()
         {
-            CallProcessed = null;
+            CallIsProcessed = null;
         }
 
         public IEnumerator<CallInfo> GetEnumerator()

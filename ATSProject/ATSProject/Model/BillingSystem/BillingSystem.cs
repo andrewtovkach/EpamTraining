@@ -3,8 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using ATSProject.Interfaces;
+using ATSProject.Model.ATS;
 
-namespace ATSProject.Model
+namespace ATSProject.Model.BillingSystem
 {
     public class BillingSystem : IBillingSystem, IEnumerable<Contract>
     {
@@ -20,16 +21,16 @@ namespace ATSProject.Model
             _contracts = contracts;
             Clients = clients;
             _station = station;
+            SubscriptionToStationEvents(_station);
             MappingInit();
         }
 
         private void MappingInit()
         {
-            RegistrationEvents();
             foreach (var item in _station.Terminals)
                 _terminalsMapping.Add(item, null);
             foreach (var item in Clients)
-                AddTerminalMapping(item);
+                AddMapping(item);
         }
 
         public ITerminal FirstFreeTerminal
@@ -42,32 +43,37 @@ namespace ATSProject.Model
             return _contracts.FirstOrDefault(item => item.PhoneNumber == phoneNumber);
         }
 
-        public void AddTerminalMapping(Client client)
+        public void AddMapping(Client element)
         {
             var freeTerminal = FirstFreeTerminal;
             if (freeTerminal == null)
                 throw new ArgumentException("All terminals are busy!");
-            _terminalsMapping[freeTerminal] = client;
+            _terminalsMapping[freeTerminal] = element;
         }
 
-        public bool RemovePortMapping(string portNumber)
+        public bool RemoveMapping(string elementNumber)
         {
-            var terminal = _station.TerminalByNumber(portNumber);
+            var terminal = _station.TerminalByNumber(elementNumber);
             if (!_terminalsMapping.ContainsKey(terminal))
                 return false;
             _terminalsMapping[terminal] = null;
             return true;
         }
 
-        private void RegistrationEvents()
+        private void SubscriptionToStationEvents(IStation station)
         {
-            _station.CallProcessed += (sender, info) => { CalculateCostOfСall(info); };
+            station.CallIsProcessed += (sender, info) => { Print(CalculateCostOfСall(info)); };
         }
 
-        private void CalculateCostOfСall(CallInfo info)
+        private Tuple<CallInfo, CallStatistic> CalculateCostOfСall(Tuple<CallInfo, CallStatistic> info)
         {
-            Contract sourceContract = ContactByPhoneNumber(info.Source);
-            sourceContract.PersonalAccount.Calculate(info);
+            Contract sourceContract = ContactByPhoneNumber(info.Item1.Source);
+            return sourceContract.PersonalAccount.Calculate(info);
+        }
+
+        private static void Print(Tuple<CallInfo, CallStatistic> info)
+        {
+            Console.WriteLine("Statistics: {0} {1} BYR", info.Item1.Source, info.Item2);
         }
 
         public IEnumerator<Contract> GetEnumerator()

@@ -2,7 +2,7 @@
 using ATSProject.Enums;
 using ATSProject.Interfaces;
 
-namespace ATSProject.Model
+namespace ATSProject.Model.ATS
 {
     public class Port : IPort
     {
@@ -30,13 +30,8 @@ namespace ATSProject.Model
 
         protected void OnStateChanged(PortState state)
         {
-            if (StateChanged != null)
+            if (StateChanged != null) 
                 StateChanged(this, state);
-        }
-
-        public virtual void RegistrationEvents()
-        {
-            StateChanged += (sender, state) => { Console.WriteLine(ToString()); };
         }
 
         public void ClearEvents()

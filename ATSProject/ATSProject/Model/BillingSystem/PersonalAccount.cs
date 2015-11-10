@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using ATSProject.Model.ATS;
 
-namespace ATSProject.Model
+namespace ATSProject.Model.BillingSystem
 {
-    public class PersonalAccount : IEnumerable<Tuple<CallInfo, double>>
+    public class PersonalAccount : IEnumerable<Tuple<CallInfo, CallStatistic>>
     {
-        private readonly ICollection<Tuple<CallInfo, double>> _listDepts;
+        private readonly ICollection<Tuple<CallInfo, CallStatistic>> _listDepts;
 
         public string Number { get; set; }
         public double SpentMinutes { get; set; }
@@ -14,7 +15,7 @@ namespace ATSProject.Model
 
         public PersonalAccount(string number, TariffPlan tariffPlan)
         {
-            _listDepts = new List<Tuple<CallInfo, double>>();
+            _listDepts = new List<Tuple<CallInfo, CallStatistic>>();
             SpentMinutes = 0;
             TariffPlan = tariffPlan;
             Number = number;
@@ -38,14 +39,21 @@ namespace ATSProject.Model
             }
         }
 
-        public void Calculate(CallInfo info)
+        public Tuple<CallInfo, CallStatistic> Calculate(Tuple<CallInfo, CallStatistic> info)
         {
             double debt = Debt;
-            SpentMinutes += GetMinutes(info.Duration);
-            _listDepts.Add(new Tuple<CallInfo, double>(info, Debt - debt));
+            SpentMinutes += GetMinutes(info.Item2.Duration);
+            CallStatistic callStatistic = new CallStatistic
+            {
+                Cost = Debt - debt,
+                Duration = info.Item2.Duration
+            };
+            info = new Tuple<CallInfo, CallStatistic>(info.Item1, callStatistic);
+            _listDepts.Add(info);
+            return info;
         }
 
-        private static int GetMinutes(TimeSpan span)
+        private static double GetMinutes(TimeSpan span)
         {
             return span.Hours * 60 + span.Minutes + span.Seconds / 60;
         }
@@ -60,7 +68,7 @@ namespace ATSProject.Model
             get { return Debt + TariffPlan.SubscriptionFee; }
         }
 
-        public IEnumerator<Tuple<CallInfo, double>> GetEnumerator()
+        public IEnumerator<Tuple<CallInfo, CallStatistic>> GetEnumerator()
         {
             return _listDepts.GetEnumerator();
         }

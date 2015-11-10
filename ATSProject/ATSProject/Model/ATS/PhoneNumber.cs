@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-namespace ATSProject.Model
+namespace ATSProject.Model.ATS
 {
     public struct PhoneNumber : IEquatable<PhoneNumber>
     {

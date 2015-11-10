@@ -1,4 +1,4 @@
-﻿namespace ATSProject.Model
+﻿namespace ATSProject.Model.BillingSystem
 {
     public class TariffPlan
     {

@@ -6,7 +6,5 @@ namespace ATSProject.Interfaces
     {
         T State { get; set; }
         event EventHandler<T> StateChanged;
-        void RegistrationEvents();
-        void ClearEvents();
     }
 }

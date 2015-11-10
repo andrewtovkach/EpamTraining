@@ -1,15 +1,13 @@
 ﻿using System;
-using ATSProject.Model;
+using ATSProject.Model.ATS;
+using ATSProject.Model.BillingSystem;
 
 namespace ATSProject.Interfaces
 {
-    public interface IStation
+    public interface IStation : IMappingElement<ITerminal>
     {
         IPort FirstFreePort { get; }
-        void AddPortMapping(ITerminal terminal);
-        bool RemovePortMapping(string portNumber);
         void IncomingCall(CallInfo info);
-        event EventHandler<CallInfo> CallProcessed;
-        void ClearEvents();
+        event EventHandler<Tuple<CallInfo, CallStatistic>> CallIsProcessed;
     }
 }

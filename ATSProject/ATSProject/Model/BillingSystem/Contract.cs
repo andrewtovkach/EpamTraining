@@ -1,6 +1,7 @@
 ﻿using System;
+using ATSProject.Model.ATS;
 
-namespace ATSProject.Model
+namespace ATSProject.Model.BillingSystem
 {
     public class Contract
     {
@@ -10,8 +11,7 @@ namespace ATSProject.Model
         public PersonalAccount PersonalAccount { get; set; }
         public DateTime Date { get; set; }
 
-        public Contract(string number, string phoneNumber, TariffPlan tariffPlan, string accountNumber,
-            string date)
+        public Contract(string number, string phoneNumber, TariffPlan tariffPlan, string accountNumber, string date)
         {
             Number = number;
             PhoneNumber = new PhoneNumber { Value = phoneNumber };

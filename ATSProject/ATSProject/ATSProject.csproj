@@ -43,24 +43,26 @@
   <ItemGroup>
     <Compile Include="Enums\CallType.cs" />
     <Compile Include="Interfaces\IBillingSystem.cs" />
+    <Compile Include="Interfaces\IMappingElement.cs" />
     <Compile Include="Interfaces\IStation.cs" />
-    <Compile Include="Model\BillingSystem.cs" />
-    <Compile Include="Model\Client.cs" />
-    <Compile Include="Model\CallInfo.cs" />
-    <Compile Include="Model\Contract.cs" />
+    <Compile Include="Model\BillingSystem\BillingSystem.cs" />
+    <Compile Include="Model\BillingSystem\CallStatistic.cs" />
+    <Compile Include="Model\BillingSystem\Client.cs" />
+    <Compile Include="Model\ATS\CallInfo.cs" />
+    <Compile Include="Model\BillingSystem\Contract.cs" />
     <Compile Include="Interfaces\IPort.cs" />
     <Compile Include="Interfaces\IStateElement.cs" />
     <Compile Include="Interfaces\ITerminal.cs" />
-    <Compile Include="Model\PersonalAccount.cs" />
-    <Compile Include="Model\PhoneNumber.cs" />
-    <Compile Include="Model\Port.cs" />
+    <Compile Include="Model\BillingSystem\PersonalAccount.cs" />
+    <Compile Include="Model\ATS\PhoneNumber.cs" />
+    <Compile Include="Model\ATS\Port.cs" />
     <Compile Include="Enums\PortState.cs" />
-    <Compile Include="Model\TariffPlan.cs" />
+    <Compile Include="Model\BillingSystem\TariffPlan.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Enums\Result.cs" />
-    <Compile Include="Model\Station.cs" />
-    <Compile Include="Model\Terminal.cs" />
+    <Compile Include="Model\ATS\Station.cs" />
+    <Compile Include="Model\ATS\Terminal.cs" />
     <Compile Include="Enums\TerminalState.cs" />
   </ItemGroup>
   <ItemGroup>
