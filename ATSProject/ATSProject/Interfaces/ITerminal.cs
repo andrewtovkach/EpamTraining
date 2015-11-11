@@ -1,5 +1,6 @@
 ﻿using System;
 using ATSProject.Enums;
+using ATSProject.Model;
 using ATSProject.Model.ATS;
 
 namespace ATSProject.Interfaces

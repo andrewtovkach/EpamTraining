@@ -1,7 +1,8 @@
 ﻿using System;
 using ATSProject.Enums;
+using ATSProject.Model.ATS;
 
-namespace ATSProject.Model.ATS
+namespace ATSProject.Model
 {
     public struct CallInfo
     {

@@ -1,76 +1,46 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using ATSProject.Model.ATS;
 
 namespace ATSProject.Model.BillingSystem
 {
-    public class PersonalAccount : IEnumerable<Tuple<CallInfo, CallStatistic>>
+    public class PersonalAccount : IEnumerable<Tuple<DateTime, double>>
     {
-        private readonly ICollection<Tuple<CallInfo, CallStatistic>> _listDepts;
-
         public string Number { get; set; }
-        public double SpentMinutes { get; set; }
-        public TariffPlan TariffPlan { get; set; }
+        public double Debt { get; set; }
+        public DateTime MaturityDate { get; set; }
 
-        public PersonalAccount(string number, TariffPlan tariffPlan)
+        private readonly ICollection<Tuple<DateTime, double>> _listPayments;
+
+        public PersonalAccount(string number, DateTime maturityDate)
         {
-            _listDepts = new List<Tuple<CallInfo, CallStatistic>>();
-            SpentMinutes = 0;
-            TariffPlan = tariffPlan;
+            _listPayments = new List<Tuple<DateTime, double>>();
+            Debt = 0;
             Number = number;
+            MaturityDate = maturityDate;
         }
 
-        public double RestOfFreeMinutes
+        public bool IsPaid
         {
-            get
-            {
-                double res = TariffPlan.FreeMinutes - SpentMinutes;
-                return res < 0 ? 0 : res;
-            }
+            get { return Math.Abs(Debt) <= 0; }
         }
 
-        public double OverrunFreeMinutes
+        public void PayOnDelivery(double debt)
         {
-            get
-            {
-                double res = SpentMinutes - TariffPlan.FreeMinutes;
-                return res < 0 ? 0 : res;
-            }
+            Debt -= debt;
+            _listPayments.Add(new Tuple<DateTime, double>(DateTime.Now, debt));
+            if (Debt <= 0)
+                MaturityDate += new TimeSpan(31, 0, 0, 0);
         }
 
-        public Tuple<CallInfo, CallStatistic> Calculate(Tuple<CallInfo, CallStatistic> info)
+        public override string ToString()
         {
-            double debt = Debt;
-            SpentMinutes += GetMinutes(info.Item2.Duration);
-            CallStatistic callStatistic = new CallStatistic
-            {
-                Cost = Debt - debt,
-                Duration = info.Item2.Duration
-            };
-            info = new Tuple<CallInfo, CallStatistic>(info.Item1, callStatistic);
-            _listDepts.Add(info);
-            return info;
+            return string.Format("№{0} {1} {2}", Number, Debt, MaturityDate.ToShortDateString());
         }
 
-        private static double GetMinutes(TimeSpan span)
+        public IEnumerator<Tuple<DateTime, double>> GetEnumerator()
         {
-            return span.Hours * 60 + span.Minutes + span.Seconds / 60;
-        }
-
-        public double Debt
-        {
-            get { return OverrunFreeMinutes * TariffPlan.MinutePrice; }
-        }
-
-        public double DeptWithSubscriptionFee
-        {
-            get { return Debt + TariffPlan.SubscriptionFee; }
-        }
-
-        public IEnumerator<Tuple<CallInfo, CallStatistic>> GetEnumerator()
-        {
-            return _listDepts.GetEnumerator();
+            return _listPayments.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()

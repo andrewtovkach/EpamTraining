@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="ATSProject.Model.BillingSystem.Client">
-    <Position X="21" Y="0.5" Width="1.5" />
+    <Position X="19.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAEAAAAAAAAAEAAAAAAAAAAAIAAACAAAAAAAAAAg=</HashCode>
       <FileName>Model\BillingSystem\Client.cs</FileName>
@@ -18,7 +18,7 @@
   <Class Name="ATSProject.Model.ATS.Station">
     <Position X="10.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AQAgAAAIAIGAJBABBBAACAAAEIAAAABFQAAEAGAEAAA=</HashCode>
+      <HashCode>AQAgAAAIAIGAJBABDBAACAAAEIAAAABFQAAEAGAAAAA=</HashCode>
       <FileName>Model\ATS\Station.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -26,7 +26,7 @@
   <Class Name="ATSProject.Model.ATS.Terminal" BaseTypeListCollapsed="true">
     <Position X="8.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAABCAABAQAAAAUkEAAWAAAAACAAAAEAAAABAIEACA=</HashCode>
+      <HashCode>AAAABCAABAQAAAAUkEAAWAAAAACAAAAEAAAABAIAACA=</HashCode>
       <FileName>Model\ATS\Terminal.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
@@ -34,7 +34,7 @@
   <Class Name="ATSProject.Model.BillingSystem.BillingSystem">
     <Position X="15.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAABIAAEAABAAACAEAABIAAAAgAAEAAABAGAEAAA=</HashCode>
+      <HashCode>AAAAAABIAAEAABAACCAAAABIAAAAgAAEAAABAGAAAAA=</HashCode>
       <FileName>Model\BillingSystem\BillingSystem.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -42,21 +42,29 @@
   <Class Name="ATSProject.Model.BillingSystem.Contract">
     <Position X="17.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAEAAAAAAEAEAAQAAAAAAAAAABAAAAAAAAgAA=</HashCode>
+      <HashCode>AAAAAAAAEAAAAAEEAEAAQAAAAAAAAAABAAAAAAAAgAA=</HashCode>
       <FileName>Model\BillingSystem\Contract.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ATSProject.Model.BillingSystem.TariffPlan">
-    <Position X="17.5" Y="3.25" Width="1.5" />
+    <Position X="17.5" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAIAAAAEAAABAAQAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAIACAAAAKIABAEAAABAAQAACQAAAAGAAiAAAAAAAA=</HashCode>
       <FileName>Model\BillingSystem\TariffPlan.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ATSProject.Model.Call">
+    <Position X="12.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAgAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>Model\Call.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ATSProject.Model.BillingSystem.PersonalAccount">
-    <Position X="19.25" Y="0.5" Width="1.5" />
+    <Position X="19.25" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAACAAEACIABAAAUAAAAAAACQAAAAEAAiAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAABAEAEAAAAIAAQAAgQAEAAgAAAAAAAA=</HashCode>
       <FileName>Model\BillingSystem\PersonalAccount.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -69,18 +77,18 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Struct>
-  <Struct Name="ATSProject.Model.ATS.CallInfo">
+  <Struct Name="ATSProject.Model.CallInfo">
     <Position X="14" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAgAAAAAEAAAAACQAAAAAAAABAQAAAAAAAAA=</HashCode>
-      <FileName>Model\ATS\CallInfo.cs</FileName>
+      <FileName>Model\CallInfo.cs</FileName>
     </TypeIdentifier>
   </Struct>
-  <Struct Name="ATSProject.Model.BillingSystem.CallStatistic">
+  <Struct Name="ATSProject.Model.CallStatistic">
     <Position X="14" Y="3" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAACAAAEAAAAABAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Model\BillingSystem\CallStatistic.cs</FileName>
+      <FileName>Model\CallStatistic.cs</FileName>
     </TypeIdentifier>
   </Struct>
   <Interface Name="ATSProject.Interfaces.IPort">

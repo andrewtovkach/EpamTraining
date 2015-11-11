@@ -37,7 +37,7 @@ namespace ATSProject.Model.ATS
 
         private void OnStateChanged(TerminalState state)
         {
-            if (StateChanged != null) 
+            if (StateChanged != null)
                 StateChanged(this, state);
         }
 
@@ -63,20 +63,16 @@ namespace ATSProject.Model.ATS
 
         private void OnOutgoingRequest(CallInfo info)
         {
-            if (OutgoingRequest == null) 
-                return;
-            Print(info);
-            OutgoingRequest(this, info);
+            if (OutgoingRequest != null)
+                OutgoingRequest(this, info);
         }
 
         public event EventHandler<CallInfo> IncomingRequest;
 
         public void OnIncomingRequest(CallInfo info)
         {
-            if (IncomingRequest == null) 
-                return;
-            Print(info);
-            IncomingRequest(this, info);
+            if (IncomingRequest != null)
+                IncomingRequest(this, info);
         }
 
         public void OutgoingCall(string phoneNumber)
@@ -85,17 +81,12 @@ namespace ATSProject.Model.ATS
             CallInfo callInfo = new CallInfo
             {
                 Source = PhoneNumber,
-                Target = new PhoneNumber { Value = phoneNumber},
+                Target = new PhoneNumber { Value = phoneNumber },
                 Type = CallType.OutgoingCall,
                 Date = DateTime.Now,
                 Result = result
             };
             OnOutgoingRequest(callInfo);
-        }
-
-        private static void Print(CallInfo info)
-        {
-            Console.WriteLine(info.ToString());
         }
 
         public void ClearEvents()

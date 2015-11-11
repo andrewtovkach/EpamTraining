@@ -7,22 +7,29 @@ using ATSProject.Model.ATS;
 
 namespace ATSProject.Model.BillingSystem
 {
-    public class BillingSystem : IBillingSystem, IEnumerable<Contract>
+    public class BillingSystem : IBillingSystem, IEnumerable<Call>
     {
         private readonly Station _station;
 
-        private readonly ICollection<Contract> _contracts;
+        public IList<Contract> Contracts { get; private set; }
         public ICollection<Client> Clients { get; private set; }
+        private readonly IList<Call> _calls; 
         private readonly IDictionary<ITerminal, Client> _terminalsMapping;
 
-        public BillingSystem(ICollection<Contract> contracts, ICollection<Client> clients, Station station)
+        public BillingSystem(IList<Contract> contracts, ICollection<Client> clients, Station station)
         {
             _terminalsMapping = new Dictionary<ITerminal, Client>();
-            _contracts = contracts;
+            _calls = new List<Call>();
+            Contracts = contracts;
             Clients = clients;
             _station = station;
             SubscriptionToStationEvents(_station);
             MappingInit();
+        }
+
+        public Call this[int index]
+        {
+            get { return _calls[index]; }
         }
 
         private void MappingInit()
@@ -40,7 +47,12 @@ namespace ATSProject.Model.BillingSystem
 
         private Contract ContactByPhoneNumber(PhoneNumber phoneNumber)
         {
-            return _contracts.FirstOrDefault(item => item.PhoneNumber == phoneNumber);
+            return Contracts.FirstOrDefault(item => item.PhoneNumber == phoneNumber);
+        }
+
+        public Contract ContactByNumber(string terminalNumber)
+        {
+            return Contracts.FirstOrDefault(item => item.Number == terminalNumber);
         }
 
         public void AddMapping(Client element)
@@ -62,23 +74,25 @@ namespace ATSProject.Model.BillingSystem
 
         private void SubscriptionToStationEvents(IStation station)
         {
-            station.CallIsProcessed += (sender, info) => { Print(CalculateCostOfСall(info)); };
+            station.CallIsProcessed += (sender, call) =>
+            {
+                CalculateCostOfCall(call);
+                Console.WriteLine("Statistics: {0} {1} BYR", call.Info.Source, call.Statistic);
+            };
         }
 
-        private Tuple<CallInfo, CallStatistic> CalculateCostOfСall(Tuple<CallInfo, CallStatistic> info)
+        private void CalculateCostOfCall(Call call)
         {
-            Contract sourceContract = ContactByPhoneNumber(info.Item1.Source);
-            return sourceContract.PersonalAccount.Calculate(info);
+            Contract sourceContract = ContactByPhoneNumber(call.Info.Source);
+            double cost = sourceContract.TariffPlan.CalculateCost(call.Statistic.Duration);
+            call.Statistic.Cost = cost;
+            _calls.Add(call);
+            sourceContract.PersonalAccount.Debt += cost;
         }
 
-        private static void Print(Tuple<CallInfo, CallStatistic> info)
+        public IEnumerator<Call> GetEnumerator()
         {
-            Console.WriteLine("Statistics: {0} {1} BYR", info.Item1.Source, info.Item2);
-        }
-
-        public IEnumerator<Contract> GetEnumerator()
-        {
-            return _contracts.GetEnumerator();
+            return _calls.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()

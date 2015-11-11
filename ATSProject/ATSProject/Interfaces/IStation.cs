@@ -1,6 +1,5 @@
 ﻿using System;
-using ATSProject.Model.ATS;
-using ATSProject.Model.BillingSystem;
+using ATSProject.Model;
 
 namespace ATSProject.Interfaces
 {
@@ -8,6 +7,6 @@ namespace ATSProject.Interfaces
     {
         IPort FirstFreePort { get; }
         void IncomingCall(CallInfo info);
-        event EventHandler<Tuple<CallInfo, CallStatistic>> CallIsProcessed;
+        event EventHandler<Call> CallIsProcessed;
     }
 }

@@ -11,13 +11,23 @@ namespace ATSProject.Model.BillingSystem
         public PersonalAccount PersonalAccount { get; set; }
         public DateTime Date { get; set; }
 
-        public Contract(string number, string phoneNumber, TariffPlan tariffPlan, string accountNumber, string date)
+        public Contract(string number, string phoneNumber, TariffPlan tariffPlan, string personalAccount, string date)
         {
             Number = number;
             PhoneNumber = new PhoneNumber { Value = phoneNumber };
             TariffPlan = tariffPlan;
-            PersonalAccount = new PersonalAccount(accountNumber, TariffPlan);
             Date = DateTime.Parse(date);
+            PersonalAccount = new PersonalAccount(personalAccount, Date);
+        }
+
+        public bool ChangeTariffPlan(TariffPlan tariffPlan)
+        {
+            DateTime nowDateTime = DateTime.Now, resultDareTime = Date + new TimeSpan(31, 0, 0, 0);
+            if (resultDareTime >= nowDateTime)
+                return false;
+            TariffPlan = tariffPlan;
+            Date = nowDateTime;
+            return true;
         }
 
         public override string ToString()
