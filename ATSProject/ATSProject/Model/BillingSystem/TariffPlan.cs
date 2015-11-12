@@ -8,7 +8,7 @@ namespace ATSProject.Model.BillingSystem
         public double SubscriptionFee { get; set; }
         public double FreeMinutes { get; set; }
         public double MinutePrice { get; set; }
-        public double SpentMinutes { get; set; }
+        public double SpentMinutes { get; private set; }
 
         public TariffPlan(string name, double subscriptionFee, double freeMinutes, double minutePrice)
         {

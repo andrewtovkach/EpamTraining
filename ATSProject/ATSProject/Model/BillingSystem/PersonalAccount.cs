@@ -7,7 +7,7 @@ namespace ATSProject.Model.BillingSystem
     public class PersonalAccount : IEnumerable<Tuple<DateTime, double>>
     {
         public string Number { get; set; }
-        public double Debt { get; set; }
+        public double Debt { get; private set; }
         public DateTime MaturityDate { get; set; }
 
         private readonly ICollection<Tuple<DateTime, double>> _listPayments;
@@ -22,7 +22,12 @@ namespace ATSProject.Model.BillingSystem
 
         public bool IsPaid
         {
-            get { return Math.Abs(Debt) <= 0; }
+            get { return Debt <= 0; }
+        }
+
+        public void IncreaseDebt(double debt)
+        {
+            Debt += debt;
         }
 
         public void PayOnDelivery(double debt)

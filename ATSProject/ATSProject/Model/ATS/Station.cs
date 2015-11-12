@@ -53,7 +53,7 @@ namespace ATSProject.Model.ATS
             return Ports.FirstOrDefault(item => item.Number == portNumber);
         }
 
-        private IPort PortByTerminal(ITerminal terminal)
+        public IPort PortByTerminal(ITerminal terminal)
         {
             return _portsMapping.FirstOrDefault(item => item.Value == terminal).Key;
         }
@@ -63,7 +63,7 @@ namespace ATSProject.Model.ATS
             return Terminals.FirstOrDefault(item => item.Number == terminalNumber);
         }
 
-        private ITerminal TerminalByPhoneNumber(string phoneNumber)
+        public ITerminal TerminalByPhoneNumber(string phoneNumber)
         {
             return Terminals.FirstOrDefault(item => item.PhoneNumber.ToString() == phoneNumber);
         }
@@ -87,7 +87,6 @@ namespace ATSProject.Model.ATS
 
         public void IncomingCall(CallInfo info)
         {
-            OnCallIsProcessed(new Call { Info = info });
             if (info.Result == Result.Fail)
                 return;
             try
@@ -118,32 +117,37 @@ namespace ATSProject.Model.ATS
 
         private Call Calling(CallInfo info, ITerminal sourceTerminal, ITerminal targetTerminal)
         {
-            PortByTerminal(sourceTerminal).State = PortState.Busy;
-            PortByTerminal(targetTerminal).State = PortState.Busy;
+            ChangePortState(sourceTerminal, targetTerminal, PortState.Busy);
             info.Type = CallType.IncomingCall;
             ((Terminal)targetTerminal).OnIncomingRequest(info);
             TimeSpan duration = CallingImulation(info);
+            info.Result = Result.Success;
+            ChangePortState(sourceTerminal, targetTerminal, PortState.Free);
+            info.Type = CallType.OutgoingCall;
             Call call = new Call
             {
-                Info = info,
+                Info = info, 
                 Statistic = new CallStatistic { Duration = duration }
             };
-            Thread.Sleep(duration.Minutes * 100);
-            info.Result = Result.Success;
-            PortByTerminal(sourceTerminal).State = PortState.Free;
-            PortByTerminal(targetTerminal).State = PortState.Free;
             return call;
+        }
+
+        private void ChangePortState(ITerminal sourceTerminal, ITerminal targetTerminal, PortState state)
+        {
+            PortByTerminal(sourceTerminal).State = state;
+            PortByTerminal(targetTerminal).State = state;
         }
 
         public TimeSpan CallingImulation(CallInfo info)
         {
             int minutes = new Random().Next(60), seconds = new Random().Next(60);
+            Thread.Sleep(minutes * 100);
             return new TimeSpan(0, minutes, seconds);
         }
 
         public event EventHandler<Call> CallIsProcessed;
 
-        public void OnCallIsProcessed(Call call)
+        protected virtual void OnCallIsProcessed(Call call)
         {
             if (CallIsProcessed != null)
                 CallIsProcessed(this, call);

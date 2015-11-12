@@ -1,14 +1,15 @@
 ﻿using System;
+using ATSProject.Interfaces;
 using ATSProject.Model.ATS;
 
 namespace ATSProject.Model.BillingSystem
 {
-    public class Contract
+    public class Contract : IContract
     {
         public string Number { get; set; }
         public PhoneNumber PhoneNumber { get; set; }
-        public TariffPlan TariffPlan { get; set; }
-        public PersonalAccount PersonalAccount { get; set; }
+        public TariffPlan TariffPlan { get; private set; }
+        public PersonalAccount PersonalAccount { get; private set; }
         public DateTime Date { get; set; }
 
         public Contract(string number, string phoneNumber, TariffPlan tariffPlan, string personalAccount, string date)
@@ -18,6 +19,36 @@ namespace ATSProject.Model.BillingSystem
             TariffPlan = tariffPlan;
             Date = DateTime.Parse(date);
             PersonalAccount = new PersonalAccount(personalAccount, Date);
+        }
+
+        public bool IsPaid
+        {
+            get { return PersonalAccount.IsPaid; }
+        }
+
+        public void IncreaseDebt(double debt)
+        {
+            PersonalAccount.IncreaseDebt(debt);
+        }
+
+        public void PayOnDelivery(double debt)
+        {
+            PersonalAccount.PayOnDelivery(debt);
+        }
+
+        public double RestOfFreeMinutes
+        {
+            get { return TariffPlan.RestOfFreeMinutes; }
+        }
+
+        public double OverrunFreeMinutes
+        {
+            get { return TariffPlan.OverrunFreeMinutes; }
+        }
+
+        public double CalculateCost(TimeSpan duration)
+        {
+            return TariffPlan.CalculateCost(duration);
         }
 
         public bool ChangeTariffPlan(TariffPlan tariffPlan)

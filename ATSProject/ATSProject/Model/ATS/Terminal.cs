@@ -35,7 +35,7 @@ namespace ATSProject.Model.ATS
 
         public event EventHandler<TerminalState> StateChanged;
 
-        private void OnStateChanged(TerminalState state)
+        protected virtual void OnStateChanged(TerminalState state)
         {
             if (StateChanged != null)
                 StateChanged(this, state);
@@ -61,7 +61,7 @@ namespace ATSProject.Model.ATS
 
         public event EventHandler<CallInfo> OutgoingRequest;
 
-        private void OnOutgoingRequest(CallInfo info)
+        protected virtual void OnOutgoingRequest(CallInfo info)
         {
             if (OutgoingRequest != null)
                 OutgoingRequest(this, info);

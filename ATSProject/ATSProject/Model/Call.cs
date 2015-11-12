@@ -7,7 +7,7 @@
 
         public override string ToString()
         {
-            return Info + " " + Statistic;
+            return string.Format("Statistics: {0} ({1}) {2} {3} BYR", Info.Source, Info.Type, Info.Date, Statistic);
         }
     }
 }

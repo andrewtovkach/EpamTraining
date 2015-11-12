@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 
 namespace ATSProject.Model.ATS
 {
-    public struct PhoneNumber : IEquatable<PhoneNumber>
+    public struct PhoneNumber : IEquatable<PhoneNumber>, IComparable<PhoneNumber>
     {
         private const string Pattern = @"^\+\d{3}\(\d{2,4}\)\d{1,3}-\d{2}-\d{2}$";
 
@@ -25,6 +25,11 @@ namespace ATSProject.Model.ATS
             return regex.IsMatch(number);
         }
 
+        public int CompareTo(PhoneNumber other)
+        {
+            return string.Compare(Value, other.Value, StringComparison.Ordinal);
+        }
+
         public override string ToString()
         {
             return Value;
@@ -37,7 +42,8 @@ namespace ATSProject.Model.ATS
 
         public override bool Equals(object obj)
         {
-            if (obj == null) return false;
+            if (obj == null) 
+                return false;
             return obj is PhoneNumber && Equals((PhoneNumber)obj);
         }
 

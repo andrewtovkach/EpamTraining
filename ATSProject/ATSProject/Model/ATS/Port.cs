@@ -28,7 +28,7 @@ namespace ATSProject.Model.ATS
 
         public event EventHandler<PortState> StateChanged;
 
-        protected void OnStateChanged(PortState state)
+        protected virtual void OnStateChanged(PortState state)
         {
             if (StateChanged != null) 
                 StateChanged(this, state);

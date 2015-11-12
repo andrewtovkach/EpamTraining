@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Enums\CallType.cs" />
     <Compile Include="Interfaces\IBillingSystem.cs" />
+    <Compile Include="Interfaces\IContract.cs" />
     <Compile Include="Interfaces\IMappingElement.cs" />
     <Compile Include="Interfaces\IStation.cs" />
     <Compile Include="Model\BillingSystem\BillingSystem.cs" />

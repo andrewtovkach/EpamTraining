@@ -18,7 +18,7 @@
   <Class Name="ATSProject.Model.ATS.Station">
     <Position X="10.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AQAgAAAIAIGAJBABDBAACAAAEIAAAABFQAAEAGAAAAA=</HashCode>
+      <HashCode>AQAgAAAIAIGAJBABDBAACAACEIAAAABFQAAEAGAAAAA=</HashCode>
       <FileName>Model\ATS\Station.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -34,7 +34,7 @@
   <Class Name="ATSProject.Model.BillingSystem.BillingSystem">
     <Position X="15.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAABIAAEAABAACCAAAABIAAAAgAAEAAABAGAAAAA=</HashCode>
+      <HashCode>AAAAQIBICAEAABEBCCAAEABIAAAAgAAEAAApAEAAAAA=</HashCode>
       <FileName>Model\BillingSystem\BillingSystem.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -42,17 +42,17 @@
   <Class Name="ATSProject.Model.BillingSystem.Contract">
     <Position X="17.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAEAAAAAEEAEAAQAAAAAAAAAABAAAAAAAAgAA=</HashCode>
+      <HashCode>AAAACCAAEACAAAEEAEAAQAIAAAAAAQABAAAgAAAAgAA=</HashCode>
       <FileName>Model\BillingSystem\Contract.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="ATSProject.Model.BillingSystem.TariffPlan">
-    <Position X="17.5" Y="3.5" Width="1.5" />
+    <Position X="17.5" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAIACAAAAKIABAEAAABAAQAACQAAAAGAAiAAAAAAAA=</HashCode>
+      <HashCode>AAAACCAAAAKAAAAEAAABAAQAAAQAAAACAACAAAAAAAA=</HashCode>
       <FileName>Model\BillingSystem\TariffPlan.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" />
   </Class>
   <Class Name="ATSProject.Model.Call">
     <Position X="12.25" Y="4" Width="1.5" />
@@ -64,7 +64,7 @@
   <Class Name="ATSProject.Model.BillingSystem.PersonalAccount">
     <Position X="19.25" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAABAEAEAAAAIAAQAAgQAEAAgAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAABAEAEAAAAIAAQAAgQAEAAggAAAAAAA=</HashCode>
       <FileName>Model\BillingSystem\PersonalAccount.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -72,7 +72,7 @@
   <Struct Name="ATSProject.Model.ATS.PhoneNumber">
     <Position X="12.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ABAAIAAAAAAAAAAEgAAAAAAQAAAAAIAAAAAgAAAAAiA=</HashCode>
+      <HashCode>ABAAIAAAAAAAAAQEgAAAAAAQAAAAAIAAAAAgAAAAAiA=</HashCode>
       <FileName>Model\ATS\PhoneNumber.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -101,7 +101,7 @@
   <Interface Name="ATSProject.Interfaces.IStateElement&lt;T&gt;">
     <Position X="1.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAACA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAABAAAACA=</HashCode>
       <FileName>Interfaces\IStateElement.cs</FileName>
     </TypeIdentifier>
   </Interface>
@@ -122,7 +122,7 @@
   <Interface Name="ATSProject.Interfaces.IBillingSystem">
     <Position X="4.75" Y="5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAQIAAAAAAAAAAAAAAAAAIAAAAAAAAAAAgAAAAAAA=</HashCode>
       <FileName>Interfaces\IBillingSystem.cs</FileName>
     </TypeIdentifier>
   </Interface>
@@ -131,6 +131,13 @@
     <TypeIdentifier>
       <HashCode>AAAAAAAIAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Interfaces\IMappingElement.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ATSProject.Interfaces.IContract">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACCAAAACAAAEAAEAAQAIAAAAAAQAAAAAgAAAAAAA=</HashCode>
+      <FileName>Interfaces\IContract.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Font Name="Segoe UI" Size="9" />
