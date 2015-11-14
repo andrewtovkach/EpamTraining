@@ -2,29 +2,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using ATSProject.Enums;
 using ATSProject.Interfaces;
 
 namespace ATSProject.Model.ATS
 {
-    public class Station : IStation, IEnumerable<CallInfo>
+    public abstract class Station : IStation, IEnumerable<Call>
     {
         public IList<ITerminal> Terminals { get; private set; }
         public IList<IPort> Ports { get; private set; }
-        private readonly IList<CallInfo> _calls;
+        private readonly IList<Call> _calls;
         private readonly IDictionary<IPort, ITerminal> _portsMapping;
 
-        public Station(IList<IPort> ports, IList<ITerminal> terminals)
+        protected Station(IList<IPort> ports, IList<ITerminal> terminals)
         {
             _portsMapping = new Dictionary<IPort, ITerminal>();
-            _calls = new List<CallInfo>();
+            _calls = new List<Call>();
             Terminals = terminals;
             Ports = ports;
             MappingInit();
         }
 
-        public CallInfo this[int index]
+        public Call this[int index]
         {
             get { return _calls[index]; }
         }
@@ -40,7 +39,29 @@ namespace ATSProject.Model.ATS
             {
                 AddMapping(item);
                 SubscriptionToTerminalEvents(item);
+                SubscriptionToEvents(item);
             }
+        }
+
+        private void SubscriptionToEvents(ITerminal item)
+        {
+            item.InsertedIntoPort += (sender, args) =>
+            {
+                IPort port = PortByTerminal(sender as Terminal);
+                port.State = PortState.Free;
+            };
+            item.RemovedFromPort += (sender, args) =>
+            {
+                IPort port = PortByTerminal(sender as Terminal);
+                port.State = PortState.NotConnected;
+            };
+            item.OutgoingRequest += (sender, info) =>
+            {
+                Call call = new Call(info, new CallStatistic());
+                _calls.Add(call);
+                OnCallIsProcessed(call);
+                IncomingCall(info);
+            };
         }
 
         public IPort FirstFreePort
@@ -63,9 +84,9 @@ namespace ATSProject.Model.ATS
             return Terminals.FirstOrDefault(item => item.Number == terminalNumber);
         }
 
-        public ITerminal TerminalByPhoneNumber(string phoneNumber)
+        public ITerminal TerminalByPhoneNumber(PhoneNumber phoneNumber)
         {
-            return Terminals.FirstOrDefault(item => item.PhoneNumber.ToString() == phoneNumber);
+            return Terminals.FirstOrDefault(item => item.PhoneNumber == phoneNumber);
         }
 
         public void AddMapping(ITerminal element)
@@ -81,6 +102,7 @@ namespace ATSProject.Model.ATS
             var port = PortByNumber(elementNumber);
             if (!_portsMapping.ContainsKey(port))
                 return false;
+            port.ClearEvents();
             _portsMapping[port] = null;
             return true;
         }
@@ -91,14 +113,13 @@ namespace ATSProject.Model.ATS
                 return;
             try
             {
-                ITerminal sourceTerminal = TerminalByPhoneNumber(info.Source.ToString()),
-                targetTerminal = TerminalByPhoneNumber(info.Target.ToString());
-                if (CheckConnection(info.Source) && CheckConnection(info.Target))
-                {
-                    Call call = Calling(info, sourceTerminal, targetTerminal);
-                    OnCallIsProcessed(call);
-                }
-                else info.Result = Result.Fail;
+                ITerminal sourceTerminal = TerminalByPhoneNumber(info.Source),
+                targetTerminal = TerminalByPhoneNumber(info.Target);
+                if (!CheckConnection(info.Source) || !CheckConnection(info.Target))
+                    return;
+                Call call = Calling(info, sourceTerminal, targetTerminal);
+                _calls.Add(call);
+                OnCallIsProcessed(call);
             }
             catch
             {
@@ -110,25 +131,20 @@ namespace ATSProject.Model.ATS
 
         private bool CheckConnection(PhoneNumber number)
         {
-            ITerminal terminal = TerminalByPhoneNumber(number.ToString());
+            ITerminal terminal = TerminalByPhoneNumber(number);
             IPort port = PortByTerminal(terminal);
             return terminal.IsOnline && port.State == PortState.Free;
         }
 
-        private Call Calling(CallInfo info, ITerminal sourceTerminal, ITerminal targetTerminal)
+        public Call Calling(CallInfo info, ITerminal sourceTerminal, ITerminal targetTerminal)
         {
             ChangePortState(sourceTerminal, targetTerminal, PortState.Busy);
             info.Type = CallType.IncomingCall;
-            ((Terminal)targetTerminal).OnIncomingRequest(info);
-            TimeSpan duration = CallingImulation(info);
-            info.Result = Result.Success;
+            var terminal = targetTerminal as Terminal;
+            if (terminal != null) 
+                terminal.OnIncomingRequest(info);
+            Call call = CallingImulation(info);
             ChangePortState(sourceTerminal, targetTerminal, PortState.Free);
-            info.Type = CallType.OutgoingCall;
-            Call call = new Call
-            {
-                Info = info, 
-                Statistic = new CallStatistic { Duration = duration }
-            };
             return call;
         }
 
@@ -138,12 +154,7 @@ namespace ATSProject.Model.ATS
             PortByTerminal(targetTerminal).State = state;
         }
 
-        public TimeSpan CallingImulation(CallInfo info)
-        {
-            int minutes = new Random().Next(60), seconds = new Random().Next(60);
-            Thread.Sleep(minutes * 100);
-            return new TimeSpan(0, minutes, seconds);
-        }
+        public abstract Call CallingImulation(CallInfo info);
 
         public event EventHandler<Call> CallIsProcessed;
 
@@ -153,43 +164,16 @@ namespace ATSProject.Model.ATS
                 CallIsProcessed(this, call);
         }
 
-        private void SubscriptionToTerminalEvents(ITerminal terminal)
-        {
-            terminal.OutgoingRequest += (sender, info) =>
-            {
-                _calls.Add(info);
-                Console.WriteLine(info.ToString());
-                IncomingCall(info);
-            };
-            terminal.IncomingRequest += (sender, info) =>
-            {
-                _calls.Add(info);
-                Console.WriteLine(info.ToString());
-            };
-            terminal.InsertedIntoPort += (sender, args) =>
-            {
-                IPort port = PortByTerminal(sender as Terminal);
-                port.State = PortState.Free;
-            };
-            terminal.RemovedFromPort += (sender, args) =>
-            {
-                IPort port = PortByTerminal(sender as Terminal);
-                port.State = PortState.NotConnected;
-            };
-            terminal.StateChanged += (sender, state) => { Console.WriteLine(sender.ToString()); };
-        }
+        public abstract void SubscriptionToTerminalEvents(ITerminal terminal);
 
-        private void SubscriptionToPortEvents(IPort port)
-        {
-            port.StateChanged += (sender, state) => { Console.WriteLine(sender.ToString()); };
-        }
+        public abstract void SubscriptionToPortEvents(IPort port);
 
         public void ClearEvents()
         {
             CallIsProcessed = null;
         }
 
-        public IEnumerator<CallInfo> GetEnumerator()
+        public IEnumerator<Call> GetEnumerator()
         {
             return _calls.GetEnumerator();
         }

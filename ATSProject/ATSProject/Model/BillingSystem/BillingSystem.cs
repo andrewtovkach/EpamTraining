@@ -7,7 +7,7 @@ using ATSProject.Model.ATS;
 
 namespace ATSProject.Model.BillingSystem
 {
-    public class BillingSystem : IBillingSystem, IEnumerable<Call>
+    public abstract class BillingSystem : IBillingSystem, IEnumerable<Call>
     {
         private readonly IStation _station;
 
@@ -16,14 +16,13 @@ namespace ATSProject.Model.BillingSystem
         private readonly IList<Call> _calls;
         private readonly IDictionary<ITerminal, Client> _terminalsMapping;
 
-        public BillingSystem(IList<IContract> contracts, IList<Client> clients, IStation station)
+        protected BillingSystem(IList<IContract> contracts, IList<Client> clients, IStation station)
         {
             _terminalsMapping = new Dictionary<ITerminal, Client>();
             _calls = new List<Call>();
             Contracts = contracts;
             Clients = clients;
             _station = station;
-            SubscriptionToStationEvents(_station);
             MappingInit();
         }
 
@@ -34,6 +33,8 @@ namespace ATSProject.Model.BillingSystem
 
         private void MappingInit()
         {
+            SubscriptionToEvents(_station);
+            SubscriptionToStationEvents(_station);
             foreach (var item in ((Station)_station).Terminals)
                 _terminalsMapping.Add(item, null);
             foreach (var item in Clients)
@@ -55,6 +56,11 @@ namespace ATSProject.Model.BillingSystem
             return _terminalsMapping.FirstOrDefault(item => item.Value == client).Key.PhoneNumber;
         }
 
+        private void SubscriptionToEvents(IStation station)
+        {
+            station.CallIsProcessed += (sender, call) => { CalculateCostOfCall(call); };
+        }
+
         public void AddMapping(Client element)
         {
             var freeTerminal = FirstFreeTerminal;
@@ -68,26 +74,18 @@ namespace ATSProject.Model.BillingSystem
             var terminal = ((Station)_station).TerminalByNumber(elementNumber);
             if (!_terminalsMapping.ContainsKey(terminal))
                 return false;
+             terminal.ClearEvents();
             _terminalsMapping[terminal] = null;
             return true;
         }
 
-        private void SubscriptionToStationEvents(IStation station)
-        {
-            station.CallIsProcessed += (sender, call) =>
-            {
-                CalculateCostOfCall(call);
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine(call.ToString());
-                Console.ForegroundColor = ConsoleColor.Gray;
-            };
-        }
+        public abstract void SubscriptionToStationEvents(IStation station);
 
         public IEnumerable<Call> GetCallsByClient(Client cl)
         {
-            DateTime nowDateTime1 = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1),
-               nowDateTime2 = nowDateTime1.AddMonths(1);
-            return GetCalls(item => item.Info.Date >= nowDateTime1 && item.Info.Date < nowDateTime2
+            DateTime fromDateTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1),
+               toDateTime = fromDateTime.AddMonths(1);
+            return GetCalls(item => item.Info.Date >= fromDateTime && item.Info.Date < toDateTime
                 && item.Info.Source == PhoneNumberByClient(cl));
         }
 
@@ -129,8 +127,8 @@ namespace ATSProject.Model.BillingSystem
 
         public IEnumerable<Call> GetSortedCallsByPhoneNumber(bool descending = false)
         {
-            return descending ? _calls.OrderBy(item => item.Info.Source)
-                : _calls.OrderByDescending(item => item.Info.Source);
+            return descending ? _calls.OrderBy(item => item.Info.Source).ThenBy(item => item.Info.Target)
+                : _calls.OrderByDescending(item => item.Info.Source).ThenByDescending(item => item.Info.Target);
         }
 
         public IEnumerable<Call> GetSortedCallsByPhoneNumber(Func<Call, bool> predicate, bool descending = false)

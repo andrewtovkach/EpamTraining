@@ -19,8 +19,7 @@ namespace ATSProject.Model.BillingSystem
 
         public override string ToString()
         {
-            return string.Format("Client {0} {1} - {2} Address: {3}", FirstName, LastName, 
-                BirthDay.ToShortDateString(), Address);
+            return string.Format("Client {0} {1} - {2} Address: {3}", FirstName, LastName, BirthDay.ToShortDateString(), Address);
         }
     }
 }

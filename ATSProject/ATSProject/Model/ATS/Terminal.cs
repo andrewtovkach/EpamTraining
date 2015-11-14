@@ -89,6 +89,22 @@ namespace ATSProject.Model.ATS
             OnOutgoingRequest(callInfo);
         }
 
+        public event EventHandler AnsweredTheCall;
+
+        public void AnswerTheCall(CallInfo info)
+        {
+            if (AnsweredTheCall != null)
+                AnsweredTheCall(this, EventArgs.Empty);
+        }
+
+        public event EventHandler DroppedTheCall;
+
+        public void DropTheCall(CallInfo info)
+        {
+            if (DroppedTheCall != null) 
+                DroppedTheCall(this, EventArgs.Empty);
+        }
+
         public void ClearEvents()
         {
             StateChanged = null;
@@ -96,6 +112,8 @@ namespace ATSProject.Model.ATS
             IncomingRequest = null;
             InsertedIntoPort = null;
             RemovedFromPort = null;
+            AnsweredTheCall = null;
+            DroppedTheCall = null;
         }
 
         public override string ToString()

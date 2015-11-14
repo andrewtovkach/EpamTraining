@@ -10,6 +10,8 @@ namespace ATSProject.Interfaces
         ITerminal FirstFreeTerminal { get; }
         IEnumerable<Call> GetCalls();
         IEnumerable<Call> GetCalls(Func<Call, bool> predicate);
+        IEnumerable<Call> GetCallsByClient(Client cl);
+        IEnumerable<Call> GetCallsByClient(Client cl, Tuple<DateTime, DateTime> tuple);
         IEnumerable<Call> GetSortedCallsByCost(bool descending);
         IEnumerable<Call> GetSortedCallsByCost(Func<Call, bool> predicate, bool descending);
         IEnumerable<Call> GetSortedCallsByPhoneNumber(bool descending);

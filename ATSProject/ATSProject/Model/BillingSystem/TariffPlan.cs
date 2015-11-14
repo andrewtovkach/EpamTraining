@@ -44,7 +44,7 @@ namespace ATSProject.Model.BillingSystem
 
         public double CalculateCost(TimeSpan duration)
         {
-            double cost = 0.0;
+            double cost = .0;
             double minutes = GetMinutes(duration);
             if (RestOfFreeMinutes < minutes)
                 cost = (minutes - RestOfFreeMinutes) * MinutePrice;

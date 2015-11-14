@@ -46,8 +46,10 @@
     <Compile Include="Interfaces\IContract.cs" />
     <Compile Include="Interfaces\IMappingElement.cs" />
     <Compile Include="Interfaces\IStation.cs" />
+    <Compile Include="TestClasses\TestStation.cs" />
     <Compile Include="Model\BillingSystem\BillingSystem.cs" />
     <Compile Include="Model\BillingSystem\PersonalAccount.cs" />
+    <Compile Include="TestClasses\TestBillingSystem.cs" />
     <Compile Include="Model\Call.cs" />
     <Compile Include="Model\CallStatistic.cs" />
     <Compile Include="Model\BillingSystem\Client.cs" />

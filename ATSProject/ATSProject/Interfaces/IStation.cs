@@ -8,5 +8,6 @@ namespace ATSProject.Interfaces
         IPort FirstFreePort { get; }
         void IncomingCall(CallInfo info);
         event EventHandler<Call> CallIsProcessed;
+        Call Calling(CallInfo info, ITerminal sourceTerminal, ITerminal targetTerminal);
     }
 }

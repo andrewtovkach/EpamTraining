@@ -13,9 +13,13 @@ namespace ATSProject.Interfaces
         event EventHandler<CallInfo> IncomingRequest;
         event EventHandler InsertedIntoPort;
         event EventHandler RemovedFromPort;
+        event EventHandler AnsweredTheCall;
+        event EventHandler DroppedTheCall;
         void OutgoingCall(string phoneNumber);
         bool IsOnline { get; }
         void InsertIntoPort();
         void RemoveFromPort();
+        void AnswerTheCall(CallInfo info);
+        void DropTheCall(CallInfo info);
     }
 }

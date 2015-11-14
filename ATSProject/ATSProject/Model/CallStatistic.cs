@@ -9,7 +9,7 @@ namespace ATSProject.Model
 
         public override string ToString()
         {
-            return string.Format("Duration: {0} Cost: {1}", Duration, Cost);
+            return string.Format("Duration: {0} Cost: {1}BYR", Duration, Cost);
         }
     }
 }

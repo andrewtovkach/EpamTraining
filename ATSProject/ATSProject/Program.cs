@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using ATSProject.Interfaces;
 using ATSProject.Model.ATS;
 using ATSProject.Model.BillingSystem;
+using ATSProject.TestClasses;
 
 namespace ATSProject
 {
@@ -19,14 +20,6 @@ namespace ATSProject
 
         private static void WorkWithBillingSystem(BillingSystem billingSystem)
         {
-            Console.WriteLine(billingSystem.Contracts[0].IsPaid ? "No debt" : "Debt");
-            Console.WriteLine(billingSystem.Contracts[0].ToString());
-            billingSystem.Contracts[1].PayOnDelivery(20000);
-            Console.WriteLine(billingSystem.Contracts[1].IsPaid ? "No debt" : "Debt");
-            Console.WriteLine(billingSystem.Contracts[1].ToString());
-            Console.WriteLine(new string('-', 50));
-            foreach (var item in billingSystem.GetCalls())
-                Console.WriteLine(item.ToString());
             Console.WriteLine(new string('-', 50));
             foreach (var item in billingSystem.GetSortedCallsByPhoneNumber(item => item.Statistic.Cost > 0))
                 Console.WriteLine(item);
@@ -65,7 +58,7 @@ namespace ATSProject
 
         private static BillingSystem CreateBillingSystem(Station station)
         {
-            BillingSystem billingSystem = new BillingSystem(new List<IContract>
+            BillingSystem billingSystem = new TestBillingSystem(new List<IContract>
             {
                 new Contract("1001", "+375(17)275-75-25", new TariffPlan("Active", 30000, 50, 150), "15", "2015-10-1"),
                 new Contract("1002", "+375(152)24-15-10", new TariffPlan("Middle", 20000, 20, 250), "16", "2015-11-20"),
@@ -82,7 +75,7 @@ namespace ATSProject
 
         private static Station CreateStation()
         {
-            Station station = new Station(new List<IPort>
+            Station station = new TestStation(new List<IPort>
             {
                 new Port("7898"),
                 new Port("7466"),

@@ -18,7 +18,7 @@
   <Class Name="ATSProject.Model.ATS.Station">
     <Position X="10.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AQAgAAAIAIGAJBABDBAACAACEIAAAABFQAAEAGAAAAA=</HashCode>
+      <HashCode>AQAgAAAIAIGQJBABDBAACAACEIAAAABFQAAEAGAAAAA=</HashCode>
       <FileName>Model\ATS\Station.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -26,7 +26,7 @@
   <Class Name="ATSProject.Model.ATS.Terminal" BaseTypeListCollapsed="true">
     <Position X="8.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAABCAABAQAAAAUkEAAWAAAAACAAAAEAAAABAIAACA=</HashCode>
+      <HashCode>AEAABCAABAQAAAAUkEAAWAABAACACBAEAAAABAIAACA=</HashCode>
       <FileName>Model\ATS\Terminal.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
@@ -34,7 +34,7 @@
   <Class Name="ATSProject.Model.BillingSystem.BillingSystem">
     <Position X="15.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAQIBICAEAABEBCCAAEABIAAAAgAAEAAApAEAAAAA=</HashCode>
+      <HashCode>AAAAQIBICAEQABEBCCAAEABIAAAAgAAEAAApAEAAAAA=</HashCode>
       <FileName>Model\BillingSystem\BillingSystem.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -55,7 +55,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="ATSProject.Model.Call">
-    <Position X="12.25" Y="4" Width="1.5" />
+    <Position X="14" Y="5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAEAAAgAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
       <FileName>Model\Call.cs</FileName>
@@ -108,21 +108,21 @@
   <Interface Name="ATSProject.Interfaces.ITerminal">
     <Position X="2.5" Y="3" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAABCAAAAAAAAAQkEAAUAAAAACAAAAAAAAAAAIAAAA=</HashCode>
+      <HashCode>AEAABCAAAAAAAAAQkEAAUAABAACACBAAAAAAAAIAAAA=</HashCode>
       <FileName>Interfaces\ITerminal.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="ATSProject.Interfaces.IStation">
     <Position X="4.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AQAAAAAAAAAAIAAAAAAACAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AQAAAAAAAAAAIAAAAAAACAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
       <FileName>Interfaces\IStation.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="ATSProject.Interfaces.IBillingSystem">
     <Position X="4.75" Y="5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAQIAAAAAAAAAAAAAAAAAIAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <HashCode>AAAAQIAACAAAAAAAAAAAAAAIAAAAAAAAAAAgAAAAAAA=</HashCode>
       <FileName>Interfaces\IBillingSystem.cs</FileName>
     </TypeIdentifier>
   </Interface>
