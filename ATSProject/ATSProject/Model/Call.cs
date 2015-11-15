@@ -5,15 +5,9 @@
         public CallInfo Info;
         public CallStatistic Statistic;
 
-        public Call(CallInfo info, CallStatistic statistic)
-        {
-            Info = info;
-            Statistic = statistic;
-        }
-
         public override string ToString()
         {
-            return string.Format("Info: {0}\nStatistic: {1}", Info, Statistic);
+            return string.Format("{0} - {1} {2} ({3}) {4}", Info.Source, Info.Target, Info.Date, Info.Type, Statistic);
         }
     }
 }

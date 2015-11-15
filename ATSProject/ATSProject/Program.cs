@@ -11,6 +11,7 @@ namespace ATSProject
     {
         static void Main(string[] args)
         {
+            Console.SetWindowSize(120, 50);
             var station = CreateStation();
             var billingSystem = CreateBillingSystem(station);
             WorkWithStation(station, billingSystem);
@@ -21,20 +22,26 @@ namespace ATSProject
         private static void WorkWithBillingSystem(BillingSystem billingSystem)
         {
             Console.WriteLine(new string('-', 50));
-            foreach (var item in billingSystem.GetSortedCallsByPhoneNumber(item => item.Statistic.Cost > 0))
+            Console.WriteLine("Calls with cost > 5000BYR: ");
+            foreach (var item in billingSystem.GetCalls(item => item.Statistic.Cost > 5000))
                 Console.WriteLine(item);
             Console.WriteLine(new string('-', 50));
+            Console.WriteLine("Calls grouped by number: ");
+            foreach (var group in billingSystem.GetCallsGroupedByNumber())
+            {
+                Console.WriteLine("-> " + group.Key + " <-");
+                foreach (var item in group)
+                    Console.WriteLine(item);
+            }
+            Console.WriteLine(new string('-', 50));
+            Console.WriteLine("Sorted calls by cost: ");
             foreach (var item in billingSystem.GetSortedCallsByCost())
                 Console.WriteLine(item);
             Console.WriteLine(new string('-', 50));
-            var calls = billingSystem.GetCallsByClient(billingSystem.Clients[0]);
-            foreach (var item in calls)
+            Console.WriteLine("Calls by first client");
+            foreach (var item in billingSystem.GetCallsByClient(billingSystem.Clients[0]))
                 Console.WriteLine(item);
             Console.WriteLine(new string('-', 50));
-            calls = billingSystem.GetCallsByClient(billingSystem.Clients[0], new Tuple<DateTime, DateTime>(new DateTime(2015, 5, 10),
-                new DateTime(2015, 11, 10)));
-            foreach (var item in calls)
-                Console.WriteLine(item);
         }
 
         private static void WorkWithStation(Station station, BillingSystem billingSystem)

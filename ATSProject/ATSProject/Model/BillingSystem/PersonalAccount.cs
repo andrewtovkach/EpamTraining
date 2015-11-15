@@ -8,7 +8,7 @@ namespace ATSProject.Model.BillingSystem
     {
         public string Number { get; set; }
         public double Debt { get; private set; }
-        public DateTime MaturityDate { get; set; }
+        public DateTime MaturityDate { get; private set; }
 
         private readonly ICollection<Tuple<DateTime, double>> _listPayments;
 
@@ -40,7 +40,7 @@ namespace ATSProject.Model.BillingSystem
 
         public override string ToString()
         {
-            return string.Format("№{0} {1} {2}", Number, Debt, MaturityDate.ToShortDateString());
+            return string.Format("Personal Account №{0} {1} {2}", Number, Debt, MaturityDate.ToShortDateString());
         }
 
         public IEnumerator<Tuple<DateTime, double>> GetEnumerator()

@@ -10,15 +10,15 @@ namespace ATSProject.Model.BillingSystem
         public PhoneNumber PhoneNumber { get; set; }
         public TariffPlan TariffPlan { get; private set; }
         public PersonalAccount PersonalAccount { get; private set; }
-        public DateTime Date { get; set; }
+        public DateTime DateOfConclusion { get; set; }
 
-        public Contract(string number, string phoneNumber, TariffPlan tariffPlan, string personalAccount, string date)
+        public Contract(string number, string phoneNumber, TariffPlan tariffPlan, string personalAccount, string dateOfConclusion)
         {
             Number = number;
             PhoneNumber = new PhoneNumber { Value = phoneNumber };
             TariffPlan = tariffPlan;
-            Date = DateTime.Parse(date);
-            PersonalAccount = new PersonalAccount(personalAccount, Date);
+            DateOfConclusion = DateTime.Parse(dateOfConclusion);
+            PersonalAccount = new PersonalAccount(personalAccount, DateOfConclusion + new TimeSpan(31, 0, 0));
         }
 
         public bool IsPaid
@@ -53,17 +53,17 @@ namespace ATSProject.Model.BillingSystem
 
         public bool ChangeTariffPlan(TariffPlan tariffPlan)
         {
-            DateTime nowDateTime = DateTime.Now, resultDareTime = Date + new TimeSpan(31, 0, 0, 0);
+            DateTime nowDateTime = DateTime.Now, resultDareTime = DateOfConclusion + new TimeSpan(31, 0, 0, 0);
             if (resultDareTime >= nowDateTime)
                 return false;
             TariffPlan = tariffPlan;
-            Date = nowDateTime;
+            DateOfConclusion = nowDateTime;
             return true;
         }
 
         public override string ToString()
         {
-            return string.Format("Contract №{0} {1} - {2} ({3})", Number, PhoneNumber, TariffPlan, Date);
+            return string.Format("Contract №{0} {1} - {2} ({3})", Number, PhoneNumber, TariffPlan, DateOfConclusion);
         }
     }
 }

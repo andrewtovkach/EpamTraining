@@ -14,7 +14,8 @@ namespace ATSProject.Model.ATS
             get { return _state; }
             set
             {
-                if (_state == value) return;
+                if (_state == value) 
+                    return;
                 _state = value;
                 OnStateChanged(value);
             }
@@ -41,7 +42,7 @@ namespace ATSProject.Model.ATS
 
         public override string ToString()
         {
-            return string.Format("Port №{0}  - {1}", Number, State);
+            return string.Format("Port №{0}", Number);
         }
     }
 }

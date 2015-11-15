@@ -25,7 +25,7 @@ namespace ATSProject.TestClasses
                 targetTerminal.AnswerTheCall(info);
                 info.Result = Result.Success;
                 int minutes = new Random().Next(60), seconds = new Random().Next(60);
-                Thread.Sleep(minutes*100);
+                OutputImulation(minutes);
                 duration = new TimeSpan(0, minutes, seconds);
             }
             else
@@ -33,7 +33,23 @@ namespace ATSProject.TestClasses
                 targetTerminal.DropTheCall(info);
                 info.Result = Result.Fail;
             }
-            return new Call(info, new CallStatistic { Duration = duration });
+            return new Call
+            {
+                Info = info, 
+                Statistic = new CallStatistic { Duration = duration }
+            };
+        }
+
+        private static void OutputImulation(int minutes)
+        {
+            Console.ForegroundColor = ConsoleColor.Blue;
+            for (int i = 1; i <= minutes; i++)
+            {
+                Console.Write("*");
+                Thread.Sleep(100);
+            }
+            Console.ForegroundColor = ConsoleColor.Gray;
+            Console.WriteLine();
         }
 
         public override void SubscriptionToTerminalEvents(ITerminal terminal)
@@ -50,28 +66,24 @@ namespace ATSProject.TestClasses
                 Console.WriteLine(info.ToString());
                 Console.ForegroundColor = ConsoleColor.Gray;
             };
-            terminal.StateChanged += (sender, state) => { Console.WriteLine(sender.ToString()); };
-            terminal.AnsweredTheCall += (sender, result) =>
+            terminal.StateChanged += (sender, state) => { Console.WriteLine(sender.ToString() + " - " + state); };
+            terminal.AnsweredTheCall += (sender, args) =>
             {
                 Console.ForegroundColor = ConsoleColor.Blue;
-                var term = sender as Terminal;
-                if (term != null)
-                    Console.WriteLine(term.PhoneNumber.ToString() + " answer the call");
+                Console.WriteLine(sender.ToString() + " answered the call");
                 Console.ForegroundColor = ConsoleColor.Gray;
             };
-            terminal.DroppedTheCall += (sender, result) =>
+            terminal.DroppedTheCall += (sender, args) =>
             {
                 Console.ForegroundColor = ConsoleColor.Blue;
-                var term = sender as Terminal;
-                if (term != null)
-                    Console.WriteLine(term.PhoneNumber.ToString() + " drop the call");
+                    Console.WriteLine(sender.ToString() + " dropped the call");
                 Console.ForegroundColor = ConsoleColor.Gray;
             };
         }
 
         public override void SubscriptionToPortEvents(IPort port)
         {
-            port.StateChanged += (sender, state) => { Console.WriteLine(sender.ToString()); };
+            port.StateChanged += (sender, state) => { Console.WriteLine(sender.ToString() + " - " + state); };
         }
     }
 }

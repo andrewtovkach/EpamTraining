@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Call.cs" />
     <Compile Include="Enums\CallType.cs" />
     <Compile Include="Interfaces\IBillingSystem.cs" />
     <Compile Include="Interfaces\IContract.cs" />
@@ -50,7 +51,6 @@
     <Compile Include="Model\BillingSystem\BillingSystem.cs" />
     <Compile Include="Model\BillingSystem\PersonalAccount.cs" />
     <Compile Include="TestClasses\TestBillingSystem.cs" />
-    <Compile Include="Model\Call.cs" />
     <Compile Include="Model\CallStatistic.cs" />
     <Compile Include="Model\BillingSystem\Client.cs" />
     <Compile Include="Model\CallInfo.cs" />

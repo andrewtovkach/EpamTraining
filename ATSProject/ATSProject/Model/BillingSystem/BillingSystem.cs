@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using ATSProject.Enums;
 using ATSProject.Interfaces;
 using ATSProject.Model.ATS;
 
@@ -46,19 +47,23 @@ namespace ATSProject.Model.BillingSystem
             get { return _terminalsMapping.FirstOrDefault(item => item.Value == null).Key; }
         }
 
-        public IContract ContactByPhoneNumber(PhoneNumber phoneNumber)
+        protected IContract ContactByPhoneNumber(PhoneNumber phoneNumber)
         {
             return Contracts.FirstOrDefault(item => item.PhoneNumber == phoneNumber);
         }
 
-        public PhoneNumber PhoneNumberByClient(Client client)
+        protected PhoneNumber PhoneNumberByClient(Client client)
         {
             return _terminalsMapping.FirstOrDefault(item => item.Value == client).Key.PhoneNumber;
         }
 
         private void SubscriptionToEvents(IStation station)
         {
-            station.CallIsProcessed += (sender, call) => { CalculateCostOfCall(call); };
+            station.CallIsProcessed += (sender, call) =>
+            {
+                CalculateCostOfCall(call);
+                _calls.Add(call);
+            };
         }
 
         public void AddMapping(Client element)
@@ -71,15 +76,46 @@ namespace ATSProject.Model.BillingSystem
 
         public bool RemoveMapping(string elementNumber)
         {
-            var terminal = ((Station)_station).TerminalByNumber(elementNumber);
+            var terminal = _station.TerminalByNumber(elementNumber);
             if (!_terminalsMapping.ContainsKey(terminal))
                 return false;
-             terminal.ClearEvents();
+            terminal.ClearEvents();
             _terminalsMapping[terminal] = null;
             return true;
         }
 
         public abstract void SubscriptionToStationEvents(IStation station);
+
+        private void CalculateCostOfCall(Call call)
+        {
+            if (call.Info.Type == CallType.IncomingCall)
+                return;
+            IContract sourceContract = ContactByPhoneNumber(call.Info.Source);
+            double cost = sourceContract.CalculateCost(call.Statistic.Duration);
+            call.Statistic.Cost = cost;
+            sourceContract.IncreaseDebt(cost);
+        }
+
+        public IEnumerable<Call> GetCalls()
+        {
+            return _calls;
+        }
+
+        public IEnumerable<Call> GetCalls(Func<Call, bool> predicate)
+        {
+            return _calls.Where(predicate);
+        }
+
+        public IEnumerable<IGrouping<PhoneNumber, Call>> GetCallsGroupedByNumber()
+        {
+            return from call in _calls
+                   group call by call.Info.Source;
+        }
+
+        public IEnumerable<IGrouping<PhoneNumber, Call>> GetCallsGroupedByNumber(Func<Call, bool> predicate)
+        {
+            return _calls.Where(predicate).GroupBy(item => item.Info.Source);
+        }
 
         public IEnumerable<Call> GetCallsByClient(Client cl)
         {
@@ -95,45 +131,16 @@ namespace ATSProject.Model.BillingSystem
                 && item.Info.Source == PhoneNumberByClient(cl));
         }
 
-        private void CalculateCostOfCall(Call call)
-        {
-            IContract sourceContract = ContactByPhoneNumber(call.Info.Source);
-            double cost = sourceContract.CalculateCost(call.Statistic.Duration);
-            call.Statistic.Cost = cost;
-            _calls.Add(call);
-            sourceContract.IncreaseDebt(cost);
-        }
-
-        public IEnumerable<Call> GetCalls()
-        {
-            return _calls;
-        }
-
-        public IEnumerable<Call> GetCalls(Func<Call, bool> predicate)
-        {
-            return _calls.Where(predicate);
-        }
-
         public IEnumerable<Call> GetSortedCallsByCost(bool descending = false)
         {
             return descending ? _calls.OrderBy(item => item.Statistic.Cost)
                 : _calls.OrderByDescending(item => item.Statistic.Cost);
         }
 
-        public IEnumerable<Call> GetSortedCallsByCost(Func<Call, bool> predicate, bool descending = false)
-        {
-            return GetSortedCallsByCost(descending).Where(predicate);
-        }
-
         public IEnumerable<Call> GetSortedCallsByPhoneNumber(bool descending = false)
         {
             return descending ? _calls.OrderBy(item => item.Info.Source).ThenBy(item => item.Info.Target)
                 : _calls.OrderByDescending(item => item.Info.Source).ThenByDescending(item => item.Info.Target);
-        }
-
-        public IEnumerable<Call> GetSortedCallsByPhoneNumber(Func<Call, bool> predicate, bool descending = false)
-        {
-            return GetSortedCallsByPhoneNumber(descending).Where(predicate);
         }
 
         public IEnumerator<Call> GetEnumerator()

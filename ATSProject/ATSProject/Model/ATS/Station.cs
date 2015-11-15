@@ -7,23 +7,23 @@ using ATSProject.Interfaces;
 
 namespace ATSProject.Model.ATS
 {
-    public abstract class Station : IStation, IEnumerable<Call>
+    public abstract class Station : IStation, IEnumerable<CallInfo>
     {
         public IList<ITerminal> Terminals { get; private set; }
         public IList<IPort> Ports { get; private set; }
-        private readonly IList<Call> _calls;
+        private readonly IList<CallInfo> _calls;
         private readonly IDictionary<IPort, ITerminal> _portsMapping;
 
         protected Station(IList<IPort> ports, IList<ITerminal> terminals)
         {
             _portsMapping = new Dictionary<IPort, ITerminal>();
-            _calls = new List<Call>();
+            _calls = new List<CallInfo>();
             Terminals = terminals;
             Ports = ports;
             MappingInit();
         }
 
-        public Call this[int index]
+        public CallInfo this[int index]
         {
             get { return _calls[index]; }
         }
@@ -55,13 +55,7 @@ namespace ATSProject.Model.ATS
                 IPort port = PortByTerminal(sender as Terminal);
                 port.State = PortState.NotConnected;
             };
-            item.OutgoingRequest += (sender, info) =>
-            {
-                Call call = new Call(info, new CallStatistic());
-                _calls.Add(call);
-                OnCallIsProcessed(call);
-                IncomingCall(info);
-            };
+            item.OutgoingRequest += (sender, info) => { IncomingCall(info); };
         }
 
         public IPort FirstFreePort
@@ -69,24 +63,24 @@ namespace ATSProject.Model.ATS
             get { return _portsMapping.FirstOrDefault(item => item.Value == null).Key; }
         }
 
-        public IPort PortByNumber(string portNumber)
+        protected IPort PortByNumber(string portNumber)
         {
             return Ports.FirstOrDefault(item => item.Number == portNumber);
         }
 
-        public IPort PortByTerminal(ITerminal terminal)
+        protected IPort PortByTerminal(ITerminal terminal)
         {
             return _portsMapping.FirstOrDefault(item => item.Value == terminal).Key;
+        }
+
+        protected ITerminal TerminalByPhoneNumber(PhoneNumber phoneNumber)
+        {
+            return Terminals.FirstOrDefault(item => item.PhoneNumber == phoneNumber);
         }
 
         public ITerminal TerminalByNumber(string terminalNumber)
         {
             return Terminals.FirstOrDefault(item => item.Number == terminalNumber);
-        }
-
-        public ITerminal TerminalByPhoneNumber(PhoneNumber phoneNumber)
-        {
-            return Terminals.FirstOrDefault(item => item.PhoneNumber == phoneNumber);
         }
 
         public void AddMapping(ITerminal element)
@@ -109,17 +103,25 @@ namespace ATSProject.Model.ATS
 
         public void IncomingCall(CallInfo info)
         {
-            if (info.Result == Result.Fail)
-                return;
             try
             {
                 ITerminal sourceTerminal = TerminalByPhoneNumber(info.Source),
-                targetTerminal = TerminalByPhoneNumber(info.Target);
-                if (!CheckConnection(info.Source) || !CheckConnection(info.Target))
-                    return;
-                Call call = Calling(info, sourceTerminal, targetTerminal);
-                _calls.Add(call);
-                OnCallIsProcessed(call);
+                    targetTerminal = TerminalByPhoneNumber(info.Target);
+                if (CheckConnection(info.Source) && CheckConnection(info.Target) && info.Result != Result.Fail)
+                {
+                    _calls.Add(info);
+                    Call call = Calling(info, sourceTerminal, targetTerminal);
+                    _calls.Add(call.Info);
+                    OnCallIsProcessed(call);
+                    Call outgoingCall = new Call { Info = call.Info, Statistic = call.Statistic };
+                    outgoingCall.Info.Type = CallType.OutgoingCall;
+                    OnCallIsProcessed(outgoingCall);
+                }
+                else
+                {
+                    _calls.Add(info);
+                    OnCallIsProcessed(new Call { Info = info });
+                }
             }
             catch
             {
@@ -140,9 +142,7 @@ namespace ATSProject.Model.ATS
         {
             ChangePortState(sourceTerminal, targetTerminal, PortState.Busy);
             info.Type = CallType.IncomingCall;
-            var terminal = targetTerminal as Terminal;
-            if (terminal != null) 
-                terminal.OnIncomingRequest(info);
+            ((Terminal)targetTerminal).OnIncomingRequest(info);
             Call call = CallingImulation(info);
             ChangePortState(sourceTerminal, targetTerminal, PortState.Free);
             return call;
@@ -173,7 +173,7 @@ namespace ATSProject.Model.ATS
             CallIsProcessed = null;
         }
 
-        public IEnumerator<Call> GetEnumerator()
+        public IEnumerator<CallInfo> GetEnumerator()
         {
             return _calls.GetEnumerator();
         }
