@@ -1,0 +1,13 @@
+C:\Users\Андрей\documents\visual studio 2012\Projects\SaleOfGoods\SaleOfGoods\bin\Debug\SaleOfGoods.exe.config
+C:\Users\Андрей\documents\visual studio 2012\Projects\SaleOfGoods\SaleOfGoods\bin\Debug\SaleOfGoods.exe
+C:\Users\Андрей\documents\visual studio 2012\Projects\SaleOfGoods\SaleOfGoods\bin\Debug\SaleOfGoods.pdb
+C:\Users\Андрей\documents\visual studio 2012\Projects\SaleOfGoods\SaleOfGoods\bin\Debug\DAL.dll
+C:\Users\Андрей\documents\visual studio 2012\Projects\SaleOfGoods\SaleOfGoods\bin\Debug\Model.dll
+C:\Users\Андрей\documents\visual studio 2012\Projects\SaleOfGoods\SaleOfGoods\bin\Debug\EntityFramework.dll
+C:\Users\Андрей\documents\visual studio 2012\Projects\SaleOfGoods\SaleOfGoods\bin\Debug\DAL.pdb
+C:\Users\Андрей\documents\visual studio 2012\Projects\SaleOfGoods\SaleOfGoods\bin\Debug\Model.pdb
+C:\Users\Андрей\documents\visual studio 2012\Projects\SaleOfGoods\SaleOfGoods\bin\Debug\EntityFramework.xml
+C:\Users\Андрей\documents\visual studio 2012\Projects\SaleOfGoods\SaleOfGoods\bin\Debug\ru\EntityFramework.resources.dll
+C:\Users\Андрей\documents\visual studio 2012\Projects\SaleOfGoods\SaleOfGoods\obj\Debug\Client.csprojResolveAssemblyReference.cache
+C:\Users\Андрей\documents\visual studio 2012\Projects\SaleOfGoods\SaleOfGoods\obj\Debug\SaleOfGoods.exe
+C:\Users\Андрей\documents\visual studio 2012\Projects\SaleOfGoods\SaleOfGoods\obj\Debug\SaleOfGoods.pdb

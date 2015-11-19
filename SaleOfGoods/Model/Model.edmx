@@ -1,0 +1,371 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище SalesDBModel" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="Хранилище SalesDBModelContainer">
+          <EntitySet Name="Clients" EntityType="Хранилище SalesDBModel.Clients" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="FileInfo" EntityType="Хранилище SalesDBModel.FileInfo" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Managers" EntityType="Хранилище SalesDBModel.Managers" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Products" EntityType="Хранилище SalesDBModel.Products" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SaleInfo" EntityType="Хранилище SalesDBModel.SaleInfo" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="sysdiagrams" EntityType="Хранилище SalesDBModel.sysdiagrams" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Sale_Manager" Association="Хранилище SalesDBModel.FK_Sale_Manager">
+            <End Role="Managers" EntitySet="Managers" />
+            <End Role="FileInfo" EntitySet="FileInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sale_SaleInfo" Association="Хранилище SalesDBModel.FK_Sale_SaleInfo">
+            <End Role="SaleInfo" EntitySet="SaleInfo" />
+            <End Role="FileInfo" EntitySet="FileInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SaleInfo_Client" Association="Хранилище SalesDBModel.FK_SaleInfo_Client">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="SaleInfo" EntitySet="SaleInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SaleInfo_Product" Association="Хранилище SalesDBModel.FK_SaleInfo_Product">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="SaleInfo" EntitySet="SaleInfo" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Clients">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="nchar" MaxLength="100" />
+          <Property Name="SecondName" Type="nchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="FileInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ManagerId" Type="int" Nullable="false" />
+          <Property Name="Date" Type="date" />
+          <Property Name="SaleInfo" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Managers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="SecondName" Type="nchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="SaleInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="date" />
+          <Property Name="ClientId" Type="int" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="Cost" Type="decimal" />
+          <Property Name="СurrencyСode" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_Sale_Manager">
+          <End Role="Managers" Type="Хранилище SalesDBModel.Managers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="FileInfo" Type="Хранилище SalesDBModel.FileInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Managers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FileInfo">
+              <PropertyRef Name="ManagerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sale_SaleInfo">
+          <End Role="SaleInfo" Type="Хранилище SalesDBModel.SaleInfo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="FileInfo" Type="Хранилище SalesDBModel.FileInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SaleInfo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FileInfo">
+              <PropertyRef Name="SaleInfo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SaleInfo_Client">
+          <End Role="Clients" Type="Хранилище SalesDBModel.Clients" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SaleInfo" Type="Хранилище SalesDBModel.SaleInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SaleInfo">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SaleInfo_Product">
+          <End Role="Products" Type="Хранилище SalesDBModel.Products" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SaleInfo" Type="Хранилище SalesDBModel.SaleInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SaleInfo">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SalesDBModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="SalesDBEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Clients" EntityType="SalesDBModel.Client" />
+          <EntitySet Name="FileInfo" EntityType="SalesDBModel.FileInfo" />
+          <EntitySet Name="Managers" EntityType="SalesDBModel.Manager" />
+          <EntitySet Name="Products" EntityType="SalesDBModel.Product" />
+          <EntitySet Name="SaleInfo" EntityType="SalesDBModel.SaleInfo" />
+          <EntitySet Name="sysdiagrams" EntityType="SalesDBModel.sysdiagrams" />
+          <AssociationSet Name="FK_SaleInfo_Client" Association="SalesDBModel.FK_SaleInfo_Client">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="SaleInfo" EntitySet="SaleInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sale_Manager" Association="SalesDBModel.FK_Sale_Manager">
+            <End Role="Managers" EntitySet="Managers" />
+            <End Role="FileInfo" EntitySet="FileInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sale_SaleInfo" Association="SalesDBModel.FK_Sale_SaleInfo">
+            <End Role="SaleInfo" EntitySet="SaleInfo" />
+            <End Role="FileInfo" EntitySet="FileInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SaleInfo_Product" Association="SalesDBModel.FK_SaleInfo_Product">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="SaleInfo" EntitySet="SaleInfo" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="100" Unicode="true" FixedLength="true" />
+          <Property Name="SecondName" Type="String" MaxLength="100" Unicode="true" FixedLength="true" />
+          <NavigationProperty Name="SaleInfo" Relationship="SalesDBModel.FK_SaleInfo_Client" FromRole="Clients" ToRole="SaleInfo" />
+        </EntityType>
+        <EntityType Name="FileInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="ManagerId" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="SaleInfo" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Managers" Relationship="SalesDBModel.FK_Sale_Manager" FromRole="FileInfo" ToRole="Managers" />
+          <NavigationProperty Name="SaleInfo1" Relationship="SalesDBModel.FK_Sale_SaleInfo" FromRole="FileInfo" ToRole="SaleInfo" />
+        </EntityType>
+        <EntityType Name="Manager">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="SecondName" Type="String" MaxLength="100" Unicode="true" FixedLength="true" />
+          <NavigationProperty Name="FileInfo" Relationship="SalesDBModel.FK_Sale_Manager" FromRole="Managers" ToRole="FileInfo" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" Unicode="true" FixedLength="true" />
+          <NavigationProperty Name="SaleInfo" Relationship="SalesDBModel.FK_SaleInfo_Product" FromRole="Products" ToRole="SaleInfo" />
+        </EntityType>
+        <EntityType Name="SaleInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="ClientId" Type="Int32" Nullable="false" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="Cost" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="СurrencyСode" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+          <NavigationProperty Name="Clients" Relationship="SalesDBModel.FK_SaleInfo_Client" FromRole="SaleInfo" ToRole="Clients" />
+          <NavigationProperty Name="FileInfo" Relationship="SalesDBModel.FK_Sale_SaleInfo" FromRole="SaleInfo" ToRole="FileInfo" />
+          <NavigationProperty Name="Products" Relationship="SalesDBModel.FK_SaleInfo_Product" FromRole="SaleInfo" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_SaleInfo_Client">
+          <End Role="Clients" Type="SalesDBModel.Client" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SaleInfo" Type="SalesDBModel.SaleInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SaleInfo">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sale_Manager">
+          <End Role="Managers" Type="SalesDBModel.Manager" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="FileInfo" Type="SalesDBModel.FileInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Managers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FileInfo">
+              <PropertyRef Name="ManagerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sale_SaleInfo">
+          <End Role="SaleInfo" Type="SalesDBModel.SaleInfo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="FileInfo" Type="SalesDBModel.FileInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SaleInfo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FileInfo">
+              <PropertyRef Name="SaleInfo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SaleInfo_Product">
+          <End Role="Products" Type="SalesDBModel.Product" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SaleInfo" Type="SalesDBModel.SaleInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SaleInfo">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище SalesDBModelContainer" CdmEntityContainer="SalesDBEntities">
+          <EntitySetMapping Name="Clients">
+            <EntityTypeMapping TypeName="SalesDBModel.Client">
+              <MappingFragment StoreEntitySet="Clients">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="SecondName" ColumnName="SecondName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FileInfo">
+            <EntityTypeMapping TypeName="SalesDBModel.FileInfo">
+              <MappingFragment StoreEntitySet="FileInfo">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="SaleInfo" ColumnName="SaleInfo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Managers">
+            <EntityTypeMapping TypeName="SalesDBModel.Manager">
+              <MappingFragment StoreEntitySet="Managers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SecondName" ColumnName="SecondName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="SalesDBModel.Product">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SaleInfo">
+            <EntityTypeMapping TypeName="SalesDBModel.SaleInfo">
+              <MappingFragment StoreEntitySet="SaleInfo">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="СurrencyСode" ColumnName="СurrencyСode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="SalesDBModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

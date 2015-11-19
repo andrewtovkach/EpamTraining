@@ -1,0 +1,11 @@
+C:\Users\Андрей\documents\visual studio 2012\Projects\SaleOfGoods\DAL\bin\Debug\DAL.dll
+C:\Users\Андрей\documents\visual studio 2012\Projects\SaleOfGoods\DAL\bin\Debug\DAL.pdb
+C:\Users\Андрей\documents\visual studio 2012\Projects\SaleOfGoods\DAL\bin\Debug\Model.dll
+C:\Users\Андрей\documents\visual studio 2012\Projects\SaleOfGoods\DAL\bin\Debug\EntityFramework.dll
+C:\Users\Андрей\documents\visual studio 2012\Projects\SaleOfGoods\DAL\bin\Debug\Model.pdb
+C:\Users\Андрей\documents\visual studio 2012\Projects\SaleOfGoods\DAL\bin\Debug\EntityFramework.xml
+C:\Users\Андрей\documents\visual studio 2012\Projects\SaleOfGoods\DAL\bin\Debug\ru\EntityFramework.resources.dll
+C:\Users\Андрей\documents\visual studio 2012\Projects\SaleOfGoods\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+C:\Users\Андрей\documents\visual studio 2012\Projects\SaleOfGoods\DAL\obj\Debug\DAL.dll
+C:\Users\Андрей\documents\visual studio 2012\Projects\SaleOfGoods\DAL\obj\Debug\DAL.pdb
+C:\Users\Андрей\documents\visual studio 2012\Projects\SaleOfGoods\DAL\bin\Debug\DAL.dll.config

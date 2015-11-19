@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SalesDBModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="SalesDBEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="Clients" EntityType="SalesDBModel.Client" />
+    <EntitySet Name="FileInfo" EntityType="SalesDBModel.FileInfo" />
+    <EntitySet Name="Managers" EntityType="SalesDBModel.Manager" />
+    <EntitySet Name="Products" EntityType="SalesDBModel.Product" />
+    <EntitySet Name="SaleInfo" EntityType="SalesDBModel.SaleInfo" />
+    <EntitySet Name="sysdiagrams" EntityType="SalesDBModel.sysdiagrams" />
+    <AssociationSet Name="FK_SaleInfo_Client" Association="SalesDBModel.FK_SaleInfo_Client">
+      <End Role="Clients" EntitySet="Clients" />
+      <End Role="SaleInfo" EntitySet="SaleInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sale_Manager" Association="SalesDBModel.FK_Sale_Manager">
+      <End Role="Managers" EntitySet="Managers" />
+      <End Role="FileInfo" EntitySet="FileInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sale_SaleInfo" Association="SalesDBModel.FK_Sale_SaleInfo">
+      <End Role="SaleInfo" EntitySet="SaleInfo" />
+      <End Role="FileInfo" EntitySet="FileInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SaleInfo_Product" Association="SalesDBModel.FK_SaleInfo_Product">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="SaleInfo" EntitySet="SaleInfo" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Client">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="100" Unicode="true" FixedLength="true" />
+    <Property Name="SecondName" Type="String" MaxLength="100" Unicode="true" FixedLength="true" />
+    <NavigationProperty Name="SaleInfo" Relationship="SalesDBModel.FK_SaleInfo_Client" FromRole="Clients" ToRole="SaleInfo" />
+  </EntityType>
+  <EntityType Name="FileInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="ManagerId" Type="Int32" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Precision="0" />
+    <Property Name="SaleInfo" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Managers" Relationship="SalesDBModel.FK_Sale_Manager" FromRole="FileInfo" ToRole="Managers" />
+    <NavigationProperty Name="SaleInfo1" Relationship="SalesDBModel.FK_Sale_SaleInfo" FromRole="FileInfo" ToRole="SaleInfo" />
+  </EntityType>
+  <EntityType Name="Manager">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="SecondName" Type="String" MaxLength="100" Unicode="true" FixedLength="true" />
+    <NavigationProperty Name="FileInfo" Relationship="SalesDBModel.FK_Sale_Manager" FromRole="Managers" ToRole="FileInfo" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" Unicode="true" FixedLength="true" />
+    <NavigationProperty Name="SaleInfo" Relationship="SalesDBModel.FK_SaleInfo_Product" FromRole="Products" ToRole="SaleInfo" />
+  </EntityType>
+  <EntityType Name="SaleInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Date" Type="DateTime" Precision="0" />
+    <Property Name="ClientId" Type="Int32" Nullable="false" />
+    <Property Name="ProductId" Type="Int32" Nullable="false" />
+    <Property Name="Cost" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="СurrencyСode" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+    <NavigationProperty Name="Clients" Relationship="SalesDBModel.FK_SaleInfo_Client" FromRole="SaleInfo" ToRole="Clients" />
+    <NavigationProperty Name="FileInfo" Relationship="SalesDBModel.FK_Sale_SaleInfo" FromRole="SaleInfo" ToRole="FileInfo" />
+    <NavigationProperty Name="Products" Relationship="SalesDBModel.FK_SaleInfo_Product" FromRole="SaleInfo" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_SaleInfo_Client">
+    <End Role="Clients" Type="SalesDBModel.Client" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="SaleInfo" Type="SalesDBModel.SaleInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clients">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SaleInfo">
+        <PropertyRef Name="ClientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sale_Manager">
+    <End Role="Managers" Type="SalesDBModel.Manager" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="FileInfo" Type="SalesDBModel.FileInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Managers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FileInfo">
+        <PropertyRef Name="ManagerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sale_SaleInfo">
+    <End Role="SaleInfo" Type="SalesDBModel.SaleInfo" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="FileInfo" Type="SalesDBModel.FileInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SaleInfo">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FileInfo">
+        <PropertyRef Name="SaleInfo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SaleInfo_Product">
+    <End Role="Products" Type="SalesDBModel.Product" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="SaleInfo" Type="SalesDBModel.SaleInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SaleInfo">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
