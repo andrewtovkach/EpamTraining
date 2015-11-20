@@ -6,18 +6,11 @@ using DAL.Models;
 
 namespace DAL.Repositories
 {
-    public class ProductsRepository : IRepository<Product>, IEnumerable<Product>
+    public class ProductsRepository : AbstractRepository, IRepository<Product>, IEnumerable<Product>
     {
-        public Model.SalesDBEntities Context { get; private set; }
-
-        public ProductsRepository()
+        private static Model.Product ToEntity(Product product)
         {
-            Context = new Model.SalesDBEntities();
-        }
-
-        private static Model.Product ToEntity(Product manager)
-        {
-            return new Model.Product { Name = manager.Name };
+            return new Model.Product { Name = product.Name };
         }
 
         public void Add(Product item)
@@ -27,29 +20,34 @@ namespace DAL.Repositories
 
         public void Remove(Product item)
         {
-            var element = Context.Products.FirstOrDefault(x => x.Name == item.Name);
+            var element = ProductById(item.Id);
             if (element != null)
                 Context.Products.Remove(element);
+            else throw new ArgumentException("Incorrect argument!");
         }
 
-        public void Update(Product item, object info)
+        private Model.Product ProductById(int id)
         {
-            string name = info as string;
-            if(name == null)
-                throw new ArgumentException("Incorrect argument!");
-            var element = Context.Products.FirstOrDefault(x => x.Name == item.Name);
+            return Context.Products.FirstOrDefault(x => x.Id == id);
+        }
+
+        public Product ProductObjectById(int id)
+        {
+            var product = Context.Products.FirstOrDefault(x => x.Id == id);
+            return product != null ? new Product(product.Id, product.Name.Trim()) : null;
+        }
+
+        public void Update(int id, Product item)
+        {
+            var element = ProductById(id);
             if (element != null)
-                element.Name = name;
-        }
-
-        public void SaveChanges()
-        {
-            Context.SaveChanges();
+                element.Name = item.Name;
+            else throw new ArgumentException("Incorrect product identification!");
         }
 
         public IEnumerable<Product> Items
         {
-            get { return Context.Products.Select(item => new Product { Name = item.Name.Trim() }); }
+            get { return Context.Products.AsEnumerable().Select(item => ProductObjectById(item.Id)); }
         }
 
         public IEnumerator<Product> GetEnumerator()

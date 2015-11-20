@@ -2,11 +2,23 @@
 {
     public class Manager
     {
+        public int Id { get; set; }
         public string SecondName { get; set; }
+
+        public Manager(string secondName)
+        {
+            SecondName = secondName;
+        }
+
+        public Manager(int id, string secondName) 
+            : this(secondName)
+        {
+            Id = id;
+        }
 
         public override string ToString()
         {
-            return SecondName;
+            return Id + " " + SecondName;
         }
     }
 }

@@ -1,7 +1,4 @@
-﻿using DAL.Models;
-using DAL.Repositories;
-
-namespace SaleOfGoods
+﻿namespace SaleOfGoods
 {
     class Program
     {

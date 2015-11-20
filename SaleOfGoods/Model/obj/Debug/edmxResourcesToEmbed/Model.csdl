@@ -11,11 +11,11 @@
       <End Role="Clients" EntitySet="Clients" />
       <End Role="SaleInfo" EntitySet="SaleInfo" />
     </AssociationSet>
-    <AssociationSet Name="FK_Sale_Manager" Association="SalesDBModel.FK_Sale_Manager">
+    <AssociationSet Name="FK_FileInfo_Managers" Association="SalesDBModel.FK_FileInfo_Managers">
       <End Role="Managers" EntitySet="Managers" />
       <End Role="FileInfo" EntitySet="FileInfo" />
     </AssociationSet>
-    <AssociationSet Name="FK_Sale_SaleInfo" Association="SalesDBModel.FK_Sale_SaleInfo">
+    <AssociationSet Name="FK_FileInfo_SaleInfo" Association="SalesDBModel.FK_FileInfo_SaleInfo">
       <End Role="SaleInfo" EntitySet="SaleInfo" />
       <End Role="FileInfo" EntitySet="FileInfo" />
     </AssociationSet>
@@ -40,9 +40,9 @@
     <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="ManagerId" Type="Int32" Nullable="false" />
     <Property Name="Date" Type="DateTime" Precision="0" />
-    <Property Name="SaleInfo" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Managers" Relationship="SalesDBModel.FK_Sale_Manager" FromRole="FileInfo" ToRole="Managers" />
-    <NavigationProperty Name="SaleInfo1" Relationship="SalesDBModel.FK_Sale_SaleInfo" FromRole="FileInfo" ToRole="SaleInfo" />
+    <Property Name="SaleInfoId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Managers" Relationship="SalesDBModel.FK_FileInfo_Managers" FromRole="FileInfo" ToRole="Managers" />
+    <NavigationProperty Name="SaleInfo" Relationship="SalesDBModel.FK_FileInfo_SaleInfo" FromRole="FileInfo" ToRole="SaleInfo" />
   </EntityType>
   <EntityType Name="Manager">
     <Key>
@@ -50,7 +50,7 @@
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="SecondName" Type="String" MaxLength="100" Unicode="true" FixedLength="true" />
-    <NavigationProperty Name="FileInfo" Relationship="SalesDBModel.FK_Sale_Manager" FromRole="Managers" ToRole="FileInfo" />
+    <NavigationProperty Name="FileInfo" Relationship="SalesDBModel.FK_FileInfo_Managers" FromRole="Managers" ToRole="FileInfo" />
   </EntityType>
   <EntityType Name="Product">
     <Key>
@@ -71,7 +71,7 @@
     <Property Name="Cost" Type="Decimal" Precision="18" Scale="0" />
     <Property Name="СurrencyСode" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
     <NavigationProperty Name="Clients" Relationship="SalesDBModel.FK_SaleInfo_Client" FromRole="SaleInfo" ToRole="Clients" />
-    <NavigationProperty Name="FileInfo" Relationship="SalesDBModel.FK_Sale_SaleInfo" FromRole="SaleInfo" ToRole="FileInfo" />
+    <NavigationProperty Name="FileInfo" Relationship="SalesDBModel.FK_FileInfo_SaleInfo" FromRole="SaleInfo" ToRole="FileInfo" />
     <NavigationProperty Name="Products" Relationship="SalesDBModel.FK_SaleInfo_Product" FromRole="SaleInfo" ToRole="Products" />
   </EntityType>
   <EntityType Name="sysdiagrams">
@@ -98,7 +98,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Sale_Manager">
+  <Association Name="FK_FileInfo_Managers">
     <End Role="Managers" Type="SalesDBModel.Manager" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
@@ -112,7 +112,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Sale_SaleInfo">
+  <Association Name="FK_FileInfo_SaleInfo">
     <End Role="SaleInfo" Type="SalesDBModel.SaleInfo" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
@@ -122,7 +122,7 @@
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="FileInfo">
-        <PropertyRef Name="SaleInfo" />
+        <PropertyRef Name="SaleInfoId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

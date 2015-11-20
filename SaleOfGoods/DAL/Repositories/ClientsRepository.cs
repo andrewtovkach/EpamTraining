@@ -6,21 +6,14 @@ using DAL.Models;
 
 namespace DAL.Repositories
 {
-    public class ClientsRepository : IRepository<Client>, IEnumerable<Client>
+    public class ClientsRepository : AbstractRepository, IRepository<Client>, IEnumerable<Client>
     {
-        public Model.SalesDBEntities Context { get; private set; }
-
-        public ClientsRepository()
-        {
-            Context = new Model.SalesDBEntities();
-        }
-
-        private static Model.Client ToEntity(Client manager)
+        private static Model.Client ToEntity(Client client)
         {
             return new Model.Client
             {
-                FirstName = manager.FirstName,
-                SecondName = manager.SecondName
+                FirstName = client.FirstName,
+                SecondName = client.SecondName
             };
         }
 
@@ -31,39 +24,35 @@ namespace DAL.Repositories
 
         public void Remove(Client item)
         {
-            var element = Context.Clients.FirstOrDefault(x => x.FirstName == item.FirstName && x.SecondName == item.SecondName);
+            var element = ClientById(item.Id);
             if (element != null)
                 Context.Clients.Remove(element);
+            else throw new ArgumentException("Incorrect argument!");
         }
 
-        public void Update(Client item, object info)
+        private Model.Client ClientById(int id)
         {
-            var clientInto = info as Tuple<string, string>;
-            if (clientInto == null)
-                throw new ArgumentException("Incorrect argumnet!");
-            var element = Context.Clients.FirstOrDefault(x => x.FirstName == item.FirstName && x.SecondName == item.SecondName);
-            if (element != null)
-            {
-                element.FirstName = clientInto.Item1;
-                element.SecondName = clientInto.Item2;
-            }
+            return Context.Clients.FirstOrDefault(x => x.Id == id);
         }
 
-        public void SaveChanges()
+        public Client ClientObjectById(int id)
         {
-            Context.SaveChanges();
+            var client = ClientById(id);
+            return client != null ? new Client(client.Id, client.FirstName.Trim(), client.SecondName.Trim()) : null;
+        }
+
+        public void Update(int id, Client item)
+        {
+            var element = ClientById(id);
+            if (element == null)
+                throw new ArgumentException("Incorrect client identification!");
+            element.FirstName = item.FirstName;
+            element.SecondName = item.SecondName;
         }
 
         public IEnumerable<Client> Items
         {
-            get
-            {
-                return Context.Clients.Select(item => new Client
-                {
-                    FirstName = item.FirstName.Trim(), 
-                    SecondName = item.SecondName.Trim()
-                });
-            }
+            get { return Context.Clients.AsEnumerable().Select(item => ClientObjectById(item.Id)); }
         }
 
         public IEnumerator<Client> GetEnumerator()

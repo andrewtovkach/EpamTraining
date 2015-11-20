@@ -9,3 +9,14 @@ C:\Users\Андрей\documents\visual studio 2012\Projects\SaleOfGoods\DAL\obj\
 C:\Users\Андрей\documents\visual studio 2012\Projects\SaleOfGoods\DAL\obj\Debug\DAL.dll
 C:\Users\Андрей\documents\visual studio 2012\Projects\SaleOfGoods\DAL\obj\Debug\DAL.pdb
 C:\Users\Андрей\documents\visual studio 2012\Projects\SaleOfGoods\DAL\bin\Debug\DAL.dll.config
+D:\Programming\CSharp\EpamTraining\SaleOfGoods\DAL\bin\Debug\DAL.dll.config
+D:\Programming\CSharp\EpamTraining\SaleOfGoods\DAL\bin\Debug\DAL.dll
+D:\Programming\CSharp\EpamTraining\SaleOfGoods\DAL\bin\Debug\DAL.pdb
+D:\Programming\CSharp\EpamTraining\SaleOfGoods\DAL\bin\Debug\EntityFramework.dll
+D:\Programming\CSharp\EpamTraining\SaleOfGoods\DAL\bin\Debug\Model.dll
+D:\Programming\CSharp\EpamTraining\SaleOfGoods\DAL\bin\Debug\Model.pdb
+D:\Programming\CSharp\EpamTraining\SaleOfGoods\DAL\bin\Debug\EntityFramework.xml
+D:\Programming\CSharp\EpamTraining\SaleOfGoods\DAL\bin\Debug\ru\EntityFramework.resources.dll
+D:\Programming\CSharp\EpamTraining\SaleOfGoods\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+D:\Programming\CSharp\EpamTraining\SaleOfGoods\DAL\obj\Debug\DAL.dll
+D:\Programming\CSharp\EpamTraining\SaleOfGoods\DAL\obj\Debug\DAL.pdb

@@ -4,16 +4,16 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="2d40be4974d24ee3812420f2ad3cdd7d" Name="Диаграмма1">
-        <EntityTypeShape EntityType="SalesDBModel.Client" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
+      <Diagram DiagramId="3a7bdbf396fc4dd5b5c3bc7f6abaf716" Name="Диаграмма1">
+        <EntityTypeShape EntityType="SalesDBModel.Client" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="SalesDBModel.FileInfo" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="SalesDBModel.Manager" Width="1.5" PointX="5.375" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="SalesDBModel.Product" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="SalesDBModel.SaleInfo" Width="1.5" PointX="3.125" PointY="3" IsExpanded="true" />
-        <EntityTypeShape EntityType="SalesDBModel.sysdiagrams" Width="1.5" PointX="7.875" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SalesDBModel.Manager" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SalesDBModel.Product" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SalesDBModel.SaleInfo" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="SalesDBModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
         <AssociationConnector Association="SalesDBModel.FK_SaleInfo_Client" ManuallyRouted="false" />
-        <AssociationConnector Association="SalesDBModel.FK_Sale_Manager" ManuallyRouted="false" />
-        <AssociationConnector Association="SalesDBModel.FK_Sale_SaleInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="SalesDBModel.FK_FileInfo_Managers" ManuallyRouted="false" />
+        <AssociationConnector Association="SalesDBModel.FK_FileInfo_SaleInfo" ManuallyRouted="false" />
         <AssociationConnector Association="SalesDBModel.FK_SaleInfo_Product" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>

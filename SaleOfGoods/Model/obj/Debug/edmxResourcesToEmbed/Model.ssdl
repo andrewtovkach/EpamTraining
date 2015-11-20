@@ -7,11 +7,11 @@
     <EntitySet Name="Products" EntityType="Хранилище SalesDBModel.Products" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="SaleInfo" EntityType="Хранилище SalesDBModel.SaleInfo" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="sysdiagrams" EntityType="Хранилище SalesDBModel.sysdiagrams" store:Type="Tables" Schema="dbo" />
-    <AssociationSet Name="FK_Sale_Manager" Association="Хранилище SalesDBModel.FK_Sale_Manager">
+    <AssociationSet Name="FK_FileInfo_Managers" Association="Хранилище SalesDBModel.FK_FileInfo_Managers">
       <End Role="Managers" EntitySet="Managers" />
       <End Role="FileInfo" EntitySet="FileInfo" />
     </AssociationSet>
-    <AssociationSet Name="FK_Sale_SaleInfo" Association="Хранилище SalesDBModel.FK_Sale_SaleInfo">
+    <AssociationSet Name="FK_FileInfo_SaleInfo" Association="Хранилище SalesDBModel.FK_FileInfo_SaleInfo">
       <End Role="SaleInfo" EntitySet="SaleInfo" />
       <End Role="FileInfo" EntitySet="FileInfo" />
     </AssociationSet>
@@ -39,7 +39,7 @@
     <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="ManagerId" Type="int" Nullable="false" />
     <Property Name="Date" Type="date" />
-    <Property Name="SaleInfo" Type="int" Nullable="false" />
+    <Property Name="SaleInfoId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Managers">
     <Key>
@@ -76,7 +76,7 @@
     <Property Name="version" Type="int" />
     <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
-  <Association Name="FK_Sale_Manager">
+  <Association Name="FK_FileInfo_Managers">
     <End Role="Managers" Type="Хранилище SalesDBModel.Managers" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
@@ -90,7 +90,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Sale_SaleInfo">
+  <Association Name="FK_FileInfo_SaleInfo">
     <End Role="SaleInfo" Type="Хранилище SalesDBModel.SaleInfo" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
@@ -100,7 +100,7 @@
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="FileInfo">
-        <PropertyRef Name="SaleInfo" />
+        <PropertyRef Name="SaleInfoId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

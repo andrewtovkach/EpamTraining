@@ -16,7 +16,7 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
           <ScalarProperty Name="Date" ColumnName="Date" />
-          <ScalarProperty Name="SaleInfo" ColumnName="SaleInfo" />
+          <ScalarProperty Name="SaleInfoId" ColumnName="SaleInfoId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -6,15 +6,8 @@ using DAL.Models;
 
 namespace DAL.Repositories
 {
-    public class ManagersRepository : IRepository<Manager>, IEnumerable<Manager>
+    public class ManagersRepository : AbstractRepository, IRepository<Manager>, IEnumerable<Manager>
     {
-        public Model.SalesDBEntities Context { get; private set; }
-
-        public ManagersRepository()
-        {
-            Context = new Model.SalesDBEntities();   
-        }
-
         private static Model.Manager ToEntity(Manager manager)
         {
             return new Model.Manager { SecondName = manager.SecondName };
@@ -27,29 +20,34 @@ namespace DAL.Repositories
 
         public void Remove(Manager item)
         {
-            var element = Context.Managers.FirstOrDefault(x => x.SecondName == item.SecondName);
+            var element = ManagerById(item.Id);
             if (element != null)
                 Context.Managers.Remove(element);
+            else throw new ArgumentException("Incorrect argument!");
         }
 
-        public void Update(Manager item, object info)
+        private Model.Manager ManagerById(int id)
         {
-            string secondName = info as string;
-            if(secondName == null)
-                throw new ArgumentException("Incorrect argument!");
-            var element = Context.Managers.FirstOrDefault(x => x.SecondName == item.SecondName);
-            if (element != null) 
-                element.SecondName = secondName;
+            return Context.Managers.FirstOrDefault(x => x.Id == id);
         }
 
-        public void SaveChanges()
+        public Manager ManagerObjectById(int id)
         {
-            Context.SaveChanges();
+            var manager = Context.Managers.FirstOrDefault(x => x.Id == id);
+            return manager != null ? new Manager(manager.Id, manager.SecondName.Trim()) : null;
+        }
+
+        public void Update(int id, Manager item)
+        {
+            var element = ManagerById(id);
+            if (element != null)
+                element.SecondName = item.SecondName;
+            else throw new ArgumentException("Incorrect manager identification!");
         }
 
         public IEnumerable<Manager> Items
         {
-            get { return Context.Managers.Select(item => new Manager { SecondName = item.SecondName.Trim() }); }
+            get { return Context.Managers.AsEnumerable().Select(item => ManagerObjectById(item.Id)); }
         }
 
         public IEnumerator<Manager> GetEnumerator()

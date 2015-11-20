@@ -7,3 +7,12 @@ C:\Users\Андрей\documents\visual studio 2012\Projects\SaleOfGoods\Model\bi
 C:\Users\Андрей\documents\visual studio 2012\Projects\SaleOfGoods\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
 C:\Users\Андрей\documents\visual studio 2012\Projects\SaleOfGoods\Model\obj\Debug\Model.dll
 C:\Users\Андрей\documents\visual studio 2012\Projects\SaleOfGoods\Model\obj\Debug\Model.pdb
+D:\Programming\CSharp\EpamTraining\SaleOfGoods\Model\bin\Debug\Model.dll.config
+D:\Programming\CSharp\EpamTraining\SaleOfGoods\Model\bin\Debug\Model.dll
+D:\Programming\CSharp\EpamTraining\SaleOfGoods\Model\bin\Debug\Model.pdb
+D:\Programming\CSharp\EpamTraining\SaleOfGoods\Model\bin\Debug\EntityFramework.dll
+D:\Programming\CSharp\EpamTraining\SaleOfGoods\Model\bin\Debug\EntityFramework.xml
+D:\Programming\CSharp\EpamTraining\SaleOfGoods\Model\bin\Debug\ru\EntityFramework.resources.dll
+D:\Programming\CSharp\EpamTraining\SaleOfGoods\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
+D:\Programming\CSharp\EpamTraining\SaleOfGoods\Model\obj\Debug\Model.dll
+D:\Programming\CSharp\EpamTraining\SaleOfGoods\Model\obj\Debug\Model.pdb

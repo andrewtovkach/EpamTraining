@@ -11,3 +11,16 @@ C:\Users\Андрей\documents\visual studio 2012\Projects\SaleOfGoods\SaleOfGo
 C:\Users\Андрей\documents\visual studio 2012\Projects\SaleOfGoods\SaleOfGoods\obj\Debug\Client.csprojResolveAssemblyReference.cache
 C:\Users\Андрей\documents\visual studio 2012\Projects\SaleOfGoods\SaleOfGoods\obj\Debug\SaleOfGoods.exe
 C:\Users\Андрей\documents\visual studio 2012\Projects\SaleOfGoods\SaleOfGoods\obj\Debug\SaleOfGoods.pdb
+D:\Programming\CSharp\EpamTraining\SaleOfGoods\SaleOfGoods\bin\Debug\SaleOfGoods.exe.config
+D:\Programming\CSharp\EpamTraining\SaleOfGoods\SaleOfGoods\obj\Debug\SaleOfGoods.exe
+D:\Programming\CSharp\EpamTraining\SaleOfGoods\SaleOfGoods\obj\Debug\SaleOfGoods.pdb
+D:\Programming\CSharp\EpamTraining\SaleOfGoods\SaleOfGoods\bin\Debug\SaleOfGoods.exe
+D:\Programming\CSharp\EpamTraining\SaleOfGoods\SaleOfGoods\bin\Debug\SaleOfGoods.pdb
+D:\Programming\CSharp\EpamTraining\SaleOfGoods\SaleOfGoods\bin\Debug\DAL.dll
+D:\Programming\CSharp\EpamTraining\SaleOfGoods\SaleOfGoods\bin\Debug\Model.dll
+D:\Programming\CSharp\EpamTraining\SaleOfGoods\SaleOfGoods\bin\Debug\EntityFramework.dll
+D:\Programming\CSharp\EpamTraining\SaleOfGoods\SaleOfGoods\bin\Debug\DAL.pdb
+D:\Programming\CSharp\EpamTraining\SaleOfGoods\SaleOfGoods\bin\Debug\Model.pdb
+D:\Programming\CSharp\EpamTraining\SaleOfGoods\SaleOfGoods\bin\Debug\EntityFramework.xml
+D:\Programming\CSharp\EpamTraining\SaleOfGoods\SaleOfGoods\bin\Debug\ru\EntityFramework.resources.dll
+D:\Programming\CSharp\EpamTraining\SaleOfGoods\SaleOfGoods\obj\Debug\Client.csprojResolveAssemblyReference.cache
