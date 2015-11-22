@@ -30,7 +30,7 @@ namespace DAL.Repositories
 
         public Model.SaleInfo GetSaleInfo(SaleInfo saleInfo)
         {
-            SaleInfoRepository saleInfoRepository = new SaleInfoRepository { saleInfo };
+            var saleInfoRepository = new SaleInfoRepository { saleInfo };
             saleInfoRepository.SaveChanges();
             return Context.SaleInfo.AsEnumerable().Last();
         }

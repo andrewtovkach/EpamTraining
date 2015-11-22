@@ -1,55 +1,48 @@
 ﻿using System;
-using System.Collections.Generic;
-using CsvHelper;
 using System.IO;
-using System.Linq;
+using System.Threading;
+using DAL.Models;
 
 namespace BL
 {
     public class Parser
     {
-        public string FilePath { get; set; }
-
-        public Parser(string filePath)
+        private static SaleInfo ParseSaleInfo(DataRecord dataRecord)
         {
-            FilePath = filePath;
-        }
-
-        public void Write(IEnumerable<DataRecord> list)
-        {
-            using (TextWriter sw = new StreamWriter(FilePath))
+            var product = new Product(dataRecord.Product);
+            string[] names = dataRecord.Client.Split(' ');
+            Client client = null;
+            if (names.Length > 1)
+                client = new Client(names[0], names[1]);
+            string[] values = dataRecord.Cost.Split(' ');
+            decimal cost = 0;
+            string currencyCode = null;
+            if (values.Length > 1)
             {
-                var writer = new CsvWriter(sw);
-                writer.WriteHeader<DataRecord>();
-                foreach (var item in list)
-                {
-                    writer.WriteRecord(item);
-                }
+                cost = decimal.Parse(values[0]);
+                currencyCode = values[1];
             }
+            return new SaleInfo(dataRecord.Date, client, product, cost, currencyCode);
         }
 
-        public IEnumerable<DataRecord> Read()
+        private static Tuple<string, DateTime> ParseFileName(string filePath)
         {
-            IEnumerable<DataRecord> records = null;
-            using (TextReader sr = new StreamReader(FilePath))
+            string fileName = Path.GetFileName(filePath);
+            string[] values = fileName.Split('_');
+            if (values.Length > 1)
             {
-                var reader = new CsvReader(sr);
-                records = reader.GetRecords<DataRecord>().ToList();
-            }
-            return records;
-        }
-
-        public Tuple<string, DateTime> ParseFileName()
-        {
-            string fileName = Path.GetFileName(FilePath);
-            if (fileName != null)
-            {
-                string[] values = fileName.Split('_');
-                int date = int.Parse(values[1].Substring(0, 2)), month = int.Parse(values[1].Substring(2, 2)),
-                    year = int.Parse(values[1].Substring(4, 4));
-                return new Tuple<string, DateTime>(values[0], new DateTime(year, month, date));
+                string managerSecondName = values[0];
+                string dateTime = values[1].Substring(0, 8);
+                var date = DateTime.ParseExact(dateTime, "ddMMyyyy", Thread.CurrentThread.CurrentCulture);
+                return new Tuple<string, DateTime>(managerSecondName, date);
             }
             return null;
+        }
+
+        public static DAL.Models.FileInfo ParseFile(string filePath, DataRecord dataRecord)
+        {
+            var tuple = ParseFileName(filePath);
+            return new DAL.Models.FileInfo(new Manager(tuple.Item1), tuple.Item2, ParseSaleInfo(dataRecord));
         }
     }
 }

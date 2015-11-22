@@ -1,0 +1,17 @@
+D:\Programming\CSharp\EpamTraining\SaleOfGoods\Client\bin\Debug\Client.exe.config
+D:\Programming\CSharp\EpamTraining\SaleOfGoods\Client\bin\Debug\Client.exe
+D:\Programming\CSharp\EpamTraining\SaleOfGoods\Client\bin\Debug\Client.pdb
+D:\Programming\CSharp\EpamTraining\SaleOfGoods\Client\obj\Debug\Client.csprojResolveAssemblyReference.cache
+D:\Programming\CSharp\EpamTraining\SaleOfGoods\Client\obj\Debug\Client.exe
+D:\Programming\CSharp\EpamTraining\SaleOfGoods\Client\obj\Debug\Client.pdb
+D:\Programming\CSharp\EpamTraining\SaleOfGoods\Client\bin\Debug\BL.dll
+D:\Programming\CSharp\EpamTraining\SaleOfGoods\Client\bin\Debug\DAL.dll
+D:\Programming\CSharp\EpamTraining\SaleOfGoods\Client\bin\Debug\CsvHelper.dll
+D:\Programming\CSharp\EpamTraining\SaleOfGoods\Client\bin\Debug\Model.dll
+D:\Programming\CSharp\EpamTraining\SaleOfGoods\Client\bin\Debug\EntityFramework.dll
+D:\Programming\CSharp\EpamTraining\SaleOfGoods\Client\bin\Debug\BL.pdb
+D:\Programming\CSharp\EpamTraining\SaleOfGoods\Client\bin\Debug\DAL.pdb
+D:\Programming\CSharp\EpamTraining\SaleOfGoods\Client\bin\Debug\CsvHelper.pdb
+D:\Programming\CSharp\EpamTraining\SaleOfGoods\Client\bin\Debug\Model.pdb
+D:\Programming\CSharp\EpamTraining\SaleOfGoods\Client\bin\Debug\EntityFramework.xml
+D:\Programming\CSharp\EpamTraining\SaleOfGoods\Client\bin\Debug\ru\EntityFramework.resources.dll

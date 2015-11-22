@@ -1,6 +1,0 @@
-C:\Users\Андрей\documents\visual studio 2012\Projects\SaleOfGoods\SaleOfGoods\bin\Debug\SaleOfGoods.exe.config
-C:\Users\Андрей\documents\visual studio 2012\Projects\SaleOfGoods\SaleOfGoods\bin\Debug\SaleOfGoods.exe
-C:\Users\Андрей\documents\visual studio 2012\Projects\SaleOfGoods\SaleOfGoods\bin\Debug\SaleOfGoods.pdb
-C:\Users\Андрей\documents\visual studio 2012\Projects\SaleOfGoods\SaleOfGoods\obj\Debug\DAL.csprojResolveAssemblyReference.cache
-C:\Users\Андрей\documents\visual studio 2012\Projects\SaleOfGoods\SaleOfGoods\obj\Debug\SaleOfGoods.exe
-C:\Users\Андрей\documents\visual studio 2012\Projects\SaleOfGoods\SaleOfGoods\obj\Debug\SaleOfGoods.pdb

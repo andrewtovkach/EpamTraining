@@ -6,38 +6,45 @@ namespace BL
 {
     public class Watcher
     {
-        public ICollection<FileState> Collection;
+        public ICollection<FileInformation> Collection;
 
         public string Path { get; set; }
         public string Filter { get; set; }
 
         public Watcher(string path, string filter)
         {
-            Collection = new List<FileState>();
+            Collection = new List<FileInformation>();
             Path = path;
             Filter = filter;
         }
 
-        public void Run(Func<bool> action)
+        public void Run()
         {
-            FileSystemWatcher watcher = new FileSystemWatcher
+            var watcher = new FileSystemWatcher
             {
                 Path = this.Path,
                 NotifyFilter = NotifyFilters.LastAccess | NotifyFilters.LastWrite
                                | NotifyFilters.FileName | NotifyFilters.DirectoryName,
                 Filter = this.Filter
             };
-            watcher.Changed += OnChanged;
-            watcher.Created += OnChanged;
-            watcher.Deleted += OnChanged;
+            watcher.Created += OnCreated;
             watcher.EnableRaisingEvents = true;
-            while (action.Invoke());
+            while (true) ;
         }
 
-        private void OnChanged(object source, FileSystemEventArgs e)
+        public event EventHandler<FileInformation> CreatedFile;
+
+        protected virtual void OnCreatedFile(FileInformation e)
         {
-            Console.WriteLine("File: " + e.FullPath + " " + e.ChangeType);
-            Collection.Add(new FileState { ChangeType = e.ChangeType, FullPath = e.FullPath });
+            if (CreatedFile != null)
+                CreatedFile(this, e);
+        }
+
+        private void OnCreated(object source, FileSystemEventArgs e)
+        {
+            var fileState = new FileInformation { ChangeType = e.ChangeType, FullPath = e.FullPath };
+            Collection.Add(fileState);
+            OnCreatedFile(fileState);
         }
     }
 }
