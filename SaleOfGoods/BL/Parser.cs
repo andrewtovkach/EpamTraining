@@ -5,18 +5,18 @@ using DAL.Models;
 
 namespace BL
 {
-    public class Parser
+    public static class Parser
     {
         private static SaleInfo ParseSaleInfo(DataRecord dataRecord)
         {
             var product = new Product(dataRecord.Product);
-            string[] names = dataRecord.Client.Split(' ');
-            Client client = null;
+            var names = dataRecord.Client.Split(' ');
+            Client client = new Client();
             if (names.Length > 1)
                 client = new Client(names[0], names[1]);
             string[] values = dataRecord.Cost.Split(' ');
             decimal cost = 0;
-            string currencyCode = null;
+            string currencyCode = string.Empty;
             if (values.Length > 1)
             {
                 cost = decimal.Parse(values[0]);
@@ -28,7 +28,7 @@ namespace BL
         private static Tuple<string, DateTime> ParseFileName(string filePath)
         {
             string fileName = Path.GetFileName(filePath);
-            string[] values = fileName.Split('_');
+            var values = fileName.Split('_');
             if (values.Length > 1)
             {
                 string managerSecondName = values[0];

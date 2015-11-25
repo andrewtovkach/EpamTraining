@@ -24,7 +24,7 @@ namespace DAL.Models
 
         public override string ToString()
         {
-            return Id + " " + Manager + " " + Date.ToShortDateString() + " " + SaleInfo;
+            return string.Format("{0} - Manager: {1} {2} SaleInfo: {3}", Id, Manager, Date.ToShortDateString(), SaleInfo);
         }
     }
 }

@@ -2,7 +2,7 @@
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="Хранилище SalesDBModelContainer" CdmEntityContainer="SalesDBEntities">
     <EntitySetMapping Name="Clients">
-      <EntityTypeMapping TypeName="SalesDBModel.Client">
+      <EntityTypeMapping TypeName="SalesDBModel.Clients">
         <MappingFragment StoreEntitySet="Clients">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="FirstName" ColumnName="FirstName" />
@@ -21,7 +21,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Managers">
-      <EntityTypeMapping TypeName="SalesDBModel.Manager">
+      <EntityTypeMapping TypeName="SalesDBModel.Managers">
         <MappingFragment StoreEntitySet="Managers">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="SecondName" ColumnName="SecondName" />
@@ -29,7 +29,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Products">
-      <EntityTypeMapping TypeName="SalesDBModel.Product">
+      <EntityTypeMapping TypeName="SalesDBModel.Products">
         <MappingFragment StoreEntitySet="Products">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />

@@ -2,7 +2,7 @@
 
 namespace BL
 {
-    public class DataRecord
+    public struct DataRecord
     {
         public DateTime Date { get; set; }
         public string Client { get; set; }
@@ -11,7 +11,7 @@ namespace BL
 
         public override string ToString()
         {
-            return Date.ToShortDateString() + " " + Client + " " + Product + " " + Cost;
+            return string.Format("{0} {1} {2} {3}", Date.ToShortDateString(), Client, Product, Cost);
         }
     }
 }

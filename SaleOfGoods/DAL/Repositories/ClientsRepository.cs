@@ -8,9 +8,9 @@ namespace DAL.Repositories
 {
     public class ClientsRepository : AbstractRepository, IRepository<Client>, IEnumerable<Client>
     {
-        private static Model.Client ToEntity(Client client)
+        private static Model.Clients ToEntity(Client client)
         {
-            return new Model.Client
+            return new Model.Clients
             {
                 FirstName = client.FirstName,
                 SecondName = client.SecondName
@@ -30,7 +30,7 @@ namespace DAL.Repositories
             else throw new ArgumentException("Incorrect argument!");
         }
 
-        private Model.Client ClientById(int id)
+        private Model.Clients ClientById(int id)
         {
             return Context.Clients.FirstOrDefault(x => x.Id == id);
         }

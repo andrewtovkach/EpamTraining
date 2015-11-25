@@ -18,7 +18,7 @@ namespace BL
             Filter = filter;
         }
 
-        public void Run()
+        public void Run(Func<bool> func)
         {
             var watcher = new FileSystemWatcher
             {
@@ -29,7 +29,7 @@ namespace BL
             };
             watcher.Created += OnCreated;
             watcher.EnableRaisingEvents = true;
-            while (true) ;
+            while (func.Invoke()) ;
         }
 
         public event EventHandler<FileInformation> CreatedFile;
@@ -42,9 +42,9 @@ namespace BL
 
         private void OnCreated(object source, FileSystemEventArgs e)
         {
-            var fileState = new FileInformation { ChangeType = e.ChangeType, FullPath = e.FullPath };
-            Collection.Add(fileState);
-            OnCreatedFile(fileState);
+            var fileInformation = new FileInformation { ChangeType = e.ChangeType, FullPath = e.FullPath };
+            Collection.Add(fileInformation);
+            OnCreatedFile(fileInformation);
         }
     }
 }

@@ -11,14 +11,18 @@ namespace BL
             var watcher = new Watcher(ConfigurationManager.AppSettings["FolderPath"],
                 ConfigurationManager.AppSettings["FileExtension"]);
             watcher.CreatedFile += (sender, info) => { AddInformationToTheDb(info); };
-            watcher.Run();
+            watcher.Run(() =>
+            {
+                var result = Console.Read() != 'q';
+                return result;
+            });
         }
 
         private static void AddInformationToTheDb(FileInformation information)
         {
             try
             {
-                ReadWriter readWriter = new ReadWriter(information.FullPath);
+                var readWriter = new ReadWriter(information.FullPath);
                 var records = readWriter.Read();
                 using (var fileInfoRepository = new FileInfoRepository())
                 {

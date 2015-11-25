@@ -18,7 +18,7 @@
 
         public override string ToString()
         {
-            return Id + " " + SecondName;
+            return string.Format("{0} - {1}", Id, SecondName);
         }
     }
 }

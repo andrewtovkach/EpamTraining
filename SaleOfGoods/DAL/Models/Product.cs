@@ -1,4 +1,6 @@
-﻿namespace DAL.Models
+﻿using System;
+
+namespace DAL.Models
 {
     public class Product
     {
@@ -18,7 +20,7 @@
 
         public override string ToString()
         {
-            return Id + " " + Name;
+            return String.Format("{0} - {1}", Id, Name);
         }
     }
 }

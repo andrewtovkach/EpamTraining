@@ -33,8 +33,12 @@ namespace DAL.Repositories
         private void CleanUp(bool clean)
         {
             if (!_disposed)
-                if(clean)
+            {
+                if (clean)
+                {
                     Context.Dispose();
+                }
+            }
             _disposed = true;
         }
     }

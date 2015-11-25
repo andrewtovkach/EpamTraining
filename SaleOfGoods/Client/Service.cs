@@ -3,7 +3,7 @@ using BL;
 
 namespace Client
 {
-    class Service
+    public class Service
     {
         private readonly Thread _workerThread;
 
@@ -14,12 +14,12 @@ namespace Client
             _workerThread.SetApartmentState(ApartmentState.STA);
         }
 
-        public void OnStart()
+        public void Start()
         {
             _workerThread.Start();
         }
 
-        public void OnStop()
+        public void Stop()
         {
             _workerThread.Abort();
         }

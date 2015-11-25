@@ -28,7 +28,7 @@ namespace DAL.Models
 
         public override string ToString()
         {
-            return Id + " " + Date.ToShortDateString() + " " + Client + " " + Product + " " + Cost + " " + CurrencyCode;
+            return string.Format("{0} - {1} Client: {2} Product: {3} {4} {5}", Id, Date.ToShortDateString(), Client, Product,  Cost, CurrencyCode);
         }
     }
 }

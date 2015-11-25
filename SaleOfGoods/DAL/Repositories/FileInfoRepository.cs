@@ -18,14 +18,14 @@ namespace DAL.Repositories
             };
         }
 
-        private Model.Manager ManagerByName(string secondName)
+        private Model.Managers ManagerByName(string secondName)
         {
             return Context.Managers.FirstOrDefault(x => x.SecondName == secondName);
         }
 
-        private Model.Manager GetManager(string secondName)
+        private Model.Managers GetManager(string secondName)
         {
-            return ManagerByName(secondName) ?? Context.Managers.Add(new Model.Manager { SecondName = secondName });
+            return ManagerByName(secondName) ?? Context.Managers.Add(new Model.Managers { SecondName = secondName });
         }
 
         public Model.SaleInfo GetSaleInfo(SaleInfo saleInfo)
@@ -37,11 +37,22 @@ namespace DAL.Repositories
 
         public void Add(FileInfo item)
         {
-            var manager = GetManager(item.Manager.SecondName);
-            var saleInfo = GetSaleInfo(item.SaleInfo);
-            item.Manager.Id = manager.Id;
-            item.SaleInfo.Id = saleInfo.Id;
-            Context.FileInfo.Add(ToEntity(item));
+            using (var transaction = Context.Database.BeginTransaction())
+            {
+                try
+                {
+                    var manager = GetManager(item.Manager.SecondName);
+                    var saleInfo = GetSaleInfo(item.SaleInfo);
+                    item.Manager.Id = manager.Id;
+                    item.SaleInfo.Id = saleInfo.Id;
+                    Context.FileInfo.Add(ToEntity(item));
+                    transaction.Commit();
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                }
+            }
         }
 
         public void Remove(FileInfo item)
@@ -59,14 +70,25 @@ namespace DAL.Repositories
 
         public void Update(int id, FileInfo item)
         {
-            var element = FileInfoById(id);
-            if (element == null)
-                throw new ArgumentException("Incorrect fileInfo identification!");
-            element.Date = item.Date;
-            var manager = GetManager(item.Manager.SecondName);
-            var saleInfo = GetSaleInfo(item.SaleInfo);
-            element.ManagerId = manager.Id;
-            element.SaleInfoId = saleInfo.Id;
+            using (var transaction = Context.Database.BeginTransaction())
+            {
+                try
+                {
+                    var element = FileInfoById(id);
+                    if (element == null)
+                        throw new ArgumentException("Incorrect fileInfo identification!");
+                    element.Date = item.Date;
+                    var manager = GetManager(item.Manager.SecondName);
+                    var saleInfo = GetSaleInfo(item.SaleInfo);
+                    element.ManagerId = manager.Id;
+                    element.SaleInfoId = saleInfo.Id;
+                    transaction.Commit();
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                }
+            }
         }
 
         public IEnumerable<FileInfo> Items

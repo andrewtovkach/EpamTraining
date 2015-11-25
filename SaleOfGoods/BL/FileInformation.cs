@@ -9,7 +9,7 @@ namespace BL
 
         public override string ToString()
         {
-            return FullPath + " " + ChangeType;
+            return string.Format("{0} {1}", FullPath, ChangeType);
         }
     }
 }

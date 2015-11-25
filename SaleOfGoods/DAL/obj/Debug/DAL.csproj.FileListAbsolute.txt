@@ -12,7 +12,6 @@ C:\Users\Андрей\documents\visual studio 2012\Projects\SaleOfGoods\DAL\bin\
 D:\Programming\CSharp\EpamTraining\SaleOfGoods\DAL\bin\Debug\DAL.dll.config
 D:\Programming\CSharp\EpamTraining\SaleOfGoods\DAL\bin\Debug\DAL.dll
 D:\Programming\CSharp\EpamTraining\SaleOfGoods\DAL\bin\Debug\DAL.pdb
-D:\Programming\CSharp\EpamTraining\SaleOfGoods\DAL\bin\Debug\EntityFramework.dll
 D:\Programming\CSharp\EpamTraining\SaleOfGoods\DAL\bin\Debug\Model.dll
 D:\Programming\CSharp\EpamTraining\SaleOfGoods\DAL\bin\Debug\Model.pdb
 D:\Programming\CSharp\EpamTraining\SaleOfGoods\DAL\bin\Debug\EntityFramework.xml
@@ -20,3 +19,6 @@ D:\Programming\CSharp\EpamTraining\SaleOfGoods\DAL\obj\Debug\DAL.csprojResolveAs
 D:\Programming\CSharp\EpamTraining\SaleOfGoods\DAL\obj\Debug\DAL.dll
 D:\Programming\CSharp\EpamTraining\SaleOfGoods\DAL\obj\Debug\DAL.pdb
 D:\Programming\CSharp\EpamTraining\SaleOfGoods\DAL\bin\Debug\ru\EntityFramework.resources.dll
+D:\Programming\CSharp\EpamTraining\SaleOfGoods\DAL\bin\Debug\EntityFramework.dll
+D:\Programming\CSharp\EpamTraining\SaleOfGoods\DAL\bin\Debug\EntityFramework.SqlServer.dll
+D:\Programming\CSharp\EpamTraining\SaleOfGoods\DAL\bin\Debug\EntityFramework.SqlServer.xml

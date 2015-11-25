@@ -7,13 +7,6 @@
       <FileName>DataManager.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="BL.DataRecord">
-    <Position X="1.5" Y="2.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAAAAEAAAAABAAAAAAAAABAAAAAAAAAAQ=</HashCode>
-      <FileName>DataRecord.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="BL.Parser">
     <Position X="5.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
@@ -40,6 +33,13 @@
     <TypeIdentifier>
       <HashCode>CAAAAAAAAAAAAAAEAAEAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>FileInformation.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="BL.DataRecord">
+    <Position X="1.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAEAAAAABAAAAAAAAABAAAAAAAAAAQ=</HashCode>
+      <FileName>DataRecord.cs</FileName>
     </TypeIdentifier>
   </Struct>
   <Font Name="Segoe UI" Size="9" />

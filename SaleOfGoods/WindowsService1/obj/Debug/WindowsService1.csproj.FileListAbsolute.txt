@@ -17,3 +17,6 @@ D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\CsvHelp
 D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\Model.pdb
 D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\EntityFramework.xml
 D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\ru\EntityFramework.resources.dll
+D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\obj\Debug\WindowsService1.Service1.resources
+D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\EntityFramework.SqlServer.dll
+D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\EntityFramework.SqlServer.xml

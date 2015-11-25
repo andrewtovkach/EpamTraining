@@ -8,9 +8,9 @@ namespace DAL.Repositories
 {
     public class ProductsRepository : AbstractRepository, IRepository<Product>, IEnumerable<Product>
     {
-        private static Model.Product ToEntity(Product product)
+        private static Model.Products ToEntity(Product product)
         {
-            return new Model.Product { Name = product.Name };
+            return new Model.Products { Name = product.Name };
         }
 
         public void Add(Product item)
@@ -26,7 +26,7 @@ namespace DAL.Repositories
             else throw new ArgumentException("Incorrect argument!");
         }
 
-        private Model.Product ProductById(int id)
+        private Model.Products ProductById(int id)
         {
             return Context.Products.FirstOrDefault(x => x.Id == id);
         }

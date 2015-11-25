@@ -38,12 +38,13 @@
   <Class Name="DAL.Repositories.AbstractRepository">
     <Position X="9.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>gAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>gAAAAAAAAiAEAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
       <FileName>Repositories\AbstractRepository.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="DAL.Repositories.ClientsRepository">
-    <Position X="7.25" Y="3" Width="1.5" />
+    <Position X="7.25" Y="4" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAYAAAAAAAAACBAAAAAABAAAAAAAAAAMAAQEAAAAAAA=</HashCode>
       <FileName>Repositories\ClientsRepository.cs</FileName>
@@ -51,7 +52,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="DAL.Repositories.FileInfoRepository">
-    <Position X="11.5" Y="3" Width="1.5" />
+    <Position X="11.5" Y="4" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAYBBAAAIAAACBAAAAAABAAAAAEAAAAEAAAEAAAAAAA=</HashCode>
       <FileName>Repositories\FileInfoRepository.cs</FileName>
@@ -59,7 +60,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="DAL.Repositories.ManagersRepository">
-    <Position X="9.25" Y="3" Width="1.5" />
+    <Position X="9.25" Y="4" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAYgAAACAAAACBAAAAAABAAAAAAAAAAEAAAEAAAAAAA=</HashCode>
       <FileName>Repositories\ManagersRepository.cs</FileName>
@@ -67,7 +68,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="DAL.Repositories.ProductsRepository">
-    <Position X="13.5" Y="3" Width="1.5" />
+    <Position X="13.5" Y="4" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAYAAAAAAAAACBAAAAAABAEAAAAAAAAEAAEEAAAAAAA=</HashCode>
       <FileName>Repositories\ProductsRepository.cs</FileName>
@@ -75,7 +76,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="DAL.Repositories.SaleInfoRepository">
-    <Position X="5.25" Y="3" Width="1.5" />
+    <Position X="5.25" Y="4" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAYAAAAgAAAACBAAAAAABAIAAAAAAAAEAAAEKABAQAA=</HashCode>
       <FileName>Repositories\SaleInfoRepository.cs</FileName>
@@ -83,7 +84,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Interface Name="DAL.Repositories.IRepository&lt;T&gt;">
-    <Position X="16.25" Y="0.5" Width="1.5" />
+    <Position X="13" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAYAAAAAAAAACAAAAAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Repositories\IRepository.cs</FileName>

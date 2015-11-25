@@ -1,34 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="Хранилище SalesDBModel" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityContainer Name="Хранилище SalesDBModelContainer">
-    <EntitySet Name="Clients" EntityType="Хранилище SalesDBModel.Clients" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="FileInfo" EntityType="Хранилище SalesDBModel.FileInfo" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Managers" EntityType="Хранилище SalesDBModel.Managers" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Products" EntityType="Хранилище SalesDBModel.Products" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="SaleInfo" EntityType="Хранилище SalesDBModel.SaleInfo" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="sysdiagrams" EntityType="Хранилище SalesDBModel.sysdiagrams" store:Type="Tables" Schema="dbo" />
-    <AssociationSet Name="FK_FileInfo_Managers" Association="Хранилище SalesDBModel.FK_FileInfo_Managers">
-      <End Role="Managers" EntitySet="Managers" />
-      <End Role="FileInfo" EntitySet="FileInfo" />
-    </AssociationSet>
-    <AssociationSet Name="FK_FileInfo_SaleInfo" Association="Хранилище SalesDBModel.FK_FileInfo_SaleInfo">
-      <End Role="SaleInfo" EntitySet="SaleInfo" />
-      <End Role="FileInfo" EntitySet="FileInfo" />
-    </AssociationSet>
-    <AssociationSet Name="FK_SaleInfo_Client" Association="Хранилище SalesDBModel.FK_SaleInfo_Client">
-      <End Role="Clients" EntitySet="Clients" />
-      <End Role="SaleInfo" EntitySet="SaleInfo" />
-    </AssociationSet>
-    <AssociationSet Name="FK_SaleInfo_Product" Association="Хранилище SalesDBModel.FK_SaleInfo_Product">
-      <End Role="Products" EntitySet="Products" />
-      <End Role="SaleInfo" EntitySet="SaleInfo" />
-    </AssociationSet>
-  </EntityContainer>
+<Schema Namespace="Хранилище SalesDBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="Clients">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="FirstName" Type="nchar" MaxLength="100" />
     <Property Name="SecondName" Type="nchar" MaxLength="100" />
   </EntityType>
@@ -36,7 +12,7 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ManagerId" Type="int" Nullable="false" />
     <Property Name="Date" Type="date" />
     <Property Name="SaleInfoId" Type="int" Nullable="false" />
@@ -45,42 +21,42 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="SecondName" Type="nchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="Products">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="SaleInfo">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Date" Type="date" />
     <Property Name="ClientId" Type="int" Nullable="false" />
     <Property Name="ProductId" Type="int" Nullable="false" />
-    <Property Name="Cost" Type="decimal" />
+    <Property Name="Cost" Type="decimal" Precision="18" Scale="0" />
     <Property Name="СurrencyСode" Type="nchar" MaxLength="10" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
       <PropertyRef Name="diagram_id" />
     </Key>
-    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
     <Property Name="principal_id" Type="int" Nullable="false" />
-    <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="version" Type="int" />
     <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
   <Association Name="FK_FileInfo_Managers">
-    <End Role="Managers" Type="Хранилище SalesDBModel.Managers" Multiplicity="1">
+    <End Role="Managers" Type="Self.Managers" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
-    <End Role="FileInfo" Type="Хранилище SalesDBModel.FileInfo" Multiplicity="*" />
+    <End Role="FileInfo" Type="Self.FileInfo" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Managers">
         <PropertyRef Name="Id" />
@@ -91,10 +67,10 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_FileInfo_SaleInfo">
-    <End Role="SaleInfo" Type="Хранилище SalesDBModel.SaleInfo" Multiplicity="1">
+    <End Role="SaleInfo" Type="Self.SaleInfo" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
-    <End Role="FileInfo" Type="Хранилище SalesDBModel.FileInfo" Multiplicity="*" />
+    <End Role="FileInfo" Type="Self.FileInfo" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="SaleInfo">
         <PropertyRef Name="Id" />
@@ -105,10 +81,10 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_SaleInfo_Client">
-    <End Role="Clients" Type="Хранилище SalesDBModel.Clients" Multiplicity="1">
+    <End Role="Clients" Type="Self.Clients" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
-    <End Role="SaleInfo" Type="Хранилище SalesDBModel.SaleInfo" Multiplicity="*" />
+    <End Role="SaleInfo" Type="Self.SaleInfo" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Clients">
         <PropertyRef Name="Id" />
@@ -119,10 +95,10 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_SaleInfo_Product">
-    <End Role="Products" Type="Хранилище SalesDBModel.Products" Multiplicity="1">
+    <End Role="Products" Type="Self.Products" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
-    <End Role="SaleInfo" Type="Хранилище SalesDBModel.SaleInfo" Multiplicity="*" />
+    <End Role="SaleInfo" Type="Self.SaleInfo" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Products">
         <PropertyRef Name="Id" />
@@ -132,4 +108,28 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityContainer Name="Хранилище SalesDBModelContainer">
+    <EntitySet Name="Clients" EntityType="Self.Clients" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FileInfo" EntityType="Self.FileInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Managers" EntityType="Self.Managers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SaleInfo" EntityType="Self.SaleInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_FileInfo_Managers" Association="Self.FK_FileInfo_Managers">
+      <End Role="Managers" EntitySet="Managers" />
+      <End Role="FileInfo" EntitySet="FileInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FileInfo_SaleInfo" Association="Self.FK_FileInfo_SaleInfo">
+      <End Role="SaleInfo" EntitySet="SaleInfo" />
+      <End Role="FileInfo" EntitySet="FileInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SaleInfo_Client" Association="Self.FK_SaleInfo_Client">
+      <End Role="Clients" EntitySet="Clients" />
+      <End Role="SaleInfo" EntitySet="SaleInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SaleInfo_Product" Association="Self.FK_SaleInfo_Product">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="SaleInfo" EntitySet="SaleInfo" />
+    </AssociationSet>
+  </EntityContainer>
 </Schema>

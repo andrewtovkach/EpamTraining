@@ -8,9 +8,9 @@ namespace DAL.Repositories
 {
     public class ManagersRepository : AbstractRepository, IRepository<Manager>, IEnumerable<Manager>
     {
-        private static Model.Manager ToEntity(Manager manager)
+        private static Model.Managers ToEntity(Manager manager)
         {
-            return new Model.Manager { SecondName = manager.SecondName };
+            return new Model.Managers { SecondName = manager.SecondName };
         }
 
         public void Add(Manager item)
@@ -26,7 +26,7 @@ namespace DAL.Repositories
             else throw new ArgumentException("Incorrect argument!");
         }
 
-        private Model.Manager ManagerById(int id)
+        private Model.Managers ManagerById(int id)
         {
             return Context.Managers.FirstOrDefault(x => x.Id == id);
         }

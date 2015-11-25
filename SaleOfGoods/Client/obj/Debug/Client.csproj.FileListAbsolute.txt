@@ -15,3 +15,5 @@ D:\Programming\CSharp\EpamTraining\SaleOfGoods\Client\bin\Debug\CsvHelper.pdb
 D:\Programming\CSharp\EpamTraining\SaleOfGoods\Client\bin\Debug\Model.pdb
 D:\Programming\CSharp\EpamTraining\SaleOfGoods\Client\bin\Debug\EntityFramework.xml
 D:\Programming\CSharp\EpamTraining\SaleOfGoods\Client\bin\Debug\ru\EntityFramework.resources.dll
+D:\Programming\CSharp\EpamTraining\SaleOfGoods\Client\bin\Debug\EntityFramework.SqlServer.dll
+D:\Programming\CSharp\EpamTraining\SaleOfGoods\Client\bin\Debug\EntityFramework.SqlServer.xml
