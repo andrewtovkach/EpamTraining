@@ -11,32 +11,23 @@ namespace BL
         {
             var product = new Product(dataRecord.Product);
             var names = dataRecord.Client.Split(' ');
-            Client client = new Client();
+            Client client = null;
             if (names.Length > 1)
                 client = new Client(names[0], names[1]);
-            string[] values = dataRecord.Cost.Split(' ');
-            decimal cost = 0;
-            string currencyCode = string.Empty;
-            if (values.Length > 1)
-            {
-                cost = decimal.Parse(values[0]);
-                currencyCode = values[1];
-            }
-            return new SaleInfo(dataRecord.Date, client, product, cost, currencyCode);
+            decimal cost = decimal.Parse(dataRecord.Cost);
+            return new SaleInfo(dataRecord.Date, client, product, cost);
         }
 
         private static Tuple<string, DateTime> ParseFileName(string filePath)
         {
             string fileName = Path.GetFileName(filePath);
             var values = fileName.Split('_');
-            if (values.Length > 1)
-            {
-                string managerSecondName = values[0];
-                string dateTime = values[1].Substring(0, 8);
-                var date = DateTime.ParseExact(dateTime, "ddMMyyyy", Thread.CurrentThread.CurrentCulture);
-                return new Tuple<string, DateTime>(managerSecondName, date);
-            }
-            return null;
+            if (values.Length <= 1) 
+                return null;
+            string managerSecondName = values[0];
+            string dateTime = values[1].Substring(0, 8);
+            var date = DateTime.ParseExact(dateTime, "ddMMyyyy", Thread.CurrentThread.CurrentCulture);
+            return new Tuple<string, DateTime>(managerSecondName, date);
         }
 
         public static DAL.Models.FileInfo ParseFile(string filePath, DataRecord dataRecord)

@@ -1,0 +1,161 @@
+﻿Выполняется установка сборки 'D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\WindowsService1.exe'.
+Затронуты следующие параметры:
+   logtoconsole = 
+   logfile = D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\WindowsService1.InstallLog
+   assemblypath = D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\WindowsService1.exe
+Устанавливается служба Service1...
+Создается исходный EventLog Service1 в журнале Application...
+Выполняется откат для сборки 'D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\WindowsService1.exe'.
+Затронуты следующие параметры:
+   logtoconsole = 
+   logfile = D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\WindowsService1.InstallLog
+   assemblypath = D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\WindowsService1.exe
+Восстанавливается исходное состояние журнала событий для источника Service1.
+Выполняется установка сборки 'D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\WindowsService1.exe'.
+Затронуты следующие параметры:
+   logtoconsole = 
+   logfile = D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\WindowsService1.InstallLog
+   assemblypath = D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\WindowsService1.exe
+Устанавливается служба Service1...
+Служба Service1 успешно установлена.
+Создается исходный EventLog Service1 в журнале Application...
+Выполняется откат для сборки 'D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\WindowsService1.exe'.
+Затронуты следующие параметры:
+   logtoconsole = 
+   logfile = D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\WindowsService1.InstallLog
+   assemblypath = D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\WindowsService1.exe
+Восстанавливается исходное состояние журнала событий для источника Service1.
+Выполняется удаление службы Service1 из системы...
+Служба Service1 успешно удалена из системы.
+Выполняется удаление сборки 'D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\WindowsService1.exe'.
+Затронуты следующие параметры:
+   logtoconsole = 
+   logfile = D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\WindowsService1.InstallLog
+   assemblypath = D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\WindowsService1.exe
+Выполняется удаление источника EventLog Service1.
+При выполнении программы установки System.Diagnostics.EventLogInstaller во время установки возникло исключение.
+System.InvalidOperationException: Источник 'Service1' журнала событий не может быть удален, поскольку совпадает с именем самого журнала.
+При удалении из системы возникло исключение. Это исключение будет проигнорировано, и удаление из системы будет продолжено. Однако после завершения удаления данное приложение может оказаться не полностью удаленным.
+Выполняется установка сборки 'D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\WindowsService1.exe'.
+Затронуты следующие параметры:
+   logtoconsole = 
+   logfile = D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\WindowsService1.InstallLog
+   assemblypath = D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\WindowsService1.exe
+Устанавливается служба Service1...
+Служба Service1 успешно установлена.
+Создается исходный EventLog Service1 в журнале Application...
+Выполняется откат для сборки 'D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\WindowsService1.exe'.
+Затронуты следующие параметры:
+   logtoconsole = 
+   logfile = D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\WindowsService1.InstallLog
+   assemblypath = D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\WindowsService1.exe
+Восстанавливается исходное состояние журнала событий для источника Service1.
+Выполняется удаление службы Service1 из системы...
+Служба Service1 успешно удалена из системы.
+Выполняется установка сборки 'D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\WindowsService1.exe'.
+Затронуты следующие параметры:
+   logtoconsole = 
+   logfile = D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\WindowsService1.InstallLog
+   assemblypath = D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\WindowsService1.exe
+Устанавливается служба Service1...
+Служба Service1 успешно установлена.
+Создается исходный EventLog Service1 в журнале Application...
+Выполняется откат для сборки 'D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\WindowsService1.exe'.
+Затронуты следующие параметры:
+   logtoconsole = 
+   logfile = D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\WindowsService1.InstallLog
+   assemblypath = D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\WindowsService1.exe
+Восстанавливается исходное состояние журнала событий для источника Service1.
+Выполняется удаление службы Service1 из системы...
+Служба Service1 успешно удалена из системы.
+Выполняется удаление сборки 'D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\WindowsService1.exe'.
+Затронуты следующие параметры:
+   logtoconsole = 
+   logfile = D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\WindowsService1.InstallLog
+   assemblypath = D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\WindowsService1.exe
+Выполняется удаление источника EventLog Service1.
+При выполнении программы установки System.Diagnostics.EventLogInstaller во время установки возникло исключение.
+System.InvalidOperationException: Источник 'Service1' журнала событий не может быть удален, поскольку совпадает с именем самого журнала.
+При удалении из системы возникло исключение. Это исключение будет проигнорировано, и удаление из системы будет продолжено. Однако после завершения удаления данное приложение может оказаться не полностью удаленным.
+Выполняется установка сборки 'D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\WindowsService1.exe'.
+Затронуты следующие параметры:
+   logtoconsole = 
+   logfile = D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\WindowsService1.InstallLog
+   assemblypath = D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\WindowsService1.exe
+Устанавливается служба Service1...
+Служба Service1 успешно установлена.
+Создается исходный EventLog Service1 в журнале Application...
+Выполняется откат для сборки 'D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\WindowsService1.exe'.
+Затронуты следующие параметры:
+   logtoconsole = 
+   logfile = D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\WindowsService1.InstallLog
+   assemblypath = D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\WindowsService1.exe
+Восстанавливается исходное состояние журнала событий для источника Service1.
+Выполняется удаление службы Service1 из системы...
+Служба Service1 успешно удалена из системы.
+Выполняется установка сборки 'D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\WindowsService1.exe'.
+Затронуты следующие параметры:
+   logtoconsole = 
+   logfile = D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\WindowsService1.InstallLog
+   assemblypath = D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\WindowsService1.exe
+Устанавливается служба Service1...
+Служба Service1 успешно установлена.
+Создается исходный EventLog Service1 в журнале Application...
+Выполняется откат для сборки 'D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\WindowsService1.exe'.
+Затронуты следующие параметры:
+   logtoconsole = 
+   logfile = D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\WindowsService1.InstallLog
+   assemblypath = D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\WindowsService1.exe
+Восстанавливается исходное состояние журнала событий для источника Service1.
+Выполняется удаление службы Service1 из системы...
+Служба Service1 успешно удалена из системы.
+Выполняется удаление сборки 'D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\WindowsService1.exe'.
+Затронуты следующие параметры:
+   logtoconsole = 
+   logfile = D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\WindowsService1.InstallLog
+   assemblypath = D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\WindowsService1.exe
+Выполняется удаление источника EventLog Service1.
+При выполнении программы установки System.Diagnostics.EventLogInstaller во время установки возникло исключение.
+System.InvalidOperationException: Источник 'Service1' журнала событий не может быть удален, поскольку совпадает с именем самого журнала.
+При удалении из системы возникло исключение. Это исключение будет проигнорировано, и удаление из системы будет продолжено. Однако после завершения удаления данное приложение может оказаться не полностью удаленным.
+Выполняется установка сборки 'D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\WindowsService1.exe'.
+Затронуты следующие параметры:
+   logtoconsole = 
+   logfile = D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\WindowsService1.InstallLog
+   assemblypath = D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\WindowsService1.exe
+Устанавливается служба Service1...
+Служба Service1 успешно установлена.
+Создается исходный EventLog Service1 в журнале Application...
+Выполняется откат для сборки 'D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\WindowsService1.exe'.
+Затронуты следующие параметры:
+   logtoconsole = 
+   logfile = D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\WindowsService1.InstallLog
+   assemblypath = D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\WindowsService1.exe
+Восстанавливается исходное состояние журнала событий для источника Service1.
+Выполняется удаление службы Service1 из системы...
+Служба Service1 успешно удалена из системы.
+Выполняется установка сборки 'D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\WindowsService1.exe'.
+Затронуты следующие параметры:
+   logtoconsole = 
+   logfile = D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\WindowsService1.InstallLog
+   assemblypath = D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\WindowsService1.exe
+Устанавливается служба Service1...
+Служба Service1 успешно установлена.
+Создается исходный EventLog Service1 в журнале Application...
+Выполняется откат для сборки 'D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\WindowsService1.exe'.
+Затронуты следующие параметры:
+   logtoconsole = 
+   logfile = D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\WindowsService1.InstallLog
+   assemblypath = D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\WindowsService1.exe
+Восстанавливается исходное состояние журнала событий для источника Service1.
+Выполняется удаление службы Service1 из системы...
+Служба Service1 успешно удалена из системы.
+Выполняется удаление сборки 'D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\WindowsService1.exe'.
+Затронуты следующие параметры:
+   logtoconsole = 
+   logfile = D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\WindowsService1.InstallLog
+   assemblypath = D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\WindowsService1.exe
+Выполняется удаление источника EventLog Service1.
+При выполнении программы установки System.Diagnostics.EventLogInstaller во время установки возникло исключение.
+System.InvalidOperationException: Источник 'Service1' журнала событий не может быть удален, поскольку совпадает с именем самого журнала.
+При удалении из системы возникло исключение. Это исключение будет проигнорировано, и удаление из системы будет продолжено. Однако после завершения удаления данное приложение может оказаться не полностью удаленным.

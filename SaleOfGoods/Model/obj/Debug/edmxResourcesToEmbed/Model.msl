@@ -2,7 +2,7 @@
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="Хранилище SalesDBModelContainer" CdmEntityContainer="SalesDBEntities">
     <EntitySetMapping Name="Clients">
-      <EntityTypeMapping TypeName="SalesDBModel.Clients">
+      <EntityTypeMapping TypeName="SalesDBModel.Client">
         <MappingFragment StoreEntitySet="Clients">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="FirstName" ColumnName="FirstName" />
@@ -21,7 +21,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Managers">
-      <EntityTypeMapping TypeName="SalesDBModel.Managers">
+      <EntityTypeMapping TypeName="SalesDBModel.Manager">
         <MappingFragment StoreEntitySet="Managers">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="SecondName" ColumnName="SecondName" />
@@ -29,7 +29,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Products">
-      <EntityTypeMapping TypeName="SalesDBModel.Products">
+      <EntityTypeMapping TypeName="SalesDBModel.Product">
         <MappingFragment StoreEntitySet="Products">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -44,7 +44,6 @@
           <ScalarProperty Name="ClientId" ColumnName="ClientId" />
           <ScalarProperty Name="ProductId" ColumnName="ProductId" />
           <ScalarProperty Name="Cost" ColumnName="Cost" />
-          <ScalarProperty Name="СurrencyСode" ColumnName="СurrencyСode" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

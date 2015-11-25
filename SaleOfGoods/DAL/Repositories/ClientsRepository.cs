@@ -3,18 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using DAL.Models;
+using AutoMapper;
 
 namespace DAL.Repositories
 {
     public class ClientsRepository : AbstractRepository, IRepository<Client>, IEnumerable<Client>
     {
-        private static Model.Clients ToEntity(Client client)
+        private static Model.Client ToEntity(Client client)
         {
-            return new Model.Clients
-            {
-                FirstName = client.FirstName,
-                SecondName = client.SecondName
-            };
+            return Mapper.Map<Client, Model.Client>(client);
         }
 
         public void Add(Client item)
@@ -30,7 +27,7 @@ namespace DAL.Repositories
             else throw new ArgumentException("Incorrect argument!");
         }
 
-        private Model.Clients ClientById(int id)
+        private Model.Client ClientById(int id)
         {
             return Context.Clients.FirstOrDefault(x => x.Id == id);
         }
@@ -38,7 +35,7 @@ namespace DAL.Repositories
         public Client ClientObjectById(int id)
         {
             var client = ClientById(id);
-            return client != null ? new Client(client.Id, client.FirstName.Trim(), client.SecondName.Trim()) : null;
+            return client != null ? new Client(client.Id, client.FirstName, client.SecondName) : null;
         }
 
         public void Update(int id, Client item)

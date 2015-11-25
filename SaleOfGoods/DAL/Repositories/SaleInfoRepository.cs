@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using AutoMapper;
 using DAL.Models;
 
 namespace DAL.Repositories
@@ -10,38 +11,34 @@ namespace DAL.Repositories
     {
         private static Model.SaleInfo ToEntity(SaleInfo saleInfo)
         {
-            return new Model.SaleInfo
-            {
-                Date = saleInfo.Date,
-                Cost = saleInfo.Cost,
-                СurrencyСode = saleInfo.CurrencyCode,
-                ClientId = saleInfo.Client.Id,
-                ProductId = saleInfo.Product.Id
-            };
+            Mapper.CreateMap<SaleInfo, Model.SaleInfo>()
+                    .ForMember("ClientId", opt => opt.MapFrom(c => c.Client.Id))
+                    .ForMember("ProductId", opt => opt.MapFrom(src => src.Product.Id));
+            return Mapper.Map<SaleInfo, Model.SaleInfo>(saleInfo);
         }
 
-        private Model.Clients ClientByName(string firstName, string secondName)
+        private Model.Client ClientByName(string firstName, string secondName)
         {
             return Context.Clients.FirstOrDefault(x => x.FirstName == firstName && x.SecondName == secondName);
         }
 
-        private Model.Clients GetClient(string firstName, string secondName)
+        private Model.Client GetClient(string firstName, string secondName)
         {
-            return ClientByName(firstName, secondName) ?? Context.Clients.Add(new Model.Clients
+            return ClientByName(firstName, secondName) ?? Context.Clients.Add(new Model.Client
             {
                 FirstName = firstName,
                 SecondName = secondName
             });
         }
 
-        private Model.Products ProductByName(string name)
+        private Model.Product ProductByName(string name)
         {
             return Context.Products.FirstOrDefault(x => x.Name == name);
         }
 
-        private Model.Products GetProduct(string name)
+        private Model.Product GetProduct(string name)
         {
-            return ProductByName(name) ?? Context.Products.Add(new Model.Products { Name = name });
+            return ProductByName(name) ?? Context.Products.Add(new Model.Product { Name = name });
         }
 
         public void Add(SaleInfo item)
@@ -55,10 +52,11 @@ namespace DAL.Repositories
                     item.Client.Id = client.Id;
                     item.Product.Id = product.Id;
                     Context.SaleInfo.Add(ToEntity(item));
-                   transaction.Commit();
+                    transaction.Commit();
                 }
                 catch (Exception ex)
                 {
+                    Console.WriteLine(ex.Message);
                     transaction.Rollback();
                 }
             }
@@ -82,7 +80,7 @@ namespace DAL.Repositories
             var saleInfo = Context.SaleInfo.FirstOrDefault(x => x.Id == id);
             return saleInfo != null ? new SaleInfo(saleInfo.Id, saleInfo.Date ?? new DateTime(),
                 new ClientsRepository().ClientObjectById(saleInfo.ClientId), new ProductsRepository().ProductObjectById(saleInfo.ProductId),
-                saleInfo.Cost ?? 0, saleInfo.СurrencyСode) : null;
+                saleInfo.Cost ?? 0) : null;
         }
 
         public void Update(int id, SaleInfo item)
@@ -100,7 +98,6 @@ namespace DAL.Repositories
                     element.ClientId = client.Id;
                     element.ProductId = product.Id;
                     element.Cost = item.Cost;
-                    element.СurrencyСode = item.CurrencyCode;
                     transaction.Commit();
                 }
                 catch (Exception ex)
@@ -114,6 +111,7 @@ namespace DAL.Repositories
         {
             get { return Context.SaleInfo.AsEnumerable().Select(item => SaleInfoObjectById(item.Id)); }
         }
+
         public IEnumerator<SaleInfo> GetEnumerator()
         {
             return Items.GetEnumerator();

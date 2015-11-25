@@ -9,26 +9,24 @@ namespace DAL.Models
         public Client Client { get; set; }
         public Product Product { get; set; }
         public decimal Cost { get; set; }
-        public string CurrencyCode { get; set; }
 
-        public SaleInfo(DateTime date, Client client, Product product, decimal cost, string currencyCode)
+        public SaleInfo(DateTime date, Client client, Product product, decimal cost)
         {
             Date = date;
             Client = client;
             Product = product;
             Cost = cost;
-            CurrencyCode = currencyCode;
         }
 
-        public SaleInfo(int id, DateTime date, Client client, Product product, decimal cost, string currencyCode)
-            : this(date, client, product, cost, currencyCode)
+        public SaleInfo(int id, DateTime date, Client client, Product product, decimal cost)
+            : this(date, client, product, cost)
         {
             Id = id;
         }
 
         public override string ToString()
         {
-            return string.Format("{0} - {1} Client: {2} Product: {3} {4} {5}", Id, Date.ToShortDateString(), Client, Product,  Cost, CurrencyCode);
+            return string.Format("{0} - {1} Client: {2} Product: {3} {4}", Id, Date.ToShortDateString(), Client, Product,  Cost);
         }
     }
 }

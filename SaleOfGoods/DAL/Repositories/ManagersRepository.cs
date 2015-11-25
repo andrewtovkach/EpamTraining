@@ -2,15 +2,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using AutoMapper;
 using DAL.Models;
 
 namespace DAL.Repositories
 {
     public class ManagersRepository : AbstractRepository, IRepository<Manager>, IEnumerable<Manager>
     {
-        private static Model.Managers ToEntity(Manager manager)
+        private static Model.Manager ToEntity(Manager manager)
         {
-            return new Model.Managers { SecondName = manager.SecondName };
+            return Mapper.Map<Manager, Model.Manager>(manager);
         }
 
         public void Add(Manager item)
@@ -26,7 +27,7 @@ namespace DAL.Repositories
             else throw new ArgumentException("Incorrect argument!");
         }
 
-        private Model.Managers ManagerById(int id)
+        private Model.Manager ManagerById(int id)
         {
             return Context.Managers.FirstOrDefault(x => x.Id == id);
         }
@@ -34,7 +35,7 @@ namespace DAL.Repositories
         public Manager ManagerObjectById(int id)
         {
             var manager = Context.Managers.FirstOrDefault(x => x.Id == id);
-            return manager != null ? new Manager(manager.Id, manager.SecondName.Trim()) : null;
+            return manager != null ? new Manager(manager.Id, manager.SecondName) : null;
         }
 
         public void Update(int id, Manager item)

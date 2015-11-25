@@ -22,3 +22,5 @@ D:\Programming\CSharp\EpamTraining\SaleOfGoods\DAL\bin\Debug\ru\EntityFramework.
 D:\Programming\CSharp\EpamTraining\SaleOfGoods\DAL\bin\Debug\EntityFramework.dll
 D:\Programming\CSharp\EpamTraining\SaleOfGoods\DAL\bin\Debug\EntityFramework.SqlServer.dll
 D:\Programming\CSharp\EpamTraining\SaleOfGoods\DAL\bin\Debug\EntityFramework.SqlServer.xml
+D:\Programming\CSharp\EpamTraining\SaleOfGoods\DAL\bin\Debug\AutoMapper.dll
+D:\Programming\CSharp\EpamTraining\SaleOfGoods\DAL\bin\Debug\AutoMapper.xml

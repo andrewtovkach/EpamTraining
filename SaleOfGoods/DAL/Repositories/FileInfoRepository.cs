@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using AutoMapper;
 using DAL.Models;
 
 namespace DAL.Repositories
@@ -10,22 +11,20 @@ namespace DAL.Repositories
     {
         private static Model.FileInfo ToEntity(FileInfo fileInfo)
         {
-            return new Model.FileInfo
-            {
-                ManagerId = fileInfo.Manager.Id,
-                Date = fileInfo.Date,
-                SaleInfoId = fileInfo.SaleInfo.Id
-            };
+            Mapper.CreateMap<FileInfo, Model.FileInfo>()
+                    .ForMember("ManagerId", opt => opt.MapFrom(c => c.Manager.Id))
+                    .ForMember("SaleInfoId", opt => opt.MapFrom(src => src.SaleInfo.Id));
+            return Mapper.Map<FileInfo, Model.FileInfo>(fileInfo);
         }
 
-        private Model.Managers ManagerByName(string secondName)
+        private Model.Manager ManagerByName(string secondName)
         {
             return Context.Managers.FirstOrDefault(x => x.SecondName == secondName);
         }
 
-        private Model.Managers GetManager(string secondName)
+        private Model.Manager GetManager(string secondName)
         {
-            return ManagerByName(secondName) ?? Context.Managers.Add(new Model.Managers { SecondName = secondName });
+            return ManagerByName(secondName) ?? Context.Managers.Add(new Model.Manager { SecondName = secondName });
         }
 
         public Model.SaleInfo GetSaleInfo(SaleInfo saleInfo)
@@ -50,6 +49,7 @@ namespace DAL.Repositories
                 }
                 catch (Exception ex)
                 {
+                    Console.WriteLine(ex.Message);
                     transaction.Rollback();
                 }
             }

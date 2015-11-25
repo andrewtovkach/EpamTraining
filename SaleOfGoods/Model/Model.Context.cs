@@ -18,6 +18,7 @@ namespace Model
         public SalesDBEntities()
             : base("name=SalesDBEntities")
         {
+            var instance = System.Data.Entity.SqlServer.SqlProviderServices.Instance;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -25,10 +26,10 @@ namespace Model
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Clients> Clients { get; set; }
+        public virtual DbSet<Client> Clients { get; set; }
         public virtual DbSet<FileInfo> FileInfo { get; set; }
-        public virtual DbSet<Managers> Managers { get; set; }
-        public virtual DbSet<Products> Products { get; set; }
+        public virtual DbSet<Manager> Managers { get; set; }
+        public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<SaleInfo> SaleInfo { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
     }

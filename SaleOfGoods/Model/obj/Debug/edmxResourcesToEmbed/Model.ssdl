@@ -5,8 +5,8 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="FirstName" Type="nchar" MaxLength="100" />
-    <Property Name="SecondName" Type="nchar" MaxLength="100" />
+    <Property Name="FirstName" Type="varchar" MaxLength="100" />
+    <Property Name="SecondName" Type="varchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="FileInfo">
     <Key>
@@ -22,14 +22,14 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="SecondName" Type="nchar" MaxLength="100" />
+    <Property Name="SecondName" Type="varchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="Products">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nchar" MaxLength="100" />
+    <Property Name="Name" Type="varchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="SaleInfo">
     <Key>
@@ -40,7 +40,6 @@
     <Property Name="ClientId" Type="int" Nullable="false" />
     <Property Name="ProductId" Type="int" Nullable="false" />
     <Property Name="Cost" Type="decimal" Precision="18" Scale="0" />
-    <Property Name="СurrencyСode" Type="nchar" MaxLength="10" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>

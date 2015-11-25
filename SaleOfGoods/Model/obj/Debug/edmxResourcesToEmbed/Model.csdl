@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="SalesDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityType Name="Clients">
+  <EntityType Name="Client">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
-    <Property Name="SecondName" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="SecondName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="SaleInfo" Relationship="Self.FK_SaleInfo_Client" FromRole="Clients" ToRole="SaleInfo" />
   </EntityType>
   <EntityType Name="FileInfo">
@@ -20,20 +20,20 @@
     <NavigationProperty Name="Managers" Relationship="Self.FK_FileInfo_Managers" FromRole="FileInfo" ToRole="Managers" />
     <NavigationProperty Name="SaleInfo" Relationship="Self.FK_FileInfo_SaleInfo" FromRole="FileInfo" ToRole="SaleInfo" />
   </EntityType>
-  <EntityType Name="Managers">
+  <EntityType Name="Manager">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="SecondName" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="SecondName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="FileInfo" Relationship="Self.FK_FileInfo_Managers" FromRole="Managers" ToRole="FileInfo" />
   </EntityType>
-  <EntityType Name="Products">
+  <EntityType Name="Product">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="SaleInfo" Relationship="Self.FK_SaleInfo_Product" FromRole="Products" ToRole="SaleInfo" />
   </EntityType>
   <EntityType Name="SaleInfo">
@@ -45,7 +45,6 @@
     <Property Name="ClientId" Type="Int32" Nullable="false" />
     <Property Name="ProductId" Type="Int32" Nullable="false" />
     <Property Name="Cost" Type="Decimal" Precision="18" Scale="0" />
-    <Property Name="СurrencyСode" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <NavigationProperty Name="Clients" Relationship="Self.FK_SaleInfo_Client" FromRole="SaleInfo" ToRole="Clients" />
     <NavigationProperty Name="FileInfo" Relationship="Self.FK_FileInfo_SaleInfo" FromRole="SaleInfo" ToRole="FileInfo" />
     <NavigationProperty Name="Products" Relationship="Self.FK_SaleInfo_Product" FromRole="SaleInfo" ToRole="Products" />
@@ -61,7 +60,7 @@
     <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
   <Association Name="FK_SaleInfo_Client">
-    <End Role="Clients" Type="Self.Clients" Multiplicity="1">
+    <End Role="Clients" Type="SalesDBModel.Client" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
     <End Role="SaleInfo" Type="Self.SaleInfo" Multiplicity="*" />
@@ -75,7 +74,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_FileInfo_Managers">
-    <End Role="Managers" Type="Self.Managers" Multiplicity="1">
+    <End Role="Managers" Type="SalesDBModel.Manager" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
     <End Role="FileInfo" Type="Self.FileInfo" Multiplicity="*" />
@@ -103,7 +102,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_SaleInfo_Product">
-    <End Role="Products" Type="Self.Products" Multiplicity="1">
+    <End Role="Products" Type="SalesDBModel.Product" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
     <End Role="SaleInfo" Type="Self.SaleInfo" Multiplicity="*" />
@@ -117,10 +116,10 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="SalesDBEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="Clients" EntityType="Self.Clients" />
+    <EntitySet Name="Clients" EntityType="SalesDBModel.Client" />
     <EntitySet Name="FileInfo" EntityType="Self.FileInfo" />
-    <EntitySet Name="Managers" EntityType="Self.Managers" />
-    <EntitySet Name="Products" EntityType="Self.Products" />
+    <EntitySet Name="Managers" EntityType="SalesDBModel.Manager" />
+    <EntitySet Name="Products" EntityType="SalesDBModel.Product" />
     <EntitySet Name="SaleInfo" EntityType="Self.SaleInfo" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
     <AssociationSet Name="FK_SaleInfo_Client" Association="Self.FK_SaleInfo_Client">

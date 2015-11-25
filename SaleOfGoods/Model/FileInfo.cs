@@ -19,7 +19,7 @@ namespace Model
         public Nullable<System.DateTime> Date { get; set; }
         public int SaleInfoId { get; set; }
     
-        public virtual Managers Managers { get; set; }
+        public virtual Manager Managers { get; set; }
         public virtual SaleInfo SaleInfo { get; set; }
     }
 }

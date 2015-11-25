@@ -17,3 +17,5 @@ D:\Programming\CSharp\EpamTraining\SaleOfGoods\Client\bin\Debug\EntityFramework.
 D:\Programming\CSharp\EpamTraining\SaleOfGoods\Client\bin\Debug\ru\EntityFramework.resources.dll
 D:\Programming\CSharp\EpamTraining\SaleOfGoods\Client\bin\Debug\EntityFramework.SqlServer.dll
 D:\Programming\CSharp\EpamTraining\SaleOfGoods\Client\bin\Debug\EntityFramework.SqlServer.xml
+D:\Programming\CSharp\EpamTraining\SaleOfGoods\Client\bin\Debug\AutoMapper.dll
+D:\Programming\CSharp\EpamTraining\SaleOfGoods\Client\bin\Debug\AutoMapper.xml

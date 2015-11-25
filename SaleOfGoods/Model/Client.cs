@@ -12,10 +12,10 @@ namespace Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Clients
+    public partial class Client
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Clients()
+        public Client()
         {
             this.SaleInfo = new HashSet<SaleInfo>();
         }

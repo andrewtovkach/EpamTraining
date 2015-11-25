@@ -12,10 +12,10 @@ namespace Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Managers
+    public partial class Manager
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Managers()
+        public Manager()
         {
             this.FileInfo = new HashSet<FileInfo>();
         }

@@ -19,23 +19,23 @@ namespace WindowsService1
 
         public void Start()
         {
-            AddLog("start");
             _workerThread.Start();
         }
 
         public new void Stop()
         {
-            AddLog("stop");
             _workerThread.Abort();
         }
 
         protected override void OnStart(string[] args)
         {
+            AddLog("start");
             Start();   
         }
 
         protected override void OnStop()
         {
+            AddLog("stop");
             Stop();
         }
 
@@ -47,7 +47,7 @@ namespace WindowsService1
                 {
                     EventLog.CreateEventSource("Service1", "Service1");
                 }
-                eventLog1.Source = "Service1";
+                eventLog1.Source = "MyExampleService";
                 eventLog1.WriteEntry(log);
             }
             catch { }
