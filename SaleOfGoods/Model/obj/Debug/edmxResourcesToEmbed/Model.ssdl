@@ -51,6 +51,13 @@
     <Property Name="version" Type="int" />
     <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
+  <EntityType Name="UnverifiedFiles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FileName" Type="varchar" MaxLength="100" />
+  </EntityType>
   <Association Name="FK_FileInfo_Managers">
     <End Role="Managers" Type="Self.Managers" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -114,6 +121,7 @@
     <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SaleInfo" EntityType="Self.SaleInfo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UnverifiedFiles" EntityType="Self.UnverifiedFiles" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_FileInfo_Managers" Association="Self.FK_FileInfo_Managers">
       <End Role="Managers" EntitySet="Managers" />
       <End Role="FileInfo" EntitySet="FileInfo" />

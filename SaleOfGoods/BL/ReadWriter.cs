@@ -22,7 +22,9 @@ namespace BL
                 var csvWriter = new CsvWriter(streamWriter);
                 csvWriter.WriteHeader<DataRecord>();
                 foreach (var item in list)
+                {
                     csvWriter.WriteRecord(item);
+                }
             }
         }
 

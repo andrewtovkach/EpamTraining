@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.Data.Entity.SqlServer;
+
 namespace Model
 {
     using System;
@@ -18,7 +20,7 @@ namespace Model
         public SalesDBEntities()
             : base("name=SalesDBEntities")
         {
-            var instance = System.Data.Entity.SqlServer.SqlProviderServices.Instance;
+            var ensureDLLIsCopied = SqlProviderServices.Instance; 
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -32,5 +34,6 @@ namespace Model
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<SaleInfo> SaleInfo { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<UnverifiedFile> UnverifiedFiles { get; set; }
     }
 }

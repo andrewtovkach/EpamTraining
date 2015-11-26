@@ -59,6 +59,13 @@
     <Property Name="version" Type="Int32" />
     <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
+  <EntityType Name="UnverifiedFile">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FileName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
   <Association Name="FK_SaleInfo_Client">
     <End Role="Clients" Type="SalesDBModel.Client" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -122,6 +129,7 @@
     <EntitySet Name="Products" EntityType="SalesDBModel.Product" />
     <EntitySet Name="SaleInfo" EntityType="Self.SaleInfo" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="UnverifiedFiles" EntityType="SalesDBModel.UnverifiedFile" />
     <AssociationSet Name="FK_SaleInfo_Client" Association="Self.FK_SaleInfo_Client">
       <End Role="Clients" EntitySet="Clients" />
       <End Role="SaleInfo" EntitySet="SaleInfo" />

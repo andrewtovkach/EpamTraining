@@ -9,14 +9,9 @@ namespace DAL.Repositories
 {
     public class ClientsRepository : AbstractRepository, IRepository<Client>, IEnumerable<Client>
     {
-        private static Model.Client ToEntity(Client client)
-        {
-            return Mapper.Map<Client, Model.Client>(client);
-        }
-
         public void Add(Client item)
         {
-            Context.Clients.Add(ToEntity(item));
+            Context.Clients.Add(Mapper.Map<Client, Model.Client>(item));
         }
 
         public void Remove(Client item)

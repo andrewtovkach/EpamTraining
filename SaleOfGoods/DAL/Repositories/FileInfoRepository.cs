@@ -9,12 +9,11 @@ namespace DAL.Repositories
 {
     public class FileInfoRepository : AbstractRepository, IRepository<FileInfo>, IEnumerable<FileInfo>
     {
-        private static Model.FileInfo ToEntity(FileInfo fileInfo)
+        public FileInfoRepository()
         {
             Mapper.CreateMap<FileInfo, Model.FileInfo>()
-                    .ForMember("ManagerId", opt => opt.MapFrom(c => c.Manager.Id))
-                    .ForMember("SaleInfoId", opt => opt.MapFrom(src => src.SaleInfo.Id));
-            return Mapper.Map<FileInfo, Model.FileInfo>(fileInfo);
+                .ForMember("ManagerId", opt => opt.MapFrom(c => c.Manager.Id))
+                .ForMember("SaleInfoId", opt => opt.MapFrom(src => src.SaleInfo.Id));
         }
 
         private Model.Manager ManagerByName(string secondName)
@@ -44,7 +43,7 @@ namespace DAL.Repositories
                     var saleInfo = GetSaleInfo(item.SaleInfo);
                     item.Manager.Id = manager.Id;
                     item.SaleInfo.Id = saleInfo.Id;
-                    Context.FileInfo.Add(ToEntity(item));
+                    Context.FileInfo.Add(Mapper.Map<FileInfo, Model.FileInfo>(item));
                     transaction.Commit();
                 }
                 catch (Exception ex)
@@ -86,6 +85,7 @@ namespace DAL.Repositories
                 }
                 catch (Exception ex)
                 {
+                    Console.WriteLine(ex.Message);
                     transaction.Rollback();
                 }
             }

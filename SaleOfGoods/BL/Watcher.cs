@@ -1,19 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 
 namespace BL
 {
     public class Watcher
     {
-        public ICollection<FileInformation> Collection;
-
         public string Path { get; set; }
         public string Filter { get; set; }
 
         public Watcher(string path, string filter)
         {
-            Collection = new List<FileInformation>();
             Path = path;
             Filter = filter;
         }
@@ -43,7 +39,6 @@ namespace BL
         private void OnCreated(object source, FileSystemEventArgs e)
         {
             var fileInformation = new FileInformation { ChangeType = e.ChangeType, FullPath = e.FullPath };
-            Collection.Add(fileInformation);
             OnCreatedFile(fileInformation);
         }
     }

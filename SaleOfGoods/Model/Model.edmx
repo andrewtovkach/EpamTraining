@@ -56,6 +56,13 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
+        <EntityType Name="UnverifiedFiles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FileName" Type="varchar" MaxLength="100" />
+        </EntityType>
         <Association Name="FK_FileInfo_Managers">
           <End Role="Managers" Type="Self.Managers" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -119,6 +126,7 @@
           <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SaleInfo" EntityType="Self.SaleInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UnverifiedFiles" EntityType="Self.UnverifiedFiles" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_FileInfo_Managers" Association="Self.FK_FileInfo_Managers">
             <End Role="Managers" EntitySet="Managers" />
             <End Role="FileInfo" EntitySet="FileInfo" />
@@ -200,6 +208,13 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
+        <EntityType Name="UnverifiedFile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FileName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
         <Association Name="FK_SaleInfo_Client">
           <End Role="Clients" Type="SalesDBModel.Client" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -263,6 +278,7 @@
           <EntitySet Name="Products" EntityType="SalesDBModel.Product" />
           <EntitySet Name="SaleInfo" EntityType="Self.SaleInfo" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="UnverifiedFiles" EntityType="SalesDBModel.UnverifiedFile" />
           <AssociationSet Name="FK_SaleInfo_Client" Association="Self.FK_SaleInfo_Client">
             <End Role="Clients" EntitySet="Clients" />
             <End Role="SaleInfo" EntitySet="SaleInfo" />
@@ -340,6 +356,14 @@
                 <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
                 <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UnverifiedFiles">
+            <EntityTypeMapping TypeName="SalesDBModel.UnverifiedFile">
+              <MappingFragment StoreEntitySet="UnverifiedFiles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

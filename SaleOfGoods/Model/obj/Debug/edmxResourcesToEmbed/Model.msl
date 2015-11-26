@@ -58,5 +58,13 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="UnverifiedFiles">
+      <EntityTypeMapping TypeName="SalesDBModel.UnverifiedFile">
+        <MappingFragment StoreEntitySet="UnverifiedFiles">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FileName" ColumnName="FileName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

@@ -9,14 +9,9 @@ namespace DAL.Repositories
 {
     public class ManagersRepository : AbstractRepository, IRepository<Manager>, IEnumerable<Manager>
     {
-        private static Model.Manager ToEntity(Manager manager)
-        {
-            return Mapper.Map<Manager, Model.Manager>(manager);
-        }
-
         public void Add(Manager item)
         {
-            Context.Managers.Add(ToEntity(item));
+            Context.Managers.Add(Mapper.Map<Manager, Model.Manager>(item));
         }
 
         public void Remove(Manager item)

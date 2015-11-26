@@ -17,5 +17,7 @@ D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1Console\bin\Debug\
 D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1Console\obj\Debug\WindowsService1Console.csprojResolveAssemblyReference.cache
 D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1Console\obj\Debug\WindowsService1Console.exe
 D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1Console\obj\Debug\WindowsService1Console.pdb
+D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1Console\bin\Debug\AutoMapper.dll
+D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1Console\bin\Debug\AutoMapper.xml
 D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1Console\bin\Debug\EntityFramework.SqlServer.dll
 D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1Console\bin\Debug\EntityFramework.SqlServer.xml

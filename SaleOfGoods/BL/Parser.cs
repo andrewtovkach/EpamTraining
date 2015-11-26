@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Threading;
 using DAL.Models;
 
@@ -20,7 +19,9 @@ namespace BL
 
         private static Tuple<string, DateTime> ParseFileName(string filePath)
         {
-            string fileName = Path.GetFileName(filePath);
+            string fileName = System.IO.Path.GetFileName(filePath);
+            if (fileName == null) 
+                return null;
             var values = fileName.Split('_');
             if (values.Length <= 1) 
                 return null;
@@ -30,10 +31,10 @@ namespace BL
             return new Tuple<string, DateTime>(managerSecondName, date);
         }
 
-        public static DAL.Models.FileInfo ParseFile(string filePath, DataRecord dataRecord)
+        public static FileInfo ParseFile(string filePath, DataRecord dataRecord)
         {
             var tuple = ParseFileName(filePath);
-            return new DAL.Models.FileInfo(new Manager(tuple.Item1), tuple.Item2, ParseSaleInfo(dataRecord));
+            return new FileInfo(new Manager(tuple.Item1), tuple.Item2, ParseSaleInfo(dataRecord));
         }
     }
 }

@@ -9,12 +9,11 @@ namespace DAL.Repositories
 {
     public class SaleInfoRepository : AbstractRepository, IRepository<SaleInfo>, IEnumerable<SaleInfo>
     {
-        private static Model.SaleInfo ToEntity(SaleInfo saleInfo)
+        public SaleInfoRepository()
         {
             Mapper.CreateMap<SaleInfo, Model.SaleInfo>()
-                    .ForMember("ClientId", opt => opt.MapFrom(c => c.Client.Id))
-                    .ForMember("ProductId", opt => opt.MapFrom(src => src.Product.Id));
-            return Mapper.Map<SaleInfo, Model.SaleInfo>(saleInfo);
+                .ForMember("ClientId", opt => opt.MapFrom(c => c.Client.Id))
+                .ForMember("ProductId", opt => opt.MapFrom(src => src.Product.Id));
         }
 
         private Model.Client ClientByName(string firstName, string secondName)
@@ -51,7 +50,7 @@ namespace DAL.Repositories
                     var product = GetProduct(item.Product.Name);
                     item.Client.Id = client.Id;
                     item.Product.Id = product.Id;
-                    Context.SaleInfo.Add(ToEntity(item));
+                    Context.SaleInfo.Add(Mapper.Map<SaleInfo, Model.SaleInfo>(item));
                     transaction.Commit();
                 }
                 catch (Exception ex)
@@ -102,6 +101,7 @@ namespace DAL.Repositories
                 }
                 catch (Exception ex)
                 {
+                    Console.WriteLine(ex.Message);
                     transaction.Rollback();
                 }
             }

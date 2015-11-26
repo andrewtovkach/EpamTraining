@@ -9,14 +9,9 @@ namespace DAL.Repositories
 {
     public class ProductsRepository : AbstractRepository, IRepository<Product>, IEnumerable<Product>
     {
-        private static Model.Product ToEntity(Product product)
-        {
-            return Mapper.Map<Product, Model.Product>(product);
-        }
-
         public void Add(Product item)
         {
-            Context.Products.Add(ToEntity(item));
+            Context.Products.Add(Mapper.Map<Product, Model.Product>(item));
         }
 
         public void Remove(Product item)
