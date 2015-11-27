@@ -10,17 +10,12 @@ namespace DAL.Models
         public Product Product { get; set; }
         public decimal Cost { get; set; }
 
-        public SaleInfo(DateTime date, Client client, Product product, decimal cost)
+        public SaleInfo(DateTime date, Client client, Product product, decimal cost, int id = 0)
         {
             Date = date;
             Client = client;
             Product = product;
             Cost = cost;
-        }
-
-        public SaleInfo(int id, DateTime date, Client client, Product product, decimal cost)
-            : this(date, client, product, cost)
-        {
             Id = id;
         }
 

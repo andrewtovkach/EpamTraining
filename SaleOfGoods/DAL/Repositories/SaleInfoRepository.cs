@@ -76,10 +76,9 @@ namespace DAL.Repositories
 
         public SaleInfo SaleInfoObjectById(int id)
         {
-            var saleInfo = Context.SaleInfo.FirstOrDefault(x => x.Id == id);
-            return saleInfo != null ? new SaleInfo(saleInfo.Id, saleInfo.Date ?? new DateTime(),
-                new ClientsRepository().ClientObjectById(saleInfo.ClientId), new ProductsRepository().ProductObjectById(saleInfo.ProductId),
-                saleInfo.Cost ?? 0) : null;
+            var saleInfo = SaleInfoById(id);
+            return new SaleInfo(saleInfo.Date, new ClientsRepository().ClientObjectById(saleInfo.ClientId), 
+                new ProductsRepository().ProductObjectById(saleInfo.ProductId), saleInfo.Cost, saleInfo.Id);
         }
 
         public void Update(int id, SaleInfo item)

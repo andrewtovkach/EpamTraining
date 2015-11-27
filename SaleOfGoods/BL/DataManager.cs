@@ -12,14 +12,14 @@ namespace BL
         public void OnStart()
         {
             ProcessingUnverifiedFiles();
-            string filePath = ConfigurationManager.AppSettings["FolderPath"];
-            string fileExtension = ConfigurationManager.AppSettings["FileExtension"];
+            var filePath = ConfigurationManager.AppSettings["FolderPath"];
+            var fileExtension = ConfigurationManager.AppSettings["FileExtension"];
             var watcher = new Watcher(filePath, fileExtension);
             watcher.CreatedFile += (sender, info) =>
             {
-                Task task = new Task(() => AddInformationToTheDb(info.FullPath));
+                var task = new Task(() => AddInformationToTheDb(info.FullPath));
                 task.Start();
-                task.ContinueWith((Task t) => { Console.WriteLine(info.FullPath + " обработан!"); });
+                task.ContinueWith((Task t) => { Console.WriteLine(info.FullPath + " is recorded!"); });
             };
             Task.WaitAll();
             watcher.Run(() =>
@@ -33,12 +33,11 @@ namespace BL
         {
             using (var unverifiedFilesRepository = new UnverifiedFilesRepository())
             {
-                if (unverifiedFilesRepository.Count() != 0)
+                if (!unverifiedFilesRepository.Any()) 
+                    return;
+                foreach (var item in unverifiedFilesRepository)
                 {
-                    foreach (var item in unverifiedFilesRepository)
-                    {
-                        AddInformationToTheDb(item.FileName);
-                    }
+                    AddInformationToTheDb(item.FileName);
                 }
             }
         }

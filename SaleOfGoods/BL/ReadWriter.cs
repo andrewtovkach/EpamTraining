@@ -32,8 +32,7 @@ namespace BL
         {
             using (var streamReader = new StreamReader(FilePath, Encoding.Default))
             {
-                var csvReader = new CsvReader(streamReader);
-                return csvReader.GetRecords<DataRecord>().ToList();
+                return new CsvReader(streamReader).GetRecords<DataRecord>().ToList();
             }
         }
     }

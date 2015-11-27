@@ -14,10 +14,10 @@ namespace WindowsService1Console
             {
                 Console.CancelKeyPress += (x, y) => service.Stop();
                 service.Start();
-                Console.WriteLine("Служба запущена");
+                Console.WriteLine("Service is running");
                 Console.ReadKey();
                 service.Stop();
-                Console.WriteLine("Служба остановлена");
+                Console.WriteLine("Service is stopped");
             }
             else
             {

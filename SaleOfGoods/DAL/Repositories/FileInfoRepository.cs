@@ -28,8 +28,7 @@ namespace DAL.Repositories
 
         public Model.SaleInfo GetSaleInfo(SaleInfo saleInfo)
         {
-            var saleInfoRepository = new SaleInfoRepository { saleInfo };
-            saleInfoRepository.SaveChanges();
+            new SaleInfoRepository().Add(saleInfo);
             return Context.SaleInfo.AsEnumerable().Last();
         }
 
@@ -91,16 +90,18 @@ namespace DAL.Repositories
             }
         }
 
+        public FileInfo FileInfoObjectById(int id)
+        {
+            var fileInfo = FileInfoById(id);
+            return new FileInfo(new ManagersRepository().ManagerObjectById(fileInfo.ManagerId), fileInfo.Date,
+                    new SaleInfoRepository().SaleInfoObjectById(fileInfo.SaleInfoId), fileInfo.Id);
+        }
+
         public IEnumerable<FileInfo> Items
         {
-            get
-            {
-                return Context.FileInfo.AsEnumerable().Select(item => new FileInfo(item.Id,
-                    new ManagersRepository().ManagerObjectById(item.ManagerId), item.Date ?? new DateTime(),
-                    new SaleInfoRepository().SaleInfoObjectById(item.SaleInfoId)
-                ));
-            }
+            get { return Context.FileInfo.AsEnumerable().Select(item => FileInfoObjectById(item.Id)); }
         }
+
         public IEnumerator<FileInfo> GetEnumerator()
         {
             return Items.GetEnumerator();

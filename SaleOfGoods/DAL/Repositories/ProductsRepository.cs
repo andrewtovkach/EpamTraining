@@ -9,6 +9,12 @@ namespace DAL.Repositories
 {
     public class ProductsRepository : AbstractRepository, IRepository<Product>, IEnumerable<Product>
     {
+        public ProductsRepository()
+        {
+            Mapper.CreateMap<Product, Model.Product>();
+            Mapper.CreateMap<Model.Product, Product>();    
+        }
+
         public void Add(Product item)
         {
             Context.Products.Add(Mapper.Map<Product, Model.Product>(item));
@@ -29,8 +35,7 @@ namespace DAL.Repositories
 
         public Product ProductObjectById(int id)
         {
-            var product = Context.Products.FirstOrDefault(x => x.Id == id);
-            return product != null ? new Product(product.Id, product.Name) : null;
+            return Mapper.Map<Model.Product, Product>(ProductById(id));
         }
 
         public void Update(int id, Product item)
@@ -43,7 +48,7 @@ namespace DAL.Repositories
 
         public IEnumerable<Product> Items
         {
-            get { return Context.Products.AsEnumerable().Select(item => ProductObjectById(item.Id)); }
+            get { return Context.Products.Select(Mapper.Map<Model.Product, Product>); }
         }
 
         public IEnumerator<Product> GetEnumerator()

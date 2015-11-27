@@ -10,7 +10,6 @@ D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1Console\bin\Debug\
 D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1Console\bin\Debug\WindowsService1.pdb
 D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1Console\bin\Debug\BL.pdb
 D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1Console\bin\Debug\DAL.pdb
-D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1Console\bin\Debug\CsvHelper.pdb
 D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1Console\bin\Debug\Model.pdb
 D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1Console\bin\Debug\EntityFramework.xml
 D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1Console\bin\Debug\ru\EntityFramework.resources.dll

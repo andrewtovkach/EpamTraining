@@ -13,7 +13,6 @@ D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\Model.d
 D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\EntityFramework.dll
 D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\BL.pdb
 D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\DAL.pdb
-D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\CsvHelper.pdb
 D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\Model.pdb
 D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\EntityFramework.xml
 D:\Programming\CSharp\EpamTraining\SaleOfGoods\WindowsService1\bin\Debug\ru\EntityFramework.resources.dll

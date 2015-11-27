@@ -9,16 +9,11 @@ namespace DAL.Models
         public DateTime Date { get; set; }
         public SaleInfo SaleInfo { get; set; }
 
-        public FileInfo(Manager manager, DateTime date, SaleInfo saleInfo)
+        public FileInfo(Manager manager, DateTime date, SaleInfo saleInfo, int id = 0)
         {
             Manager = manager;
             Date = date;
             SaleInfo = saleInfo;
-        }
-
-        public FileInfo(int id, Manager manager, DateTime date, SaleInfo saleInfo)
-            : this(manager, date, saleInfo)
-        {
             Id = id;
         }
 

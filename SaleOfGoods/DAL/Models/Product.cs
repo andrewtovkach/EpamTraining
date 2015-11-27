@@ -7,14 +7,9 @@ namespace DAL.Models
         public int Id { get; set; }
         public string Name { get; set; }
 
-        public Product(string name)
+        public Product(string name, int id = 0)
         {
             Name = name;
-        }
-
-        public Product(int id, string name) 
-            : this(name)
-        {
             Id = id;
         }
 

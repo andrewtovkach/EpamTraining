@@ -9,6 +9,12 @@ namespace DAL.Repositories
 {
     public class ClientsRepository : AbstractRepository, IRepository<Client>, IEnumerable<Client>
     {
+        public ClientsRepository()
+        {
+            Mapper.CreateMap<Client, Model.Client>();
+            Mapper.CreateMap<Model.Client, Client>();
+        }
+
         public void Add(Client item)
         {
             Context.Clients.Add(Mapper.Map<Client, Model.Client>(item));
@@ -29,8 +35,7 @@ namespace DAL.Repositories
 
         public Client ClientObjectById(int id)
         {
-            var client = ClientById(id);
-            return client != null ? new Client(client.Id, client.FirstName, client.SecondName) : null;
+            return Mapper.Map<Model.Client, Client>(ClientById(id));
         }
 
         public void Update(int id, Client item)
@@ -44,7 +49,7 @@ namespace DAL.Repositories
 
         public IEnumerable<Client> Items
         {
-            get { return Context.Clients.AsEnumerable().Select(item => ClientObjectById(item.Id)); }
+            get { return Context.Clients.Select(Mapper.Map<Model.Client, Client>); }
         }
 
         public IEnumerator<Client> GetEnumerator()

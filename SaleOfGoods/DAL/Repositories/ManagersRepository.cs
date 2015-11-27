@@ -9,6 +9,12 @@ namespace DAL.Repositories
 {
     public class ManagersRepository : AbstractRepository, IRepository<Manager>, IEnumerable<Manager>
     {
+        public ManagersRepository()
+        {
+            Mapper.CreateMap<Manager, Model.Manager>();
+            Mapper.CreateMap<Model.Manager, Manager>();
+        }
+
         public void Add(Manager item)
         {
             Context.Managers.Add(Mapper.Map<Manager, Model.Manager>(item));
@@ -29,8 +35,7 @@ namespace DAL.Repositories
 
         public Manager ManagerObjectById(int id)
         {
-            var manager = Context.Managers.FirstOrDefault(x => x.Id == id);
-            return manager != null ? new Manager(manager.Id, manager.SecondName) : null;
+            return Mapper.Map<Model.Manager, Manager>(ManagerById(id)); 
         }
 
         public void Update(int id, Manager item)
@@ -43,7 +48,7 @@ namespace DAL.Repositories
 
         public IEnumerable<Manager> Items
         {
-            get { return Context.Managers.AsEnumerable().Select(item => ManagerObjectById(item.Id)); }
+            get { return Context.Managers.Select(Mapper.Map<Model.Manager, Manager>); }
         }
 
         public IEnumerator<Manager> GetEnumerator()

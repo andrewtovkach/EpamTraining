@@ -5,14 +5,9 @@
         public int Id { get; set; }
         public string SecondName { get; set; }
 
-        public Manager(string secondName)
+        public Manager(string secondName, int id = 0) 
         {
             SecondName = secondName;
-        }
-
-        public Manager(int id, string secondName) 
-            : this(secondName)
-        {
             Id = id;
         }
 

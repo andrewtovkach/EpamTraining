@@ -16,7 +16,7 @@ namespace Model
     {
         public int Id { get; set; }
         public int ManagerId { get; set; }
-        public Nullable<System.DateTime> Date { get; set; }
+        public DateTime Date { get; set; }
         public int SaleInfoId { get; set; }
     
         public virtual Manager Managers { get; set; }

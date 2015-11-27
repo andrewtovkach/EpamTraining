@@ -6,7 +6,6 @@ D:\Programming\CSharp\EpamTraining\SaleOfGoods\BL\bin\Debug\DAL.dll
 D:\Programming\CSharp\EpamTraining\SaleOfGoods\BL\bin\Debug\Model.dll
 D:\Programming\CSharp\EpamTraining\SaleOfGoods\BL\bin\Debug\EntityFramework.dll
 D:\Programming\CSharp\EpamTraining\SaleOfGoods\BL\bin\Debug\DAL.pdb
-D:\Programming\CSharp\EpamTraining\SaleOfGoods\BL\bin\Debug\CsvHelper.pdb
 D:\Programming\CSharp\EpamTraining\SaleOfGoods\BL\bin\Debug\Model.pdb
 D:\Programming\CSharp\EpamTraining\SaleOfGoods\BL\bin\Debug\EntityFramework.xml
 D:\Programming\CSharp\EpamTraining\SaleOfGoods\BL\obj\Debug\BL.dll

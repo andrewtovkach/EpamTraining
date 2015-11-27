@@ -11,9 +11,8 @@ namespace DAL.Repositories
     {
         public UnverifiedFilesRepository()
         {
-            Mapper.CreateMap<UnverifiedFile, Model.UnverifiedFile>()
-                .ForMember("Id", opt => opt.MapFrom(c => c.Id))
-                .ForMember("FileName", opt => opt.MapFrom(src => src.FileName));    
+            Mapper.CreateMap<UnverifiedFile, Model.UnverifiedFile>();
+            Mapper.CreateMap<Model.UnverifiedFile, UnverifiedFile>();
         }
 
         public void Add(UnverifiedFile item)
@@ -44,13 +43,12 @@ namespace DAL.Repositories
 
         public UnverifiedFile UnverifiedFileObjectById(int id)
         {
-            var unverifiedFile = UnverifiedFileById(id);
-            return unverifiedFile != null ? new UnverifiedFile(unverifiedFile.Id, unverifiedFile.FileName) : null;
+            return Mapper.Map<Model.UnverifiedFile, UnverifiedFile>(UnverifiedFileById(id));
         }
 
         public IEnumerable<UnverifiedFile> Items
         {
-            get { return Context.UnverifiedFiles.AsEnumerable().Select(item => UnverifiedFileObjectById(item.Id)); }
+            get { return Context.UnverifiedFiles.Select(Mapper.Map<Model.UnverifiedFile, UnverifiedFile>); }
         }
 
         public IEnumerator<UnverifiedFile> GetEnumerator()

@@ -47,7 +47,7 @@ namespace WindowsService1
                 {
                     EventLog.CreateEventSource("Service1", "Service1");
                 }
-                eventLog1.Source = "MyExampleService";
+                eventLog1.Source = "Service1";
                 eventLog1.WriteEntry(log);
             }
             catch { }

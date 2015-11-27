@@ -5,20 +5,15 @@
         public int Id { get; set; }
         public string FileName { get; set; }
 
-        public UnverifiedFile(string fileName)
+        public UnverifiedFile(string fileName, int id = 0)
         {
             FileName = fileName;
-        }
-
-        public UnverifiedFile(int id, string fileName)
-            : this(fileName)
-        {
             Id = id;
         }
 
         public override string ToString()
         {
-            return string.Format("{0} {1}", Id, FileName);
+            return string.Format("{0} - {1}", Id, FileName);
         }
     }
 }

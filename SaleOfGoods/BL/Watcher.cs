@@ -19,8 +19,8 @@ namespace BL
             var watcher = new FileSystemWatcher
             {
                 Path = this.Path,
-                NotifyFilter = NotifyFilters.LastAccess | NotifyFilters.LastWrite
-                               | NotifyFilters.FileName | NotifyFilters.DirectoryName,
+                NotifyFilter = NotifyFilters.LastAccess | NotifyFilters.LastWrite | NotifyFilters.FileName 
+                                | NotifyFilters.DirectoryName,
                 Filter = this.Filter
             };
             watcher.Created += OnCreated;
@@ -38,8 +38,7 @@ namespace BL
 
         private void OnCreated(object source, FileSystemEventArgs e)
         {
-            var fileInformation = new FileInformation { ChangeType = e.ChangeType, FullPath = e.FullPath };
-            OnCreatedFile(fileInformation);
+            OnCreatedFile(new FileInformation { ChangeType = e.ChangeType, FullPath = e.FullPath });
         }
     }
 }
