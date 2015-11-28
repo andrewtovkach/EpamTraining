@@ -1,9 +1,10 @@
 ﻿using System;
 using System.IO;
+using BL.Interfaces;
 
-namespace BL
+namespace BL.Model
 {
-    public class Watcher
+    public class Watcher : IWatcher
     {
         public string Path { get; set; }
         public string Filter { get; set; }
@@ -19,13 +20,20 @@ namespace BL
             var watcher = new FileSystemWatcher
             {
                 Path = this.Path,
-                NotifyFilter = NotifyFilters.LastAccess | NotifyFilters.LastWrite | NotifyFilters.FileName 
+                NotifyFilter = NotifyFilters.LastAccess | NotifyFilters.LastWrite | NotifyFilters.FileName
                                 | NotifyFilters.DirectoryName,
                 Filter = this.Filter
             };
-            watcher.Created += OnCreated;
+            watcher.Created += (sender, args) =>
+            {
+                OnCreatedFile(new FileInformation
+                {
+                    ChangeType = args.ChangeType,
+                    FullPath = args.FullPath
+                });
+            };
             watcher.EnableRaisingEvents = true;
-            while (func.Invoke()) ;
+            while (func.Invoke());
         }
 
         public event EventHandler<FileInformation> CreatedFile;
@@ -34,11 +42,6 @@ namespace BL
         {
             if (CreatedFile != null)
                 CreatedFile(this, e);
-        }
-
-        private void OnCreated(object source, FileSystemEventArgs e)
-        {
-            OnCreatedFile(new FileInformation { ChangeType = e.ChangeType, FullPath = e.FullPath });
         }
     }
 }

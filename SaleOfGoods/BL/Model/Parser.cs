@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Threading;
+using BL.Interfaces;
 using DAL.Models;
 
-namespace BL
+namespace BL.Model
 {
-    public static class Parser
+    public class Parser : IParse
     {
         private static SaleInfo ParseSaleInfo(DataRecord dataRecord)
         {
@@ -17,7 +18,7 @@ namespace BL
 
         private static Tuple<string, DateTime> ParseFileName(string filePath)
         {
-            string fileName = System.IO.Path.GetFileName(filePath);
+            var fileName = System.IO.Path.GetFileName(filePath);
             if (fileName == null) 
                 return null;
             var values = fileName.Split('_');
@@ -27,7 +28,7 @@ namespace BL
             return new Tuple<string, DateTime>(values[0], date);
         }
 
-        public static FileInfo ParseFile(string filePath, DataRecord dataRecord)
+        public FileInfo ParseFile(string filePath, DataRecord dataRecord)
         {
             var tuple = ParseFileName(filePath);
             return new FileInfo(new Manager(tuple.Item1), tuple.Item2, ParseSaleInfo(dataRecord));

@@ -3,10 +3,11 @@ using CsvHelper;
 using System.IO;
 using System.Linq;
 using System.Text;
+using BL.Interfaces;
 
-namespace BL
+namespace BL.Model
 {
-    public class ReadWriter
+    public class ReadWriter : IReadWriter
     {
         public string FilePath { get; set; }
 

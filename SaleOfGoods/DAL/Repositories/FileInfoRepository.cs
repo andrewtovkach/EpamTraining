@@ -28,7 +28,9 @@ namespace DAL.Repositories
 
         public Model.SaleInfo GetSaleInfo(SaleInfo saleInfo)
         {
-            new SaleInfoRepository().Add(saleInfo);
+            var saleInfoRepository = new SaleInfoRepository { saleInfo };
+            saleInfoRepository.SaveChanges();
+            return null;
             return Context.SaleInfo.AsEnumerable().Last();
         }
 
@@ -40,15 +42,18 @@ namespace DAL.Repositories
                 {
                     var manager = GetManager(item.Manager.SecondName);
                     var saleInfo = GetSaleInfo(item.SaleInfo);
-                    item.Manager.Id = manager.Id;
-                    item.SaleInfo.Id = saleInfo.Id;
-                    Context.FileInfo.Add(Mapper.Map<FileInfo, Model.FileInfo>(item));
+                    Context.FileInfo.Add(new Model.FileInfo
+                    {
+                        Date = item.Date,
+                        ManagerId = manager.Id,
+                        SaleInfoId = saleInfo.Id
+                    });
                     transaction.Commit();
                 }
-                catch (Exception ex)
+                catch
                 {
-                    Console.WriteLine(ex.Message);
                     transaction.Rollback();
+                    throw new Exception("Rollback database!");
                 }
             }
         }

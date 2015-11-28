@@ -21,7 +21,7 @@ namespace DAL.Repositories
             return Context.Clients.FirstOrDefault(x => x.FirstName == firstName && x.SecondName == secondName);
         }
 
-        private Model.Client GetClient(string firstName, string secondName)
+        public Model.Client GetClient(string firstName, string secondName)
         {
             return ClientByName(firstName, secondName) ?? Context.Clients.Add(new Model.Client
             {
@@ -35,30 +35,18 @@ namespace DAL.Repositories
             return Context.Products.FirstOrDefault(x => x.Name == name);
         }
 
-        private Model.Product GetProduct(string name)
+        public Model.Product GetProduct(string name)
         {
             return ProductByName(name) ?? Context.Products.Add(new Model.Product { Name = name });
         }
 
         public void Add(SaleInfo item)
         {
-            using (var transaction = Context.Database.BeginTransaction())
-            {
-                try
-                {
-                    var client = GetClient(item.Client.FirstName, item.Client.SecondName);
-                    var product = GetProduct(item.Product.Name);
-                    item.Client.Id = client.Id;
-                    item.Product.Id = product.Id;
-                    Context.SaleInfo.Add(Mapper.Map<SaleInfo, Model.SaleInfo>(item));
-                    transaction.Commit();
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                    transaction.Rollback();
-                }
-            }
+            var client = GetClient(item.Client.FirstName, item.Client.SecondName);
+            var product = GetProduct(item.Product.Name);
+            item.Client.Id = client.Id;
+            item.Product.Id = product.Id;
+            Context.SaleInfo.Add(Mapper.Map<SaleInfo, Model.SaleInfo>(item));
         }
 
         public void Remove(SaleInfo item)
@@ -77,33 +65,21 @@ namespace DAL.Repositories
         public SaleInfo SaleInfoObjectById(int id)
         {
             var saleInfo = SaleInfoById(id);
-            return new SaleInfo(saleInfo.Date, new ClientsRepository().ClientObjectById(saleInfo.ClientId), 
+            return new SaleInfo(saleInfo.Date, new ClientsRepository().ClientObjectById(saleInfo.ClientId),
                 new ProductsRepository().ProductObjectById(saleInfo.ProductId), saleInfo.Cost, saleInfo.Id);
         }
 
         public void Update(int id, SaleInfo item)
         {
-            using (var transaction = Context.Database.BeginTransaction())
-            {
-                try
-                {
-                    var element = SaleInfoById(id);
-                    if (element == null)
-                        throw new ArgumentException("Incorrect saleInfo identification!");
-                    element.Date = item.Date;
-                    var client = GetClient(item.Client.FirstName, item.Client.SecondName);
-                    var product = GetProduct(item.Product.Name);
-                    element.ClientId = client.Id;
-                    element.ProductId = product.Id;
-                    element.Cost = item.Cost;
-                    transaction.Commit();
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                    transaction.Rollback();
-                }
-            }
+            var element = SaleInfoById(id);
+            if (element == null)
+                throw new ArgumentException("Incorrect saleInfo identification!");
+            element.Date = item.Date;
+            var client = GetClient(item.Client.FirstName, item.Client.SecondName);
+            var product = GetProduct(item.Product.Name);
+            element.ClientId = client.Id;
+            element.ProductId = product.Id;
+            element.Cost = item.Cost;
         }
 
         public IEnumerable<SaleInfo> Items

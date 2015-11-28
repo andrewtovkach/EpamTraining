@@ -1,7 +1,7 @@
 ﻿using System.ServiceProcess;
 using System.Threading;
 using System.Diagnostics;
-using BL;
+using BL.Model;
 
 namespace WindowsService1
 {
@@ -12,7 +12,7 @@ namespace WindowsService1
         public Service1()
         {
             InitializeComponent();
-            DataManager dataManager = new DataManager();
+            var dataManager = new DataManager();
             _workerThread = new Thread(dataManager.OnStart);
             _workerThread.SetApartmentState(ApartmentState.STA);
         }

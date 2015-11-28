@@ -1,5 +1,5 @@
 ﻿using System.Threading;
-using BL;
+using BL.Model;
 
 namespace Client
 {
