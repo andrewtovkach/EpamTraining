@@ -1,6 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
+using System.Linq;
 using System.Threading.Tasks;
 using BL.Interfaces;
 using DAL.Models;
@@ -10,23 +9,39 @@ namespace BL.Model
 {
     public class DataManager : IDataManager
     {
+        public IWatcher Watcher { get; private set; }
+        
+        public DataManager(IWatcher watcher)
+        {
+            Watcher = watcher;
+        }
+
         public void OnStart()
         {
-            var filePath = ConfigurationManager.AppSettings["FolderPath"];
-            var fileExtension = ConfigurationManager.AppSettings["FileExtension"];
-            var watcher = new Watcher(filePath, fileExtension);
-            watcher.CreatedFile += (sender, info) => { CreateTask(info); };
+            ProcessingUnverifiedFiles();
+            Watcher.CreatedFile += (sender, info) => { CreateTask(info); };
             Task.WaitAll();
-            watcher.Run(() =>
+            Watcher.Run(() =>
             {
                 var result = Console.Read() != 'q';
                 return result;
             });
         }
 
-        public void CreateTask(FileInformation info)
+        private void ProcessingUnverifiedFiles()
         {
-            var task = new Task(() => VerificationTable(info.FullPath));
+            using (var unverifiedFilesRepository = new UnverifiedFilesRepository())
+            {
+                foreach (var item in unverifiedFilesRepository.Where(item => AddInformationToTheDb(item.FileName)))
+                {
+                    unverifiedFilesRepository.Remove(item);
+                }
+            }
+        }
+
+        private void CreateTask(FileInformation info)
+        {
+            var task = new Task(() => AddInformationToTheDb(info.FullPath));
             task.Start();
             task.ContinueWith((Task t) =>
             {
@@ -35,6 +50,7 @@ namespace BL.Model
                     Console.WriteLine("File " + info.FullPath + " is recorded!");
                     return;
                 }
+                Console.WriteLine("In the process of writing a file error occurred: \n");
                 foreach (var exception in t.Exception.InnerExceptions)
                 {
                     Console.WriteLine(exception.Message);
@@ -44,45 +60,27 @@ namespace BL.Model
 
         static readonly object Locker = new object();
 
-        private void VerificationTable(string fileName)
+        public bool AddInformationToTheDb(string fileName)
         {
-            var writtenRecords = new List<FileInfo>();
-            try
-            {
-                writtenRecords = AddInformationToTheDb(fileName);
-            }
-            catch
-            {
-                var unverifiedFiles = new UnverifiedFilesRepository { new UnverifiedFile(fileName) };
-                unverifiedFiles.SaveChanges();
-                var fileInfoRepository = new FileInfoRepository();
-                foreach (var record in writtenRecords)
-                {
-                    fileInfoRepository.Remove(record);
-                }
-                fileInfoRepository.SaveChanges();
-                throw new Exception("Error writing file to the database");
-            }
-        }
-
-        public List<FileInfo> AddInformationToTheDb(string fileName)
-        {
-            var writtenRecords = new List<FileInfo>();
-            var records = new ReadWriter(fileName).Read();
             using (var fileInfoRepository = new FileInfoRepository())
             {
-                foreach (var record in records)
+                lock (Locker)
                 {
-                    lock (Locker)
+                    try
                     {
-                        var fileInfo = new Parser().ParseFile(fileName, record);
+                        var fileInfo = new Parser(new ReadWriter(fileName)).ParseFile();
                         fileInfoRepository.Add(fileInfo);
-                        writtenRecords.Add(fileInfo);
                         fileInfoRepository.SaveChanges();
+                        return true;
+                    }
+                    catch
+                    {
+                        var unverifiedFiles = new UnverifiedFilesRepository { new UnverifiedFile(fileName)                         };
+                        unverifiedFiles.SaveChanges();
+                        return false;
                     }
                 }
             }
-            return writtenRecords;
         }
     }
 }

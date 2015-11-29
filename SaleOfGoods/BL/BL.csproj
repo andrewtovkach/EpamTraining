@@ -47,7 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interfaces\IDataManager.cs" />
-    <Compile Include="Interfaces\IParse.cs" />
+    <Compile Include="Interfaces\IParser.cs" />
     <Compile Include="Interfaces\IReadWriter.cs" />
     <Compile Include="Interfaces\IWatcher.cs" />
     <Compile Include="Model\DataManager.cs" />

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
 using DAL.Models;
+using DAL.Interfaces;
 
 namespace DAL.Repositories
 {

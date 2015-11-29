@@ -2,20 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using AutoMapper;
 using DAL.Models;
+using DAL.Interfaces;
 
 namespace DAL.Repositories
 {
     public class FileInfoRepository : AbstractRepository, IRepository<FileInfo>, IEnumerable<FileInfo>
     {
-        public FileInfoRepository()
-        {
-            Mapper.CreateMap<FileInfo, Model.FileInfo>()
-                .ForMember("ManagerId", opt => opt.MapFrom(c => c.Manager.Id))
-                .ForMember("SaleInfoId", opt => opt.MapFrom(src => src.SaleInfo.Id));
-        }
-
         private Model.Manager ManagerByName(string secondName)
         {
             return Context.Managers.FirstOrDefault(x => x.SecondName == secondName);
@@ -26,12 +19,22 @@ namespace DAL.Repositories
             return ManagerByName(secondName) ?? Context.Managers.Add(new Model.Manager { SecondName = secondName });
         }
 
-        public Model.SaleInfo GetSaleInfo(SaleInfo saleInfo)
+        private Model.SaleInfo SaleInfoByName(SaleInfo info)
         {
-            var saleInfoRepository = new SaleInfoRepository { saleInfo };
+            var client = new SaleInfoRepository().GetClient(info.Client.FirstName, info.Client.SecondName);
+            var product = new SaleInfoRepository().GetProduct(info.Product.Name);
+            return Context.SaleInfo.FirstOrDefault(x => x.Date == info.Date && x.ClientId == client.Id && 
+                x.ProductId == product.Id && x.Cost == info.Cost);
+        }
+
+        public Model.SaleInfo GetSaleInfo(SaleInfo info)
+        {
+            var saleInfo = SaleInfoByName(info);
+            if (saleInfo != null)
+                return saleInfo;
+            var saleInfoRepository = new SaleInfoRepository { info };
             saleInfoRepository.SaveChanges();
-            return null;
-            return Context.SaleInfo.AsEnumerable().Last();
+            return Context.SaleInfo.AsEnumerable().Last();  
         }
 
         public void Add(FileInfo item)
@@ -41,19 +44,21 @@ namespace DAL.Repositories
                 try
                 {
                     var manager = GetManager(item.Manager.SecondName);
-                    var saleInfo = GetSaleInfo(item.SaleInfo);
-                    Context.FileInfo.Add(new Model.FileInfo
+                    foreach (var saleInfo in item.SaleInfo.Select(GetSaleInfo))
                     {
-                        Date = item.Date,
-                        ManagerId = manager.Id,
-                        SaleInfoId = saleInfo.Id
-                    });
+                        Context.FileInfo.Add(new Model.FileInfo
+                        {
+                            Date = item.Date,
+                            ManagerId = manager.Id,
+                            SaleInfoId = saleInfo.Id
+                        });
+                    }
                     transaction.Commit();
                 }
-                catch
+                catch (Exception exception)
                 {
                     transaction.Rollback();
-                    throw new Exception("Rollback database!");
+                    throw new Exception(exception.Message);
                 }
             }
         }
@@ -80,17 +85,19 @@ namespace DAL.Repositories
                     var element = FileInfoById(id);
                     if (element == null)
                         throw new ArgumentException("Incorrect fileInfo identification!");
-                    element.Date = item.Date;
                     var manager = GetManager(item.Manager.SecondName);
-                    var saleInfo = GetSaleInfo(item.SaleInfo);
-                    element.ManagerId = manager.Id;
-                    element.SaleInfoId = saleInfo.Id;
+                    foreach (var saleInfo in item.SaleInfo.Select(GetSaleInfo))
+                    {
+                        element.Date = item.Date;
+                        element.ManagerId = manager.Id;
+                        element.SaleInfoId = saleInfo.Id;
+                    }
                     transaction.Commit();
                 }
-                catch (Exception ex)
+                catch (Exception exception)
                 {
-                    Console.WriteLine(ex.Message);
                     transaction.Rollback();
+                    throw new Exception(exception.Message);
                 }
             }
         }
@@ -98,8 +105,12 @@ namespace DAL.Repositories
         public FileInfo FileInfoObjectById(int id)
         {
             var fileInfo = FileInfoById(id);
+            var query = (from element in Context.FileInfo
+                         where element.ManagerId == fileInfo.ManagerId && element.Date == fileInfo.Date
+                         select element.SaleInfo).ToList();
+            var list = query.Select(item => new SaleInfoRepository().SaleInfoObjectById(item.Id)).ToList();
             return new FileInfo(new ManagersRepository().ManagerObjectById(fileInfo.ManagerId), fileInfo.Date,
-                    new SaleInfoRepository().SaleInfoObjectById(fileInfo.SaleInfoId), fileInfo.Id);
+                    list, fileInfo.Id);
         }
 
         public IEnumerable<FileInfo> Items

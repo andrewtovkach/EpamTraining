@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System.Configuration;
+using System.Threading;
 using BL.Model;
 
 namespace Client
@@ -9,7 +10,9 @@ namespace Client
 
         public Service()
         {
-            DataManager dataManager = new DataManager();
+            var filePath = ConfigurationManager.AppSettings["FolderPath"];
+            var fileExtension = ConfigurationManager.AppSettings["FileExtension"];
+            var dataManager = new DataManager(new Watcher(filePath, fileExtension));
             _workerThread = new Thread(dataManager.OnStart);
             _workerThread.SetApartmentState(ApartmentState.STA);
         }

@@ -1,7 +1,7 @@
 ﻿using System;
 using Model;
 
-namespace DAL.Repositories
+namespace DAL.Interfaces
 {
     public class AbstractRepository : IDisposable
     {

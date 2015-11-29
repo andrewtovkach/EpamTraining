@@ -1,4 +1,5 @@
-﻿using System.ServiceProcess;
+﻿using System.Configuration;
+using System.ServiceProcess;
 using System.Threading;
 using System.Diagnostics;
 using BL.Model;
@@ -12,7 +13,9 @@ namespace WindowsService1
         public Service1()
         {
             InitializeComponent();
-            var dataManager = new DataManager();
+            var filePath = ConfigurationManager.AppSettings["FolderPath"];
+            var fileExtension = ConfigurationManager.AppSettings["FileExtension"];
+            var dataManager = new DataManager(new Watcher(filePath, fileExtension));
             _workerThread = new Thread(dataManager.OnStart);
             _workerThread.SetApartmentState(ApartmentState.STA);
         }
@@ -50,7 +53,10 @@ namespace WindowsService1
                 eventLog1.Source = "Service1";
                 eventLog1.WriteEntry(log);
             }
-            catch { }
+            catch
+            {
+                
+            }
         }
     }
 }
