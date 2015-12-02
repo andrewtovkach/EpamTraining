@@ -1,0 +1,6 @@
+C:\Users\Андрей\documents\visual studio 2012\Projects\SalesOfGoodsMVCApp\Client\bin\Debug\Client.exe.config
+C:\Users\Андрей\documents\visual studio 2012\Projects\SalesOfGoodsMVCApp\Client\bin\Debug\Client.exe
+C:\Users\Андрей\documents\visual studio 2012\Projects\SalesOfGoodsMVCApp\Client\bin\Debug\Client.pdb
+C:\Users\Андрей\documents\visual studio 2012\Projects\SalesOfGoodsMVCApp\Client\obj\Debug\Client.csprojResolveAssemblyReference.cache
+C:\Users\Андрей\documents\visual studio 2012\Projects\SalesOfGoodsMVCApp\Client\obj\Debug\Client.exe
+C:\Users\Андрей\documents\visual studio 2012\Projects\SalesOfGoodsMVCApp\Client\obj\Debug\Client.pdb

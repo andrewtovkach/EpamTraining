@@ -1,0 +1,4 @@
+C:\Users\Андрей\documents\visual studio 2012\Projects\SalesOfGoodsMVCApp\DAL\bin\Debug\DAL.dll
+C:\Users\Андрей\documents\visual studio 2012\Projects\SalesOfGoodsMVCApp\DAL\bin\Debug\DAL.pdb
+C:\Users\Андрей\documents\visual studio 2012\Projects\SalesOfGoodsMVCApp\DAL\obj\Debug\DAL.dll
+C:\Users\Андрей\documents\visual studio 2012\Projects\SalesOfGoodsMVCApp\DAL\obj\Debug\DAL.pdb

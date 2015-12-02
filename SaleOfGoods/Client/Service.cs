@@ -14,7 +14,6 @@ namespace Client
             var fileExtension = ConfigurationManager.AppSettings["FileExtension"];
             var dataManager = new DataManager(new Watcher(filePath, fileExtension));
             _workerThread = new Thread(dataManager.OnStart);
-            _workerThread.SetApartmentState(ApartmentState.STA);
         }
 
         public void Start()

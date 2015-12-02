@@ -1,0 +1,11 @@
+c:\users\андрей\documents\visual studio 2012\Projects\SalesOfGoodsMVCApp\Model\bin\Debug\Model.dll
+c:\users\андрей\documents\visual studio 2012\Projects\SalesOfGoodsMVCApp\Model\bin\Debug\Model.pdb
+c:\users\андрей\documents\visual studio 2012\Projects\SalesOfGoodsMVCApp\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
+c:\users\андрей\documents\visual studio 2012\Projects\SalesOfGoodsMVCApp\Model\obj\Debug\Model.dll
+c:\users\андрей\documents\visual studio 2012\Projects\SalesOfGoodsMVCApp\Model\obj\Debug\Model.pdb
+C:\Users\Андрей\documents\visual studio 2012\Projects\SalesOfGoodsMVCApp\Model\bin\Debug\Model.dll.config
+C:\Users\Андрей\documents\visual studio 2012\Projects\SalesOfGoodsMVCApp\Model\bin\Debug\EntityFramework.dll
+C:\Users\Андрей\documents\visual studio 2012\Projects\SalesOfGoodsMVCApp\Model\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Андрей\documents\visual studio 2012\Projects\SalesOfGoodsMVCApp\Model\bin\Debug\EntityFramework.xml
+C:\Users\Андрей\documents\visual studio 2012\Projects\SalesOfGoodsMVCApp\Model\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Андрей\documents\visual studio 2012\Projects\SalesOfGoodsMVCApp\Model\bin\Debug\ru\EntityFramework.resources.dll

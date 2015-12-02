@@ -1,4 +1,5 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
 using System.ServiceProcess;
 using System.Threading;
 using System.Diagnostics;
@@ -17,7 +18,6 @@ namespace WindowsService1
             var fileExtension = ConfigurationManager.AppSettings["FileExtension"];
             var dataManager = new DataManager(new Watcher(filePath, fileExtension));
             _workerThread = new Thread(dataManager.OnStart);
-            _workerThread.SetApartmentState(ApartmentState.STA);
         }
 
         public void Start()
@@ -53,9 +53,9 @@ namespace WindowsService1
                 eventLog1.Source = "Service1";
                 eventLog1.WriteEntry(log);
             }
-            catch
+            catch(Exception exception)
             {
-                
+                AddLog(exception.Message);
             }
         }
     }

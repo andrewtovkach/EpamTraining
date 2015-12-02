@@ -37,6 +37,9 @@ namespace DAL.Repositories
             return Context.SaleInfo.AsEnumerable().Last();  
         }
 
+
+        static readonly object Locker = new object();
+
         public void Add(FileInfo item)
         {
             using (var transaction = Context.Database.BeginTransaction())
@@ -46,12 +49,15 @@ namespace DAL.Repositories
                     var manager = GetManager(item.Manager.SecondName);
                     foreach (var saleInfo in item.SaleInfo.Select(GetSaleInfo))
                     {
-                        Context.FileInfo.Add(new Model.FileInfo
+                        lock (Locker)
                         {
-                            Date = item.Date,
-                            ManagerId = manager.Id,
-                            SaleInfoId = saleInfo.Id
-                        });
+                            Context.FileInfo.Add(new Model.FileInfo
+                            {
+                                Date = item.Date,
+                                ManagerId = manager.Id,
+                                SaleInfoId = saleInfo.Id
+                            });
+                        }
                     }
                     transaction.Commit();
                 }
