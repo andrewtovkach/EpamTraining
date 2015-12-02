@@ -23,25 +23,25 @@ namespace DAL.Repositories
 
         public void Remove(Product item)
         {
-            var element = ProductById(item.Id);
+            var element = GetProductById(item.Id);
             if (element != null)
                 Context.Products.Remove(element);
             else throw new ArgumentException("Incorrect argument!");
         }
 
-        private Model.Product ProductById(int id)
+        private Model.Product GetProductById(int id)
         {
             return Context.Products.FirstOrDefault(x => x.Id == id);
         }
 
-        public Product ProductObjectById(int id)
+        public Product GetProductObjectById(int id)
         {
-            return Mapper.Map<Model.Product, Product>(ProductById(id));
+            return Mapper.Map<Model.Product, Product>(GetProductById(id));
         }
 
         public void Update(int id, Product item)
         {
-            var element = ProductById(id);
+            var element = GetProductById(id);
             if (element != null)
                 element.Name = item.Name;
             else throw new ArgumentException("Incorrect product identification!");

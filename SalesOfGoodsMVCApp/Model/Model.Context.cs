@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.Data.Entity.SqlServer;
+
 namespace Model
 {
     using System;
@@ -18,6 +20,7 @@ namespace Model
         public SalesDBEntities()
             : base("name=SalesDBEntities")
         {
+            var ensureDLLIsCopied = SqlProviderServices.Instance; 
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

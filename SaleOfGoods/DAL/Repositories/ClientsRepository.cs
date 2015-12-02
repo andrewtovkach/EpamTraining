@@ -23,25 +23,25 @@ namespace DAL.Repositories
 
         public void Remove(Client item)
         {
-            var element = ClientById(item.Id);
+            var element = GetClientById(item.Id);
             if (element != null)
                 Context.Clients.Remove(element);
             else throw new ArgumentException("Incorrect argument!");
         }
 
-        private Model.Client ClientById(int id)
+        private Model.Client GetClientById(int id)
         {
             return Context.Clients.FirstOrDefault(x => x.Id == id);
         }
 
-        public Client ClientObjectById(int id)
+        public Client GetClientObjectById(int id)
         {
-            return Mapper.Map<Model.Client, Client>(ClientById(id));
+            return Mapper.Map<Model.Client, Client>(GetClientById(id));
         }
 
         public void Update(int id, Client item)
         {
-            var element = ClientById(id);
+            var element = GetClientById(id);
             if (element == null)
                 throw new ArgumentException("Incorrect client identification!");
             element.FirstName = item.FirstName;

@@ -23,25 +23,25 @@ namespace DAL.Repositories
 
         public void Remove(Manager item)
         {
-            var element = ManagerById(item.Id);
+            var element = GetManagerById(item.Id);
             if (element != null)
                 Context.Managers.Remove(element);
             else throw new ArgumentException("Incorrect argument!");
         }
 
-        private Model.Manager ManagerById(int id)
+        private Model.Manager GetManagerById(int id)
         {
             return Context.Managers.FirstOrDefault(x => x.Id == id);
         }
 
-        public Manager ManagerObjectById(int id)
+        public Manager GetManagerObjectById(int id)
         {
-            return Mapper.Map<Model.Manager, Manager>(ManagerById(id)); 
+            return Mapper.Map<Model.Manager, Manager>(GetManagerById(id)); 
         }
 
         public void Update(int id, Manager item)
         {
-            var element = ManagerById(id);
+            var element = GetManagerById(id);
             if (element != null)
                 element.SecondName = item.SecondName;
             else throw new ArgumentException("Incorrect manager identification!");

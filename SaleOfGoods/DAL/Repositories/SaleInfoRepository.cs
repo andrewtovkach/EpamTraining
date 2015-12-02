@@ -17,28 +17,28 @@ namespace DAL.Repositories
                 .ForMember("ProductId", opt => opt.MapFrom(src => src.Product.Id));
         }
 
-        private Model.Client ClientByName(string firstName, string secondName)
+        private Model.Client GetClientByName(string firstName, string secondName)
         {
             return Context.Clients.FirstOrDefault(x => x.FirstName == firstName && x.SecondName == secondName);
         }
 
         public Model.Client GetClient(string firstName, string secondName)
         {
-            return ClientByName(firstName, secondName) ?? Context.Clients.Add(new Model.Client
+            return GetClientByName(firstName, secondName) ?? Context.Clients.Add(new Model.Client
             {
                 FirstName = firstName,
                 SecondName = secondName
             });
         }
 
-        private Model.Product ProductByName(string name)
+        private Model.Product GetProductByName(string name)
         {
             return Context.Products.FirstOrDefault(x => x.Name == name);
         }
 
         public Model.Product GetProduct(string name)
         {
-            return ProductByName(name) ?? Context.Products.Add(new Model.Product { Name = name });
+            return GetProductByName(name) ?? Context.Products.Add(new Model.Product { Name = name });
         }
 
         public void Add(SaleInfo item)
@@ -63,11 +63,11 @@ namespace DAL.Repositories
             return Context.SaleInfo.FirstOrDefault(x => x.Id == id);
         }
 
-        public SaleInfo SaleInfoObjectById(int id)
+        public SaleInfo GetSaleInfoObjectById(int id)
         {
             var saleInfo = SaleInfoById(id);
-            return new SaleInfo(saleInfo.Date, new ClientsRepository().ClientObjectById(saleInfo.ClientId),
-                new ProductsRepository().ProductObjectById(saleInfo.ProductId), saleInfo.Cost, saleInfo.Id);
+            return new SaleInfo(saleInfo.Date, new ClientsRepository().GetClientObjectById(saleInfo.ClientId),
+                new ProductsRepository().GetProductObjectById(saleInfo.ProductId), saleInfo.Cost, saleInfo.Id);
         }
 
         public void Update(int id, SaleInfo item)
@@ -85,7 +85,7 @@ namespace DAL.Repositories
 
         public IEnumerable<SaleInfo> Items
         {
-            get { return Context.SaleInfo.AsEnumerable().Select(item => SaleInfoObjectById(item.Id)); }
+            get { return Context.SaleInfo.AsEnumerable().Select(item => GetSaleInfoObjectById(item.Id)); }
         }
 
         public IEnumerator<SaleInfo> GetEnumerator()

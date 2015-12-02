@@ -4,3 +4,20 @@ C:\Users\Андрей\documents\visual studio 2012\Projects\SalesOfGoodsMVCApp\C
 C:\Users\Андрей\documents\visual studio 2012\Projects\SalesOfGoodsMVCApp\Client\obj\Debug\Client.csprojResolveAssemblyReference.cache
 C:\Users\Андрей\documents\visual studio 2012\Projects\SalesOfGoodsMVCApp\Client\obj\Debug\Client.exe
 C:\Users\Андрей\documents\visual studio 2012\Projects\SalesOfGoodsMVCApp\Client\obj\Debug\Client.pdb
+D:\Programming\CSharp\EpamTraining\SalesOfGoodsMVCApp\Client\bin\Debug\Client.exe.config
+D:\Programming\CSharp\EpamTraining\SalesOfGoodsMVCApp\Client\obj\Debug\Client.exe
+D:\Programming\CSharp\EpamTraining\SalesOfGoodsMVCApp\Client\obj\Debug\Client.pdb
+D:\Programming\CSharp\EpamTraining\SalesOfGoodsMVCApp\Client\bin\Debug\Client.exe
+D:\Programming\CSharp\EpamTraining\SalesOfGoodsMVCApp\Client\bin\Debug\Client.pdb
+D:\Programming\CSharp\EpamTraining\SalesOfGoodsMVCApp\Client\bin\Debug\DAL.dll
+D:\Programming\CSharp\EpamTraining\SalesOfGoodsMVCApp\Client\bin\Debug\Model.dll
+D:\Programming\CSharp\EpamTraining\SalesOfGoodsMVCApp\Client\bin\Debug\EntityFramework.dll
+D:\Programming\CSharp\EpamTraining\SalesOfGoodsMVCApp\Client\bin\Debug\AutoMapper.dll
+D:\Programming\CSharp\EpamTraining\SalesOfGoodsMVCApp\Client\bin\Debug\DAL.pdb
+D:\Programming\CSharp\EpamTraining\SalesOfGoodsMVCApp\Client\bin\Debug\Model.pdb
+D:\Programming\CSharp\EpamTraining\SalesOfGoodsMVCApp\Client\bin\Debug\EntityFramework.xml
+D:\Programming\CSharp\EpamTraining\SalesOfGoodsMVCApp\Client\bin\Debug\AutoMapper.xml
+D:\Programming\CSharp\EpamTraining\SalesOfGoodsMVCApp\Client\bin\Debug\ru\EntityFramework.resources.dll
+D:\Programming\CSharp\EpamTraining\SalesOfGoodsMVCApp\Client\obj\Debug\Client.csprojResolveAssemblyReference.cache
+D:\Programming\CSharp\EpamTraining\SalesOfGoodsMVCApp\Client\bin\Debug\EntityFramework.SqlServer.dll
+D:\Programming\CSharp\EpamTraining\SalesOfGoodsMVCApp\Client\bin\Debug\EntityFramework.SqlServer.xml

@@ -23,28 +23,28 @@ namespace DAL.Repositories
 
         public void Remove(UnverifiedFile item)
         {
-            var element = UnverifiedFileById(item.Id);
+            var element = GetUnverifiedFileById(item.Id);
             if (element != null)
                 Context.UnverifiedFiles.Remove(element);
             else throw new ArgumentException("Incorrect argument!");
         }
 
-        private Model.UnverifiedFile UnverifiedFileById(int id)
+        private Model.UnverifiedFile GetUnverifiedFileById(int id)
         {
             return Context.UnverifiedFiles.FirstOrDefault(x => x.Id == id);
         }
 
         public void Update(int id, UnverifiedFile item)
         {
-            var element = UnverifiedFileById(id);
+            var element = GetUnverifiedFileById(id);
             if (element == null)
                 throw new ArgumentException("Incorrect file identification!");
             element.FileName = item.FileName;
         }
 
-        public UnverifiedFile UnverifiedFileObjectById(int id)
+        public UnverifiedFile GetUnverifiedFileObjectById(int id)
         {
-            return Mapper.Map<Model.UnverifiedFile, UnverifiedFile>(UnverifiedFileById(id));
+            return Mapper.Map<Model.UnverifiedFile, UnverifiedFile>(GetUnverifiedFileById(id));
         }
 
         public IEnumerable<UnverifiedFile> Items

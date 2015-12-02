@@ -9,17 +9,17 @@ namespace DAL.Repositories
 {
     public class FileInfoRepository : AbstractRepository, IRepository<FileInfo>, IEnumerable<FileInfo>
     {
-        private Model.Manager ManagerByName(string secondName)
+        private Model.Manager GetManagerByName(string secondName)
         {
             return Context.Managers.FirstOrDefault(x => x.SecondName == secondName);
         }
 
-        private Model.Manager GetManager(string secondName)
+        private Model.Manager GetOrCreateManager(string secondName)
         {
-            return ManagerByName(secondName) ?? Context.Managers.Add(new Model.Manager { SecondName = secondName });
+            return GetManagerByName(secondName) ?? Context.Managers.Add(new Model.Manager { SecondName = secondName });
         }
 
-        private Model.SaleInfo SaleInfoByName(SaleInfo info)
+        private Model.SaleInfo GetSaleInfoByName(SaleInfo info)
         {
             var client = new SaleInfoRepository().GetClient(info.Client.FirstName, info.Client.SecondName);
             var product = new SaleInfoRepository().GetProduct(info.Product.Name);
@@ -27,9 +27,9 @@ namespace DAL.Repositories
                 x.ProductId == product.Id && x.Cost == info.Cost);
         }
 
-        public Model.SaleInfo GetSaleInfo(SaleInfo info)
+        public Model.SaleInfo GetOrCreateSaleInfo(SaleInfo info)
         {
-            var saleInfo = SaleInfoByName(info);
+            var saleInfo = GetSaleInfoByName(info);
             if (saleInfo != null)
                 return saleInfo;
             var saleInfoRepository = new SaleInfoRepository { info };
@@ -46,8 +46,8 @@ namespace DAL.Repositories
             {
                 try
                 {
-                    var manager = GetManager(item.Manager.SecondName);
-                    foreach (var saleInfo in item.SaleInfo.Select(GetSaleInfo))
+                    var manager = GetOrCreateManager(item.Manager.SecondName);
+                    foreach (var saleInfo in item.SaleInfo.Select(GetOrCreateSaleInfo))
                     {
                         lock (Locker)
                         {
@@ -71,13 +71,13 @@ namespace DAL.Repositories
 
         public void Remove(FileInfo item)
         {
-            var element = FileInfoById(item.Id);
+            var element = GetFileInfoById(item.Id);
             if (element != null)
                 Context.FileInfo.Remove(element);
             else throw new ArgumentException("Incorrect argument!");
         }
 
-        private Model.FileInfo FileInfoById(int id)
+        private Model.FileInfo GetFileInfoById(int id)
         {
             return Context.FileInfo.FirstOrDefault(x => x.Id == id);
         }
@@ -88,11 +88,11 @@ namespace DAL.Repositories
             {
                 try
                 {
-                    var element = FileInfoById(id);
+                    var element = GetFileInfoById(id);
                     if (element == null)
                         throw new ArgumentException("Incorrect fileInfo identification!");
-                    var manager = GetManager(item.Manager.SecondName);
-                    foreach (var saleInfo in item.SaleInfo.Select(GetSaleInfo))
+                    var manager = GetOrCreateManager(item.Manager.SecondName);
+                    foreach (var saleInfo in item.SaleInfo.Select(GetOrCreateSaleInfo))
                     {
                         element.Date = item.Date;
                         element.ManagerId = manager.Id;
@@ -108,20 +108,20 @@ namespace DAL.Repositories
             }
         }
 
-        public FileInfo FileInfoObjectById(int id)
+        public FileInfo GetFileInfoObjectById(int id)
         {
-            var fileInfo = FileInfoById(id);
+            var fileInfo = GetFileInfoById(id);
             var query = (from element in Context.FileInfo
                          where element.ManagerId == fileInfo.ManagerId && element.Date == fileInfo.Date
                          select element.SaleInfo).ToList();
-            var list = query.Select(item => new SaleInfoRepository().SaleInfoObjectById(item.Id)).ToList();
-            return new FileInfo(new ManagersRepository().ManagerObjectById(fileInfo.ManagerId), fileInfo.Date,
+            var list = query.Select(item => new SaleInfoRepository().GetSaleInfoObjectById(item.Id)).ToList();
+            return new FileInfo(new ManagersRepository().GetManagerObjectById(fileInfo.ManagerId), fileInfo.Date,
                     list, fileInfo.Id);
         }
 
         public IEnumerable<FileInfo> Items
         {
-            get { return Context.FileInfo.AsEnumerable().Select(item => FileInfoObjectById(item.Id)); }
+            get { return Context.FileInfo.AsEnumerable().Select(item => GetFileInfoObjectById(item.Id)); }
         }
 
         public IEnumerator<FileInfo> GetEnumerator()
