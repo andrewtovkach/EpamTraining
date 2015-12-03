@@ -1,0 +1,41 @@
+﻿@model DAL.Models.FileInfo
+
+@{
+    ViewBag.Title = "Create FileInfo";
+}
+
+<h2>Create FileInfo</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>FileInfo</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Date)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Date)
+            @Html.ValidationMessageFor(model => model.Date)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Manager.SecondName)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.Manager.Id, ViewBag.Managers as SelectList)
+        </div>
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "List")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

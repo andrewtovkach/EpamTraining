@@ -1,0 +1,82 @@
+﻿@model IndexViewModel<DAL.Models.SaleInfo>
+
+@using SalesOfGoodsMVCApp.Models
+
+@{
+    ViewBag.Title = "List SaleInfo";
+}
+
+<h2>List SaleInfo</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayName("Client FirstName")
+        </th>
+        <th>
+            @Html.DisplayName("Client SecondName")
+        </th>
+        <th>
+            @Html.DisplayName("Date")
+        </th>
+        <th>
+            @Html.DisplayName("Product")
+        </th>
+        <th>
+            @Html.DisplayName("Manager FirstName")
+        </th>
+        <th>
+            @Html.DisplayName("Manager SecondName")
+        </th>
+        <th>
+            @Html.DisplayName("Cost")
+        </th>
+        <th>
+            @Html.DisplayName("Currency")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Elements)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(model => item.Client.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Client.SecondName)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.FileInfo.Manager.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.FileInfo.Manager.SecondName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Currency)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<br />
+<div class="btn-group">
+    @Html.PageLinks(Model.PageInfo, x => Url.Action("List",new { page = x}))
+</div>

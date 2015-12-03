@@ -1,0 +1,64 @@
+﻿@model IndexViewModel<DAL.Models.FileInfo>
+
+@using SalesOfGoodsMVCApp.Models
+
+@{
+    ViewBag.Title = "List FileInfo";
+}
+
+<h2>List FileInfo</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayName("Date")
+        </th>
+        <th>
+            @Html.DisplayName("FirstName")
+        </th>
+        <th>
+            @Html.DisplayName("SecondName")
+        </th>
+        <th>
+            @Html.DisplayName("Telephone")
+        </th>
+        <th>
+            @Html.DisplayName("Email")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Elements)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Manager.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Manager.SecondName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Manager.Telephone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Manager.Email)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new {id = item.Id}) |
+                @Html.ActionLink("Delete", "Delete", new {id = item.Id})
+            </td>
+        </tr>
+    }
+
+</table>
+
+<br />
+<div class="btn-group">
+    @Html.PageLinks(Model.PageInfo, x => Url.Action("List",new { page = x}))
+</div>
