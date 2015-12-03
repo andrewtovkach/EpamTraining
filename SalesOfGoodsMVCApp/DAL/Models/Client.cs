@@ -2,9 +2,8 @@
 
 namespace DAL.Models
 {
-    public class Client  : IEquatable<Client>
+    public class Client  : BaseClass, IEquatable<Client>
     {
-        public int Id { get; set; }
         public string FirstName { get; set; }
         public string SecondName { get; set; }
         public DateTime BirthDay { get; set; }

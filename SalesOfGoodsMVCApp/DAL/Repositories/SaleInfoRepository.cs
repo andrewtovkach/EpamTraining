@@ -8,20 +8,19 @@ using DAL.Interfaces;
 
 namespace DAL.Repositories
 {
-    public class SaleInfoRepository : AbstractRepository, IRepository<SaleInfo>, IEnumerable<SaleInfo>
+    public class SaleInfoRepository : BaseRepository<SaleInfo>, IRepository<SaleInfo>, IEnumerable<SaleInfo>
     {
-        public SaleInfoRepository()
-        {
-            Mapper.CreateMap<SaleInfo, Model.SaleInfo>();
-            Mapper.CreateMap<Model.SaleInfo, SaleInfo>();
-        }
-
         public void Add(SaleInfo item)
         {
-            item.Client.Id = GetOrCreateClient(item.Client);
-            item.Product.Id = GetOrCreateProduct(item.Product);
-            item.FileInfo.Id = GetOrCreateFileInfo(item.FileInfo);
-            Context.SaleInfo.Add(Mapper.Map<SaleInfo, Model.SaleInfo>(item));
+            Context.SaleInfo.Add(new Model.SaleInfo
+            {
+                ClientId = new ClientsRepository().GetOrCreateElementId(item.Client),
+                FileInfoId = new FileInfoRepository().GetOrCreateElementId(item.FileInfo),
+                ProductId = new ProductsRepository().GetOrCreateElementId(item.Product),
+                Cost = item.Cost,
+                Currency = item.Currency,
+                Date = item.Date
+            });
         }
 
         public void Remove(int id)
@@ -37,58 +36,27 @@ namespace DAL.Repositories
             return Context.SaleInfo.FirstOrDefault(x => x.Id == id);
         }
 
-        public int GetElementId(SaleInfo item)
-        {
-            var element = Items.FirstOrDefault(it => it.Equals(item));
-            return element != null ? element.Id : 0;
-        }
-
-        private static int GetOrCreateClient(Client client)
-        {
-            var clientsRepository = new ClientsRepository();
-            int id = clientsRepository.GetElementId(client);
-            if (id != 0) return id;
-            clientsRepository.Add(client);
-            clientsRepository.SaveChanges();
-            return clientsRepository.Last().Id;
-        }
-
-        private static int GetOrCreateProduct(Product product)
-        {
-            var productsRepository = new ProductsRepository();
-            int id = productsRepository.GetElementId(product);
-            if (id != 0) return id;
-            productsRepository.Add(product);
-            productsRepository.SaveChanges();
-            return productsRepository.Last().Id;
-        }
-
-        private static int GetOrCreateFileInfo(FileInfo fileInfo)
-        {
-            var fileInfoRepository = new FileInfoRepository();
-            int id = fileInfoRepository.GetElementId(fileInfo);
-            if (id != 0) return id;
-            fileInfoRepository.Add(fileInfo);
-            fileInfoRepository.SaveChanges();
-            return fileInfoRepository.Last().Id;
-        }
-
         public void Update(int id, SaleInfo item)
         {
             var element = GetSaleInfoById(id);
             if (element == null)
                 throw new ArgumentException("Incorrect saleInfo identification!");
             element.Date = item.Date;
-            element.ClientId = GetOrCreateClient(item.Client);
-            element.ProductId = GetOrCreateProduct(item.Product);
-            element.FileInfoId = GetOrCreateFileInfo(item.FileInfo);
+            element.ClientId = new ClientsRepository().GetOrCreateElementId(item.Client);
+            element.ProductId = new ProductsRepository().GetOrCreateElementId(item.Product);
+            element.FileInfoId = new FileInfoRepository().GetOrCreateElementId(item.FileInfo);
             element.Cost = item.Cost;
             element.Currency = item.Currency;
         }
 
         public IEnumerable<SaleInfo> Items
         {
-            get { return Context.SaleInfo.Select(Mapper.Map<Model.SaleInfo, SaleInfo>); }
+            get
+            {
+                return Context.SaleInfo.AsEnumerable().Select(item => new SaleInfo(item.Date, Mapper.Map<Model.Client, Client>(item.Clients),
+                    new Product(item.Products.Name, item.Products.Description, Mapper.Map<Model.Country, Country>(item.Products.Countries), item.ProductId),
+                    new FileInfo(Mapper.Map<Model.Manager, Manager>(item.FileInfo.Managers), item.FileInfo.Date, item.FileInfoId), item.Cost, item.Currency, item.Id));
+            }
         }
 
         public IEnumerator<SaleInfo> GetEnumerator()

@@ -2,27 +2,21 @@
 
 namespace DAL.Models
 {
-    public class FileInfo : IEquatable<FileInfo>
+    public class FileInfo : BaseClass, IEquatable<FileInfo>
     {
-        public int Id { get; set; }
         public Manager Manager { get; set; }
         public DateTime Date { get; set; }
 
-        public FileInfo(Manager manager, DateTime date)
+        public FileInfo(Manager manager, DateTime date, int id = 0)
         {
             Manager = manager;
             Date = date;
-        }
-
-        public FileInfo()
-        {
-            
+            Id = id;
         }
 
         public bool Equals(FileInfo other)
         {
-            return Manager != null && Manager.FirstName == other.Manager.FirstName && 
-                Manager.SecondName == other.Manager.SecondName && Date == other.Date;
+            return Manager != null && Manager.Equals(other.Manager) && Date == other.Date;
         }
 
         public override bool Equals(object obj)

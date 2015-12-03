@@ -8,14 +8,8 @@ using DAL.Interfaces;
 
 namespace DAL.Repositories
 {
-    public class ManagersRepository : AbstractRepository, IRepository<Manager>, IEnumerable<Manager>
+    public class ManagersRepository : BaseRepository<Manager>, IRepository<Manager>, IEnumerable<Manager>
     {
-        public ManagersRepository()
-        {
-            Mapper.CreateMap<Manager, Model.Manager>();
-            Mapper.CreateMap<Model.Manager, Manager>();
-        }
-
         public void Add(Manager item)
         {
             Context.Managers.Add(Mapper.Map<Manager, Model.Manager>(item));
@@ -32,12 +26,6 @@ namespace DAL.Repositories
         private Model.Manager GetManagerById(int id)
         {
             return Context.Managers.FirstOrDefault(x => x.Id == id);
-        }
-
-        public int GetElementId(Manager item)
-        {
-            var element = Items.FirstOrDefault(it => it.Equals(item));
-            return element != null ? element.Id : 0;
         }
 
         public void Update(int id, Manager item)

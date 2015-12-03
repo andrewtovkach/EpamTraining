@@ -8,28 +8,12 @@ using DAL.Interfaces;
 
 namespace DAL.Repositories
 {
-    public class ProductsRepository : AbstractRepository, IRepository<Product>, IEnumerable<Product>
+    public class ProductsRepository : BaseRepository<Product>, IRepository<Product>, IEnumerable<Product>
     {
-        public ProductsRepository()
-        {
-            Mapper.CreateMap<Product, Model.Product>();
-            Mapper.CreateMap<Model.Product, Product>();
-        }
-
         public void Add(Product item)
         {
-            item.Country.Id = GetOrCreateCountry(item.Country);
+            item.Country.Id = new CountriesRepository().GetOrCreateElementId(item.Country);
             Context.Products.Add(Mapper.Map<Product, Model.Product>(item));
-        }
-
-        private static int GetOrCreateCountry(Country country)
-        {
-            var countriesRepository = new CountriesRepository();
-            int id = countriesRepository.GetElementId(country);
-            if (id != 0) return id;
-            countriesRepository.Add(country);
-            countriesRepository.SaveChanges();
-            return countriesRepository.Last().Id;
         }
 
         public void Remove(int id)
@@ -45,12 +29,6 @@ namespace DAL.Repositories
             return Context.Products.FirstOrDefault(x => x.Id == id);
         }
 
-        public int GetElementId(Product item)
-        {
-            var element = Items.FirstOrDefault(it => it.Equals(item));
-            return element != null ? element.Id : 0;
-        }
-
         public void Update(int id, Product item)
         {
             var element = GetProductById(id);
@@ -58,12 +36,15 @@ namespace DAL.Repositories
                 throw new ArgumentException("Incorrect product identification!");
             element.Name = item.Name;
             element.Description = item.Description;
-            element.CountryId = GetOrCreateCountry(item.Country);
+            element.CountryId = new CountriesRepository().GetOrCreateElementId(item.Country);
         }
 
         public IEnumerable<Product> Items
         {
-            get { return Context.Products.Select(Mapper.Map<Model.Product, Product>); }
+            get
+            {
+                return Context.Products.AsEnumerable().Select(item => new Product(item.Name, item.Description, Mapper.Map<Model.Country, Country>(item.Countries), item.Id));
+            }
         }
 
         public IEnumerator<Product> GetEnumerator()

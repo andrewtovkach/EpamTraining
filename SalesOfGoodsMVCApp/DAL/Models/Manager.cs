@@ -2,9 +2,8 @@
 
 namespace DAL.Models
 {
-    public class Manager : IEquatable<Manager>
+    public class Manager : BaseClass, IEquatable<Manager>
     {
-        public int Id { get; set; }
         public string FirstName { get; set; }
         public string SecondName { get; set; }
         public string Telephone { get; set; }

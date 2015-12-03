@@ -8,14 +8,8 @@ using DAL.Interfaces;
 
 namespace DAL.Repositories
 {
-    public class ClientsRepository : AbstractRepository, IRepository<Client>, IEnumerable<Client>
+    public class ClientsRepository : BaseRepository<Client>, IRepository<Client>, IEnumerable<Client>
     {
-        public ClientsRepository()
-        {
-            Mapper.CreateMap<Client, Model.Client>();
-            Mapper.CreateMap<Model.Client, Client>();
-        }
-
         public void Add(Client item)
         {
             Context.Clients.Add(Mapper.Map<Client, Model.Client>(item));
@@ -32,12 +26,6 @@ namespace DAL.Repositories
         private Model.Client GetClientById(int id)
         {
             return Context.Clients.FirstOrDefault(x => x.Id == id);
-        }
-
-        public int GetElementId(Client item)
-        {
-            var element = Items.FirstOrDefault(it => it.Equals(item));
-            return element != null ? element.Id : 0;
         }
 
         public void Update(int id, Client item)

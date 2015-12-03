@@ -13,7 +13,8 @@ namespace Client
     {
         static void Main(string[] args)
         {
-            foreach (var item in new ProductsRepository().Items)
+            SaleInfoRepository saleInfoRepository = new SaleInfoRepository();
+            foreach (var item in saleInfoRepository)
             {
                 Console.WriteLine(item);
             }

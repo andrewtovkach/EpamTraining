@@ -2,9 +2,8 @@
 
 namespace DAL.Models
 {
-    public class Country : IEquatable<Country>
+    public class Country : BaseClass, IEquatable<Country>
     {
-        public int Id { get; set; }
         public string Name { get; set; }
 
         public Country(string name)

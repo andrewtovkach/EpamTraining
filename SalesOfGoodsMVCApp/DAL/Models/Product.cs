@@ -2,29 +2,24 @@
 
 namespace DAL.Models
 {
-    public class Product : IEquatable<Product>
+    public class Product : BaseClass, IEquatable<Product>
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public Country Country { get; set; }
 
-        public Product(string name, string description, Country country)
+        public Product(string name, string description, Country country, int id = 0)
         {
             Name = name;
             Description = description;
             Country = country;
-        }
-
-        public Product()
-        {
-            
+            Id = id;
         }
 
         public bool Equals(Product other)
         {
             return Name == other.Name && Description == other.Description && Country != null &&
-                Country.Name == other.Country.Name;
+                Country.Equals(other.Country);
         }
 
         public override bool Equals(object obj)
@@ -39,7 +34,7 @@ namespace DAL.Models
 
         public override string ToString()
         {
-            return string.Format("{0} - {1} {2} {3}", Id, Name, Description, Country);
+            return string.Format("{0} - {1} {2} Country: {3}", Id, Name, Description, Country);
         }
     }
 }

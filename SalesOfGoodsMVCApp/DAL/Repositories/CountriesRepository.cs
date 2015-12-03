@@ -8,14 +8,8 @@ using DAL.Interfaces;
 
 namespace DAL.Repositories
 {
-    public class CountriesRepository : AbstractRepository, IRepository<Country>, IEnumerable<Country>
+    public class CountriesRepository : BaseRepository<Country>, IRepository<Country>, IEnumerable<Country>
     {
-        public CountriesRepository()
-        {
-            Mapper.CreateMap<Country, Model.Country>();
-            Mapper.CreateMap<Model.Country, Country>();
-        }
-
         public void Add(Country item)
         {
             Context.Countries.Add(Mapper.Map<Country, Model.Country>(item));
@@ -32,12 +26,6 @@ namespace DAL.Repositories
         private Model.Country GetCountryById(int id)
         {
             return Context.Countries.FirstOrDefault(x => x.Id == id);
-        }
-
-        public int GetElementId(Country item)
-        {
-            var element = Items.FirstOrDefault(it => it.Equals(item));
-            return element != null ? element.Id : 0;
         }
 
         public void Update(int id, Country item)
