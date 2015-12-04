@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Web.Mvc;
@@ -12,17 +13,39 @@ namespace SalesOfGoodsMVCApp.Controllers
     {
         readonly FileInfoRepository _fileInfoRepository = new FileInfoRepository();
 
-        public ActionResult List(int page = 1)
+        public ActionResult List(int? manager, int page = 1)
         {
+            var fileInfoViewModel = CreateFileInfoViewModel(manager);
+            ViewBag.FileInfoViewModel = fileInfoViewModel;
             int pageSize = Convert.ToInt32(ConfigurationManager.AppSettings["PageSize"]);
-            var fileInfosPerPages = _fileInfoRepository.Skip((page - 1) * pageSize).Take(pageSize);
+            var fileInfoPerPages = fileInfoViewModel.FileInfos.Skip((page - 1) * pageSize).Take(pageSize);
             PageInfo pageInfo = new PageInfo
             {
                 PageNumber = page,
                 PageSize = pageSize,
-                TotalItems = _fileInfoRepository.Count()
+                TotalItems = fileInfoViewModel.FileInfos.Count()
             };
-            return View(new IndexViewModel<FileInfo> { PageInfo = pageInfo, Elements = fileInfosPerPages });
+            return View(new IndexViewModel<FileInfo> { PageInfo = pageInfo, Elements = fileInfoPerPages });
+        }
+
+        private FileInfoViewModel CreateFileInfoViewModel(int? manager)
+        {
+            var managers = new ManagersRepository().ToList();
+            managers.Insert(0, new Manager { SecondName = "All", Id = 0 });
+            FileInfoViewModel fileInfoViewModel = new FileInfoViewModel
+            {
+                FileInfos = GetFilteredFileInfo(manager),
+                Managers = new SelectList(managers, "Id", "SecondName")
+            };
+            return fileInfoViewModel;
+        }
+
+        private IEnumerable<FileInfo> GetFilteredFileInfo(int? manager)
+        {
+            var fileInfos = _fileInfoRepository.Items;
+            if (manager != null && manager != 0)
+                fileInfos = fileInfos.Where(item => item.Manager.Id == manager);
+            return fileInfos;
         }
 
         [HttpGet]
@@ -50,6 +73,8 @@ namespace SalesOfGoodsMVCApp.Controllers
         [HttpPost]
         public ActionResult Create(FileInfo fileInfo)
         {
+            if (!ModelState.IsValid)
+                return View(fileInfo);
             fileInfo.Manager = new ManagersRepository().FirstOrDefault(x => x.Id == fileInfo.Manager.Id);
             _fileInfoRepository.Add(fileInfo);
             _fileInfoRepository.SaveChanges();
@@ -71,6 +96,8 @@ namespace SalesOfGoodsMVCApp.Controllers
         [HttpPost]
         public ActionResult Edit(FileInfo fileInfo)
         {
+            if (!ModelState.IsValid)
+                return View(fileInfo);
             fileInfo.Manager = new ManagersRepository().FirstOrDefault(x => x.Id == fileInfo.Manager.Id);
             _fileInfoRepository.Update(fileInfo.Id, fileInfo);
             _fileInfoRepository.SaveChanges();

@@ -49,6 +49,8 @@ namespace SalesOfGoodsMVCApp.Controllers
         [HttpPost]
         public ActionResult Create(Manager manager)
         {
+            if (!ModelState.IsValid)
+                return View(manager);
             _managersRepository.Add(manager);
             _managersRepository.SaveChanges();
             return RedirectToAction("List");
@@ -66,6 +68,8 @@ namespace SalesOfGoodsMVCApp.Controllers
         [HttpPost]
         public ActionResult Edit(Manager manager)
         {
+            if (!ModelState.IsValid)
+                return View(manager);
             _managersRepository.Update(manager.Id, manager);
             _managersRepository.SaveChanges();
             return RedirectToAction("List");

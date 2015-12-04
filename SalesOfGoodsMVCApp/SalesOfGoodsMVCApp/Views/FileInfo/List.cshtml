@@ -11,6 +11,16 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
+<form method="get">
+    <div class="form-inline">
+        <label class="control-label">Manager: </label>
+        @Html.DropDownList("manager", ViewBag.FileInfoViewModel.Managers as SelectList, new { @class = "form-control" })
+
+        <input type="submit" value="Filter" class="btn btn-default" />
+    </div>
+</form>
+
 <table>
     <tr>
         <th>

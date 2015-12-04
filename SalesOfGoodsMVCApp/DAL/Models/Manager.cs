@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace DAL.Models
 {
@@ -6,7 +7,11 @@ namespace DAL.Models
     {
         public string FirstName { get; set; }
         public string SecondName { get; set; }
+        [RegularExpression(@"^\+\d{3}\(\d{2,4}\)\d{1,3}-\d{2}-\d{2}$", ErrorMessage = "The field does not match the phone number")]
+        [DataType(DataType.PhoneNumber)]
         public string Telephone { get; set; }
+        [EmailAddress(ErrorMessage = "The field does not match the email address")]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
         public Manager(string firstName, string secondName, string telephone, string email)
@@ -19,7 +24,7 @@ namespace DAL.Models
 
         public Manager()
         {
-            
+
         }
 
         public bool Equals(Manager other)

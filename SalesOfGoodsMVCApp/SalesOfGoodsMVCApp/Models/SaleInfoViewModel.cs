@@ -10,5 +10,6 @@ namespace SalesOfGoodsMVCApp.Models
         public SelectList Managers { get; set; }
         public SelectList Clients { get; set; }
         public SelectList Products { get; set; }
+        public SelectList Dates { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Globalization;
 using System.Linq;
 using System.Web.Mvc;
 using DAL.Models;
@@ -13,50 +14,55 @@ namespace SalesOfGoodsMVCApp.Controllers
     {
         readonly SaleInfoRepository _saleInfoRepository = new SaleInfoRepository();
 
-        /*public ActionResult List(int page = 1)
+        public ActionResult List(int? client, DateTime? date, int? product, int? manager, int page = 1)
         {
+            var saleInfoViewModel = CreateSaleInfoViewModel(client, date, product, manager);
+            ViewBag.SaleInfoViewModel = saleInfoViewModel;
             int pageSize = Convert.ToInt32(ConfigurationManager.AppSettings["PageSize"]);
-            var saleInfosPerPages = _saleInfoRepository.Skip((page - 1) * pageSize).Take(pageSize);
+            var saleInfosPerPages = saleInfoViewModel.SaleInfos.Skip((page - 1) * pageSize).Take(pageSize);
             PageInfo pageInfo = new PageInfo
             {
                 PageNumber = page,
                 PageSize = pageSize,
-                TotalItems = _saleInfoRepository.Count()
+                TotalItems = saleInfoViewModel.SaleInfos.Count()
             };
             return View(new IndexViewModel<SaleInfo> { PageInfo = pageInfo, Elements = saleInfosPerPages });
-            return View();
-        }*/
+        }
 
-        public ActionResult List(int? client, int? product, int? manager)
+        private SaleInfoViewModel CreateSaleInfoViewModel(int? client, DateTime? date, int? product, int? manager)
         {
-            var saleInfos = _saleInfoRepository.Items;
-            if (client != null && client != 0)
-            {
-                saleInfos = saleInfos.Where(item => item.Client.Id == client);
-            }
-            if (manager != null && manager != 0)
-            {
-                saleInfos = saleInfos.Where(item => item.FileInfo.Manager.Id == manager);
-            }
-            if (product != null && product != 0)
-            {
-                saleInfos = saleInfos.Where(item => item.Product.Id == product);
-            }
-
             var managers = new ManagersRepository().ToList();
             managers.Insert(0, new Manager { SecondName = "All", Id = 0 });
             var clients = new ClientsRepository().ToList();
             clients.Insert(0, new Client { SecondName = "All", Id = 0 });
             var products = new ProductsRepository().ToList();
             products.Insert(0, new Product { Name = "All", Id = 0 });
-            SaleInfoViewModel plvm = new SaleInfoViewModel
+            var dates = (from element in new SaleInfoRepository()
+                         select element.Date.ToString(CultureInfo.InvariantCulture)).Distinct().ToList();
+            dates.Insert(0, "All");
+            SaleInfoViewModel saleInfoViewModel = new SaleInfoViewModel
             {
-                SaleInfos = saleInfos.ToList(),
+                SaleInfos = GetFilteredSaleInfos(client, date, product, manager),
                 Managers = new SelectList(managers, "Id", "SecondName"),
                 Clients = new SelectList(clients, "Id", "SecondName"),
-                Products = new SelectList(products, "Id", "Name")
+                Products = new SelectList(products, "Id", "Name"),
+                Dates = new SelectList(dates)
             };
-            return View(plvm);
+            return saleInfoViewModel;
+        }
+
+        private IEnumerable<SaleInfo> GetFilteredSaleInfos(int? client, DateTime? date, int? product, int? manager)
+        {
+            var saleInfos = _saleInfoRepository.Items;
+            if (client != null && client != 0)
+                saleInfos = saleInfos.Where(item => item.Client.Id == client);
+            if (date != null)
+                saleInfos = saleInfos.Where(item => item.Date == date);
+            if (manager != null && manager != 0)
+                saleInfos = saleInfos.Where(item => item.FileInfo.Manager.Id == manager);
+            if (product != null && product != 0)
+                saleInfos = saleInfos.Where(item => item.Product.Id == product);
+            return saleInfos;
         }
 
         [HttpGet]
@@ -86,6 +92,8 @@ namespace SalesOfGoodsMVCApp.Controllers
         [HttpPost]
         public ActionResult Create(SaleInfo saleInfo)
         {
+            if (!ModelState.IsValid)
+                return View(saleInfo);
             saleInfo.Client = new ClientsRepository().FirstOrDefault(x => x.Id == saleInfo.Client.Id);
             saleInfo.Product = new ProductsRepository().FirstOrDefault(x => x.Id == saleInfo.Product.Id);
             var manager = new ManagersRepository().FirstOrDefault(x => x.Id == saleInfo.FileInfo.Manager.Id);
@@ -112,6 +120,8 @@ namespace SalesOfGoodsMVCApp.Controllers
         [HttpPost]
         public ActionResult Edit(SaleInfo saleInfo)
         {
+            if (!ModelState.IsValid)
+                return View(saleInfo);
             saleInfo.Client = new ClientsRepository().FirstOrDefault(x => x.Id == saleInfo.Client.Id);
             saleInfo.Product = new ProductsRepository().FirstOrDefault(x => x.Id == saleInfo.Product.Id);
             var manager = new ManagersRepository().FirstOrDefault(x => x.Id == saleInfo.FileInfo.Manager.Id);

@@ -49,6 +49,8 @@ namespace SalesOfGoodsMVCApp.Controllers
         [HttpPost]
         public ActionResult Create(Country country)
         {
+            if (!ModelState.IsValid)
+                return View(country);
             _countriesRepository.Add(country);
             _countriesRepository.SaveChanges();
             return RedirectToAction("List");
@@ -66,6 +68,8 @@ namespace SalesOfGoodsMVCApp.Controllers
         [HttpPost]
         public ActionResult Edit(Country country)
         {
+            if (!ModelState.IsValid)
+                return View(country);
             _countriesRepository.Update(country.Id, country);
             _countriesRepository.SaveChanges();
             return RedirectToAction("List");

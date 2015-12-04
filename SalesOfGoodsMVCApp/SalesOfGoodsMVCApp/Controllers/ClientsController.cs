@@ -49,6 +49,8 @@ namespace SalesOfGoodsMVCApp.Controllers
         [HttpPost]
         public ActionResult Create(Client client)
         {
+            if (!ModelState.IsValid)
+                return View(client);
             _clientsRepository.Add(client);
             _clientsRepository.SaveChanges();
             return RedirectToAction("List");
@@ -66,6 +68,8 @@ namespace SalesOfGoodsMVCApp.Controllers
         [HttpPost]
         public ActionResult Edit(Client client)
         {
+            if (!ModelState.IsValid)
+                return View(client);
             _clientsRepository.Update(client.Id, client);
             _clientsRepository.SaveChanges();
             return RedirectToAction("List");

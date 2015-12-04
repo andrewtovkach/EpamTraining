@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace DAL.Models
 {
@@ -6,6 +7,7 @@ namespace DAL.Models
     {
         public string FirstName { get; set; }
         public string SecondName { get; set; }
+        [DataType(DataType.Date)]
         public DateTime BirthDay { get; set; }
 
         public Client()
