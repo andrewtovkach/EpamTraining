@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Configuration;
 using System.Linq;
 using System.Web.Mvc;
 using DAL.Models;
@@ -13,17 +14,21 @@ namespace SalesOfGoodsMVCApp.Controllers
 
         public ActionResult List(int page = 1)
         {
-            int pageSize = 3;
-            IEnumerable<Manager> managersPerPages = _managersRepository.Skip((page - 1) * pageSize).Take(pageSize);
-            PageInfo pageInfo = new PageInfo { PageNumber = page, PageSize = pageSize, TotalItems = _managersRepository.Count() };
-            IndexViewModel<Manager> ivm = new IndexViewModel<Manager> { PageInfo = pageInfo, Elements = managersPerPages };
-            return View(ivm);
+            int pageSize = Convert.ToInt32(ConfigurationManager.AppSettings["PageSize"]);
+            var managersPerPages = _managersRepository.Skip((page - 1) * pageSize).Take(pageSize);
+            PageInfo pageInfo = new PageInfo
+            {
+                PageNumber = page,
+                PageSize = pageSize,
+                TotalItems = _managersRepository.Count()
+            };
+            return View(new IndexViewModel<Manager> { PageInfo = pageInfo, Elements = managersPerPages });
         }
 
         [HttpGet]
         public ActionResult Delete(int id)
         {
-            Manager manager = _managersRepository.FirstOrDefault(x => x.Id == id);
+            var manager = _managersRepository.FirstOrDefault(x => x.Id == id);
             return View(manager);
         }
 

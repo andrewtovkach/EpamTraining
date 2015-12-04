@@ -11,7 +11,7 @@ namespace SalesOfGoodsMVCApp.Models
             var result = new StringBuilder();
             for (int i = 1; i <= pageInfo.TotalPages; i++)
             {
-                TagBuilder tag = new TagBuilder("a");
+                var tag = new TagBuilder("a");
                 tag.MergeAttribute("href", pageUrl(i));
                 tag.InnerHtml = i.ToString();
                 if (i == pageInfo.PageNumber)

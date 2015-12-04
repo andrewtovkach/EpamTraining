@@ -22,9 +22,16 @@ namespace DAL.Models
             Id = id;
         }
 
+        public SaleInfo()
+        {
+            Client = new Client();
+            Product = new Product();
+            FileInfo = new FileInfo();
+        }
+
         public override string ToString()
         {
-            return string.Format("{0} - {1} \nClient: {2} \nProduct: {3} \nFileInfo: {4} {5} {6}", Id, Date.ToShortDateString(),
+            return string.Format("{0} \nClient: {1} \nProduct: {2} \nFileInfo: {3} {4} {5}", Date.ToShortDateString(),
                 Client, Product, FileInfo, Cost, Currency);
         }
     }

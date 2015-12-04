@@ -29,7 +29,7 @@
             @Html.ValidationMessageFor(model => model.Description)
         </div>
         <div class="editor-label">
-            @Html.LabelFor(model => model.Country.Name)
+            @Html.Label("Countries")
         </div>
         <div class="editor-field">
             @Html.DropDownListFor(model => model.Country.Id, ViewBag.Countries as SelectList)

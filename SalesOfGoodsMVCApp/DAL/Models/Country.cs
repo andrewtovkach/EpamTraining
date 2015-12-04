@@ -11,9 +11,14 @@ namespace DAL.Models
             Name = name;
         }
 
+        public Country()
+        {
+            
+        }
+
         public bool Equals(Country other)
         {
-            return Name == other.Name;
+            return other != null && Name == other.Name;
         }
 
         public override bool Equals(object obj)
@@ -28,7 +33,7 @@ namespace DAL.Models
 
         public override string ToString()
         {
-            return string.Format("{0} - {1}", Id, Name);
+            return string.Format("{0}", Name);
         }
     }
 }

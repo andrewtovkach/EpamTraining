@@ -38,8 +38,8 @@
                 @Html.DisplayFor(modelItem => item.BirthDay)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new {id = item.Id}) |
-                @Html.ActionLink("Delete", "Delete", new {id = item.Id})
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
             </td>
         </tr>
     }
@@ -48,5 +48,5 @@
 
 <br />
 <div class="btn-group">
-    @Html.PageLinks(Model.PageInfo, x => Url.Action("List",new { page = x}))
+    @Html.PageLinks(Model.PageInfo, x => Url.Action("List", new { page = x }))
 </div>

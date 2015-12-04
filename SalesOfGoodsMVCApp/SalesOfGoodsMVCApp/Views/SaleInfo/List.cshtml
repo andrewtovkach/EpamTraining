@@ -1,4 +1,5 @@
-﻿@model IndexViewModel<DAL.Models.SaleInfo>
+﻿@*@model IndexViewModel<DAL.Models.SaleInfo>*@
+@model SaleInfoViewModel
 
 @using SalesOfGoodsMVCApp.Models
 
@@ -11,6 +12,22 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
+<form method="get">
+    <div class="form-inline">
+        <label class="control-label">Client: </label>
+        @Html.DropDownList("client", Model.Clients, new { @class = "form-control" })
+
+        <label class="control-label">Product: </label>
+        @Html.DropDownList("product", Model.Products, new { @class = "form-control" })
+
+        <label class="control-label">Manager: </label>
+        @Html.DropDownList("manager", Model.Managers, new { @class = "form-control" })
+
+        <input type="submit" value="Filter" class="btn btn-default" />
+    </div>
+</form>
+
 <table>
     <tr>
         <th>
@@ -40,7 +57,7 @@
         <th></th>
     </tr>
 
-    @foreach (var item in Model.Elements)
+    @foreach (var item in Model.SaleInfos)
     {
         <tr>
             <td>
@@ -76,7 +93,7 @@
 
 </table>
 
-<br />
+@*<br />
 <div class="btn-group">
-    @Html.PageLinks(Model.PageInfo, x => Url.Action("List",new { page = x}))
-</div>
+    @Html.PageLinks(Model.PageInfo, x => Url.Action("List", new { page = x }))
+</div>*@

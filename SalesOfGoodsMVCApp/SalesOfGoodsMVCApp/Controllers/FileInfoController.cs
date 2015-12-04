@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Configuration;
 using System.Linq;
 using System.Web.Mvc;
 using DAL.Models;
@@ -13,17 +14,21 @@ namespace SalesOfGoodsMVCApp.Controllers
 
         public ActionResult List(int page = 1)
         {
-            int pageSize = 3;
-            IEnumerable<FileInfo> fileInfosPerPages = _fileInfoRepository.Skip((page - 1) * pageSize).Take(pageSize);
-            PageInfo pageInfo = new PageInfo { PageNumber = page, PageSize = pageSize, TotalItems = _fileInfoRepository.Count() };
-            IndexViewModel<FileInfo> ivm = new IndexViewModel<FileInfo> { PageInfo = pageInfo, Elements = fileInfosPerPages };
-            return View(ivm);
+            int pageSize = Convert.ToInt32(ConfigurationManager.AppSettings["PageSize"]);
+            var fileInfosPerPages = _fileInfoRepository.Skip((page - 1) * pageSize).Take(pageSize);
+            PageInfo pageInfo = new PageInfo
+            {
+                PageNumber = page,
+                PageSize = pageSize,
+                TotalItems = _fileInfoRepository.Count()
+            };
+            return View(new IndexViewModel<FileInfo> { PageInfo = pageInfo, Elements = fileInfosPerPages });
         }
 
         [HttpGet]
         public ActionResult Delete(int id)
         {
-            FileInfo fileInfo = _fileInfoRepository.FirstOrDefault(x => x.Id == id);
+            var fileInfo = _fileInfoRepository.FirstOrDefault(x => x.Id == id);
             return View(fileInfo);
         }
 
@@ -38,14 +43,14 @@ namespace SalesOfGoodsMVCApp.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            var managers = new SelectList(new ManagersRepository(), "Id", "SecondName");
-            ViewBag.Managers = managers;
+            ViewBag.Managers = new SelectList(new ManagersRepository(), "Id", "SecondName");
             return View();
         }
 
         [HttpPost]
         public ActionResult Create(FileInfo fileInfo)
         {
+            fileInfo.Manager = new ManagersRepository().FirstOrDefault(x => x.Id == fileInfo.Manager.Id);
             _fileInfoRepository.Add(fileInfo);
             _fileInfoRepository.SaveChanges();
             return RedirectToAction("List");
@@ -57,16 +62,16 @@ namespace SalesOfGoodsMVCApp.Controllers
             if (id == null)
                 return HttpNotFound();
             var fileInfo = _fileInfoRepository.FirstOrDefault(x => x.Id == id);
-            if (fileInfo == null) 
+            if (fileInfo == null)
                 return RedirectToAction("List");
-            var managers = new SelectList(new ManagersRepository(), "Id", "SecondName", fileInfo.Manager.Id);
-            ViewBag.Managers = managers;
+            ViewBag.Managers = new SelectList(new ManagersRepository(), "Id", "SecondName", fileInfo.Manager.Id);
             return View(fileInfo);
         }
 
         [HttpPost]
         public ActionResult Edit(FileInfo fileInfo)
         {
+            fileInfo.Manager = new ManagersRepository().FirstOrDefault(x => x.Id == fileInfo.Manager.Id);
             _fileInfoRepository.Update(fileInfo.Id, fileInfo);
             _fileInfoRepository.SaveChanges();
             return RedirectToAction("List");

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Configuration;
 using System.Linq;
 using System.Web.Mvc;
 using DAL.Models;
@@ -13,17 +14,21 @@ namespace SalesOfGoodsMVCApp.Controllers
 
         public ActionResult List(int page = 1)
         {
-            int pageSize = 3;
-            IEnumerable<Product> productsPerPages = _productsRepository.Skip((page - 1) * pageSize).Take(pageSize);
-            PageInfo pageInfo = new PageInfo { PageNumber = page, PageSize = pageSize, TotalItems = _productsRepository.Count() };
-            IndexViewModel<Product> ivm = new IndexViewModel<Product> { PageInfo = pageInfo, Elements = productsPerPages };
-            return View(ivm);
+            int pageSize = Convert.ToInt32(ConfigurationManager.AppSettings["PageSize"]);
+            var productsPerPages = _productsRepository.Skip((page - 1) * pageSize).Take(pageSize);
+            PageInfo pageInfo = new PageInfo
+            {
+                PageNumber = page,
+                PageSize = pageSize,
+                TotalItems = _productsRepository.Count()
+            };
+            return View(new IndexViewModel<Product> { PageInfo = pageInfo, Elements = productsPerPages });
         }
 
         [HttpGet]
         public ActionResult Delete(int id)
         {
-            Product product = _productsRepository.FirstOrDefault(x => x.Id == id);
+            var product = _productsRepository.FirstOrDefault(x => x.Id == id);
             return View(product);
         }
 
@@ -38,14 +43,14 @@ namespace SalesOfGoodsMVCApp.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            SelectList countries = new SelectList(new CountriesRepository(), "Id", "Name");
-            ViewBag.Countries = countries;
+            ViewBag.Countries = new SelectList(new CountriesRepository(), "Id", "Name");
             return View();
         }
 
         [HttpPost]
         public ActionResult Create(Product product)
         {
+            product.Country = new CountriesRepository().FirstOrDefault(item => item.Id == product.Country.Id);
             _productsRepository.Add(product);
             _productsRepository.SaveChanges();
             return RedirectToAction("List");
@@ -59,15 +64,15 @@ namespace SalesOfGoodsMVCApp.Controllers
             var product = _productsRepository.FirstOrDefault(x => x.Id == id);
             if (product == null) 
                 return RedirectToAction("List");
-            var countries = new SelectList(new CountriesRepository(), "Id", "Name", product.Country.Id);
-            ViewBag.Countries = countries;
+            ViewBag.Countries = new SelectList(new CountriesRepository(), "Id", "Name", product.Country.Id);
             return View(product);
         }
 
         [HttpPost]
         public ActionResult Edit(Product product)
         {
-            _productsRepository.Update(product.Id, product);
+            product.Country = new CountriesRepository().FirstOrDefault(item => item.Id == product.Country.Id);
+            _productsRepository.Update(product.Id, product);            
             _productsRepository.SaveChanges();
             return RedirectToAction("List");
         }

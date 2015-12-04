@@ -21,16 +21,22 @@
             @Html.ValidationMessageFor(model => model.Date)
         </div>
         <div class="editor-label">
-            @Html.LabelFor(model => model.Client.FirstName)
+            @Html.Label("Clients")
         </div>
         <div class="editor-field">
             @Html.DropDownListFor(model => model.Client.Id, ViewBag.Clients as SelectList)
         </div>
         <div class="editor-label">
-            @Html.LabelFor(model => model.Product.Name)
+            @Html.Label("Products")
         </div>
         <div class="editor-field">
             @Html.DropDownListFor(model => model.Product.Id, ViewBag.Products as SelectList)
+        </div>
+        <div class="editor-label">
+            @Html.Label("Managers")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.FileInfo.Manager.Id, ViewBag.Managers as SelectList)
         </div>
         <div class="editor-label">
             @Html.LabelFor(model => model.Cost)

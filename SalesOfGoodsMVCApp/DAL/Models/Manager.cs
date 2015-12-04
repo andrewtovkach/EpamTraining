@@ -17,9 +17,14 @@ namespace DAL.Models
             Email = email;
         }
 
+        public Manager()
+        {
+            
+        }
+
         public bool Equals(Manager other)
         {
-            return FirstName == other.FirstName && SecondName == other.SecondName &&
+            return other != null && FirstName == other.FirstName && SecondName == other.SecondName &&
                    Telephone == other.Telephone && Email == other.Email;
         }
 
@@ -35,7 +40,7 @@ namespace DAL.Models
 
         public override string ToString()
         {
-            return string.Format("{0} - {1} {2} {3} {4}", Id, FirstName, SecondName, Telephone, Email);
+            return string.Format("{0} {1} {2} {3}", FirstName, SecondName, Telephone, Email);
         }
 
 

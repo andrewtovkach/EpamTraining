@@ -16,9 +16,14 @@ namespace DAL.Models
             Id = id;
         }
 
+        public Product()
+        {
+            Country = new Country();
+        }
+
         public bool Equals(Product other)
         {
-            return Name == other.Name && Description == other.Description && Country != null &&
+            return other != null && Name == other.Name && Description == other.Description && 
                 Country.Equals(other.Country);
         }
 
@@ -34,7 +39,7 @@ namespace DAL.Models
 
         public override string ToString()
         {
-            return string.Format("{0} - {1} {2} Country: {3}", Id, Name, Description, Country);
+            return string.Format("{0} {1} Country: {2}", Name, Description, Country);
         }
     }
 }

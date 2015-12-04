@@ -14,9 +14,14 @@ namespace DAL.Models
             Id = id;
         }
 
+        public FileInfo()
+        {
+            Manager = new Manager();
+        }
+
         public bool Equals(FileInfo other)
         {
-            return Manager != null && Manager.Equals(other.Manager) && Date == other.Date;
+            return other != null && Manager.Equals(other.Manager) && Date == other.Date;
         }
 
         public override bool Equals(object obj)
@@ -31,7 +36,7 @@ namespace DAL.Models
 
         public override string ToString()
         {
-            return string.Format("{0} - Manager: {1} {2}", Id, Manager, Date.ToShortDateString());
+            return string.Format("Manager: {0} {1}", Manager, Date.ToShortDateString());
         }
     }
 }
