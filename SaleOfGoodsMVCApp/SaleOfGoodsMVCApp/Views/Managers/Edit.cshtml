@@ -1,0 +1,51 @@
+﻿@model DAL.Models.Manager
+
+@{
+    ViewBag.Title = "Edit Manager";
+}
+
+<h2>Edit Manager</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <div class="form-group">
+            @Html.LabelFor(model => model.FirstName, new { @class = "col-md-2 control-label" })
+            @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.FirstName)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.SecondName, new { @class = "col-md-2 control-label" })
+            @Html.TextBoxFor(model => model.SecondName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.SecondName)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Telephone, new { @class = "col-md-2 control-label" })
+            @Html.TextBoxFor(model => model.Telephone, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Telephone)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, new { @class = "col-md-2 control-label" })
+            @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "List")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

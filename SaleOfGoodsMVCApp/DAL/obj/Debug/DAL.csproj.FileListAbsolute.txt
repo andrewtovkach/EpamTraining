@@ -1,0 +1,16 @@
+c:\users\андрей\documents\visual studio 2013\Projects\SaleOfGoodsMVCApp\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+c:\users\андрей\documents\visual studio 2013\Projects\SaleOfGoodsMVCApp\DAL\bin\Debug\DAL.dll.config
+c:\users\андрей\documents\visual studio 2013\Projects\SaleOfGoodsMVCApp\DAL\bin\Debug\DAL.dll
+c:\users\андрей\documents\visual studio 2013\Projects\SaleOfGoodsMVCApp\DAL\bin\Debug\DAL.pdb
+c:\users\андрей\documents\visual studio 2013\Projects\SaleOfGoodsMVCApp\DAL\bin\Debug\AutoMapper.dll
+c:\users\андрей\documents\visual studio 2013\Projects\SaleOfGoodsMVCApp\DAL\bin\Debug\EntityFramework.dll
+c:\users\андрей\documents\visual studio 2013\Projects\SaleOfGoodsMVCApp\DAL\bin\Debug\EntityFramework.SqlServer.dll
+c:\users\андрей\documents\visual studio 2013\Projects\SaleOfGoodsMVCApp\DAL\bin\Debug\Model.dll
+c:\users\андрей\documents\visual studio 2013\Projects\SaleOfGoodsMVCApp\DAL\bin\Debug\Model.pdb
+c:\users\андрей\documents\visual studio 2013\Projects\SaleOfGoodsMVCApp\DAL\bin\Debug\AutoMapper.xml
+c:\users\андрей\documents\visual studio 2013\Projects\SaleOfGoodsMVCApp\DAL\bin\Debug\EntityFramework.xml
+c:\users\андрей\documents\visual studio 2013\Projects\SaleOfGoodsMVCApp\DAL\bin\Debug\EntityFramework.SqlServer.xml
+c:\users\андрей\documents\visual studio 2013\Projects\SaleOfGoodsMVCApp\DAL\bin\Debug\ru\EntityFramework.resources.dll
+c:\users\андрей\documents\visual studio 2013\Projects\SaleOfGoodsMVCApp\DAL\bin\Debug\ru\EntityFramework.SqlServer.resources.dll
+c:\users\андрей\documents\visual studio 2013\Projects\SaleOfGoodsMVCApp\DAL\obj\Debug\DAL.dll
+c:\users\андрей\documents\visual studio 2013\Projects\SaleOfGoodsMVCApp\DAL\obj\Debug\DAL.pdb
