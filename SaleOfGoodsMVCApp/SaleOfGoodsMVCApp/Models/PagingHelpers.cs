@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using System.Web.Mvc;
+using BLL;
 
 namespace SalesOfGoodsMVCApp.Models
 {

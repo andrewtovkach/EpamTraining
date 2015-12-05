@@ -6,9 +6,9 @@ using System.Linq;
 using System.Web.Mvc;
 using DAL.Models;
 using DAL.Repositories;
-using SalesOfGoodsMVCApp.Models;
+using BLL;
 
-namespace SalesOfGoodsMVCApp.Controllers
+namespace SaleOfGoodsMVCApp.Controllers
 {
     public class SaleInfoController : Controller
     {
@@ -31,14 +31,15 @@ namespace SalesOfGoodsMVCApp.Controllers
 
         private SaleInfoViewModel CreateSaleInfoViewModel(int? client, DateTime? date, int? product, int? manager)
         {
-            var managers = new ManagersRepository().ToList();
+            var managers = new ManagersRepository().OrderBy(item => item.SecondName).ToList();
             managers.Insert(0, new Manager { SecondName = "All", Id = 0 });
-            var clients = new ClientsRepository().ToList();
+            var clients = new ClientsRepository().OrderBy(item => item.SecondName).ToList();
             clients.Insert(0, new Client { SecondName = "All", Id = 0 });
-            var products = new ProductsRepository().ToList();
+            var products = new ProductsRepository().OrderBy(item => item.Name).ToList();
             products.Insert(0, new Product { Name = "All", Id = 0 });
             var dates = (from element in new SaleInfoRepository()
-                         select element.Date.ToString(CultureInfo.InvariantCulture)).Distinct().ToList();
+                         select element.Date.ToString(CultureInfo.InvariantCulture))
+                         .Distinct().OrderBy(item => item).ToList();
             dates.Insert(0, "All");
             SaleInfoViewModel saleInfoViewModel = new SaleInfoViewModel
             {
@@ -66,8 +67,11 @@ namespace SalesOfGoodsMVCApp.Controllers
         }
 
         [HttpGet]
-        public ActionResult Delete(int id)
+        [Route("{id:int}")]
+        public ActionResult Delete(int? id)
         {
+            if (id == null)
+                return HttpNotFound();
             var saleInfo = _saleInfoRepository.FirstOrDefault(x => x.Id == id);
             return View(saleInfo);
         }
@@ -92,18 +96,20 @@ namespace SalesOfGoodsMVCApp.Controllers
         [HttpPost]
         public ActionResult Create(SaleInfo saleInfo)
         {
-            if (!ModelState.IsValid)
-                return View(saleInfo);
             saleInfo.Client = new ClientsRepository().FirstOrDefault(x => x.Id == saleInfo.Client.Id);
             saleInfo.Product = new ProductsRepository().FirstOrDefault(x => x.Id == saleInfo.Product.Id);
             var manager = new ManagersRepository().FirstOrDefault(x => x.Id == saleInfo.FileInfo.Manager.Id);
             saleInfo.FileInfo = new FileInfo(manager, saleInfo.Date);
-            _saleInfoRepository.Add(saleInfo);
-            _saleInfoRepository.SaveChanges();
+            if (ModelState.IsValid)
+            {
+                _saleInfoRepository.Add(saleInfo);
+                _saleInfoRepository.SaveChanges();
+            }
             return RedirectToAction("List");
         }
 
         [HttpGet]
+        [Route("{id:int}")]
         public ActionResult Edit(int? id)
         {
             if (id == null)

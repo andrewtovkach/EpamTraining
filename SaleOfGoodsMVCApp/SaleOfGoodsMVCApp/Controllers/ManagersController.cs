@@ -4,9 +4,9 @@ using System.Linq;
 using System.Web.Mvc;
 using DAL.Models;
 using DAL.Repositories;
-using SalesOfGoodsMVCApp.Models;
+using BLL;
 
-namespace SalesOfGoodsMVCApp.Controllers
+namespace SaleOfGoodsMVCApp.Controllers
 {
     public class ManagersController : Controller
     {
@@ -26,8 +26,11 @@ namespace SalesOfGoodsMVCApp.Controllers
         }
 
         [HttpGet]
-        public ActionResult Delete(int id)
+        [Route("{id:int}")]
+        public ActionResult Delete(int? id)
         {
+            if (id == null)
+                return HttpNotFound();
             var manager = _managersRepository.FirstOrDefault(x => x.Id == id);
             return View(manager);
         }
@@ -49,14 +52,16 @@ namespace SalesOfGoodsMVCApp.Controllers
         [HttpPost]
         public ActionResult Create(Manager manager)
         {
-            if (!ModelState.IsValid)
-                return View(manager);
-            _managersRepository.Add(manager);
-            _managersRepository.SaveChanges();
+            if (ModelState.IsValid)
+            {
+                _managersRepository.Add(manager);
+                _managersRepository.SaveChanges();
+            }
             return RedirectToAction("List");
         }
 
         [HttpGet]
+        [Route("{id:int}")]
         public ActionResult Edit(int? id)
         {
             if (id == null)

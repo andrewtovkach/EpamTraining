@@ -53,9 +53,9 @@ namespace DAL.Repositories
         {
             get
             {
-                return Context.SaleInfo.AsEnumerable().Select(item => new SaleInfo(item.Date, Mapper.Map<Model.Client, Client>(item.Clients),
-                    new Product(item.Products.Name, item.Products.Description, Mapper.Map<Model.Country, Country>(item.Products.Countries), item.ProductId),
-                    new FileInfo(Mapper.Map<Model.Manager, Manager>(item.FileInfo.Managers), item.FileInfo.Date, item.FileInfoId), item.Cost, item.Currency, item.Id));
+                return Context.SaleInfo.AsEnumerable().Select(item => new SaleInfo(item.Date ?? DateTime.Now, Mapper.Map<Model.Client, Client>(item.Client),
+                    new Product(item.Product.Name, item.Product.Description, Mapper.Map<Model.Country, Country>(item.Product.Country), item.ProductId),
+                    new FileInfo(Mapper.Map<Model.Manager, Manager>(item.FileInfo.Manager), item.FileInfo.Date ?? DateTime.Now, item.FileInfoId), item.Cost ?? 0,item.Currency, item.Id));
             }
         }
 

@@ -1,6 +1,7 @@
 ﻿@model IndexViewModel<DAL.Models.SaleInfo>
 
 @using SalesOfGoodsMVCApp.Models
+@using BLL
 
 @{
     ViewBag.Title = "List SaleInfo";
@@ -26,11 +27,12 @@
         <label class="control-label">Manager: </label>
         @Html.DropDownList("manager", ViewBag.SaleInfoViewModel.Managers as SelectList, new { @class = "form-control" })
 
-        <input type="submit" value="Filter" class="btn btn-default" />
+        <input type="submit" value="Filter" class="btn btn-primary" />
     </div>
 </form>
 
-<table>
+<br />
+<table class="table table-striped table-hover">
     <tr>
         <th>
             @Html.DisplayName("Client FirstName")

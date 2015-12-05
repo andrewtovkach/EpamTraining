@@ -10,3 +10,15 @@ c:\users\андрей\documents\visual studio 2013\Projects\SaleOfGoodsMVCApp\Mo
 c:\users\андрей\documents\visual studio 2013\Projects\SaleOfGoodsMVCApp\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
 c:\users\андрей\documents\visual studio 2013\Projects\SaleOfGoodsMVCApp\Model\obj\Debug\Model.dll
 c:\users\андрей\documents\visual studio 2013\Projects\SaleOfGoodsMVCApp\Model\obj\Debug\Model.pdb
+D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\Model\bin\Debug\Model.dll.config
+D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\Model\bin\Debug\Model.dll
+D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\Model\bin\Debug\Model.pdb
+D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\Model\bin\Debug\EntityFramework.dll
+D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\Model\bin\Debug\EntityFramework.SqlServer.dll
+D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\Model\bin\Debug\EntityFramework.xml
+D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\Model\bin\Debug\EntityFramework.SqlServer.xml
+D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\Model\bin\Debug\ru\EntityFramework.resources.dll
+D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\Model\bin\Debug\ru\EntityFramework.SqlServer.resources.dll
+D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
+D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\Model\obj\Debug\Model.dll
+D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\Model\obj\Debug\Model.pdb

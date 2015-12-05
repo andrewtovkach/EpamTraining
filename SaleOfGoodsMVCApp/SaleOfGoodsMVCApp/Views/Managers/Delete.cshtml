@@ -6,35 +6,21 @@
 
 <h2>Delete Manager</h2>
 
-<h3>Are you sure you want to delete this  manager?</h3>
 <fieldset>
-    <legend>Manager</legend>
-
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.FirstName)
-    </div>
-    <div class="display-field">
+    <div class="form-group">
+        @Html.LabelFor(model => model.FirstName, new { @class = "col-md-2 control-label" })
         @Html.DisplayFor(model => model.FirstName)
     </div>
-
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.SecondName)
-    </div>
-    <div class="display-field">
+    <div class="form-group">
+        @Html.LabelFor(model => model.SecondName, new { @class = "col-md-2 control-label" })
         @Html.DisplayFor(model => model.SecondName)
     </div>
-
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.Telephone)
-    </div>
-    <div class="display-field">
+    <div class="form-group">
+        @Html.LabelFor(model => model.Telephone, new { @class = "col-md-2 control-label" })
         @Html.DisplayFor(model => model.Telephone)
     </div>
-
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.Email)
-    </div>
-    <div class="display-field">
+    <div class="form-group">
+        @Html.LabelFor(model => model.Email, new { @class = "col-md-2 control-label" })
         @Html.DisplayFor(model => model.Email)
     </div>
 </fieldset>
@@ -42,7 +28,7 @@
 {
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Delete" class="btn btn-default" />
+            <input type="submit" value="Delete" class="btn btn-primary" />
             |
             @Html.ActionLink("Back to List", "List")
         </div>

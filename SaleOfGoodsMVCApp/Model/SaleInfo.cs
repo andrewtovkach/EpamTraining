@@ -15,15 +15,15 @@ namespace Model
     public partial class SaleInfo
     {
         public int Id { get; set; }
-        public System.DateTime Date { get; set; }
+        public Nullable<System.DateTime> Date { get; set; }
         public int ClientId { get; set; }
         public int ProductId { get; set; }
         public int FileInfoId { get; set; }
-        public int Cost { get; set; }
+        public Nullable<int> Cost { get; set; }
         public string Currency { get; set; }
     
-        public virtual Client Clients { get; set; }
+        public virtual Client Client { get; set; }
         public virtual FileInfo FileInfo { get; set; }
-        public virtual Product Products { get; set; }
+        public virtual Product Product { get; set; }
     }
 }

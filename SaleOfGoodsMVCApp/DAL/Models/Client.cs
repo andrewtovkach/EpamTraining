@@ -1,11 +1,15 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace DAL.Models
 {
     public class Client : BaseClass, IEquatable<Client>
     {
+        [Required(ErrorMessage = "Field must be set")]
         public string FirstName { get; set; }
+        [Required(ErrorMessage = "Field must be set")]
         public string SecondName { get; set; }
+        [DataType(DataType.Date)]
         public DateTime BirthDay { get; set; }
 
         public Client()

@@ -5,9 +5,9 @@ using System.Linq;
 using System.Web.Mvc;
 using DAL.Models;
 using DAL.Repositories;
-using SalesOfGoodsMVCApp.Models;
+using BLL;
 
-namespace SalesOfGoodsMVCApp.Controllers
+namespace SaleOfGoodsMVCApp.Controllers
 {
     public class FileInfoController : Controller
     {
@@ -30,7 +30,7 @@ namespace SalesOfGoodsMVCApp.Controllers
 
         private FileInfoViewModel CreateFileInfoViewModel(int? manager)
         {
-            var managers = new ManagersRepository().ToList();
+            var managers = new ManagersRepository().OrderBy(item => item.SecondName).ToList();
             managers.Insert(0, new Manager { SecondName = "All", Id = 0 });
             FileInfoViewModel fileInfoViewModel = new FileInfoViewModel
             {
@@ -49,8 +49,11 @@ namespace SalesOfGoodsMVCApp.Controllers
         }
 
         [HttpGet]
-        public ActionResult Delete(int id)
+        [Route("{id:int}")]
+        public ActionResult Delete(int? id)
         {
+            if (id == null)
+                return HttpNotFound();
             var fileInfo = _fileInfoRepository.FirstOrDefault(x => x.Id == id);
             return View(fileInfo);
         }
@@ -73,15 +76,17 @@ namespace SalesOfGoodsMVCApp.Controllers
         [HttpPost]
         public ActionResult Create(FileInfo fileInfo)
         {
-            if (!ModelState.IsValid)
-                return View(fileInfo);
-            fileInfo.Manager = new ManagersRepository().FirstOrDefault(x => x.Id == fileInfo.Manager.Id);
-            _fileInfoRepository.Add(fileInfo);
-            _fileInfoRepository.SaveChanges();
+            if (ModelState.IsValid)
+            {
+                fileInfo.Manager = new ManagersRepository().FirstOrDefault(x => x.Id == fileInfo.Manager.Id);
+                _fileInfoRepository.Add(fileInfo);
+                _fileInfoRepository.SaveChanges();
+            }
             return RedirectToAction("List");
         }
 
         [HttpGet]
+        [Route("{id:int}")]
         public ActionResult Edit(int? id)
         {
             if (id == null)

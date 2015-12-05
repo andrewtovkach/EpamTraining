@@ -22,7 +22,7 @@ namespace Model
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string SecondName { get; set; }
-        public System.DateTime BirthDay { get; set; }
+        public Nullable<System.DateTime> BirthDay { get; set; }
     
         public virtual ICollection<SaleInfo> SaleInfo { get; set; }
     }

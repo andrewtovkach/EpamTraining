@@ -1,10 +1,13 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace DAL.Models
 {
     public class FileInfo : BaseClass, IEquatable<FileInfo>
     {
         public Manager Manager { get; set; }
+        [Required(ErrorMessage = "Field must be set")]
+        [DataType(DataType.DateTime)]
         public DateTime Date { get; set; }
 
         public FileInfo(Manager manager, DateTime date, int id = 0)

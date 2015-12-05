@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace SalesOfGoodsMVCApp.Models
+namespace BLL
 {
     public class IndexViewModel<T>
     {

@@ -4,14 +4,14 @@ using System.Linq;
 using System.Web.Mvc;
 using DAL.Models;
 using DAL.Repositories;
-using SalesOfGoodsMVCApp.Models;
+using BLL;
 
-namespace SalesOfGoodsMVCApp.Controllers
+namespace SaleOfGoodsMVCApp.Controllers
 {
     public class ClientsController : Controller
     {
         readonly ClientsRepository _clientsRepository = new ClientsRepository();
-
+        
         public ActionResult List(int page = 1)
         {
             int pageSize = Convert.ToInt32(ConfigurationManager.AppSettings["PageSize"]);
@@ -26,8 +26,11 @@ namespace SalesOfGoodsMVCApp.Controllers
         }
 
         [HttpGet]
-        public ActionResult Delete(int id)
+        [Route("{id:int}")]
+        public ActionResult Delete(int? id)
         {
+            if (id == null)
+                return HttpNotFound();
             var client = _clientsRepository.FirstOrDefault(x => x.Id == id);
             return View(client);
         }
@@ -49,14 +52,16 @@ namespace SalesOfGoodsMVCApp.Controllers
         [HttpPost]
         public ActionResult Create(Client client)
         {
-            if (!ModelState.IsValid)
-                return View(client);
-            _clientsRepository.Add(client);
-            _clientsRepository.SaveChanges();
+            if (ModelState.IsValid)
+            {
+                _clientsRepository.Add(client);
+                _clientsRepository.SaveChanges();
+            }
             return RedirectToAction("List");
         }
 
         [HttpGet]
+        [Route("{id:int}")]
         public ActionResult Edit(int? id)
         {
             if (id == null)

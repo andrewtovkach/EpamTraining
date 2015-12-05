@@ -24,7 +24,7 @@ namespace Model
         public string Description { get; set; }
         public int CountryId { get; set; }
     
-        public virtual Country Countries { get; set; }
+        public virtual Country Country { get; set; }
         public virtual ICollection<SaleInfo> SaleInfo { get; set; }
     }
 }

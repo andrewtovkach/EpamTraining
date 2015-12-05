@@ -14,3 +14,19 @@ c:\users\андрей\documents\visual studio 2013\Projects\SaleOfGoodsMVCApp\DA
 c:\users\андрей\documents\visual studio 2013\Projects\SaleOfGoodsMVCApp\DAL\bin\Debug\ru\EntityFramework.SqlServer.resources.dll
 c:\users\андрей\documents\visual studio 2013\Projects\SaleOfGoodsMVCApp\DAL\obj\Debug\DAL.dll
 c:\users\андрей\documents\visual studio 2013\Projects\SaleOfGoodsMVCApp\DAL\obj\Debug\DAL.pdb
+D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\DAL\bin\Debug\DAL.dll.config
+D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\DAL\bin\Debug\DAL.dll
+D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\DAL\bin\Debug\DAL.pdb
+D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\DAL\bin\Debug\AutoMapper.dll
+D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\DAL\bin\Debug\EntityFramework.dll
+D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\DAL\bin\Debug\EntityFramework.SqlServer.dll
+D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\DAL\bin\Debug\Model.dll
+D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\DAL\bin\Debug\Model.pdb
+D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\DAL\bin\Debug\AutoMapper.xml
+D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\DAL\bin\Debug\EntityFramework.xml
+D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\DAL\bin\Debug\EntityFramework.SqlServer.xml
+D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\DAL\bin\Debug\ru\EntityFramework.resources.dll
+D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\DAL\bin\Debug\ru\EntityFramework.SqlServer.resources.dll
+D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\DAL\obj\Debug\DAL.dll
+D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\DAL\obj\Debug\DAL.pdb

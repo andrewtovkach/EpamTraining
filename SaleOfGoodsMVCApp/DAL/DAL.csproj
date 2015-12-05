@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CostValidationAttribute.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Models\BaseClass.cs" />
     <Compile Include="Models\Client.cs" />

@@ -12,3 +12,17 @@ c:\users\андрей\documents\visual studio 2013\Projects\SaleOfGoodsMVCApp\BL
 c:\users\андрей\documents\visual studio 2013\Projects\SaleOfGoodsMVCApp\BLL\obj\Debug\BLL.csprojResolveAssemblyReference.cache
 c:\users\андрей\documents\visual studio 2013\Projects\SaleOfGoodsMVCApp\BLL\obj\Debug\BLL.dll
 c:\users\андрей\documents\visual studio 2013\Projects\SaleOfGoodsMVCApp\BLL\obj\Debug\BLL.pdb
+D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\BLL\bin\Debug\BLL.dll
+D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\BLL\bin\Debug\BLL.pdb
+D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\BLL\bin\Debug\DAL.dll
+D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\BLL\bin\Debug\Model.dll
+D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\BLL\bin\Debug\AutoMapper.dll
+D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\BLL\bin\Debug\EntityFramework.dll
+D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\BLL\bin\Debug\DAL.pdb
+D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\BLL\bin\Debug\Model.pdb
+D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\BLL\bin\Debug\AutoMapper.xml
+D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\BLL\bin\Debug\EntityFramework.xml
+D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\BLL\bin\Debug\ru\EntityFramework.resources.dll
+D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\BLL\obj\Debug\BLL.csprojResolveAssemblyReference.cache
+D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\BLL\obj\Debug\BLL.dll
+D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\BLL\obj\Debug\BLL.pdb

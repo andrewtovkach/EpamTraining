@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using System.Web.Mvc;
 using DAL.Models;
+using System.Web.Mvc;
 
-namespace SalesOfGoodsMVCApp.Models
+namespace BLL
 {
     public class FileInfoViewModel
     {

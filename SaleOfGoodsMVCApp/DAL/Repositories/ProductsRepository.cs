@@ -43,7 +43,7 @@ namespace DAL.Repositories
         {
             get
             {
-                return Context.Products.AsEnumerable().Select(item => new Product(item.Name, item.Description, Mapper.Map<Model.Country, Country>(item.Countries), item.Id));
+                return Context.Products.AsEnumerable().Select(item => new Product(item.Name, item.Description, Mapper.Map<Model.Country, Country>(item.Country), item.Id));
             }
         }
 

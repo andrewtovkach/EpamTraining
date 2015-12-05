@@ -42,7 +42,7 @@ namespace DAL.Repositories
         {
             get
             {
-                return Context.FileInfo.AsEnumerable().Select(item => new FileInfo(Mapper.Map<Model.Manager, Manager>(item.Managers), item.Date, item.Id));
+                return Context.FileInfo.AsEnumerable().Select(item => new FileInfo(Mapper.Map<Model.Manager, Manager>(item.Manager), item.Date ?? DateTime.Now, item.Id));
             }
         }
 

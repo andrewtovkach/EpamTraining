@@ -5,9 +5,9 @@ using System.Linq;
 using System.Web.Mvc;
 using DAL.Models;
 using DAL.Repositories;
-using SalesOfGoodsMVCApp.Models;
+using BLL;
 
-namespace SalesOfGoodsMVCApp.Controllers
+namespace SaleOfGoodsMVCApp.Controllers
 {
     public class ProductsController : Controller
     {
@@ -30,7 +30,7 @@ namespace SalesOfGoodsMVCApp.Controllers
 
         private ProductViewModel CreateProductViewModel(int? country)
         {
-            var countries = new CountriesRepository().ToList();
+            var countries = new CountriesRepository().OrderBy(item => item.Name).ToList();
             countries.Insert(0, new Country { Name = "All", Id = 0 });
             ProductViewModel productViewModel = new ProductViewModel
             {
@@ -49,8 +49,11 @@ namespace SalesOfGoodsMVCApp.Controllers
         }
 
         [HttpGet]
-        public ActionResult Delete(int id)
+        [Route("{id:int}")]
+        public ActionResult Delete(int? id)
         {
+            if (id == null)
+                return HttpNotFound();
             var product = _productsRepository.FirstOrDefault(x => x.Id == id);
             return View(product);
         }
@@ -73,15 +76,17 @@ namespace SalesOfGoodsMVCApp.Controllers
         [HttpPost]
         public ActionResult Create(Product product)
         {
-            if (!ModelState.IsValid)
-                return View(product);
-            product.Country = new CountriesRepository().FirstOrDefault(item => item.Id == product.Country.Id);
-            _productsRepository.Add(product);
-            _productsRepository.SaveChanges();
+            if (ModelState.IsValid)
+            {
+                product.Country = new CountriesRepository().FirstOrDefault(item => item.Id == product.Country.Id);
+                _productsRepository.Add(product);
+                _productsRepository.SaveChanges();
+            }
             return RedirectToAction("List");
         }
 
         [HttpGet]
+        [Route("{id:int}")]
         public ActionResult Edit(int? id)
         {
             if (id == null)

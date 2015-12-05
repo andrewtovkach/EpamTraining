@@ -16,7 +16,7 @@
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Products" Relationship="Self.FK_Products_Countries" FromRole="Countries" ToRole="Products" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_Products_Countries" FromRole="Countries" ToRole="Products" />
   </EntityType>
   <EntityType Name="FileInfo">
     <Key>
@@ -25,7 +25,7 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="ManagerId" Type="Int32" Nullable="false" />
     <Property Name="Date" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="Managers" Relationship="Self.FK_FileInfo_Managers" FromRole="FileInfo" ToRole="Managers" />
+    <NavigationProperty Name="Manager" Relationship="Self.FK_FileInfo_Managers" FromRole="FileInfo" ToRole="Managers" />
     <NavigationProperty Name="SaleInfo" Relationship="Self.FK_SaleInfo_FileInfo" FromRole="FileInfo" ToRole="SaleInfo" />
   </EntityType>
   <EntityType Name="Manager">
@@ -47,7 +47,7 @@
     <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="CountryId" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Countries" Relationship="Self.FK_Products_Countries" FromRole="Products" ToRole="Countries" />
+    <NavigationProperty Name="Country" Relationship="Self.FK_Products_Countries" FromRole="Products" ToRole="Countries" />
     <NavigationProperty Name="SaleInfo" Relationship="Self.FK_SaleInfo_Products" FromRole="Products" ToRole="SaleInfo" />
   </EntityType>
   <EntityType Name="SaleInfo">
@@ -61,9 +61,9 @@
     <Property Name="FileInfoId" Type="Int32" Nullable="false" />
     <Property Name="Cost" Type="Int32" />
     <Property Name="Currency" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Clients" Relationship="Self.FK_SaleInfo_Clients" FromRole="SaleInfo" ToRole="Clients" />
+    <NavigationProperty Name="Client" Relationship="Self.FK_SaleInfo_Clients" FromRole="SaleInfo" ToRole="Clients" />
     <NavigationProperty Name="FileInfo" Relationship="Self.FK_SaleInfo_FileInfo" FromRole="SaleInfo" ToRole="FileInfo" />
-    <NavigationProperty Name="Products" Relationship="Self.FK_SaleInfo_Products" FromRole="SaleInfo" ToRole="Products" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_SaleInfo_Products" FromRole="SaleInfo" ToRole="Products" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>

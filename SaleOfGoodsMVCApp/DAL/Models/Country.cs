@@ -1,9 +1,11 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace DAL.Models
 {
     public class Country : BaseClass, IEquatable<Country>
     {
+        [Required(ErrorMessage = "Field must be set")]
         public string Name { get; set; }
 
         public Country(string name)

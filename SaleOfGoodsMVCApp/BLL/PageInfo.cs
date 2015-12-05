@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SalesOfGoodsMVCApp.Models
+namespace BLL
 {
     public class PageInfo
     {
