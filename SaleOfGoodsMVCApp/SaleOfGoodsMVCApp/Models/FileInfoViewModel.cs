@@ -2,7 +2,7 @@
 using DAL.Models;
 using System.Web.Mvc;
 
-namespace BLL
+namespace SaleOfGoodsMVCApp.Models
 {
     public class FileInfoViewModel
     {

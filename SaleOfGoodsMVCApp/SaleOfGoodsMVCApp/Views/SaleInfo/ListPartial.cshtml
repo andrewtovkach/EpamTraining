@@ -1,0 +1,65 @@
+﻿@model IEnumerable<DAL.Models.SaleInfo>
+
+<table class="table table-striped table-hover">
+    <tr>
+        <th>
+            @Html.DisplayName("Client FirstName")
+        </th>
+        <th>
+            @Html.DisplayName("Client SecondName")
+        </th>
+        <th>
+            @Html.DisplayName("Date")
+        </th>
+        <th>
+            @Html.DisplayName("Product")
+        </th>
+        <th>
+            @Html.DisplayName("Manager FirstName")
+        </th>
+        <th>
+            @Html.DisplayName("Manager SecondName")
+        </th>
+        <th>
+            @Html.DisplayName("Cost")
+        </th>
+        <th>
+            @Html.DisplayName("Currency")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(model => item.Client.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Client.SecondName)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.FileInfo.Manager.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.FileInfo.Manager.SecondName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Currency)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+</table>

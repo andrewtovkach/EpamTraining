@@ -23,7 +23,7 @@
         </div>
         <div class="form-group">
             @Html.Label("Country", new { @class = "col-md-2 control-label" })
-            @Html.DropDownListFor(model => model.Country.Id, ViewBag.Countries as SelectList, new { @class = "dropdown-menu" })
+            @Html.DropDownListFor(model => model.Country.Id, ViewBag.Countries as SelectList, new { @class = "form-control" })
         </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

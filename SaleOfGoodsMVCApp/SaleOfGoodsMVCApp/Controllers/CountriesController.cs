@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Web.Mvc;
@@ -12,17 +13,26 @@ namespace SaleOfGoodsMVCApp.Controllers
     {
         readonly CountriesRepository _countriesRepository = new CountriesRepository();
 
+        public ActionResult ListPartial(int page = 1)
+        {
+            return PartialView(GetCountriesPerPages(page));
+        }
+
         public ActionResult List(int page = 1)
         {
-            int pageSize = Convert.ToInt32(ConfigurationManager.AppSettings["PageSize"]);
-            var countriesPerPages = _countriesRepository.Skip((page - 1) * pageSize).Take(pageSize);
             PageInfo pageInfo = new PageInfo
             {
                 PageNumber = page,
-                PageSize = pageSize,
+                PageSize = Convert.ToInt32(ConfigurationManager.AppSettings["PageSize"]),
                 TotalItems = _countriesRepository.Count()
             };
-            return View(new IndexViewModel<Country> { PageInfo = pageInfo, Elements = countriesPerPages });
+            return View(new IndexViewModel<Country> { PageInfo = pageInfo, Elements = GetCountriesPerPages(page) });
+        }
+
+        private IEnumerable<Country> GetCountriesPerPages(int page)
+        {
+            int pageSize = Convert.ToInt32(ConfigurationManager.AppSettings["PageSize"]);
+            return _countriesRepository.Skip((page - 1) * pageSize).Take(pageSize);
         }
 
         [HttpGet]
@@ -73,10 +83,11 @@ namespace SaleOfGoodsMVCApp.Controllers
         [HttpPost]
         public ActionResult Edit(Country country)
         {
-            if (!ModelState.IsValid)
-                return View(country);
-            _countriesRepository.Update(country.Id, country);
-            _countriesRepository.SaveChanges();
+            if (ModelState.IsValid)
+            {
+                _countriesRepository.Update(country.Id, country);
+                _countriesRepository.SaveChanges();
+            }
             return RedirectToAction("List");
         }
     }

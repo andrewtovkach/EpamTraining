@@ -1,7 +1,7 @@
 ﻿@model IndexViewModel<DAL.Models.Manager>
 
-@using SalesOfGoodsMVCApp.Models
 @using BLL
+@using SaleOfGoodsMVCApp.Models
 
 @{
     ViewBag.Title = "List Managers";
@@ -12,48 +12,16 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table table-striped table-hover">
-    <tr>
-        <th>
-            @Html.DisplayName("FirstName")
-        </th>
-        <th>
-            @Html.DisplayName("SecondName")
-        </th>
-        <th>
-            @Html.DisplayName("Telephone")
-        </th>
-        <th>
-            @Html.DisplayName("Email")
-        </th>
-        <th></th>
-    </tr>
 
-    @foreach (var item in Model.Elements)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SecondName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Telephone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            </td>
-        </tr>
-    }
-
-</table>
-
-<br />
-<div class="btn-group">
-    @Html.PageLinks(Model.PageInfo, x => Url.Action("List", new { page = x }))
+<div id="results">
+    @Html.Partial("ListPartial", Model.Elements)
 </div>
+
+<div class="btn-group">
+    @for (int i = 1; i <= Model.PageInfo.TotalPages; i++)
+    {
+        @Ajax.RawActionLink(i.ToString(), "ListPartial", "Managers", new { page = i },
+            new AjaxOptions { UpdateTargetId = "results" }, new { @class = "btn btn-default" })
+    }
+</div>
+

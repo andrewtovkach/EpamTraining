@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Web.Mvc;
@@ -12,17 +13,26 @@ namespace SaleOfGoodsMVCApp.Controllers
     {
         readonly ManagersRepository _managersRepository = new ManagersRepository();
 
+        public ActionResult ListPartial(int page = 1)
+        {
+            return PartialView(GetManagersPerPages(page));
+        }
+        
         public ActionResult List(int page = 1)
         {
-            int pageSize = Convert.ToInt32(ConfigurationManager.AppSettings["PageSize"]);
-            var managersPerPages = _managersRepository.Skip((page - 1) * pageSize).Take(pageSize);
             PageInfo pageInfo = new PageInfo
             {
                 PageNumber = page,
-                PageSize = pageSize,
+                PageSize = Convert.ToInt32(ConfigurationManager.AppSettings["PageSize"]),
                 TotalItems = _managersRepository.Count()
             };
-            return View(new IndexViewModel<Manager> { PageInfo = pageInfo, Elements = managersPerPages });
+            return View(new IndexViewModel<Manager> { PageInfo = pageInfo, Elements = GetManagersPerPages(page) });
+        }
+
+        private IEnumerable<Manager> GetManagersPerPages(int page)
+        {
+            int pageSize = Convert.ToInt32(ConfigurationManager.AppSettings["PageSize"]);
+            return _managersRepository.Skip((page - 1) * pageSize).Take(pageSize);
         }
 
         [HttpGet]
@@ -73,10 +83,11 @@ namespace SaleOfGoodsMVCApp.Controllers
         [HttpPost]
         public ActionResult Edit(Manager manager)
         {
-            if (!ModelState.IsValid)
-                return View(manager);
-            _managersRepository.Update(manager.Id, manager);
-            _managersRepository.SaveChanges();
+            if (ModelState.IsValid)
+            {
+                _managersRepository.Update(manager.Id, manager);
+                _managersRepository.SaveChanges();
+            }
             return RedirectToAction("List");
         }
     }

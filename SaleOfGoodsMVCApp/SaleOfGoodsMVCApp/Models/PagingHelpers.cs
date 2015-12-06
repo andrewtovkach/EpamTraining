@@ -1,29 +1,19 @@
 ﻿using System;
 using System.Text;
 using System.Web.Mvc;
+using System.Web.Mvc.Ajax;
 using BLL;
 
-namespace SalesOfGoodsMVCApp.Models
+namespace SaleOfGoodsMVCApp.Models
 {
     public static class PagingHelpers
     {
-        public static MvcHtmlString PageLinks(this HtmlHelper html, PageInfo pageInfo, Func<int, string> pageUrl)
+        public static MvcHtmlString RawActionLink(this AjaxHelper ajaxHelper, string rawHtml, string action, 
+            string controller, object routeValues, AjaxOptions ajaxOptions, object htmlAttributes)
         {
-            var result = new StringBuilder();
-            for (int i = 1; i <= pageInfo.TotalPages; i++)
-            {
-                var tag = new TagBuilder("a");
-                tag.MergeAttribute("href", pageUrl(i));
-                tag.InnerHtml = i.ToString();
-                if (i == pageInfo.PageNumber)
-                {
-                    tag.AddCssClass("selected");
-                    tag.AddCssClass("btn-primary");
-                }
-                tag.AddCssClass("btn btn-default");
-                result.Append(tag);
-            }
-            return MvcHtmlString.Create(result.ToString());
+            string holder = Guid.NewGuid().ToString();
+            string anchor = ajaxHelper.ActionLink(holder, action, controller, routeValues, ajaxOptions, htmlAttributes).ToString();
+            return MvcHtmlString.Create(anchor.Replace(holder, rawHtml));
         }
     }
 }

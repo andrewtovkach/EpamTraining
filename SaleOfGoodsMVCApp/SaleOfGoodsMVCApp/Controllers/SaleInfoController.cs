@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using DAL.Models;
 using DAL.Repositories;
 using BLL;
+using SaleOfGoodsMVCApp.Models;
 
 namespace SaleOfGoodsMVCApp.Controllers
 {
@@ -14,19 +15,28 @@ namespace SaleOfGoodsMVCApp.Controllers
     {
         readonly SaleInfoRepository _saleInfoRepository = new SaleInfoRepository();
 
+        public ActionResult ListPartial(int page = 1)
+        {
+            return PartialView(GetSaleInfoPerPages(_saleInfoRepository.Items, page));
+        }
+
         public ActionResult List(int? client, DateTime? date, int? product, int? manager, int page = 1)
         {
             var saleInfoViewModel = CreateSaleInfoViewModel(client, date, product, manager);
             ViewBag.SaleInfoViewModel = saleInfoViewModel;
-            int pageSize = Convert.ToInt32(ConfigurationManager.AppSettings["PageSize"]);
-            var saleInfosPerPages = saleInfoViewModel.SaleInfos.Skip((page - 1) * pageSize).Take(pageSize);
             PageInfo pageInfo = new PageInfo
             {
                 PageNumber = page,
-                PageSize = pageSize,
+                PageSize = Convert.ToInt32(ConfigurationManager.AppSettings["PageSize"]),
                 TotalItems = saleInfoViewModel.SaleInfos.Count()
             };
-            return View(new IndexViewModel<SaleInfo> { PageInfo = pageInfo, Elements = saleInfosPerPages });
+            return View(new IndexViewModel<SaleInfo> { PageInfo = pageInfo, Elements = GetSaleInfoPerPages(saleInfoViewModel.SaleInfos, page) });
+        }
+
+        private IEnumerable<SaleInfo> GetSaleInfoPerPages(IEnumerable<SaleInfo> saleInfos, int page)
+        {
+            int pageSize = Convert.ToInt32(ConfigurationManager.AppSettings["PageSize"]);
+            return saleInfos.Skip((page - 1) * pageSize).Take(pageSize);
         }
 
         private SaleInfoViewModel CreateSaleInfoViewModel(int? client, DateTime? date, int? product, int? manager)
@@ -100,11 +110,8 @@ namespace SaleOfGoodsMVCApp.Controllers
             saleInfo.Product = new ProductsRepository().FirstOrDefault(x => x.Id == saleInfo.Product.Id);
             var manager = new ManagersRepository().FirstOrDefault(x => x.Id == saleInfo.FileInfo.Manager.Id);
             saleInfo.FileInfo = new FileInfo(manager, saleInfo.Date);
-            if (ModelState.IsValid)
-            {
-                _saleInfoRepository.Add(saleInfo);
-                _saleInfoRepository.SaveChanges();
-            }
+            _saleInfoRepository.Add(saleInfo);
+            _saleInfoRepository.SaveChanges();
             return RedirectToAction("List");
         }
 
@@ -115,19 +122,18 @@ namespace SaleOfGoodsMVCApp.Controllers
             if (id == null)
                 return HttpNotFound();
             var saleInfo = _saleInfoRepository.FirstOrDefault(x => x.Id == id);
-            if (saleInfo == null)
-                return RedirectToAction("List");
-            ViewBag.Clients = new SelectList(new ClientsRepository(), "Id", "SecondName", saleInfo.Client.Id);
-            ViewBag.Products = new SelectList(new ProductsRepository(), "Id", "Name", saleInfo.Product.Id);
-            ViewBag.Managers = new SelectList(new ManagersRepository(), "Id", "SecondName", saleInfo.FileInfo.Manager.Id);
+            if (saleInfo != null)
+            {
+                ViewBag.Clients = new SelectList(new ClientsRepository(), "Id", "SecondName", saleInfo.Client.Id);
+                ViewBag.Products = new SelectList(new ProductsRepository(), "Id", "Name", saleInfo.Product.Id);
+                ViewBag.Managers = new SelectList(new ManagersRepository(), "Id", "SecondName", saleInfo.FileInfo.Manager.Id);
+            }
             return View(saleInfo);
         }
 
         [HttpPost]
         public ActionResult Edit(SaleInfo saleInfo)
         {
-            if (!ModelState.IsValid)
-                return View(saleInfo);
             saleInfo.Client = new ClientsRepository().FirstOrDefault(x => x.Id == saleInfo.Client.Id);
             saleInfo.Product = new ProductsRepository().FirstOrDefault(x => x.Id == saleInfo.Product.Id);
             var manager = new ManagersRepository().FirstOrDefault(x => x.Id == saleInfo.FileInfo.Manager.Id);
