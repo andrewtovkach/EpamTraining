@@ -39,9 +39,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConverterCurrency.cs" />
+    <Compile Include="CurrencyInfo.cs" />
     <Compile Include="IndexViewModel.cs" />
     <Compile Include="PageInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SalesStatistics.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DAL\DAL.csproj">

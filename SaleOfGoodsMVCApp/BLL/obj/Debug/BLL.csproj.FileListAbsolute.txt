@@ -26,3 +26,6 @@ D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\BLL\bin\Debug\ru\EntityFram
 D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\BLL\obj\Debug\BLL.csprojResolveAssemblyReference.cache
 D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\BLL\obj\Debug\BLL.dll
 D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\BLL\obj\Debug\BLL.pdb
+D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\BLL\bin\Debug\EntityFramework.SqlServer.dll
+D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\BLL\bin\Debug\EntityFramework.SqlServer.xml
+D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\BLL\bin\Debug\ru\EntityFramework.SqlServer.resources.dll

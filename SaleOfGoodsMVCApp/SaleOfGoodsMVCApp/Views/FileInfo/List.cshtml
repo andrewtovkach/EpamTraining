@@ -18,18 +18,26 @@
         <label class="control-label">Manager: </label>
         @Html.DropDownList("manager", ViewBag.FileInfoViewModel.Managers as SelectList, new { @class = "form-control" })
 
-        <input type="submit" value="Filter" class="btn btn-primary" />
+        <input type="submit" value="FILTER" class="btn btn-primary" />
     </div>
 </form>
-
+<br/>
 <div id="results">
     @Html.Partial("ListPartial", Model.Elements)
 </div>
 
-<div class="btn-group">
+<div id="pages" class="btn-group">
     @for (int i = 1; i <= Model.PageInfo.TotalPages; i++)
     {
         @Ajax.RawActionLink(i.ToString(), "ListPartial", "FileInfo", new { page = i },
             new AjaxOptions { UpdateTargetId = "results" }, new { @class = "btn btn-default" })
     }
 </div>
+
+<script type="text/javascript">
+    $("#pages a").first().removeClass().addClass("btn btn-primary");
+    $("#pages a").on('click', function () {
+        $("#pages a").removeClass().addClass("btn btn-default");
+        $(this).removeClass().addClass("btn btn-primary");
+    });
+</script>

@@ -24,6 +24,7 @@ namespace SaleOfGoodsMVCApp.Controllers
         {
             var saleInfoViewModel = CreateSaleInfoViewModel(client, date, product, manager);
             ViewBag.SaleInfoViewModel = saleInfoViewModel;
+            ViewBag.TotalCost = saleInfoViewModel.SaleInfos.TotalCost();
             PageInfo pageInfo = new PageInfo
             {
                 PageNumber = page,

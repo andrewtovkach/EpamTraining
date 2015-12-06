@@ -46,3 +46,7 @@ input[type="checkbox"].input-validation-error {
 .validation-summary-valid {
     display: none;
 }
+
+#totalCost {
+    font-size: 20px;
+}

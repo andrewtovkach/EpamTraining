@@ -17,7 +17,7 @@
     @Html.Partial("ListPartial", Model.Elements)
 </div>
 
-<div class="btn-group">
+<div id="pages" class="btn-group">
     @for (int i = 1; i <= Model.PageInfo.TotalPages; i++)
     {
         @Ajax.RawActionLink(i.ToString(), "ListPartial", "Managers", new { page = i },
@@ -25,3 +25,10 @@
     }
 </div>
 
+<script type="text/javascript">
+    $("#pages a").first().removeClass().addClass("btn btn-primary");
+    $("#pages a").on('click', function () {
+        $("#pages a").removeClass().addClass("btn btn-default");
+        $(this).removeClass().addClass("btn btn-primary");
+    });
+</script>
