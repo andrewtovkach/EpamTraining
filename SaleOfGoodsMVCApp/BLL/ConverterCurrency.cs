@@ -23,7 +23,7 @@ namespace BLL
 
         private static IList<CurrencyInfo> GetCurrencyInfos()
         {
-            XDocument xDoc = XDocument.Load("http://www.nbrb.by/Services/XmlExRates.aspx?ondate=" + DateTime.Now.ToString("MM/dd/yyyy"));
+            var xDoc = XDocument.Load("http://www.nbrb.by/Services/XmlExRates.aspx?ondate=" + DateTime.Now.ToString("MM/dd/yyyy"));
             var list = new List<CurrencyInfo>();
             foreach (var item in xDoc.Elements().First().Elements())
             {

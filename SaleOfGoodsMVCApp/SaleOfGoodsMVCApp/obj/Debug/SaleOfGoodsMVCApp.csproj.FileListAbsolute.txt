@@ -160,4 +160,5 @@ D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\SaleOfGoodsMVCApp\obj\Debug
 D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\SaleOfGoodsMVCApp\obj\Debug\SaleOfGoodsMVCApp.pdb
 D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\SaleOfGoodsMVCApp\bin\BLL.dll
 D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\SaleOfGoodsMVCApp\bin\BLL.pdb
-D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\SaleOfGoodsMVCApp\bin\Scripts\visualize.jQuery.js
+D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\SaleOfGoodsMVCApp\bin\Scripts\highcharts.js
+D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\SaleOfGoodsMVCApp\bin\DotNet.Highcharts.dll

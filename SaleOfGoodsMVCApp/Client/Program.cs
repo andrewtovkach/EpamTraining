@@ -11,6 +11,16 @@ namespace Client
     {
         static void Main(string[] args)
         {
+            List<LineData> list = new DataForLineChart().ListLineDatas;
+            foreach (var item in list)
+            {
+                Console.WriteLine(item.Name);
+                for(int i = 0; i < item.List.Length; i++)
+                {
+                    Console.Write(item.List[i] + " ");
+                }
+                Console.WriteLine();
+            }
         }
     }
 }

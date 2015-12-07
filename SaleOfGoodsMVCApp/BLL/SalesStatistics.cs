@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using DAL.Models;
-using DAL.Repositories;
 
 namespace BLL
 {
@@ -10,12 +8,14 @@ namespace BLL
     {
         public static double TotalCost(this IEnumerable<SaleInfo> saleInfos)
         {
-            return saleInfos.Sum(item => ConverterCurrency.Convert(item.Currency, item.Cost));
+            var enumerable = saleInfos as SaleInfo[] ?? saleInfos.ToArray();
+            return enumerable.Any() ? enumerable.Sum(item => ConverterCurrency.Convert(item.Currency, item.Cost)) : 0;
         }
 
         public static double AverageCost(this IEnumerable<SaleInfo> saleInfos)
         {
-            return saleInfos.Average(item => ConverterCurrency.Convert(item.Currency, item.Cost));
+            var enumerable = saleInfos as SaleInfo[] ?? saleInfos.ToArray();
+            return enumerable.Any() ? enumerable.Average(item => ConverterCurrency.Convert(item.Currency, item.Cost)) : 0;
         }
     }
 }
