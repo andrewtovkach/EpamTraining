@@ -1,12 +1,9 @@
-﻿@model IEnumerable<DAL.Models.Manager>
+﻿@model IEnumerable<BLL.DTO.Manager>
 
 <table class="table table-striped table-hover">
     <tr>
         <th>
-            @Html.DisplayName("FirstName")
-        </th>
-        <th>
-            @Html.DisplayName("SecondName")
+            @Html.DisplayName("Name")
         </th>
         <th>
             @Html.DisplayName("Telephone")
@@ -21,10 +18,7 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SecondName)
+                @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Telephone)

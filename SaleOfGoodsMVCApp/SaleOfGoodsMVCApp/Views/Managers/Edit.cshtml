@@ -1,4 +1,4 @@
-﻿@model DAL.Models.Manager
+﻿@model BLL.DTO.Manager
 
 @{
     ViewBag.Title = "Edit Manager";
@@ -12,14 +12,9 @@
 
     <fieldset>
         <div class="form-group">
-            @Html.LabelFor(model => model.FirstName, new { @class = "col-md-2 control-label" })
-            @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.FirstName)
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.SecondName, new { @class = "col-md-2 control-label" })
-            @Html.TextBoxFor(model => model.SecondName, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.SecondName)
+            @Html.LabelFor(model => model.Name, new { @class = "col-md-2 control-label" })
+            @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Name)
         </div>
         <div class="form-group">
             @Html.LabelFor(model => model.Telephone, new { @class = "col-md-2 control-label" })

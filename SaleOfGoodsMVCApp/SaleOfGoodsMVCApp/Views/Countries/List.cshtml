@@ -1,4 +1,4 @@
-﻿@model IndexViewModel<DAL.Models.Country>
+﻿@model IndexViewModel<BLL.DTO.Country>
 
 @using BLL
 @using SaleOfGoodsMVCApp.Models
@@ -23,11 +23,3 @@
             new AjaxOptions { UpdateTargetId = "results" }, new { @class = "btn btn-default" })
     }
 </div>
-
-<script type="text/javascript">
-    $("#pages a").first().removeClass().addClass("btn btn-primary");
-    $("#pages a").on('click', function () {
-        $("#pages a").removeClass().addClass("btn btn-default");
-        $(this).removeClass().addClass("btn btn-primary");
-    });
-</script>

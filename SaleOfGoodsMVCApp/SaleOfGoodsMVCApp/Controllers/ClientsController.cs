@@ -3,15 +3,20 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Web.Mvc;
-using DAL.Models;
-using DAL.Repositories;
 using BLL;
+using BLL.DTO;
+using BLL.Interfaces;
 
 namespace SaleOfGoodsMVCApp.Controllers
 {
     public class ClientsController : Controller
     {
-        readonly ClientsRepository _clientsRepository = new ClientsRepository();
+        readonly IElementsService _elementsService;
+
+        public ClientsController()
+        {
+            _elementsService = new ElementsService();
+        }
 
         public ActionResult ListPartial(int page = 1)
         {
@@ -24,7 +29,7 @@ namespace SaleOfGoodsMVCApp.Controllers
             {
                 PageNumber = page,
                 PageSize = Convert.ToInt32(ConfigurationManager.AppSettings["PageSize"]),
-                TotalItems = _clientsRepository.Count()
+                TotalItems = _elementsService.ClientsItems.Count()
             };
             return View(new IndexViewModel<Client> { PageInfo = pageInfo, Elements = GetClientsPerPages(page) });
         }
@@ -32,7 +37,7 @@ namespace SaleOfGoodsMVCApp.Controllers
         private IEnumerable<Client> GetClientsPerPages(int page)
         {
             int pageSize = Convert.ToInt32(ConfigurationManager.AppSettings["PageSize"]);
-            return _clientsRepository.Skip((page - 1) * pageSize).Take(pageSize);
+            return _elementsService.ClientsItems.OrderBy(item => item.Name).Skip((page - 1) * pageSize).Take(pageSize);
         }
 
         [HttpGet]
@@ -41,15 +46,15 @@ namespace SaleOfGoodsMVCApp.Controllers
         {
             if (id == null)
                 return HttpNotFound();
-            var client = _clientsRepository.FirstOrDefault(x => x.Id == id);
+            var client = _elementsService.ClientsItems.FirstOrDefault(x => x.Id == id);
             return View(client);
         }
 
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteClient(int id)
         {
-            _clientsRepository.Remove(id);
-            _clientsRepository.SaveChanges();
+            _elementsService.RemoveClient(id);
+            _elementsService.SaveChanges();
             return RedirectToAction("List");
         }
 
@@ -64,8 +69,8 @@ namespace SaleOfGoodsMVCApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                _clientsRepository.Add(client);
-                _clientsRepository.SaveChanges();
+                _elementsService.Add(client);
+                _elementsService.SaveChanges();
             }
             return RedirectToAction("List");
         }
@@ -76,7 +81,7 @@ namespace SaleOfGoodsMVCApp.Controllers
         {
             if (id == null)
                 return HttpNotFound();
-            var client = _clientsRepository.FirstOrDefault(x => x.Id == id);
+            var client = _elementsService.ClientsItems.FirstOrDefault(x => x.Id == id);
             return View(client);
         }
 
@@ -85,8 +90,8 @@ namespace SaleOfGoodsMVCApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                _clientsRepository.Update(client.Id, client);
-                _clientsRepository.SaveChanges();
+                _elementsService.Update(client.Id, client);
+                _elementsService.SaveChanges();
             }
             return RedirectToAction("List");
         }

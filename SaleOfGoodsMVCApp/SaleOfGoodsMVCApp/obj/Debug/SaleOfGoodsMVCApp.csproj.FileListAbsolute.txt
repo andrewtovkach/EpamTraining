@@ -162,3 +162,6 @@ D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\SaleOfGoodsMVCApp\bin\BLL.d
 D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\SaleOfGoodsMVCApp\bin\BLL.pdb
 D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\SaleOfGoodsMVCApp\bin\Scripts\highcharts.js
 D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\SaleOfGoodsMVCApp\bin\DotNet.Highcharts.dll
+D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\SaleOfGoodsMVCApp\bin\Ninject.dll
+D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\SaleOfGoodsMVCApp\bin\Ninject.xml
+D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\SaleOfGoodsMVCApp\bin\Content\XmlExRates.aspx_ondate=12_09_2015.xml

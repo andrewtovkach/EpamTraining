@@ -1,4 +1,4 @@
-﻿@model DAL.Models.SaleInfo
+﻿@model BLL.DTO.SaleInfo
 
 @{
     ViewBag.Title = "Delete SaleInfo";
@@ -12,24 +12,16 @@
         @Html.DisplayFor(model => model.Date)
     </div>
     <div class="form-group">
-        @Html.Label("Client FirstName", new { @class = "col-md-2 control-label" })
-        @Html.DisplayFor(model => model.Client.FirstName)
-    </div>
-    <div class="form-group">
-        @Html.Label("Client SecondName", new { @class = "col-md-2 control-label" })
-        @Html.DisplayFor(model => model.Client.SecondName)
+        @Html.Label("Client", new { @class = "col-md-2 control-label" })
+        @Html.DisplayFor(model => model.Client.Name)
     </div>
     <div class="form-group">
         @Html.Label("Product", new { @class = "col-md-2 control-label" })
         @Html.DisplayFor(model => model.Product.Name)
     </div>
     <div class="form-group">
-        @Html.Label("Manager FirstName", new { @class = "col-md-2 control-label" })
-        @Html.DisplayFor(model => model.FileInfo.Manager.FirstName)
-    </div>
-    <div class="form-group">
-        @Html.Label("Manager SecondName", new { @class = "col-md-2 control-label" })
-        @Html.DisplayFor(model => model.FileInfo.Manager.SecondName)
+        @Html.Label("Manager", new { @class = "col-md-2 control-label" })
+        @Html.DisplayFor(model => model.FileInfo.Manager.Name)
     </div>
     <div class="form-group">
         @Html.LabelFor(model => model.Cost, new { @class = "col-md-2 control-label" })

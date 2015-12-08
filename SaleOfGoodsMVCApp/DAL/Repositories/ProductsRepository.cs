@@ -5,14 +5,29 @@ using System.Linq;
 using AutoMapper;
 using DAL.Models;
 using DAL.Interfaces;
+using Ninject;
 
 namespace DAL.Repositories
 {
     public class ProductsRepository : BaseRepository<Product>, IRepository<Product>, IEnumerable<Product>
     {
+        private readonly IRepository<Country> _repository;
+
+        public ProductsRepository()
+        {
+            IKernel ninjectKernel = new StandardKernel();
+            ninjectKernel.Bind<IRepository<Country>>().To<CountriesRepository>();
+            _repository = ninjectKernel.Get<IRepository<Country>>();
+        }
+
+        public ProductsRepository(IRepository<Country> repository)
+        {
+            _repository = repository;
+        }
+
         public void Add(Product item)
         {
-            item.Country.Id = new CountriesRepository().GetOrCreateElementId(item.Country);
+            item.Country.Id = _repository.GetOrCreateElementId(item.Country);
             Context.Products.Add(Mapper.Map<Product, Model.Product>(item));
         }
 
@@ -36,15 +51,21 @@ namespace DAL.Repositories
                 throw new ArgumentException("Incorrect product identification!");
             element.Name = item.Name;
             element.Description = item.Description;
-            element.CountryId = new CountriesRepository().GetOrCreateElementId(item.Country);
+            element.CountryId = _repository.GetOrCreateElementId(item.Country);
         }
 
         public IEnumerable<Product> Items
         {
             get
             {
-                return Context.Products.AsEnumerable().Select(item => new Product(item.Name, item.Description, Mapper.Map<Model.Country, Country>(item.Country), item.Id));
+                return Context.Products.AsEnumerable().Select(item => new Product(item.Name, item.Description,
+                    Mapper.Map<Model.Country, Country>(item.Country), item.Id));
             }
+        }
+
+        public IEnumerable<Product> SortedItems
+        {
+            get { return Items.OrderBy(item => item.Name); }
         }
 
         public IEnumerator<Product> GetEnumerator()

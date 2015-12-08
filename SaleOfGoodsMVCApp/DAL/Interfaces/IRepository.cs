@@ -8,6 +8,8 @@ namespace DAL.Interfaces
         void Remove(int id);
         void Update(int id, T item);
         IEnumerable<T> Items { get; }
+        IEnumerable<T> SortedItems { get; }
         int GetElementId(T item);
+        int GetOrCreateElementId(T item);
     }
 }

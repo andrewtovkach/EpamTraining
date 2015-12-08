@@ -5,14 +5,29 @@ using System.Linq;
 using DAL.Models;
 using AutoMapper;
 using DAL.Interfaces;
+using Ninject;
 
 namespace DAL.Repositories
 {
     public class FileInfoRepository : BaseRepository<FileInfo>, IRepository<FileInfo>, IEnumerable<FileInfo>
     {
+        private readonly IRepository<Manager> _repository;
+
+        public FileInfoRepository()
+        {
+            IKernel ninjectKernel = new StandardKernel();
+            ninjectKernel.Bind<IRepository<Manager>>().To<ManagersRepository>();
+            _repository = ninjectKernel.Get<IRepository<Manager>>();
+        }
+
+        public FileInfoRepository(IRepository<Manager> repository)
+        {
+            _repository = repository;
+        }
+
         public void Add(FileInfo item)
         {
-            item.Manager.Id = new ManagersRepository().GetOrCreateElementId(item.Manager);
+            item.Manager.Id = _repository.GetOrCreateElementId(item.Manager);
             Context.FileInfo.Add(Mapper.Map<FileInfo, Model.FileInfo>(item));
         }
 
@@ -35,15 +50,21 @@ namespace DAL.Repositories
             if (element == null)
                 throw new ArgumentException("Incorrect fileInfo identification!");
             element.Date = item.Date;
-            element.ManagerId = new ManagersRepository().GetOrCreateElementId(item.Manager);
+            element.ManagerId = _repository.GetOrCreateElementId(item.Manager);
         }
 
         public IEnumerable<FileInfo> Items
         {
             get
             {
-                return Context.FileInfo.AsEnumerable().Select(item => new FileInfo(Mapper.Map<Model.Manager, Manager>(item.Manager), item.Date ?? DateTime.Now, item.Id));
+                return Context.FileInfo.AsEnumerable().Select(item => new FileInfo(Mapper.Map<Model.Manager, Manager>(item.Manager), 
+                    item.Date ?? DateTime.Now, item.Id));
             }
+        }
+
+        public IEnumerable<FileInfo> SortedItems
+        {
+            get { return Items.OrderByDescending(item => item.Date); }
         }
 
         public IEnumerator<FileInfo> GetEnumerator()

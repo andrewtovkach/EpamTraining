@@ -1,6 +1,9 @@
 ﻿using System.Drawing;
+using System.Linq;
 using System.Web.Mvc;
 using BLL;
+using BLL.DTO;
+using BLL.Interfaces;
 using DotNet.Highcharts;
 using DotNet.Highcharts.Enums;
 using DotNet.Highcharts.Helpers;
@@ -10,15 +13,25 @@ namespace SaleOfGoodsMVCApp.Controllers
 {
     public class ChartsController : Controller
     {
+        readonly IElementsService _elementsService;
+
+        public ChartsController()
+        {
+            _elementsService = new ElementsService();
+        }
+
         public ActionResult Bar()
         {
+            var list = new DataForBarChart().ListDatas;
+            Series[] array = new Series[list.Count];
+            for (int i = 0; i < list.Count; i++)
+                array[i] = new Series { Name = list[i].Name, Data = new Data(list[i].List) };
             Highcharts chart = new Highcharts("chart")
                 .InitChart(new Chart { Type = ChartTypes.Bar })
-                .SetTitle(new Title { Text = "Historic World Population by Region" })
-                .SetSubtitle(new Subtitle { Text = "Source: Wikipedia.org" })
+                .SetTitle(new Title { Text = "Yearly Sales of Goods" })
                 .SetXAxis(new XAxis
                 {
-                    Categories = new[] { "Africa", "America", "Asia", "Europe", "Oceania" },
+                    Categories =_elementsService.ProductsItems.Select(item => item.Name).ToArray(),
                     Title = new XAxisTitle { Text = string.Empty }
                 })
                 .SetYAxis(new YAxis
@@ -26,11 +39,11 @@ namespace SaleOfGoodsMVCApp.Controllers
                     Min = 0,
                     Title = new YAxisTitle
                     {
-                        Text = "Population (millions)",
+                        Text = "BYR",
                         Align = AxisTitleAligns.High
                     }
                 })
-                .SetTooltip(new Tooltip { Formatter = "function() { return ''+ this.series.name +': '+ this.y +' millions'; }" })
+                .SetTooltip(new Tooltip { Formatter = "function() { return ''+ this.series.name +': '+ this.y +' BYR'; }" })
                 .SetPlotOptions(new PlotOptions
                 {
                     Bar = new PlotOptionsBar
@@ -51,24 +64,16 @@ namespace SaleOfGoodsMVCApp.Controllers
                     Shadow = true
                 })
                 .SetCredits(new Credits { Enabled = false })
-                .SetSeries(new[]
-                {
-                    new Series { Name = "Year 1800", Data = new Data(new object[] { 107, 31, 635, 203, 2 }) },
-                    new Series { Name = "Year 1900", Data = new Data(new object[] { 133, 156, 947, 408, 6 }) },
-                    new Series { Name = "Year 2008", Data = new Data(new object[] { 973, 914, 4054, 732, 34 }) }
-                });
-
+                .SetSeries(array);
             return View(chart);
         }
 
         public ActionResult Line()
         {
-            var list = new DataForLineChart().ListLineDatas;
+            var list = new DataForLineChart().ListDatas;
             Series[] array = new Series[list.Count];
             for (int i = 0; i < list.Count; i++)
-            {
-                array[i] = new Series {Name = list[i].Name, Data = new Data(list[i].List)};
-            }
+                array[i] = new Series { Name = list[i].Name, Data = new Data(list[i].List) };
             string[] cat = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
             Highcharts chart = new Highcharts("chart")
                 .InitChart(new Chart
@@ -80,13 +85,13 @@ namespace SaleOfGoodsMVCApp.Controllers
                 })
                 .SetTitle(new Title
                 {
-                    Text = "Monthly Average Sales of Goods",
+                    Text = "Monthly Sales of Goods",
                     X = -20
                 })
                 .SetXAxis(new XAxis { Categories = cat })
                 .SetYAxis(new YAxis
                 {
-                    Title = new YAxisTitle { Text = "BYR)" },
+                    Title = new YAxisTitle { Text = "BYR" },
                     PlotLines = new[]
                     {
                         new YAxisPlotLines
@@ -114,13 +119,12 @@ namespace SaleOfGoodsMVCApp.Controllers
                     BorderWidth = 0
                 })
                 .SetSeries(array);
-
             return View(chart);
         }
 
         public ActionResult Pie()
         {
-            var list = new DataForPieChart().ListPieDatas;
+            var list = new DataForPieChart().ListDatas;
             object[] objects = new object[list.Count];
             for (int i = 0; i < list.Count; i++)
                 objects[i] = list[i];
@@ -148,7 +152,6 @@ namespace SaleOfGoodsMVCApp.Controllers
                     Name = "Product sale share",
                     Data = new Data(objects)
                 });
-
             return View(chart);
         }
     }

@@ -2,7 +2,6 @@
 using System.Text;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
-using BLL;
 
 namespace SaleOfGoodsMVCApp.Models
 {

@@ -1,4 +1,4 @@
-﻿@model DAL.Models.Client
+﻿@model BLL.DTO.Client
 
 @{
     ViewBag.Title = "Delete Client";
@@ -8,12 +8,8 @@
 
 <fieldset>
     <div class="form-group">
-        @Html.LabelFor(model => model.FirstName, new { @class = "col-md-2 control-label" })
-        @Html.DisplayFor(model => model.FirstName)
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(model => model.SecondName, new { @class = "col-md-2 control-label" })
-        @Html.DisplayFor(model => model.SecondName)
+        @Html.LabelFor(model => model.Name, new { @class = "col-md-2 control-label" })
+        @Html.DisplayFor(model => model.Name)
     </div>
     <div class="form-group">
         @Html.LabelFor(model => model.BirthDay, new { @class = "col-md-2 control-label" })

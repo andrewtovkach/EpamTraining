@@ -3,15 +3,20 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Web.Mvc;
-using DAL.Models;
-using DAL.Repositories;
 using BLL;
+using BLL.DTO;
+using BLL.Interfaces;
 
 namespace SaleOfGoodsMVCApp.Controllers
 {
     public class CountriesController : Controller
     {
-        readonly CountriesRepository _countriesRepository = new CountriesRepository();
+        readonly IElementsService _elementsService;
+
+        public CountriesController()
+        {
+            _elementsService = new ElementsService();
+        }
 
         public ActionResult ListPartial(int page = 1)
         {
@@ -24,7 +29,7 @@ namespace SaleOfGoodsMVCApp.Controllers
             {
                 PageNumber = page,
                 PageSize = Convert.ToInt32(ConfigurationManager.AppSettings["PageSize"]),
-                TotalItems = _countriesRepository.Count()
+                TotalItems = _elementsService.CountriesItems.Count()
             };
             return View(new IndexViewModel<Country> { PageInfo = pageInfo, Elements = GetCountriesPerPages(page) });
         }
@@ -32,7 +37,7 @@ namespace SaleOfGoodsMVCApp.Controllers
         private IEnumerable<Country> GetCountriesPerPages(int page)
         {
             int pageSize = Convert.ToInt32(ConfigurationManager.AppSettings["PageSize"]);
-            return _countriesRepository.Skip((page - 1) * pageSize).Take(pageSize);
+            return _elementsService.CountriesItems.OrderBy(item => item.Name).Skip((page - 1) * pageSize).Take(pageSize);
         }
 
         [HttpGet]
@@ -41,15 +46,15 @@ namespace SaleOfGoodsMVCApp.Controllers
         {
             if (id == null)
                 return HttpNotFound();
-            var country = _countriesRepository.FirstOrDefault(x => x.Id == id);
+            var country = _elementsService.CountriesItems.FirstOrDefault(x => x.Id == id);
             return View(country);
         }
 
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteCountry(int id)
         {
-            _countriesRepository.Remove(id);
-            _countriesRepository.SaveChanges();
+            _elementsService.RemoveCountry(id);
+            _elementsService.SaveChanges();
             return RedirectToAction("List");
         }
 
@@ -64,8 +69,8 @@ namespace SaleOfGoodsMVCApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                _countriesRepository.Add(country);
-                _countriesRepository.SaveChanges();
+                _elementsService.Add(country);
+                _elementsService.SaveChanges();
             }
             return RedirectToAction("List");
         }
@@ -76,7 +81,7 @@ namespace SaleOfGoodsMVCApp.Controllers
         {
             if (id == null)
                 return HttpNotFound();
-            var country = _countriesRepository.FirstOrDefault(x => x.Id == id);
+            var country = _elementsService.CountriesItems.FirstOrDefault(x => x.Id == id);
             return View(country);
         }
 
@@ -85,8 +90,8 @@ namespace SaleOfGoodsMVCApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                _countriesRepository.Update(country.Id, country);
-                _countriesRepository.SaveChanges();
+                _elementsService.Update(country.Id, country);
+                _elementsService.SaveChanges();
             }
             return RedirectToAction("List");
         }

@@ -30,8 +30,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=4.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DAL\bin\Debug\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DAL\bin\Debug\Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -40,11 +50,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConverterCurrency.cs" />
+    <Compile Include="CostValidationAttribute.cs" />
     <Compile Include="CurrencyInfo.cs" />
+    <Compile Include="DataForBarChart.cs" />
     <Compile Include="DataForLineChart.cs" />
     <Compile Include="DataForPieChart.cs" />
+    <Compile Include="DTO\Country.cs" />
+    <Compile Include="DTO\ElementsService.cs" />
+    <Compile Include="DTO\FileInfo.cs" />
+    <Compile Include="DTO\Manager.cs" />
+    <Compile Include="DTO\Product.cs" />
+    <Compile Include="DTO\SaleInfo.cs" />
     <Compile Include="IndexViewModel.cs" />
+    <Compile Include="Interfaces\IElementsService.cs" />
     <Compile Include="LineData.cs" />
+    <Compile Include="DTO\Client.cs" />
     <Compile Include="PageInfo.cs" />
     <Compile Include="PieData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

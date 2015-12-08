@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Web.Hosting;
 using System.Xml.Linq;
 
 namespace BLL
@@ -23,7 +24,8 @@ namespace BLL
 
         private static IList<CurrencyInfo> GetCurrencyInfos()
         {
-            var xDoc = XDocument.Load("http://www.nbrb.by/Services/XmlExRates.aspx?ondate=" + DateTime.Now.ToString("MM/dd/yyyy"));
+            //var xDoc = XDocument.Load("http://www.nbrb.by/Services/XmlExRates.aspx?ondate=" + DateTime.Now.ToString("MM/dd/yyyy"));
+            var xDoc = XDocument.Load(HostingEnvironment.MapPath("~/Content/XmlExRates.aspx_ondate=" + DateTime.Now.ToString("MM_dd_yyyy")) + ".xml");
             var list = new List<CurrencyInfo>();
             foreach (var item in xDoc.Elements().First().Elements())
             {

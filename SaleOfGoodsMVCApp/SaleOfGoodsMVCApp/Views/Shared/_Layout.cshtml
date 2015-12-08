@@ -53,5 +53,14 @@
     </div>
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
+    <script type="text/javascript">
+        $("#pages a").first().removeClass().addClass("btn btn-primary");
+        $("#pages a").on('click', function () {
+            $("#pages a").removeClass().addClass("btn btn-default");
+            $(this).removeClass().addClass("btn btn-primary");
+        });
+    </script>
+
 </body>
 </html>

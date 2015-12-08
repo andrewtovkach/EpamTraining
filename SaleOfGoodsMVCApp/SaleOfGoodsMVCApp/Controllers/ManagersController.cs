@@ -3,15 +3,20 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Web.Mvc;
-using DAL.Models;
-using DAL.Repositories;
 using BLL;
+using BLL.DTO;
+using BLL.Interfaces;
 
 namespace SaleOfGoodsMVCApp.Controllers
 {
     public class ManagersController : Controller
     {
-        readonly ManagersRepository _managersRepository = new ManagersRepository();
+       readonly IElementsService _elementsService;
+
+        public ManagersController()
+        {
+            _elementsService = new ElementsService();
+        }
 
         public ActionResult ListPartial(int page = 1)
         {
@@ -24,7 +29,7 @@ namespace SaleOfGoodsMVCApp.Controllers
             {
                 PageNumber = page,
                 PageSize = Convert.ToInt32(ConfigurationManager.AppSettings["PageSize"]),
-                TotalItems = _managersRepository.Count()
+                TotalItems = _elementsService.ManagersItems.Count()
             };
             return View(new IndexViewModel<Manager> { PageInfo = pageInfo, Elements = GetManagersPerPages(page) });
         }
@@ -32,7 +37,7 @@ namespace SaleOfGoodsMVCApp.Controllers
         private IEnumerable<Manager> GetManagersPerPages(int page)
         {
             int pageSize = Convert.ToInt32(ConfigurationManager.AppSettings["PageSize"]);
-            return _managersRepository.Skip((page - 1) * pageSize).Take(pageSize);
+            return _elementsService.ManagersItems.OrderBy(item => item.Name).Skip((page - 1) * pageSize).Take(pageSize);
         }
 
         [HttpGet]
@@ -41,15 +46,15 @@ namespace SaleOfGoodsMVCApp.Controllers
         {
             if (id == null)
                 return HttpNotFound();
-            var manager = _managersRepository.FirstOrDefault(x => x.Id == id);
+            var manager = _elementsService.ManagersItems.FirstOrDefault(x => x.Id == id);
             return View(manager);
         }
 
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteManager(int id)
         {
-            _managersRepository.Remove(id);
-            _managersRepository.SaveChanges();
+            _elementsService.RemoveManager(id);
+            _elementsService.SaveChanges();
             return RedirectToAction("List");
         }
 
@@ -64,8 +69,8 @@ namespace SaleOfGoodsMVCApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                _managersRepository.Add(manager);
-                _managersRepository.SaveChanges();
+                _elementsService.Add(manager);
+                _elementsService.SaveChanges();
             }
             return RedirectToAction("List");
         }
@@ -76,7 +81,7 @@ namespace SaleOfGoodsMVCApp.Controllers
         {
             if (id == null)
                 return HttpNotFound();
-            var manager = _managersRepository.FirstOrDefault(x => x.Id == id);
+            var manager = _elementsService.ManagersItems.FirstOrDefault(x => x.Id == id);
             return View(manager);
         }
 
@@ -85,8 +90,8 @@ namespace SaleOfGoodsMVCApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                _managersRepository.Update(manager.Id, manager);
-                _managersRepository.SaveChanges();
+                _elementsService.Update(manager.Id, manager);
+                _elementsService.SaveChanges();
             }
             return RedirectToAction("List");
         }

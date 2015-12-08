@@ -1,4 +1,4 @@
-﻿@model IEnumerable<DAL.Models.FileInfo>
+﻿@model IEnumerable<BLL.DTO.FileInfo>
 
 <table class="table table-striped table-hover">
     <tr>
@@ -27,10 +27,7 @@
                 @Html.DisplayFor(modelItem => item.Date)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Manager.FirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Manager.SecondName)
+                @Html.DisplayFor(modelItem => item.Manager.Name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Manager.Telephone)

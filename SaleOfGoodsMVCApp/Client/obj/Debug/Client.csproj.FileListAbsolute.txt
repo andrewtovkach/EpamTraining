@@ -18,3 +18,5 @@ D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\Client\obj\Debug\Client.pdb
 D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\Client\bin\Debug\EntityFramework.SqlServer.dll
 D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\Client\bin\Debug\EntityFramework.SqlServer.xml
 D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\Client\bin\Debug\ru\EntityFramework.SqlServer.resources.dll
+D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\Client\bin\Debug\Ninject.dll
+D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\Client\bin\Debug\Ninject.xml

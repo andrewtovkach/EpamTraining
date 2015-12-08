@@ -1,6 +1,5 @@
-﻿@model IndexViewModel<DAL.Models.SaleInfo>
+﻿@model BLL.IndexViewModel<BLL.DTO.SaleInfo>
 
-@using BLL
 @using SaleOfGoodsMVCApp.Models
 
 @{
@@ -17,9 +16,6 @@
     <div class="form-inline">
         <label class="control-label">Client: </label>
         @Html.DropDownList("client", ViewBag.SaleInfoViewModel.Clients as SelectList, new { @class = "form-control" })
-
-        <label class="control-label">Date: </label>
-        @Html.DropDownList("date", ViewBag.SaleInfoViewModel.Dates as SelectList, new { @class = "form-control" })
 
         <label class="control-label">Product: </label>
         @Html.DropDownList("product", ViewBag.SaleInfoViewModel.Products as SelectList, new { @class = "form-control" })
@@ -48,11 +44,3 @@
     <b>TOTAL COST:</b>
     @ViewBag.TotalCost BYR
 </div>
-
-<script type="text/javascript">
-    $("#pages a").first().removeClass().addClass("btn btn-primary");
-    $("#pages a").on('click', function () {
-        $("#pages a").removeClass().addClass("btn btn-default");
-        $(this).removeClass().addClass("btn btn-primary");
-    });
-</script>

@@ -1,12 +1,9 @@
-﻿@model IEnumerable<DAL.Models.SaleInfo>
+﻿@model IEnumerable<BLL.DTO.SaleInfo>
 
 <table class="table table-striped table-hover">
     <tr>
         <th>
-            @Html.DisplayName("Client FirstName")
-        </th>
-        <th>
-            @Html.DisplayName("Client SecondName")
+            @Html.DisplayName("Client")
         </th>
         <th>
             @Html.DisplayName("Date")
@@ -15,10 +12,7 @@
             @Html.DisplayName("Product")
         </th>
         <th>
-            @Html.DisplayName("Manager FirstName")
-        </th>
-        <th>
-            @Html.DisplayName("Manager SecondName")
+            @Html.DisplayName("Manager")
         </th>
         <th>
             @Html.DisplayName("Cost")
@@ -33,10 +27,7 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(model => item.Client.FirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(model => item.Client.SecondName)
+                @Html.DisplayFor(model => item.Client.Name)
             </td>
             <td>
                 @Html.DisplayFor(model => item.Date)
@@ -45,10 +36,7 @@
                 @Html.DisplayFor(modelItem => item.Product.Name)
             </td>
             <td>
-                @Html.DisplayFor(model => item.FileInfo.Manager.FirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(model => item.FileInfo.Manager.SecondName)
+                @Html.DisplayFor(model => item.FileInfo.Manager.Name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Cost)

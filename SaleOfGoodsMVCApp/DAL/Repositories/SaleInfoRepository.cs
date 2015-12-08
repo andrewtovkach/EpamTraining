@@ -5,18 +5,41 @@ using System.Linq;
 using DAL.Models;
 using AutoMapper;
 using DAL.Interfaces;
+using Ninject;
 
 namespace DAL.Repositories
 {
     public class SaleInfoRepository : BaseRepository<SaleInfo>, IRepository<SaleInfo>, IEnumerable<SaleInfo>
     {
+        private readonly IRepository<Client> _firstRepository;
+        private readonly IRepository<FileInfo> _secondRepository;
+        private readonly IRepository<Product> _thirdRepository;
+
+        public SaleInfoRepository()
+        {
+            IKernel ninjectKernel = new StandardKernel();
+            ninjectKernel.Bind<IRepository<Client>>().To<ClientsRepository>();
+            _firstRepository = ninjectKernel.Get<IRepository<Client>>();
+            ninjectKernel.Bind<IRepository<FileInfo>>().To<FileInfoRepository>();
+            _secondRepository = ninjectKernel.Get<IRepository<FileInfo>>();
+            ninjectKernel.Bind<IRepository<Product>>().To<ProductsRepository>();
+            _thirdRepository = ninjectKernel.Get<IRepository<Product>>();
+        }
+
+        public SaleInfoRepository(IRepository<Client> firstRepository, IRepository<FileInfo> secondRepository, IRepository<Product> thirdRepository)
+        {
+            _firstRepository = firstRepository;
+            _secondRepository = secondRepository;
+            _thirdRepository = thirdRepository;
+        }
+
         public void Add(SaleInfo item)
         {
             Context.SaleInfo.Add(new Model.SaleInfo
             {
-                ClientId = new ClientsRepository().GetOrCreateElementId(item.Client),
-                FileInfoId = new FileInfoRepository().GetOrCreateElementId(item.FileInfo),
-                ProductId = new ProductsRepository().GetOrCreateElementId(item.Product),
+                ClientId = _firstRepository.GetOrCreateElementId(item.Client),
+                FileInfoId = _secondRepository.GetOrCreateElementId(item.FileInfo),
+                ProductId = _thirdRepository.GetOrCreateElementId(item.Product),
                 Cost = item.Cost,
                 Currency = item.Currency,
                 Date = item.Date
@@ -42,9 +65,9 @@ namespace DAL.Repositories
             if (element == null)
                 throw new ArgumentException("Incorrect saleInfo identification!");
             element.Date = item.Date;
-            element.ClientId = new ClientsRepository().GetOrCreateElementId(item.Client);
-            element.ProductId = new ProductsRepository().GetOrCreateElementId(item.Product);
-            element.FileInfoId = new FileInfoRepository().GetOrCreateElementId(item.FileInfo);
+            element.ClientId = _firstRepository.GetOrCreateElementId(item.Client);
+            element.ProductId = _secondRepository.GetOrCreateElementId(item.FileInfo);
+            element.FileInfoId = _thirdRepository.GetOrCreateElementId(item.Product);
             element.Cost = item.Cost;
             element.Currency = item.Currency;
         }
@@ -55,8 +78,14 @@ namespace DAL.Repositories
             {
                 return Context.SaleInfo.AsEnumerable().Select(item => new SaleInfo(item.Date ?? DateTime.Now, Mapper.Map<Model.Client, Client>(item.Client),
                     new Product(item.Product.Name, item.Product.Description, Mapper.Map<Model.Country, Country>(item.Product.Country), item.ProductId),
-                    new FileInfo(Mapper.Map<Model.Manager, Manager>(item.FileInfo.Manager), item.FileInfo.Date ?? DateTime.Now, item.FileInfoId), item.Cost ?? 0,item.Currency, item.Id));
+                    new FileInfo(Mapper.Map<Model.Manager, Manager>(item.FileInfo.Manager), item.FileInfo.Date ?? DateTime.Now, item.FileInfoId), 
+                    item.Cost ?? 0,item.Currency, item.Id));
             }
+        }
+
+        public IEnumerable<SaleInfo> SortedItems
+        {
+            get { return Items.OrderByDescending(item => item.Date); }
         }
 
         public IEnumerator<SaleInfo> GetEnumerator()

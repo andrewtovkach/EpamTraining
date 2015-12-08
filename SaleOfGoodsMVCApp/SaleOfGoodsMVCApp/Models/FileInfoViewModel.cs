@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using DAL.Models;
 using System.Web.Mvc;
+using BLL.DTO;
 
 namespace SaleOfGoodsMVCApp.Models
 {

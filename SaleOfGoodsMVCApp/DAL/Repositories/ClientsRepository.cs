@@ -43,6 +43,11 @@ namespace DAL.Repositories
             get { return Context.Clients.Select(Mapper.Map<Model.Client, Client>); }
         }
 
+        public IEnumerable<Client> SortedItems
+        {
+            get { return Items.OrderBy(item => item.SecondName); }
+        }
+
         public IEnumerator<Client> GetEnumerator()
         {
             return Items.GetEnumerator();

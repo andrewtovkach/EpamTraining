@@ -41,6 +41,11 @@ namespace DAL.Repositories
             get { return Context.Countries.Select(Mapper.Map<Model.Country, Country>); }
         }
 
+        public IEnumerable<Country> SortedItems
+        {
+            get { return Items.OrderBy(item => item.Name); }
+        }
+
         public IEnumerator<Country> GetEnumerator()
         {
             return Items.GetEnumerator();

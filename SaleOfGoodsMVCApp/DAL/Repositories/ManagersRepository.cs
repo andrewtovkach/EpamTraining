@@ -44,6 +44,11 @@ namespace DAL.Repositories
             get { return Context.Managers.Select(Mapper.Map<Model.Manager, Manager>); }
         }
 
+        public IEnumerable<Manager> SortedItems
+        {
+            get { return Items.OrderBy(item => item.SecondName); }
+        }
+
         public IEnumerator<Manager> GetEnumerator()
         {
             return Items.GetEnumerator();

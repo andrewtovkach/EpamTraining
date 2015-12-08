@@ -30,3 +30,5 @@ D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\DAL\bin\Debug\ru\EntityFram
 D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
 D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\DAL\obj\Debug\DAL.dll
 D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\DAL\obj\Debug\DAL.pdb
+D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\DAL\bin\Debug\Ninject.dll
+D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\DAL\bin\Debug\Ninject.xml

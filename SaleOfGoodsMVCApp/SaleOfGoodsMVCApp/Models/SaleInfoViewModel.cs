@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using DAL.Models;
 using System.Web.Mvc;
+using BLL.DTO;
 
 namespace SaleOfGoodsMVCApp.Models
 {
@@ -10,6 +10,5 @@ namespace SaleOfGoodsMVCApp.Models
         public SelectList Managers { get; set; }
         public SelectList Clients { get; set; }
         public SelectList Products { get; set; }
-        public SelectList Dates { get; set; }
     }
 }

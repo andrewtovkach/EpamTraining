@@ -1,6 +1,5 @@
-﻿@model IndexViewModel<DAL.Models.Manager>
+﻿@model BLL.IndexViewModel<BLL.DTO.Manager>
 
-@using BLL
 @using SaleOfGoodsMVCApp.Models
 
 @{
@@ -25,10 +24,3 @@
     }
 </div>
 
-<script type="text/javascript">
-    $("#pages a").first().removeClass().addClass("btn btn-primary");
-    $("#pages a").on('click', function () {
-        $("#pages a").removeClass().addClass("btn btn-default");
-        $(this).removeClass().addClass("btn btn-primary");
-    });
-</script>
