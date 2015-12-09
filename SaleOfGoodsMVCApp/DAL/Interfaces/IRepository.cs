@@ -11,5 +11,6 @@ namespace DAL.Interfaces
         IEnumerable<T> SortedItems { get; }
         int GetElementId(T item);
         int GetOrCreateElementId(T item);
+        void SaveChanges();
     }
 }

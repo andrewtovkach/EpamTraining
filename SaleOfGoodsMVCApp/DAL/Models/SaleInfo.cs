@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 
 namespace DAL.Models
 {
@@ -11,6 +10,11 @@ namespace DAL.Models
         public FileInfo FileInfo { get; set; }
         public int Cost { get; set; }
         public string Currency { get; set; }
+
+        public SaleInfo()
+        {
+            
+        }
 
         public SaleInfo(DateTime date, Client client, Product product, FileInfo fileInfo, int cost, string currency, int id = 0)
         {

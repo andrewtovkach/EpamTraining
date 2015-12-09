@@ -26,13 +26,6 @@ namespace DAL.Repositories
             _thirdRepository = ninjectKernel.Get<IRepository<Product>>();
         }
 
-        public SaleInfoRepository(IRepository<Client> firstRepository, IRepository<FileInfo> secondRepository, IRepository<Product> thirdRepository)
-        {
-            _firstRepository = firstRepository;
-            _secondRepository = secondRepository;
-            _thirdRepository = thirdRepository;
-        }
-
         public void Add(SaleInfo item)
         {
             Context.SaleInfo.Add(new Model.SaleInfo

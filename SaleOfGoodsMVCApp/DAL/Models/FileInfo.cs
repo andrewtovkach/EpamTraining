@@ -7,6 +7,11 @@ namespace DAL.Models
         public Manager Manager { get; set; }
         public DateTime Date { get; set; }
 
+        public FileInfo()
+        {
+            
+        }
+
         public FileInfo(Manager manager, DateTime date, int id = 0)
         {
             Manager = manager;

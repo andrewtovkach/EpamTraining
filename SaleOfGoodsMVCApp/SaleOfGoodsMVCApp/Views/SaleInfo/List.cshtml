@@ -12,20 +12,21 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 
-<form method="get">
+@using (Html.BeginForm())
+{
     <div class="form-inline">
         <label class="control-label">Client: </label>
-        @Html.DropDownList("client", ViewBag.SaleInfoViewModel.Clients as SelectList, new { @class = "form-control" })
+        @Html.DropDownList("client", ViewBag.SaleInfoViewModel.Clients as SelectList, new {@class = "form-control"})
 
         <label class="control-label">Product: </label>
-        @Html.DropDownList("product", ViewBag.SaleInfoViewModel.Products as SelectList, new { @class = "form-control" })
+        @Html.DropDownList("product", ViewBag.SaleInfoViewModel.Products as SelectList, new {@class = "form-control"})
 
         <label class="control-label">Manager: </label>
-        @Html.DropDownList("manager", ViewBag.SaleInfoViewModel.Managers as SelectList, new { @class = "form-control" })
+        @Html.DropDownList("manager", ViewBag.SaleInfoViewModel.Managers as SelectList, new {@class = "form-control"})
 
-        <input type="submit" value="Filter" class="btn btn-primary" />
+        <input type="submit" value="Filter" class="btn btn-primary"/>
     </div>
-</form>
+}
 <br />
 <div id="results">
     @Html.Partial("ListPartial", Model.Elements)

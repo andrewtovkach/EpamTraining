@@ -20,11 +20,6 @@ namespace DAL.Repositories
             _repository = ninjectKernel.Get<IRepository<Manager>>();
         }
 
-        public FileInfoRepository(IRepository<Manager> repository)
-        {
-            _repository = repository;
-        }
-
         public void Add(FileInfo item)
         {
             item.Manager.Id = _repository.GetOrCreateElementId(item.Manager);

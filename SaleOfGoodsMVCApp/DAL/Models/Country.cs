@@ -6,6 +6,11 @@ namespace DAL.Models
     {
         public string Name { get; set; }
 
+        public Country()
+        {
+            
+        }
+
         public Country(string name)
         {
             Name = name;

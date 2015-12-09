@@ -12,14 +12,15 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 
-<form method="get">
+@using (Html.BeginForm())
+{
     <div class="form-inline">
         <label class="control-label">Manager: </label>
-        @Html.DropDownList("manager", ViewBag.FileInfoViewModel.Managers as SelectList, new { @class = "form-control" })
+        @Html.DropDownList("manager", ViewBag.FileInfoViewModel.Managers as SelectList, new {@class = "form-control"})
 
-        <input type="submit" value="FILTER" class="btn btn-primary" />
+        <input type="submit" value="FILTER" class="btn btn-primary"/>
     </div>
-</form>
+}
 <br/>
 <div id="results">
     @Html.Partial("ListPartial", Model.Elements)

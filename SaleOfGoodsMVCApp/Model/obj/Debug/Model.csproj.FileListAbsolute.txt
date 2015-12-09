@@ -19,6 +19,5 @@ D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\Model\bin\Debug\EntityFrame
 D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\Model\bin\Debug\EntityFramework.SqlServer.xml
 D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\Model\bin\Debug\ru\EntityFramework.resources.dll
 D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\Model\bin\Debug\ru\EntityFramework.SqlServer.resources.dll
-D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
 D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\Model\obj\Debug\Model.dll
 D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\Model\obj\Debug\Model.pdb

@@ -116,7 +116,6 @@ namespace SaleOfGoodsMVCApp.Controllers
             {
                 return View(model);
             }
-            // Создание и отправка маркера
             var code = await UserManager.GenerateChangePhoneNumberTokenAsync(User.Identity.GetUserId(), model.Number);
             if (UserManager.SmsService != null)
             {
@@ -187,9 +186,8 @@ namespace SaleOfGoodsMVCApp.Controllers
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                 }
-                return RedirectToAction("Index", new { Message = ManageMessageId.AddPhoneSuccess });
+                return RedirectToAction("Index", new {Message = ManageMessageId.AddPhoneSuccess});
             }
-            // Это сообщение означает наличие ошибки; повторное отображение формы
             ModelState.AddModelError("", "Не удалось проверить телефон");
             return View(model);
         }
@@ -270,7 +268,6 @@ namespace SaleOfGoodsMVCApp.Controllers
                 AddErrors(result);
             }
 
-            // Это сообщение означает наличие ошибки; повторное отображение формы
             return View(model);
         }
 
@@ -303,7 +300,6 @@ namespace SaleOfGoodsMVCApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LinkLogin(string provider)
         {
-            // Запрос перенаправления к внешнему поставщику входа для связывания имени входа текущего пользователя
             return new AccountController.ChallengeResult(provider, Url.Action("LinkLoginCallback", "Manage"), User.Identity.GetUserId());
         }
 

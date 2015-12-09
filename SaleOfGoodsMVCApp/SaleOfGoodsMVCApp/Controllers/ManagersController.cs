@@ -54,7 +54,6 @@ namespace SaleOfGoodsMVCApp.Controllers
         public ActionResult DeleteManager(int id)
         {
             _elementsService.RemoveManager(id);
-            _elementsService.SaveChanges();
             return RedirectToAction("List");
         }
 
@@ -70,7 +69,6 @@ namespace SaleOfGoodsMVCApp.Controllers
             if (ModelState.IsValid)
             {
                 _elementsService.Add(manager);
-                _elementsService.SaveChanges();
             }
             return RedirectToAction("List");
         }
@@ -91,7 +89,6 @@ namespace SaleOfGoodsMVCApp.Controllers
             if (ModelState.IsValid)
             {
                 _elementsService.Update(manager.Id, manager);
-                _elementsService.SaveChanges();
             }
             return RedirectToAction("List");
         }

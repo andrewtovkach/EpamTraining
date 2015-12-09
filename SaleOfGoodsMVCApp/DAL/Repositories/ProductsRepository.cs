@@ -20,11 +20,6 @@ namespace DAL.Repositories
             _repository = ninjectKernel.Get<IRepository<Country>>();
         }
 
-        public ProductsRepository(IRepository<Country> repository)
-        {
-            _repository = repository;
-        }
-
         public void Add(Product item)
         {
             item.Country.Id = _repository.GetOrCreateElementId(item.Country);

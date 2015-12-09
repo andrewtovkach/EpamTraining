@@ -12,14 +12,15 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 
-<form method="get">
+@using (Html.BeginForm())
+{
     <div class="form-inline">
         <label class="control-label">Country: </label>
-        @Html.DropDownList("country", ViewBag.ProductViewModel.Countries as SelectList, new { @class = "form-control" })
+        @Html.DropDownList("country", ViewBag.ProductViewModel.Countries as SelectList, new {@class = "form-control"})
 
-        <input type="submit" value="Filter" class="btn btn-primary" />
+        <input type="submit" value="Filter" class="btn btn-primary"/>
     </div>
-</form>
+}
 <br/>
 <div id="results">
     @Html.Partial("ListPartial", Model.Elements)

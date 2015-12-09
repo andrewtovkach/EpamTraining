@@ -77,7 +77,6 @@ namespace SaleOfGoodsMVCApp.Controllers
         public ActionResult DeleteFileInfo(int id)
         {
             _elementsService.RemoveFileInfo(id);
-            _elementsService.SaveChanges();
             return RedirectToAction("List");
         }
 
@@ -93,7 +92,6 @@ namespace SaleOfGoodsMVCApp.Controllers
         {
             fileInfo.Manager = _elementsService.ManagersItems.FirstOrDefault(x => x.Id == fileInfo.Manager.Id);
             _elementsService.Add(fileInfo);
-            _elementsService.SaveChanges();
             return RedirectToAction("List");
         }
 
@@ -114,7 +112,6 @@ namespace SaleOfGoodsMVCApp.Controllers
         {
             fileInfo.Manager = _elementsService.ManagersItems.FirstOrDefault(x => x.Id == fileInfo.Manager.Id);
             _elementsService.Update(fileInfo.Id, fileInfo);
-            _elementsService.SaveChanges();
             return RedirectToAction("List");
         }
     }

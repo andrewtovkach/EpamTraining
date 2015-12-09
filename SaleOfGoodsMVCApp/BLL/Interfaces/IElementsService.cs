@@ -29,6 +29,5 @@ namespace BLL.Interfaces
         IEnumerable<Product> ProductsItems { get; }
         IEnumerable<FileInfo> FileInfosItems { get; }
         IEnumerable<SaleInfo> SaleInfosItems { get; }
-        void SaveChanges();
     }
 }

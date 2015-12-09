@@ -9,6 +9,11 @@ namespace DAL.Models
         public string Telephone { get; set; }
         public string Email { get; set; }
 
+        public Manager()
+        {
+            
+        }
+
         public Manager(string firstName, string secondName, string telephone, string email)
         {
             FirstName = firstName;

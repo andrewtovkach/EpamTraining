@@ -8,6 +8,11 @@ namespace DAL.Models
         public string Description { get; set; }
         public Country Country { get; set; }
 
+        public Product()
+        {
+            
+        }
+
         public Product(string name, string description, Country country, int id = 0)
         {
             Name = name;

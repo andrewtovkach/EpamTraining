@@ -88,7 +88,6 @@ namespace SaleOfGoodsMVCApp.Controllers
         public ActionResult DeleteSaleInfo(int id)
         {
             _elementsService.RemoveSaleInfo(id);
-            _elementsService.SaveChanges();
             return RedirectToAction("List");
         }
 
@@ -113,7 +112,6 @@ namespace SaleOfGoodsMVCApp.Controllers
                 Date = saleInfo.Date
             };
             _elementsService.Add(saleInfo);
-            _elementsService.SaveChanges();
             return RedirectToAction("List");
         }
 
@@ -145,7 +143,6 @@ namespace SaleOfGoodsMVCApp.Controllers
                 Date = saleInfo.Date
             };
             _elementsService.Update(saleInfo.Id, saleInfo);
-            _elementsService.SaveChanges();
             return RedirectToAction("List");
         }
     }

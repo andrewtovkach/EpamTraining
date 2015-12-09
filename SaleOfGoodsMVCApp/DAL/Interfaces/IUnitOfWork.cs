@@ -1,5 +1,4 @@
-﻿using System;
-using DAL.Models;
+﻿using DAL.Models;
 
 namespace DAL.Interfaces
 {
@@ -11,6 +10,5 @@ namespace DAL.Interfaces
         IRepository<Manager> Managers { get; }
         IRepository<Product> Products { get; }
         IRepository<SaleInfo> SaleInfos { get; }
-        void SaveChanges();
     }
 }

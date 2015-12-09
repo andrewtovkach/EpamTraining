@@ -77,7 +77,6 @@ namespace SaleOfGoodsMVCApp.Controllers
         public ActionResult DeleteProduct(int id)
         {
             _elementsService.RemoveProduct(id);
-            _elementsService.SaveChanges();
             return RedirectToAction("List");
         }
 
@@ -93,7 +92,6 @@ namespace SaleOfGoodsMVCApp.Controllers
         {
             product.Country = _elementsService.CountriesItems.FirstOrDefault(item => item.Id == product.Country.Id);
             _elementsService.Add(product);
-            _elementsService.SaveChanges();
             return RedirectToAction("List");
         }
 
@@ -105,7 +103,7 @@ namespace SaleOfGoodsMVCApp.Controllers
                 return HttpNotFound();
             var product = _elementsService.ProductsItems.FirstOrDefault(x => x.Id == id);
             if (product != null)
-                ViewBag.Countries = new SelectList(_elementsService.ProductsItems, "Id", "Name", product.Country.Id);
+                ViewBag.Countries = new SelectList(_elementsService.CountriesItems, "Id", "Name", product.Country.Id);
             return View(product);
         }
 
@@ -114,7 +112,6 @@ namespace SaleOfGoodsMVCApp.Controllers
         {
             product.Country = _elementsService.CountriesItems.FirstOrDefault(item => item.Id == product.Country.Id);
             _elementsService.Update(product.Id, product);
-            _elementsService.SaveChanges();
             return RedirectToAction("List");
         }
     }

@@ -1,6 +1,5 @@
 ﻿using DAL.Interfaces;
 using DAL.Repositories;
-using Model;
 using Client = DAL.Models.Client;
 using Country = DAL.Models.Country;
 using FileInfo = DAL.Models.FileInfo;
@@ -12,19 +11,12 @@ namespace DAL
 {
     public class EFUnitOfWork : IUnitOfWork
     {
-        private readonly Model.SalesDBEntities _context;
-
         private ClientsRepository _clientsRepository;
         private CountriesRepository _countriesRepository;
         private ManagersRepository _managersRepository;
         private FileInfoRepository _fielFileInfoRepository;
         private ProductsRepository _productsRepository;
         private SaleInfoRepository _saleInfoRepository;
-
-        public EFUnitOfWork()
-        {
-            _context = new SalesDBEntities();
-        }
 
         public IRepository<Client> Clients
         {
@@ -54,11 +46,6 @@ namespace DAL
         public IRepository<SaleInfo> SaleInfos
         {
             get { return _saleInfoRepository ?? (_saleInfoRepository = new SaleInfoRepository()); }
-        }
-
-        public void SaveChanges()
-        {
-            _context.SaveChanges();
         }
     }
 }

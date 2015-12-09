@@ -54,7 +54,6 @@ namespace SaleOfGoodsMVCApp.Controllers
         public ActionResult DeleteClient(int id)
         {
             _elementsService.RemoveClient(id);
-            _elementsService.SaveChanges();
             return RedirectToAction("List");
         }
 
@@ -70,7 +69,6 @@ namespace SaleOfGoodsMVCApp.Controllers
             if (ModelState.IsValid)
             {
                 _elementsService.Add(client);
-                _elementsService.SaveChanges();
             }
             return RedirectToAction("List");
         }
@@ -91,7 +89,6 @@ namespace SaleOfGoodsMVCApp.Controllers
             if (ModelState.IsValid)
             {
                 _elementsService.Update(client.Id, client);
-                _elementsService.SaveChanges();
             }
             return RedirectToAction("List");
         }

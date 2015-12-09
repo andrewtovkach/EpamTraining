@@ -8,6 +8,11 @@ namespace DAL.Models
         public string SecondName { get; set; }
         public DateTime BirthDay { get; set; }
 
+        public Client()
+        {
+            
+        }
+
         public Client(string firstName, string secondName, DateTime birthDay)
         {
             FirstName = firstName;

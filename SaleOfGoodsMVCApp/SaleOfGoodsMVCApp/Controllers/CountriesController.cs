@@ -54,7 +54,6 @@ namespace SaleOfGoodsMVCApp.Controllers
         public ActionResult DeleteCountry(int id)
         {
             _elementsService.RemoveCountry(id);
-            _elementsService.SaveChanges();
             return RedirectToAction("List");
         }
 
@@ -70,7 +69,6 @@ namespace SaleOfGoodsMVCApp.Controllers
             if (ModelState.IsValid)
             {
                 _elementsService.Add(country);
-                _elementsService.SaveChanges();
             }
             return RedirectToAction("List");
         }
@@ -91,7 +89,6 @@ namespace SaleOfGoodsMVCApp.Controllers
             if (ModelState.IsValid)
             {
                 _elementsService.Update(country.Id, country);
-                _elementsService.SaveChanges();
             }
             return RedirectToAction("List");
         }
