@@ -7,10 +7,14 @@
 }
 
 <h2>List Managers</h2>
+<hr/>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+@if (User.IsInRole("admin"))
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+}
 
 <div id="results">
     @Html.Partial("ListPartial", Model.Elements)

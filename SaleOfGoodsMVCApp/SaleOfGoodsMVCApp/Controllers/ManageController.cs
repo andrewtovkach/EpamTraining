@@ -51,16 +51,16 @@ namespace SaleOfGoodsMVCApp.Controllers
         }
 
         //
-        // GET: /Manage/Index
+        // GET: /Manage/List
         public async Task<ActionResult> Index(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
-                message == ManageMessageId.ChangePasswordSuccess ? "Ваш пароль изменен."
-                : message == ManageMessageId.SetPasswordSuccess ? "Пароль задан."
-                : message == ManageMessageId.SetTwoFactorSuccess ? "Настроен поставщик двухфакторной проверки подлинности."
-                : message == ManageMessageId.Error ? "Произошла ошибка."
-                : message == ManageMessageId.AddPhoneSuccess ? "Ваш номер телефона добавлен."
-                : message == ManageMessageId.RemovePhoneSuccess ? "Ваш номер телефона удален."
+                message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed"
+                : message == ManageMessageId.SetPasswordSuccess ? "Password set"
+                : message == ManageMessageId.SetTwoFactorSuccess ? "Configured provider of two-factor authentication"
+                : message == ManageMessageId.Error ? "An error has occurred"
+                : message == ManageMessageId.AddPhoneSuccess ? "Your phone number is added"
+                : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number has been deleted"
                 : "";
 
             var userId = User.Identity.GetUserId();

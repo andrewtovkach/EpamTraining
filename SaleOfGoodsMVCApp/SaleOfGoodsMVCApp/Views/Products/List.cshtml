@@ -7,21 +7,25 @@
 }
 
 <h2>List Products</h2>
+<hr/>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+@if (User.IsInRole("admin"))
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+}
 
 @using (Html.BeginForm())
 {
     <div class="form-inline">
         <label class="control-label">Country: </label>
-        @Html.DropDownList("country", ViewBag.ProductViewModel.Countries as SelectList, new {@class = "form-control"})
+        @Html.DropDownList("country", ViewBag.ProductViewModel.Countries as SelectList, new { @class = "form-control" })
 
-        <input type="submit" value="Filter" class="btn btn-primary"/>
+        <input type="submit" value="Filter" class="btn btn-primary" />
     </div>
 }
-<br/>
+<br />
 <div id="results">
     @Html.Partial("ListPartial", Model.Elements)
 </div>

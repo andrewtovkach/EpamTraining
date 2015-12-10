@@ -13,12 +13,7 @@ namespace SaleOfGoodsMVCApp.Controllers
 {
     public class ChartsController : Controller
     {
-        readonly IElementsService _elementsService;
-
-        public ChartsController()
-        {
-            _elementsService = new ElementsService();
-        }
+        readonly IElementsService _elementsService = new ElementsService();
 
         public ActionResult Bar()
         {

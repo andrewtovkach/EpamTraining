@@ -5,7 +5,10 @@
         <th>
             @Html.DisplayName("Name")
         </th>
-        <th></th>
+        @if (User.IsInRole("admin"))
+        {
+            <th></th>
+        }
     </tr>
 
     @foreach (var item in Model)
@@ -14,11 +17,13 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            </td>
+            @if (User.IsInRole("admin"))
+            {
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            }
         </tr>
     }
 </table>
-

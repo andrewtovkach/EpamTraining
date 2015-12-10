@@ -12,12 +12,7 @@ namespace SaleOfGoodsMVCApp.Controllers
 {
     public class SaleInfoController : Controller
     {
-        readonly IElementsService _elementsService;
-
-        public SaleInfoController()
-        {
-            _elementsService = new ElementsService();
-        }
+        readonly IElementsService _elementsService = new ElementsService();
 
         public ActionResult ListPartial(int page = 1)
         {
@@ -76,6 +71,7 @@ namespace SaleOfGoodsMVCApp.Controllers
 
         [HttpGet]
         [Route("{id:int}")]
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -85,6 +81,7 @@ namespace SaleOfGoodsMVCApp.Controllers
         }
 
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "admin")]
         public ActionResult DeleteSaleInfo(int id)
         {
             _elementsService.RemoveSaleInfo(id);
@@ -92,6 +89,7 @@ namespace SaleOfGoodsMVCApp.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "admin")]
         public ActionResult Create()
         {
             ViewBag.Products = new SelectList(_elementsService.ProductsItems, "Id", "Name");
@@ -101,6 +99,7 @@ namespace SaleOfGoodsMVCApp.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public ActionResult Create(SaleInfo saleInfo)
         {
             saleInfo.Client = _elementsService.ClientsItems.FirstOrDefault(x => x.Id == saleInfo.Client.Id);
@@ -117,6 +116,7 @@ namespace SaleOfGoodsMVCApp.Controllers
 
         [HttpGet]
         [Route("{id:int}")]
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -132,6 +132,7 @@ namespace SaleOfGoodsMVCApp.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(SaleInfo saleInfo)
         {
             saleInfo.Client = _elementsService.ClientsItems.FirstOrDefault(x => x.Id == saleInfo.Client.Id);

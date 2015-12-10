@@ -12,12 +12,7 @@ namespace SaleOfGoodsMVCApp.Controllers
 {
     public class ProductsController : Controller
     {
-        readonly IElementsService _elementsService;
-
-        public ProductsController()
-        {
-            _elementsService = new ElementsService();
-        }
+        readonly IElementsService _elementsService = new ElementsService();
 
         public ActionResult ListPartial(int page = 1)
         {
@@ -65,6 +60,7 @@ namespace SaleOfGoodsMVCApp.Controllers
 
         [HttpGet]
         [Route("{id:int}")]
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -74,6 +70,7 @@ namespace SaleOfGoodsMVCApp.Controllers
         }
 
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "admin")]
         public ActionResult DeleteProduct(int id)
         {
             _elementsService.RemoveProduct(id);
@@ -81,6 +78,7 @@ namespace SaleOfGoodsMVCApp.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "admin")]
         public ActionResult Create()
         {
             ViewBag.Countries = new SelectList(_elementsService.CountriesItems, "Id", "Name");
@@ -88,6 +86,7 @@ namespace SaleOfGoodsMVCApp.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public ActionResult Create(Product product)
         {
             product.Country = _elementsService.CountriesItems.FirstOrDefault(item => item.Id == product.Country.Id);
@@ -97,6 +96,7 @@ namespace SaleOfGoodsMVCApp.Controllers
 
         [HttpGet]
         [Route("{id:int}")]
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -108,6 +108,7 @@ namespace SaleOfGoodsMVCApp.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(Product product)
         {
             product.Country = _elementsService.CountriesItems.FirstOrDefault(item => item.Id == product.Country.Id);

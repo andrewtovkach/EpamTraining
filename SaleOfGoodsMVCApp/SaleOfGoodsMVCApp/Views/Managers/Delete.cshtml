@@ -5,6 +5,7 @@
 }
 
 <h2>Delete Manager</h2>
+<hr />
 
 <fieldset>
     <div class="form-group">
@@ -22,11 +23,8 @@
 </fieldset>
 @using (Html.BeginForm())
 {
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="DELETE" class="btn btn-primary" />
-            |
-            @Html.ActionLink("Back to List", "List")
-        </div>
+    <div class="btn-group">
+        <button type="submit" value="Delete" class="btn btn-primary">Delete</button>
+        @Html.ActionLink("Back to List", "List", null, new { @class = "btn btn-default" })
     </div>
 }

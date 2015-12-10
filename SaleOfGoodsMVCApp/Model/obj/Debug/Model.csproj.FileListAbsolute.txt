@@ -21,3 +21,4 @@ D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\Model\bin\Debug\ru\EntityFr
 D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\Model\bin\Debug\ru\EntityFramework.SqlServer.resources.dll
 D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\Model\obj\Debug\Model.dll
 D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\Model\obj\Debug\Model.pdb
+D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache

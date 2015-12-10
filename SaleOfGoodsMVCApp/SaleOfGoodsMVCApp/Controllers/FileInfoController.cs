@@ -12,12 +12,7 @@ namespace SaleOfGoodsMVCApp.Controllers
 {
     public class FileInfoController : Controller
     {
-        readonly IElementsService _elementsService;
-
-        public FileInfoController()
-        {
-            _elementsService = new ElementsService();
-        }
+        readonly IElementsService _elementsService = new ElementsService();
 
         public ActionResult ListPartial(int page = 1)
         {
@@ -65,6 +60,7 @@ namespace SaleOfGoodsMVCApp.Controllers
 
         [HttpGet]
         [Route("{id:int}")]
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -74,6 +70,7 @@ namespace SaleOfGoodsMVCApp.Controllers
         }
 
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "admin")]
         public ActionResult DeleteFileInfo(int id)
         {
             _elementsService.RemoveFileInfo(id);
@@ -81,6 +78,7 @@ namespace SaleOfGoodsMVCApp.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "admin")]
         public ActionResult Create()
         {
             ViewBag.Managers = new SelectList(_elementsService.ManagersItems, "Id", "Name");
@@ -88,6 +86,7 @@ namespace SaleOfGoodsMVCApp.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public ActionResult Create(FileInfo fileInfo)
         {
             fileInfo.Manager = _elementsService.ManagersItems.FirstOrDefault(x => x.Id == fileInfo.Manager.Id);
@@ -97,6 +96,7 @@ namespace SaleOfGoodsMVCApp.Controllers
 
         [HttpGet]
         [Route("{id:int}")]
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -108,6 +108,7 @@ namespace SaleOfGoodsMVCApp.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(FileInfo fileInfo)
         {
             fileInfo.Manager = _elementsService.ManagersItems.FirstOrDefault(x => x.Id == fileInfo.Manager.Id);

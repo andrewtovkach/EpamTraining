@@ -7,10 +7,15 @@
 }
 
 <h2>List Clients</h2>
+<hr/>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+@if (User.IsInRole("admin"))
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+}
+
 <div id="results">
     @Html.Partial("ListPartial", Model.Elements)
 </div>
@@ -18,7 +23,7 @@
 <div id="pages" class="btn-group">
     @for (int i = 1; i <= Model.PageInfo.TotalPages; i++)
     {
-        @Ajax.RawActionLink(i.ToString(), "ListPartial", "Clients", new {page = i},
-            new AjaxOptions {UpdateTargetId = "results"}, new {@class = "btn btn-default"})
+        @Ajax.RawActionLink(i.ToString(), "ListPartial", "Clients", new { page = i },
+            new AjaxOptions { UpdateTargetId = "results" }, new { @class = "btn btn-default" })
     }
 </div>

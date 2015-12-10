@@ -11,12 +11,7 @@ namespace SaleOfGoodsMVCApp.Controllers
 {
     public class ClientsController : Controller
     {
-        readonly IElementsService _elementsService;
-
-        public ClientsController()
-        {
-            _elementsService = new ElementsService();
-        }
+        readonly IElementsService _elementsService = new ElementsService();
 
         public ActionResult ListPartial(int page = 1)
         {
@@ -42,6 +37,7 @@ namespace SaleOfGoodsMVCApp.Controllers
 
         [HttpGet]
         [Route("{id:int}")]
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -51,6 +47,7 @@ namespace SaleOfGoodsMVCApp.Controllers
         }
 
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "admin")]
         public ActionResult DeleteClient(int id)
         {
             _elementsService.RemoveClient(id);
@@ -58,12 +55,14 @@ namespace SaleOfGoodsMVCApp.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "admin")]
         public ActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public ActionResult Create(Client client)
         {
             if (ModelState.IsValid)
@@ -75,6 +74,7 @@ namespace SaleOfGoodsMVCApp.Controllers
 
         [HttpGet]
         [Route("{id:int}")]
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -84,6 +84,7 @@ namespace SaleOfGoodsMVCApp.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(Client client)
         {
             if (ModelState.IsValid)
