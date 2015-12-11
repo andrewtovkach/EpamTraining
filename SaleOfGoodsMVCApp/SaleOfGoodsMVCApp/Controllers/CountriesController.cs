@@ -11,7 +11,12 @@ namespace SaleOfGoodsMVCApp.Controllers
 {
     public class CountriesController : Controller
     {
-        readonly IElementsService _elementsService = new ElementsService();
+        private readonly IElementsService _elementsService;
+
+        public CountriesController()
+        {
+            _elementsService = new ElementsService();
+        }
 
         public ActionResult ListPartial(int page = 1)
         {

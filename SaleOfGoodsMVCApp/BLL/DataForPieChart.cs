@@ -1,25 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using BLL.Interfaces;
 using DAL.Repositories;
 
 namespace BLL
 {
-    public class DataForPieChart
+    public class DataForPieChart : IDataForChart<PieData>
     {
-        public List<PieData> ListDatas 
+        readonly SaleInfoRepository _saleInfoRepository;
+        readonly ProductsRepository _productsRepository;
+
+        public DataForPieChart()
+        {
+            _saleInfoRepository = new SaleInfoRepository();
+            _productsRepository = new ProductsRepository();
+        }
+
+        public IList<PieData> ListDatas 
         {
             get { return GetItems(); } 
         }
 
-        public static List<PieData> GetItems()
+        public IList<PieData> GetItems()
         {
-            SaleInfoRepository saleInfoRepository = new SaleInfoRepository();
-            var list = new ProductsRepository().Items.Select(item => new PieData
+            var list = _productsRepository.Items.Select(item => new PieData
             {
                 Name = item.Name, 
-                Y = saleInfoRepository.Where(it => it.Product.Name == item.Name && it.Date.Year == DateTime.Now.Year)
-                .TotalCost() / saleInfoRepository.TotalCost() * 100
+                Y = _saleInfoRepository.Where(it => it.Product.Name == item.Name && it.Date.Year == DateTime.Now.Year)
+                .TotalCost() / _saleInfoRepository.TotalCost() * 100
             }).ToList();
             return list;
         }

@@ -148,9 +148,7 @@ namespace SaleOfGoodsMVCApp.Controllers
                 if (result.Succeeded)
                 {
                     await UserManager.AddToRoleAsync(user.Id, "user");
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-
-                    return RedirectToAction("List", "SaleInfo");
+                    return RedirectToAction("List", "Admin");
                 }
                 AddErrors(result);
             }

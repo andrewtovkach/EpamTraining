@@ -1,46 +1,41 @@
-﻿@model IEnumerable<SaleOfGoodsMVCApp.Models.ApplicationUser>
+﻿@model PagedList.IPagedList<SaleOfGoodsMVCApp.Models.ApplicationUser>
 
 @{
     ViewBag.Title = "List";
 }
 
 <h2>List Users</h2>
-<hr/>
+<hr />
 
 <p>
-    @Html.ActionLink("Register New User", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })
+    @Html.ActionLink("Register New User", "Register", "Account", null, new { id = "registerLink" })
 </p>
-<table class="table table-striped table-hover">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.UserName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PhoneNumber)
-        </th>
-        <th></th>
-    </tr>
+<div class="form-inline">
+    <input type="text" name="name" id="search" class="form-control" data-autocomplete-source='@Url.Action("AutocompleteSearch", "Admin")' />
+    <input type="button" id="submit" value="Search" class="form-control btn btn-primary" />
+</div>
+<br />
+<div id="results">
+    @Html.Partial("ListPartial", Model)
+</div>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PhoneNumber)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            </td>
-        </tr>
-    }
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#submit').click(function (e) {
+            e.preventDefault();
+            var name = $('#search').val();
+            name = encodeURIComponent(name);
+            $('#results').load('@Url.Action("ListPartial", "Admin")?name=' + name);
+        });
+    });
+</script>
 
-</table>
+<script type="text/javascript">
+    $(function () {
+        $("[data-autocomplete-source]").each(function () {
+            var target = $(this);
+            target.autocomplete({ source: target.attr("data-autocomplete-source") });
+        });
+    });
+</script>
+

@@ -12,7 +12,12 @@ namespace SaleOfGoodsMVCApp.Controllers
 {
     public class SaleInfoController : Controller
     {
-        readonly IElementsService _elementsService = new ElementsService();
+        private readonly IElementsService _elementsService;
+
+        public SaleInfoController()
+        {
+            _elementsService = new ElementsService();
+        }
 
         public ActionResult ListPartial(int page = 1)
         {

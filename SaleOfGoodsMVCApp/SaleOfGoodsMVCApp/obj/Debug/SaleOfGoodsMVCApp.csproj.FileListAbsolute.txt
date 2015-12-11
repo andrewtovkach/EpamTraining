@@ -165,3 +165,7 @@ D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\SaleOfGoodsMVCApp\bin\DotNe
 D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\SaleOfGoodsMVCApp\bin\Ninject.dll
 D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\SaleOfGoodsMVCApp\bin\Ninject.xml
 D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\SaleOfGoodsMVCApp\bin\Content\XmlExRates.aspx_ondate=12_09_2015.xml
+D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\SaleOfGoodsMVCApp\bin\PagedList.dll
+D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\SaleOfGoodsMVCApp\bin\PagedList.Mvc.dll
+D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\SaleOfGoodsMVCApp\bin\PagedList.xml
+D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\SaleOfGoodsMVCApp\bin\PagedList.Mvc.xml

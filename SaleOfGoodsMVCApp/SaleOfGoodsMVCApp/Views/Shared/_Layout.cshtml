@@ -1,72 +1,74 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/themes/base/all.css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/Scripts/jquery-1.10.2.min.js")
     @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.min.js")
+    @Scripts.Render("~/Scripts/jquery-ui-1.11.4.min.js")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                @Html.ActionLink("SALES OF GOODS", "List", "SaleInfo", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    @if (User.IsInRole("admin"))
-                    {
-                        <li>
-                            @Html.ActionLink("AdminPanel", "List", "Admin")
-                        </li>
-                    }
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            Tables
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li>@Html.ActionLink("SaleInfos", "List", "SaleInfo")</li>
-                            <li>@Html.ActionLink("FileInfos", "List", "FileInfo")</li>
-                            <li>@Html.ActionLink("Products", "List", "Products")</li>
-                            <li>@Html.ActionLink("Managers", "List", "Managers")</li>
-                            <li>@Html.ActionLink("Clients", "List", "Clients")</li>
-                            <li>@Html.ActionLink("Countries", "List", "Countries")</li>
-                        </ul>
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            @Html.ActionLink("SALES OF GOODS", "List", "SaleInfo", new {area = ""}, new {@class = "navbar-brand"})
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                @if (User.IsInRole("admin"))
+                {
+                    <li>
+                        @Html.ActionLink("AdminPanel", "List", "Admin")
                     </li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            Charts
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li>@Html.ActionLink("Line Chart", "Line", "Charts")</li>
-                            <li>@Html.ActionLink("Bar Chart", "Bar", "Charts")</li>
-                            <li>@Html.ActionLink("Pie Chart", "Pie", "Charts")</li>
-                        </ul>
-                    </li>
-                </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
+                }
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        Tables
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li>@Html.ActionLink("SaleInfos", "List", "SaleInfo")</li>
+                        <li>@Html.ActionLink("FileInfos", "List", "FileInfo")</li>
+                        <li>@Html.ActionLink("Products", "List", "Products")</li>
+                        <li>@Html.ActionLink("Managers", "List", "Managers")</li>
+                        <li>@Html.ActionLink("Clients", "List", "Clients")</li>
+                        <li>@Html.ActionLink("Countries", "List", "Countries")</li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        Charts
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li>@Html.ActionLink("Line Chart", "Line", "Charts")</li>
+                        <li>@Html.ActionLink("Bar Chart", "Bar", "Charts")</li>
+                        <li>@Html.ActionLink("Pie Chart", "Pie", "Charts")</li>
+                    </ul>
+                </li>
+            </ul>
+            @Html.Partial("_LoginPartial")
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-    </div>
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+</div>
+<div class="container body-content">
+    @RenderBody()
+</div>
+@Scripts.Render("~/bundles/bootstrap")
+@RenderSection("scripts", required: false)
 
-    <script type="text/javascript">
-        $("#pages a").first().removeClass().addClass("btn btn-primary");
-        $("#pages a").on('click', function () {
-            $("#pages a").removeClass().addClass("btn btn-default");
-            $(this).removeClass().addClass("btn btn-primary");
-        });
-    </script>
+<script type="text/javascript">
+    $("#pages a").first().removeClass().addClass("btn btn-primary");
+    $("#pages a").on('click', function() {
+        $("#pages a").removeClass().addClass("btn btn-default");
+        $(this).removeClass().addClass("btn btn-primary");
+    });
+</script>
 
 </body>
 </html>
