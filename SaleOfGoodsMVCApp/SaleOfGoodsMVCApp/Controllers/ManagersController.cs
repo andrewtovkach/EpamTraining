@@ -18,11 +18,13 @@ namespace SaleOfGoodsMVCApp.Controllers
             _elementsService = new ElementsService();
         }
 
+        [Authorize(Roles = "admin, user")]
         public ActionResult ListPartial(int page = 1)
         {
             return PartialView(GetManagersPerPages(page));
         }
 
+        [Authorize(Roles = "admin, user")]
         public ActionResult List(int page = 1)
         {
             PageInfo pageInfo = new PageInfo

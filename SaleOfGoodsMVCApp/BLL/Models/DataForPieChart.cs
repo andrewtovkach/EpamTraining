@@ -4,7 +4,7 @@ using System.Linq;
 using BLL.Interfaces;
 using DAL.Repositories;
 
-namespace BLL
+namespace BLL.Models
 {
     public class DataForPieChart : IDataForChart<PieData>
     {
@@ -28,7 +28,7 @@ namespace BLL
             {
                 Name = item.Name, 
                 Y = _saleInfoRepository.Where(it => it.Product.Name == item.Name && it.Date.Year == DateTime.Now.Year)
-                .TotalCost() / _saleInfoRepository.TotalCost() * 100
+                .TotalCost() / _saleInfoRepository.Where(it => it.Date.Year == DateTime.Now.Year).TotalCost() * 100
             }).ToList();
             return list;
         }

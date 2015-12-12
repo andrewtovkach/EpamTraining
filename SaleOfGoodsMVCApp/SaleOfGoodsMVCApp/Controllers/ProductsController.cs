@@ -19,11 +19,13 @@ namespace SaleOfGoodsMVCApp.Controllers
             _elementsService = new ElementsService();
         }
 
+        [Authorize(Roles = "admin, user")]
         public ActionResult ListPartial(int page = 1)
         {
             return PartialView(GetProductsPerPages(_elementsService.ProductsItems, page));
         }
 
+        [Authorize(Roles = "admin, user")]
         public ActionResult List(int? country, int page = 1)
         {
             var productViewModel = CreateProductViewModel(country);

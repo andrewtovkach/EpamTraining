@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using BLL;
 using BLL.DTO;
 using BLL.Interfaces;
+using BLL.Models;
 using SaleOfGoodsMVCApp.Models;
 
 namespace SaleOfGoodsMVCApp.Controllers
@@ -19,11 +20,13 @@ namespace SaleOfGoodsMVCApp.Controllers
             _elementsService = new ElementsService();
         }
 
+        [Authorize(Roles = "admin, user")]
         public ActionResult ListPartial(int page = 1)
         {
             return PartialView(GetSaleInfoPerPages(_elementsService.SaleInfosItems, page));
         }
 
+        [Authorize(Roles = "admin, user")]
         public ActionResult List(int? client, int? product, int? manager, int page = 1)
         {
             var saleInfoViewModel = CreateSaleInfoViewModel(client, product, manager);
@@ -100,6 +103,9 @@ namespace SaleOfGoodsMVCApp.Controllers
             ViewBag.Products = new SelectList(_elementsService.ProductsItems, "Id", "Name");
             ViewBag.Clients = new SelectList(_elementsService.ClientsItems, "Id", "Name");
             ViewBag.Managers = new SelectList(_elementsService.ManagersItems, "Id", "Name");
+            var listCurrencies = ConverterCurrency.ListCurrencyInfos.Select(item => item.CharCode).ToList();
+            listCurrencies.Add("BYR");
+            ViewBag.Currencies = new SelectList(listCurrencies.OrderBy(item => item).ToList());
             return View();
         }
 
@@ -132,6 +138,9 @@ namespace SaleOfGoodsMVCApp.Controllers
                 ViewBag.Clients = new SelectList(_elementsService.ClientsItems, "Id", "Name", saleInfo.Client.Id);
                 ViewBag.Products = new SelectList(_elementsService.ProductsItems, "Id", "Name", saleInfo.Product.Id);
                 ViewBag.Managers = new SelectList(_elementsService.ManagersItems, "Id", "Name", saleInfo.FileInfo.Manager.Id);
+                var listCurrencies = ConverterCurrency.ListCurrencyInfos.Select(item => item.CharCode).ToList();
+                listCurrencies.Add("BYR");
+                ViewBag.Currencies = new SelectList(listCurrencies.OrderBy(item => item).ToList(), saleInfo.Currency);
             }
             return View(saleInfo);
         }

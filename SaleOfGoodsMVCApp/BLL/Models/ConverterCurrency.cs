@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web.Hosting;
 using System.Xml.Linq;
 
-namespace BLL
+namespace BLL.Models
 {
     public static class ConverterCurrency
     {

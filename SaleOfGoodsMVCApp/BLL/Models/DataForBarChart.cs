@@ -4,7 +4,7 @@ using System.Linq;
 using BLL.Interfaces;
 using DAL.Repositories;
 
-namespace BLL
+namespace BLL.Models
 {
     public class DataForBarChart : IDataForChart<LineData>
     {

@@ -22,8 +22,12 @@ namespace DAL.Repositories
 
         public void Add(Product item)
         {
-            item.Country.Id = _repository.GetOrCreateElementId(item.Country);
-            Context.Products.Add(Mapper.Map<Product, Model.Product>(item));
+            Context.Products.Add(new Model.Product
+            {
+                CountryId = _repository.GetOrCreateElementId(item.Country),
+                Name = item.Name,
+                Description = item.Description
+            });
         }
 
         public void Remove(int id)

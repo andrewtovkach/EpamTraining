@@ -49,14 +49,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConverterCurrency.cs" />
+    <Compile Include="Models\ConverterCurrency.cs" />
     <Compile Include="CostValidationAttribute.cs" />
-    <Compile Include="CurrencyInfo.cs" />
-    <Compile Include="DataForBarChart.cs" />
-    <Compile Include="DataForLineChart.cs" />
-    <Compile Include="DataForPieChart.cs" />
+    <Compile Include="Models\CurrencyInfo.cs" />
+    <Compile Include="Models\DataForBarChart.cs" />
+    <Compile Include="Models\DataForLineChart.cs" />
+    <Compile Include="Models\DataForPieChart.cs" />
     <Compile Include="DTO\Country.cs" />
-    <Compile Include="DTO\ElementsService.cs" />
+    <Compile Include="ElementsService.cs" />
     <Compile Include="DTO\FileInfo.cs" />
     <Compile Include="DTO\Manager.cs" />
     <Compile Include="DTO\Product.cs" />
@@ -64,10 +64,10 @@
     <Compile Include="IndexViewModel.cs" />
     <Compile Include="Interfaces\IDataForChart.cs" />
     <Compile Include="Interfaces\IElementsService.cs" />
-    <Compile Include="LineData.cs" />
+    <Compile Include="Models\LineData.cs" />
     <Compile Include="DTO\Client.cs" />
     <Compile Include="PageInfo.cs" />
-    <Compile Include="PieData.cs" />
+    <Compile Include="Models\PieData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SalesStatistics.cs" />
   </ItemGroup>
@@ -76,6 +76,9 @@
       <Project>{5bf977cf-670e-456c-9658-e71a71260952}</Project>
       <Name>DAL</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

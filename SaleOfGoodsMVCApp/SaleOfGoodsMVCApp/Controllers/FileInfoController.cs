@@ -19,11 +19,13 @@ namespace SaleOfGoodsMVCApp.Controllers
             _elementsService = new ElementsService();
         }
 
+        [Authorize(Roles = "admin, user")]
         public ActionResult ListPartial(int page = 1)
         {
             return PartialView(GetFileInfoPerPages(_elementsService.FileInfosItems, page));
         }
 
+        [Authorize(Roles = "admin, user")]
         public ActionResult List(int? manager, int page = 1)
         {
             var fileInfoViewModel = CreateFileInfoViewModel(manager);

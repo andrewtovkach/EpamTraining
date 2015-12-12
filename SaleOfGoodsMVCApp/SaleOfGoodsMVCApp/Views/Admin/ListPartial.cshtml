@@ -6,13 +6,13 @@
 <table class="table table-striped table-hover">
     <tr>
         <th>
-            @Html.Label("UserName")
+            UserName
         </th>
         <th>
-            @Html.Label("Email")
+            Email
         </th>
         <th>
-            @Html.Label("PhoneNumber")
+            PhoneNumber
         </th>
         <th></th>
     </tr>
@@ -30,8 +30,8 @@
                 @Html.DisplayFor(modelItem => item.PhoneNumber)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new {id = item.Id}) |
-                @Html.ActionLink("Delete", "Delete", new {id = item.Id})
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-default btn-sm" })
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-default btn-sm" })
             </td>
         </tr>
     }

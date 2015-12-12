@@ -2,8 +2,8 @@
 using System.Linq;
 using System.Web.Mvc;
 using BLL;
-using BLL.DTO;
 using BLL.Interfaces;
+using BLL.Models;
 using DotNet.Highcharts;
 using DotNet.Highcharts.Enums;
 using DotNet.Highcharts.Helpers;
@@ -11,6 +11,7 @@ using DotNet.Highcharts.Options;
 
 namespace SaleOfGoodsMVCApp.Controllers
 {
+    [Authorize(Roles = "admin, user")]
     public class ChartsController : Controller
     {
         private readonly IElementsService _elementsService;
@@ -31,7 +32,7 @@ namespace SaleOfGoodsMVCApp.Controllers
                 .SetTitle(new Title { Text = "Yearly Sales of Goods" })
                 .SetXAxis(new XAxis
                 {
-                    Categories =_elementsService.ProductsItems.Select(item => item.Name).ToArray(),
+                    Categories = _elementsService.ProductsItems.Select(item => item.Name).ToArray(),
                     Title = new XAxisTitle { Text = string.Empty }
                 })
                 .SetYAxis(new YAxis
@@ -43,7 +44,9 @@ namespace SaleOfGoodsMVCApp.Controllers
                         Align = AxisTitleAligns.High
                     }
                 })
-                .SetTooltip(new Tooltip { Formatter = "function() { return ''+ this.series.name +': '+ this.y +' BYR'; }" })
+                .SetTooltip(new Tooltip { Formatter = @"function() { 
+                                                            return ''+ this.series.name +': '+ this.y +' BYR'; 
+                                                        }" })
                 .SetPlotOptions(new PlotOptions
                 {
                     Bar = new PlotOptionsBar
@@ -105,8 +108,7 @@ namespace SaleOfGoodsMVCApp.Controllers
                 .SetTooltip(new Tooltip
                 {
                     Formatter = @"function() {
-                                        return '<b>'+ this.series.name +'</b><br/>'+
-                                    this.x +': '+ this.y +'BYR';
+                                    return '<b>'+ this.series.name +'</b><br/>'+ this.x +': '+ this.y +'BYR';
                                 }"
                 })
                 .SetLegend(new Legend
@@ -131,7 +133,9 @@ namespace SaleOfGoodsMVCApp.Controllers
             Highcharts chart = new Highcharts("chart")
                 .InitChart(new Chart { PlotShadow = false })
                 .SetTitle(new Title { Text = "The structure of the sale of goods" })
-                .SetTooltip(new Tooltip { Formatter = "function() { return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %'; }" })
+                .SetTooltip(new Tooltip { Formatter = @"function() { 
+                                                            return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %'; 
+                                                        }" })
                 .SetPlotOptions(new PlotOptions
                 {
                     Pie = new PlotOptionsPie
@@ -142,7 +146,9 @@ namespace SaleOfGoodsMVCApp.Controllers
                         {
                             Color = ColorTranslator.FromHtml("#000000"),
                             ConnectorColor = ColorTranslator.FromHtml("#000000"),
-                            Formatter = "function() { return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %'; }"
+                            Formatter = @"function() { 
+                                            return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %'; 
+                                        }"
                         }
                     }
                 })

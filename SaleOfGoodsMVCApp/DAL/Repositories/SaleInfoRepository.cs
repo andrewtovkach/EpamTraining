@@ -11,28 +11,28 @@ namespace DAL.Repositories
 {
     public class SaleInfoRepository : BaseRepository<SaleInfo>, IRepository<SaleInfo>, IEnumerable<SaleInfo>
     {
-        private readonly IRepository<Client> _firstRepository;
-        private readonly IRepository<FileInfo> _secondRepository;
-        private readonly IRepository<Product> _thirdRepository;
+        private readonly IRepository<Client> _clientsRepository;
+        private readonly IRepository<FileInfo> _fileInfoRepository;
+        private readonly IRepository<Product> _productsRepository;
 
         public SaleInfoRepository()
         {
             IKernel ninjectKernel = new StandardKernel();
             ninjectKernel.Bind<IRepository<Client>>().To<ClientsRepository>();
-            _firstRepository = ninjectKernel.Get<IRepository<Client>>();
+            _clientsRepository = ninjectKernel.Get<IRepository<Client>>();
             ninjectKernel.Bind<IRepository<FileInfo>>().To<FileInfoRepository>();
-            _secondRepository = ninjectKernel.Get<IRepository<FileInfo>>();
+            _fileInfoRepository = ninjectKernel.Get<IRepository<FileInfo>>();
             ninjectKernel.Bind<IRepository<Product>>().To<ProductsRepository>();
-            _thirdRepository = ninjectKernel.Get<IRepository<Product>>();
+            _productsRepository = ninjectKernel.Get<IRepository<Product>>();
         }
 
         public void Add(SaleInfo item)
         {
             Context.SaleInfo.Add(new Model.SaleInfo
             {
-                ClientId = _firstRepository.GetOrCreateElementId(item.Client),
-                FileInfoId = _secondRepository.GetOrCreateElementId(item.FileInfo),
-                ProductId = _thirdRepository.GetOrCreateElementId(item.Product),
+                ClientId = _clientsRepository.GetOrCreateElementId(item.Client),
+                FileInfoId = _fileInfoRepository.GetOrCreateElementId(item.FileInfo),
+                ProductId = _productsRepository.GetOrCreateElementId(item.Product),
                 Cost = item.Cost,
                 Currency = item.Currency,
                 Date = item.Date
@@ -58,9 +58,9 @@ namespace DAL.Repositories
             if (element == null)
                 throw new ArgumentException("Incorrect saleInfo identification!");
             element.Date = item.Date;
-            element.ClientId = _firstRepository.GetOrCreateElementId(item.Client);
-            element.ProductId = _secondRepository.GetOrCreateElementId(item.FileInfo);
-            element.FileInfoId = _thirdRepository.GetOrCreateElementId(item.Product);
+            element.ClientId = _clientsRepository.GetOrCreateElementId(item.Client);
+            element.ProductId = _productsRepository.GetOrCreateElementId(item.Product);
+            element.FileInfoId = _fileInfoRepository.GetOrCreateElementId(item.FileInfo);
             element.Cost = item.Cost;
             element.Currency = item.Currency;
         }

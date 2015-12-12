@@ -22,8 +22,11 @@ namespace DAL.Repositories
 
         public void Add(FileInfo item)
         {
-            item.Manager.Id = _repository.GetOrCreateElementId(item.Manager);
-            Context.FileInfo.Add(Mapper.Map<FileInfo, Model.FileInfo>(item));
+            Context.FileInfo.Add(new Model.FileInfo
+            {
+                Date = item.Date, 
+                ManagerId = _repository.GetOrCreateElementId(item.Manager)
+            });
         }
 
         public void Remove(int id)

@@ -3,13 +3,13 @@
 <table class="table table-striped table-hover">
     <tr>
         <th>
-            @Html.DisplayName("Name")
+            Name
         </th>
         <th>
-            @Html.DisplayName("Description")
+            Description
         </th>
         <th>
-            @Html.DisplayName("Country")
+            Country
         </th>
         @if (User.IsInRole("admin"))
         {
@@ -32,8 +32,8 @@
             @if (User.IsInRole("admin"))
             {
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-default btn-sm" }) 
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-default btn-sm" })
                 </td>
             }
         </tr>

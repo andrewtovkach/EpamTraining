@@ -164,8 +164,8 @@ D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\SaleOfGoodsMVCApp\bin\Scrip
 D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\SaleOfGoodsMVCApp\bin\DotNet.Highcharts.dll
 D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\SaleOfGoodsMVCApp\bin\Ninject.dll
 D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\SaleOfGoodsMVCApp\bin\Ninject.xml
-D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\SaleOfGoodsMVCApp\bin\Content\XmlExRates.aspx_ondate=12_09_2015.xml
 D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\SaleOfGoodsMVCApp\bin\PagedList.dll
 D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\SaleOfGoodsMVCApp\bin\PagedList.Mvc.dll
 D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\SaleOfGoodsMVCApp\bin\PagedList.xml
 D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\SaleOfGoodsMVCApp\bin\PagedList.Mvc.xml
+D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\SaleOfGoodsMVCApp\bin\Content\XmlExRates.aspx_ondate=12_12_2015.xml

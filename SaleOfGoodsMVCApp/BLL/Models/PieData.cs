@@ -1,6 +1,6 @@
-﻿namespace BLL
+﻿namespace BLL.Models
 {
-    public class PieData
+    public struct PieData
     {
         public string Name { get; set; }
         public double Y { get; set; }

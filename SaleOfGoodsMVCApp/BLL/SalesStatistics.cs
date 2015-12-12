@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using BLL.Models;
 using DAL.Models;
 
 namespace BLL
