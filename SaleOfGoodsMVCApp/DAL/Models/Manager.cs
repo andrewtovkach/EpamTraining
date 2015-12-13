@@ -42,7 +42,5 @@ namespace DAL.Models
         {
             return string.Format("{0} {1} {2} {3}", FirstName, SecondName, Telephone, Email);
         }
-
-
     }
 }

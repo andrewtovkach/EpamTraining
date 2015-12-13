@@ -7,14 +7,14 @@
 <h2>List Users</h2>
 <hr />
 
-<p>
-    @Html.ActionLink("Register New User", "Register", "Account", null, new { id = "registerLink" })
-</p>
 <div class="form-inline">
     <input type="text" name="name" id="search" class="form-control" data-autocomplete-source='@Url.Action("AutocompleteSearch", "Admin")' />
     <input type="button" id="submit" value="Search" class="form-control btn btn-primary" />
 </div>
-<br />
+<hr/>
+<p>
+    @Html.ActionLink("Register New User", "Register", "Account", null, new { id = "registerLink", @class = "btn btn-default" })
+</p>
 <div id="results">
     @Html.Partial("ListPartial", Model)
 </div>

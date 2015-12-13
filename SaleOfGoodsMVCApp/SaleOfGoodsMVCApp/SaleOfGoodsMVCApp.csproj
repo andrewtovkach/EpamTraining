@@ -227,7 +227,7 @@
     <Content Include="Content\themes\base\tabs.css" />
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
-    <Content Include="Content\XmlExRates.aspx_ondate=12_12_2015.xml">
+    <Content Include="Content\XmlExRates.aspx_ondate=12_13_2015.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="favicon.ico" />

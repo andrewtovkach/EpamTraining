@@ -60,7 +60,7 @@
         @RenderBody()
     </div>
     @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    @RenderSection("scripts", false)
 
     <script type="text/javascript">
         $("#pages a").first().removeClass().addClass("btn btn-primary");

@@ -118,7 +118,7 @@ namespace SaleOfGoodsMVCApp.Controllers
             var manager = _elementsService.ManagersItems.FirstOrDefault(x => x.Id == saleInfo.FileInfo.Manager.Id);
             saleInfo.FileInfo = new FileInfo
             {
-                Manager = manager, 
+                Manager = manager,
                 Date = saleInfo.Date
             };
             _elementsService.Add(saleInfo);
@@ -154,7 +154,7 @@ namespace SaleOfGoodsMVCApp.Controllers
             var manager = _elementsService.ManagersItems.FirstOrDefault(x => x.Id == saleInfo.FileInfo.Manager.Id);
             saleInfo.FileInfo = new FileInfo
             {
-                Manager = manager, 
+                Manager = manager,
                 Date = saleInfo.Date
             };
             _elementsService.Update(saleInfo.Id, saleInfo);

@@ -102,13 +102,6 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="BLL.Models.PieData">
-    <Position X="2.5" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAIAA=</HashCode>
-      <FileName>Models\PieData.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Struct Name="BLL.Models.CurrencyInfo">
     <Position X="2.5" Y="4" Width="1.5" />
     <TypeIdentifier>
@@ -121,6 +114,13 @@
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAI=</HashCode>
       <FileName>Models\LineData.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="BLL.Models.PieData">
+    <Position X="2.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>Models\PieData.cs</FileName>
     </TypeIdentifier>
   </Struct>
   <Interface Name="BLL.Interfaces.IDataForChart&lt;T&gt;">

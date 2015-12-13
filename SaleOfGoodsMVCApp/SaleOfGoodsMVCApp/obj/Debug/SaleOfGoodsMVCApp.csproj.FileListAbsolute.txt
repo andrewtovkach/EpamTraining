@@ -168,4 +168,4 @@ D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\SaleOfGoodsMVCApp\bin\Paged
 D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\SaleOfGoodsMVCApp\bin\PagedList.Mvc.dll
 D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\SaleOfGoodsMVCApp\bin\PagedList.xml
 D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\SaleOfGoodsMVCApp\bin\PagedList.Mvc.xml
-D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\SaleOfGoodsMVCApp\bin\Content\XmlExRates.aspx_ondate=12_12_2015.xml
+D:\Programming\CSharp\EpamTraining\SaleOfGoodsMVCApp\SaleOfGoodsMVCApp\bin\Content\XmlExRates.aspx_ondate=12_13_2015.xml

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
-using System.Security.Claims;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -299,7 +296,6 @@ namespace SaleOfGoodsMVCApp.Controllers
                 return RedirectToAction("Login");
             }
 
-            // Выполнение входа пользователя посредством данного внешнего поставщика входа, если у пользователя уже есть имя входа
             var result = await SignInManager.ExternalSignInAsync(loginInfo, isPersistent: false);
             switch (result)
             {
@@ -331,7 +327,6 @@ namespace SaleOfGoodsMVCApp.Controllers
 
             if (ModelState.IsValid)
             {
-                // Получение сведений о пользователе от внешнего поставщика входа
                 var info = await AuthenticationManager.GetExternalLoginInfoAsync();
                 if (info == null)
                 {
